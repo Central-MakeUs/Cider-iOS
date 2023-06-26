@@ -13,6 +13,9 @@
 		FA8CA60E2A46D322005A6709 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA8CA60C2A46D322005A6709 /* Main.storyboard */; };
 		FA8CA6102A46D324005A6709 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA8CA60F2A46D324005A6709 /* Assets.xcassets */; };
 		FA8CA6132A46D324005A6709 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA8CA6112A46D324005A6709 /* LaunchScreen.storyboard */; };
+		FA8CA6262A49B541005A6709 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA8CA6232A49B541005A6709 /* Pretendard-Bold.otf */; };
+		FA8CA6272A49B541005A6709 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA8CA6242A49B541005A6709 /* Pretendard-Regular.otf */; };
+		FA8CA6282A49B541005A6709 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA8CA6252A49B541005A6709 /* Pretendard-Medium.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		FA8CA60F2A46D324005A6709 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA8CA6122A46D324005A6709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA8CA6142A46D324005A6709 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA8CA6232A49B541005A6709 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		FA8CA6242A49B541005A6709 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		FA8CA6252A49B541005A6709 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,7 @@
 		FA8CA6052A46D322005A6709 /* Cider */ = {
 			isa = PBXGroup;
 			children = (
+				FA8CA6222A49B51F005A6709 /* Font */,
 				FA8CA6062A46D322005A6709 /* AppDelegate.swift */,
 				FA8CA6082A46D322005A6709 /* SceneDelegate.swift */,
 				FA8CA60A2A46D322005A6709 /* ViewController.swift */,
@@ -65,6 +72,16 @@
 				FA8CA6142A46D324005A6709 /* Info.plist */,
 			);
 			path = Cider;
+			sourceTree = "<group>";
+		};
+		FA8CA6222A49B51F005A6709 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				FA8CA6232A49B541005A6709 /* Pretendard-Bold.otf */,
+				FA8CA6252A49B541005A6709 /* Pretendard-Medium.otf */,
+				FA8CA6242A49B541005A6709 /* Pretendard-Regular.otf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,8 +143,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA8CA6132A46D324005A6709 /* LaunchScreen.storyboard in Resources */,
+				FA8CA6262A49B541005A6709 /* Pretendard-Bold.otf in Resources */,
+				FA8CA6272A49B541005A6709 /* Pretendard-Regular.otf in Resources */,
 				FA8CA6102A46D324005A6709 /* Assets.xcassets in Resources */,
 				FA8CA60E2A46D322005A6709 /* Main.storyboard in Resources */,
+				FA8CA6282A49B541005A6709 /* Pretendard-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +309,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cider/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -316,6 +337,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cider/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
