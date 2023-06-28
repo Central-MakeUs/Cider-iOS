@@ -24,5 +24,7 @@ extension UIColor {
         static let lightBlue = UIColor(named: "lightBlue")
         static let success = UIColor(named: "success")
         static let warning = UIColor(named: "warning")
+        static let kakao = UIColor(named: "kakao")
+        static let text = UIColor(named: "text")
     }
 }
