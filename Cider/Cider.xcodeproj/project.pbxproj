@@ -43,6 +43,86 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA44D38D2A4C3CB10037E328 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				FA44D38E2A4C3CBA0037E328 /* Auth */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		FA44D38E2A4C3CBA0037E328 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				FA44D38F2A4C3CEE0037E328 /* View */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		FA44D38F2A4C3CEE0037E328 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FA44D3902A4C3DB00037E328 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				FA44D3922A4C3DCA0037E328 /* UseCases */,
+				FA44D3912A4C3DBE0037E328 /* Entities */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		FA44D3912A4C3DBE0037E328 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		FA44D3922A4C3DCA0037E328 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		FA44D3932A4C3DF10037E328 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		FA44D3942A4C3E150037E328 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		FA44D3952A4C3E1B0037E328 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FA8CA6222A49B51F005A6709 /* Font */,
+				FA8CA60F2A46D324005A6709 /* Assets.xcassets */,
+				FA8CA6112A46D324005A6709 /* LaunchScreen.storyboard */,
+				FA8CA6142A46D324005A6709 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		FA44D3962A4C3E290037E328 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				FA8CA6062A46D322005A6709 /* AppDelegate.swift */,
+				FA8CA6082A46D322005A6709 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
 		FA8CA5FA2A46D322005A6709 = {
 			isa = PBXGroup;
 			children = (
@@ -62,14 +142,14 @@
 		FA8CA6052A46D322005A6709 /* Cider */ = {
 			isa = PBXGroup;
 			children = (
-				FA8CA6222A49B51F005A6709 /* Font */,
-				FA8CA6062A46D322005A6709 /* AppDelegate.swift */,
-				FA8CA6082A46D322005A6709 /* SceneDelegate.swift */,
+				FA44D3962A4C3E290037E328 /* Application */,
+				FA44D3952A4C3E1B0037E328 /* Resources */,
+				FA44D3942A4C3E150037E328 /* Common */,
+				FA44D38D2A4C3CB10037E328 /* Presentation */,
+				FA44D3902A4C3DB00037E328 /* Domain */,
+				FA44D3932A4C3DF10037E328 /* Data */,
 				FA8CA60A2A46D322005A6709 /* ViewController.swift */,
 				FA8CA60C2A46D322005A6709 /* Main.storyboard */,
-				FA8CA60F2A46D324005A6709 /* Assets.xcassets */,
-				FA8CA6112A46D324005A6709 /* LaunchScreen.storyboard */,
-				FA8CA6142A46D324005A6709 /* Info.plist */,
 			);
 			path = Cider;
 			sourceTree = "<group>";
