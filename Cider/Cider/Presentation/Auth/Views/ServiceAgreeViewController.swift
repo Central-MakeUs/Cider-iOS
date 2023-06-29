@@ -34,6 +34,7 @@ class ServiceAgreeViewController: UIViewController {
         button.setTitleColor(UIColor.white, for: .normal)
         button.heightAnchor.constraint(equalToConstant: 48).isActive = true
         button.layer.cornerRadius = 4
+        button.addTarget(self, action: #selector(didTapConfirm), for: .touchUpInside)
         return button
     }()
     
@@ -75,6 +76,7 @@ class ServiceAgreeViewController: UIViewController {
 }
 
 private extension ServiceAgreeViewController {
+    
     func configure() {
         view.backgroundColor = .white
         view.addSubviews(processView, tableView, confirmButton)
@@ -93,6 +95,16 @@ private extension ServiceAgreeViewController {
         ])
         processView.setProcessType(.serviceAgree)
     }
+    
+}
+
+private extension ServiceAgreeViewController {
+    
+    @objc func didTapConfirm(_ sender: Any?) {
+        let viewController = NicknameViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
 }
 
 extension ServiceAgreeViewController: UITableViewDataSource, UITableViewDelegate {
@@ -152,7 +164,7 @@ extension ServiceAgreeViewController: UITableViewDataSource, UITableViewDelegate
             if cellData.filter({ $0.opened == true }).count > 0 {
                 return 0
             } else {
-                return (UIScreen.main.bounds.height)*0.5
+                return (UIScreen.main.bounds.height)*0.4
             }
         default:
             return 0

@@ -33,7 +33,7 @@ final class LoginViewController: UIViewController {
         button.backgroundColor = .black
         button.heightAnchor.constraint(equalToConstant: 44).isActive = true
         button.layer.cornerRadius = 4
-        button.addTarget(self, action: #selector(didTappedAppleLogin), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapAppleLogin), for: .touchUpInside)
         return button
     }()
     
@@ -79,7 +79,7 @@ private extension LoginViewController {
 
 private extension LoginViewController {
     
-    @objc func didTappedAppleLogin() {
+    @objc func didTapAppleLogin() {
         let viewController = ServiceAgreeViewController()
         self.navigationController?.pushViewController(viewController, animated: true)
     }

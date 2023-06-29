@@ -75,6 +75,7 @@ final class NicknameViewController: UIViewController {
 private extension NicknameViewController {
     
     func configure() {
+        view.backgroundColor = .white
         processView.setProcessType(.dataInput)
         view.addSubviews(processView, mainTitleLabel, subTitleLabel, nicknameTextField, nextButton)
         NSLayoutConstraint.activate([
