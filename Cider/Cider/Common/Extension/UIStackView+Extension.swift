@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public extension UIStackView {
+extension UIStackView {
     
     convenience init(
         axis: NSLayoutConstraint.Axis,

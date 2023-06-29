@@ -7,7 +7,7 @@
 
 import UIKit
 
-public extension UILabel {
+extension UILabel {
     
     func editTextColor(of prefix: String, in color: UIColor) {
         guard let text = text else {

@@ -33,6 +33,7 @@ class LoginViewController: UIViewController {
         button.backgroundColor = .black
         button.heightAnchor.constraint(equalToConstant: 44).isActive = true
         button.layer.cornerRadius = 4
+        button.addTarget(self, action: #selector(didTappedAppleLogin), for: .touchUpInside)
         return button
     }()
     
@@ -56,6 +57,7 @@ class LoginViewController: UIViewController {
 }
 
 private extension LoginViewController {
+    
     func configure() {
         view.addSubviews(logoImageView, titleLabel, appleLoginButton, kakaoLoginButton)
         NSLayoutConstraint.activate([
@@ -63,7 +65,7 @@ private extension LoginViewController {
             logoImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             titleLabel.leadingAnchor.constraint(equalTo: logoImageView.leadingAnchor),
             titleLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 16),
-            kakaoLoginButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
+            kakaoLoginButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
             kakaoLoginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             kakaoLoginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             appleLoginButton.bottomAnchor.constraint(equalTo: kakaoLoginButton.topAnchor, constant: -12),
@@ -72,6 +74,16 @@ private extension LoginViewController {
             
         ])
     }
+    
+}
+
+private extension LoginViewController {
+    
+    @objc func didTappedAppleLogin() {
+        let viewController = ServiceAgreeViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
 }
 
 

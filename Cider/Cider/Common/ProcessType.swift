@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+enum ProcessType {
+    case serviceAgree
+    case dataInput
+    case keywordRecommendation
+}

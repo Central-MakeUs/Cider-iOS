@@ -7,12 +7,6 @@
 
 import UIKit
 
-enum ProcessType {
-    case serviceAgree
-    case dataInput
-    case keywordRecommendation
-}
-
 final class ProcessView: UIStackView {
     
     private lazy var serviceAgreeLabel: UILabel = {
@@ -104,14 +98,14 @@ extension ProcessView {
             dataInputLabel.layer.borderWidth = 0.5
             dataInputLabel.layer.cornerRadius = 8
             dataInputLabel.backgroundColor = .custom.lightBlue
-           break
+           
         case .keywordRecommendation:
             keywordRecommendationLabel.textColor = .custom.main
             keywordRecommendationLabel.layer.borderColor = UIColor.custom.main?.cgColor
             keywordRecommendationLabel.layer.borderWidth = 0.5
             keywordRecommendationLabel.layer.cornerRadius = 8
             keywordRecommendationLabel.backgroundColor = .custom.lightBlue
-           break
+           
         }
     }
     
