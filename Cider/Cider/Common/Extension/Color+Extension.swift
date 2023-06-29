@@ -9,8 +9,7 @@ import UIKit
 
 extension UIColor {
     enum custom {
-        static let mainColor = UIColor(red: 223, green: 223, blue: 223, alpha: 0.5)
-        static let blue = UIColor(named: "blue")
+        static let main = UIColor(named: "main")
         static let error = UIColor(named: "error")
         static let gray1 = UIColor(named: "gray1")
         static let gray2 = UIColor(named: "gray2")
