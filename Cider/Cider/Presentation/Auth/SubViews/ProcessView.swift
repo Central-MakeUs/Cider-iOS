@@ -74,7 +74,7 @@ final class ProcessView: UIStackView {
         self.alignment = .center
         self.addArrangedSubviews(serviceAgreeLabel, barView1, dataInputLabel, barView2, keywordRecommendationLabel)
         NSLayoutConstraint.activate([
-            self.heightAnchor.constraint(equalToConstant: 20)
+            self.heightAnchor.constraint(equalToConstant: 52)
         ])
     }
    

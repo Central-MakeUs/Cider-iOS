@@ -149,7 +149,7 @@ extension ServiceAgreeViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
         case 0:
-            if cellData.filter{ $0.opened == true }.count > 0 {
+            if cellData.filter({ $0.opened == true }).count > 0 {
                 return 0
             } else {
                 return (UIScreen.main.bounds.height)*0.5
