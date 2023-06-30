@@ -73,6 +73,11 @@ class ServiceAgreeViewController: UIViewController {
         configure()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigationBar()
+    }
+    
 }
 
 private extension ServiceAgreeViewController {
@@ -83,7 +88,7 @@ private extension ServiceAgreeViewController {
         NSLayoutConstraint.activate([
             processView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             processView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            processView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            processView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.topAnchor.constraint(equalTo: processView.bottomAnchor, constant: 24),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
@@ -94,6 +99,11 @@ private extension ServiceAgreeViewController {
             
         ])
         processView.setProcessType(.serviceAgree)
+    }
+    
+    func setNavigationBar() {
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationItem.title = "회원가입"
     }
     
 }

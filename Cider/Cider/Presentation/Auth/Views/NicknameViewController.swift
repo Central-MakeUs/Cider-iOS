@@ -70,6 +70,11 @@ final class NicknameViewController: UIViewController {
         configure()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigationBar()
+    }
+    
 }
 
 private extension NicknameViewController {
@@ -81,7 +86,7 @@ private extension NicknameViewController {
         NSLayoutConstraint.activate([
             processView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             processView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            processView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            processView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             mainTitleLabel.topAnchor.constraint(equalTo: processView.bottomAnchor, constant: 24),
             mainTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             subTitleLabel.topAnchor.constraint(equalTo: mainTitleLabel.bottomAnchor, constant: 8),
@@ -93,6 +98,11 @@ private extension NicknameViewController {
             nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             nextButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
+    }
+    
+    func setNavigationBar() {
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationItem.title = "회원가입"
     }
     
 }
