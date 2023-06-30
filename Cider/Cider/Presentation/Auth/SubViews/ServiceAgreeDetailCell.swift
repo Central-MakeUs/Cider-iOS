@@ -16,11 +16,11 @@ final class ServiceAgreeDetailCell: UITableViewCell {
         textView.font = CustomFont.PretendardRegular(size: .base).font
         textView.textColor = .custom.gray5
         textView.backgroundColor = .custom.gray1
-        textView.isEditable = false
+        textView.isEditable = true
         textView.showsVerticalScrollIndicator = true
         textView.textAlignment = .left
         textView.isScrollEnabled = true
-        textView.isUserInteractionEnabled = false
+        textView.isUserInteractionEnabled = true
         return textView
     }()
     
@@ -47,7 +47,7 @@ final class ServiceAgreeDetailCell: UITableViewCell {
 private extension ServiceAgreeDetailCell {
     func confiure() {
         selectionStyle = .none
-        addSubviews(textView)
+        contentView.addSubviews(textView)
         NSLayoutConstraint.activate([
             textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             textView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),

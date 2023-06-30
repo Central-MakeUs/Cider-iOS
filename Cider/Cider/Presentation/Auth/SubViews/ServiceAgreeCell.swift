@@ -29,6 +29,7 @@ final class ServiceAgreeCell: UITableViewCell {
         let button = UIButton()
         button.setImage(UIImage(named: "checkboxUnselected"), for: .normal)
         button.setImage(UIImage(named: "checkboxSelected"), for: .selected)
+        button.addTarget(self, action: #selector(didTapCheckbox), for: .touchUpInside)
         return button
     }()
 
@@ -60,7 +61,7 @@ private extension ServiceAgreeCell {
     
     func confiure() {
         selectionStyle = .none
-        addSubviews(mainTitleLabel, subTitleLabel, checkButton)
+        contentView.addSubviews(mainTitleLabel, subTitleLabel, checkButton)
         NSLayoutConstraint.activate([
             checkButton.leadingAnchor.constraint(equalTo: leadingAnchor),
             checkButton.centerYAnchor.constraint(equalTo: centerYAnchor),
@@ -69,6 +70,10 @@ private extension ServiceAgreeCell {
             subTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             subTitleLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
+    }
+    
+    @objc func didTapCheckbox(_ sender: UIButton) {
+        sender.isSelected.toggle()
     }
     
 }
