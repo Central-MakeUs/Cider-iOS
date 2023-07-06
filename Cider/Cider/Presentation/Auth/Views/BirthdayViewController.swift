@@ -60,12 +60,43 @@ class BirthdayViewController: UIViewController {
         return button
     }()
     
+    private lazy var barView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.custom.gray1
+        view.heightAnchor.constraint(equalToConstant: 2).isActive = true
+        return view
+    }()
+    
     private lazy var birthdayTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "생년월일"
         label.font = CustomFont.PretendardBold(size: .xl).font
         label.textColor = .custom.text
         return label
+    }()
+    
+    private lazy var birthdayTextField: UITextField = {
+        let textField = UITextField()
+        textField.backgroundColor = .custom.gray1
+        textField.placeholder = "0000년 00월 00일"
+        textField.font = CustomFont.PretendardBold(size: .base).font
+        textField.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        textField.addLeftPadding()
+        textField.layer.cornerRadius = 4
+        textField.layer.borderWidth = 2
+        textField.layer.borderColor = UIColor.clear.cgColor
+        return textField
+    }()
+    
+    private lazy var nextButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .custom.gray4
+        button.setTitle("다음", for: .normal)
+        button.titleLabel?.font = CustomFont.PretendardBold(size: .xl2).font
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        button.layer.cornerRadius = 4
+        return button
     }()
     
     private let genderStackView = UIStackView(axis: .horizontal, alignment: .fill, distribution: .fillEqually, spacing: 8)
@@ -84,7 +115,7 @@ private extension BirthdayViewController {
     
     func configure() {
         processView.setProcessType(.dataInput)
-        view.addSubviews(processView, mainTitleLabel, generTitleLabel, generSubLabel, genderStackView)
+        view.addSubviews(processView, mainTitleLabel, generTitleLabel, generSubLabel, genderStackView, barView, birthdayTitleLabel, birthdayTextField, nextButton)
         genderStackView.addArrangedSubviews(maleButton, femaleButton)
         NSLayoutConstraint.activate([
             processView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
@@ -99,7 +130,17 @@ private extension BirthdayViewController {
             genderStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             genderStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             genderStackView.topAnchor.constraint(equalTo: generTitleLabel.bottomAnchor, constant: 21),
-            genderStackView.heightAnchor.constraint(equalToConstant: 36)
+            genderStackView.heightAnchor.constraint(equalToConstant: 36),
+            barView.topAnchor.constraint(equalTo: genderStackView.bottomAnchor, constant: 31),
+            barView.leadingAnchor.constraint(equalTo: genderStackView.leadingAnchor),
+            barView.trailingAnchor.constraint(equalTo: genderStackView.trailingAnchor),
+            birthdayTitleLabel.topAnchor.constraint(equalTo: barView.bottomAnchor, constant: 12),
+            birthdayTitleLabel.leadingAnchor.constraint(equalTo: mainTitleLabel.leadingAnchor),
+            birthdayTextField.topAnchor.constraint(equalTo: birthdayTitleLabel.bottomAnchor, constant: 20),
+            birthdayTextField.leadingAnchor.constraint(equalTo: mainTitleLabel.leadingAnchor),
+            nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            nextButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
             
         ])
         
