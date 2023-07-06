@@ -85,7 +85,16 @@ class BirthdayViewController: UIViewController {
         textField.layer.cornerRadius = 4
         textField.layer.borderWidth = 2
         textField.layer.borderColor = UIColor.clear.cgColor
+        textField.inputView = birthdatDatePicker
         return textField
+    }()
+    
+    private lazy var birthdatDatePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.datePickerMode = .date
+        datePicker.backgroundColor = .white
+        return datePicker
     }()
     
     private lazy var nextButton: UIButton = {
@@ -104,7 +113,7 @@ class BirthdayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        // Do any additional setup after loading the view.
+        setDatePickerToolbar()
     }
     
 
@@ -114,6 +123,7 @@ class BirthdayViewController: UIViewController {
 private extension BirthdayViewController {
     
     func configure() {
+        view.backgroundColor = .white
         processView.setProcessType(.dataInput)
         view.addSubviews(processView, mainTitleLabel, generTitleLabel, generSubLabel, genderStackView, barView, birthdayTitleLabel, birthdayTextField, nextButton)
         genderStackView.addArrangedSubviews(maleButton, femaleButton)
@@ -144,6 +154,32 @@ private extension BirthdayViewController {
             
         ])
         
+    }
+    
+    func setDatePickerToolbar() {
+        let toolbar = UIToolbar()
+        toolbar.barTintColor = .white
+        toolbar.sizeToFit()
+        let cancelButton =  UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didTapCancel))
+        let doneButton =  UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDone))
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        toolbar.setItems([cancelButton, space, doneButton], animated: true)
+        birthdayTextField.inputAccessoryView = toolbar
+    }
+    
+}
+
+private extension BirthdayViewController {
+    
+    @objc func didTapDone(_ sender: UIBarButtonItem) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy년 MM월 dd일"
+        birthdayTextField.text = formatter.string(from: birthdatDatePicker.date)
+        birthdayTextField.resignFirstResponder()
+    }
+    
+    @objc func didTapCancel(_ sender: UIBarButtonItem) {
+        birthdayTextField.resignFirstResponder()
     }
     
 }

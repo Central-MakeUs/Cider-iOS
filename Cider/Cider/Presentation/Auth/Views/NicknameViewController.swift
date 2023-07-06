@@ -62,6 +62,7 @@ final class NicknameViewController: UIViewController {
         button.setTitleColor(UIColor.white, for: .normal)
         button.heightAnchor.constraint(equalToConstant: 48).isActive = true
         button.layer.cornerRadius = 4
+        button.addTarget(self, action: #selector(didTapNext), for: .touchUpInside)
         return button
     }()
     
@@ -122,6 +123,11 @@ private extension NicknameViewController {
         else {
             sender.layer.borderColor = UIColor.clear.cgColor
         }
+    }
+    
+    @objc func didTapNext(_ sender: UIButton) {
+        let viewController = BirthdayViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
 }
