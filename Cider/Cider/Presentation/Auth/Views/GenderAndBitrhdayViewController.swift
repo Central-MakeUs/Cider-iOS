@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BirthdayViewController: UIViewController {
+final class BirthdayViewController: UIViewController {
     
     private let processView = ProcessView()
     
