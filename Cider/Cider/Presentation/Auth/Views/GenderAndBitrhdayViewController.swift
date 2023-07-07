@@ -124,7 +124,10 @@ final class GenderAndBitrhdayViewController: UIViewController {
         setDatePickerToolbar()
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigationBar()
+    }
 
 }
 
@@ -207,6 +210,11 @@ private extension GenderAndBitrhdayViewController {
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolbar.setItems([cancelButton, space, doneButton], animated: true)
         birthdayTextField.inputAccessoryView = toolbar
+    }
+    
+    func setNavigationBar() {
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationItem.title = "회원가입"
     }
     
 }
