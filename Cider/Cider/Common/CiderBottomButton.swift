@@ -7,7 +7,7 @@
 
 import UIKit
 
-public enum CiderBottomButtonStyle {
+enum CiderBottomButtonStyle {
     case disabled
     case enabled
 }
