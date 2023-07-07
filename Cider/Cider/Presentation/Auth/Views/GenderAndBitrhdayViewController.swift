@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import Combine
 
-final class BirthdayViewController: UIViewController {
+final class GenderAndBitrhdayViewController: UIViewController {
+    
+    private let viewModel = GenderAndBitrhdayViewModel()
+    private var cancellables = Set<AnyCancellable>()
     
     private let processView = ProcessView()
     
@@ -46,6 +50,7 @@ final class BirthdayViewController: UIViewController {
         button.layer.borderColor = UIColor.custom.gray3?.cgColor
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 4
+        button.addTarget(self, action: #selector(didTapMale), for: .touchUpInside)
         return button
     }()
     
@@ -57,6 +62,7 @@ final class BirthdayViewController: UIViewController {
         button.layer.borderColor = UIColor.custom.gray3?.cgColor
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 4
+        button.addTarget(self, action: #selector(didTapFemale), for: .touchUpInside)
         return button
     }()
     
@@ -97,22 +103,14 @@ final class BirthdayViewController: UIViewController {
         return datePicker
     }()
     
-    private lazy var nextButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .custom.gray4
-        button.setTitle("다음", for: .normal)
-        button.titleLabel?.font = CustomFont.PretendardBold(size: .xl2).font
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.heightAnchor.constraint(equalToConstant: 48).isActive = true
-        button.layer.cornerRadius = 4
-        return button
-    }()
+    private var nextButton = CiderBottomButton(style: .disabled, title: "다음")
     
     private let genderStackView = UIStackView(axis: .horizontal, alignment: .fill, distribution: .fillEqually, spacing: 8)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        bind()
         setDatePickerToolbar()
     }
     
@@ -120,7 +118,7 @@ final class BirthdayViewController: UIViewController {
 
 }
 
-private extension BirthdayViewController {
+private extension GenderAndBitrhdayViewController {
     
     func configure() {
         view.backgroundColor = .white
@@ -156,6 +154,31 @@ private extension BirthdayViewController {
         
     }
     
+    func bind() {
+        viewModel.state.receive(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                switch state {
+                case .changeNextButtonState(let isEnabled):
+                    self?.nextButton.setStyle(isEnabled == true ? .enabled : .disabled)
+                }
+            }
+            .store(in: &cancellables)
+        
+        viewModel.$femaleButtonIsPressed.receive(on: DispatchQueue.main)
+            .sink { [weak self] isPressed in
+                self?.femaleButton.backgroundColor = isPressed ? .custom.main : .white
+                self?.femaleButton.setTitleColor(isPressed ? .white : .custom.text, for: .normal)
+            }
+            .store(in: &cancellables)
+        
+        viewModel.$maleButtonIsPressed.receive(on: DispatchQueue.main)
+            .sink { [weak self] isPressed in
+                self?.maleButton.backgroundColor = isPressed ? .custom.main : .white
+                self?.maleButton.setTitleColor(isPressed ? .white : .custom.text, for: .normal)
+            }
+            .store(in: &cancellables)
+    }
+    
     func setDatePickerToolbar() {
         let toolbar = UIToolbar()
         toolbar.barTintColor = .white
@@ -169,7 +192,7 @@ private extension BirthdayViewController {
     
 }
 
-private extension BirthdayViewController {
+private extension GenderAndBitrhdayViewController {
     
     @objc func didTapDone(_ sender: UIBarButtonItem) {
         let formatter = DateFormatter()
@@ -180,6 +203,14 @@ private extension BirthdayViewController {
     
     @objc func didTapCancel(_ sender: UIBarButtonItem) {
         birthdayTextField.resignFirstResponder()
+    }
+    
+    @objc func didTapMale(_ sender: Any?) {
+        viewModel.didTapMaleButton()
+    }
+    
+    @objc func didTapFemale(_ sender: Any?) {
+        viewModel.didTapFemaleButton()
     }
     
 }
@@ -194,7 +225,7 @@ struct BirthdayViewController_Preview: PreviewProvider {
 
     static var previews: some View {
         ForEach(devices, id: \.self) { deviceName in
-            BirthdayViewController()
+            GenderAndBitrhdayViewController()
                 .toPreview()
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)

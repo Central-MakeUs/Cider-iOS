@@ -126,7 +126,7 @@ private extension NicknameViewController {
     }
     
     @objc func didTapNext(_ sender: UIButton) {
-        let viewController = BirthdayViewController()
+        let viewController = GenderAndBitrhdayViewController()
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
