@@ -66,11 +66,6 @@ final class ChallengesView: UIView {
 
 final class ChallengeView: UIView {
     
-    enum challengeViewStyle {
-        case selected
-        case unselected
-    }
-    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = type.getKoreanName()
@@ -91,7 +86,7 @@ final class ChallengeView: UIView {
         super.init(frame: frame)
     }
     
-    init(style: challengeViewStyle, type: ChallengeType) {
+    init(style: SelectionStyle, type: ChallengeType) {
         super.init(frame: .zero)
         self.type = type
         configure()
@@ -116,7 +111,7 @@ final class ChallengeView: UIView {
         ])
     }
     
-    func setStyle(_ style: challengeViewStyle) {
+    func setStyle(_ style: SelectionStyle) {
         titleLabel.textColor = style == .unselected ? .custom.gray4 : .white
         titleLabel.font = style == .unselected ? CustomFont.PretendardRegular(size: .lg).font : CustomFont.PretendardBold(size: .lg).font
         challengeImageView.image = UIImage(named: style == .unselected ? type.getUnselectedName() : type.getSelectedName())

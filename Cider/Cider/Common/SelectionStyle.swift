@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+enum SelectionStyle {
+    case selected
+    case unselected
+}

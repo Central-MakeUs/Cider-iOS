@@ -22,6 +22,14 @@ final class KeywordViewController: UIViewController {
     }()
     
     private let challengesView = ChallengesView()
+    private let keywordsView = KeywordsView()
+    
+    private lazy var barView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.custom.gray1
+        view.heightAnchor.constraint(equalToConstant: 2).isActive = true
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +49,8 @@ private extension KeywordViewController {
     func configure() {
         view.backgroundColor = .white
         processView.setProcessType(.keywordRecommendation)
-        view.addSubviews(processView, mainTitleLabel, challengesView)
+        view.addSubviews(processView, mainTitleLabel, challengesView, keywordsView, barView)
+        
         NSLayoutConstraint.activate([
             processView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             processView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
@@ -51,7 +60,14 @@ private extension KeywordViewController {
             challengesView.topAnchor.constraint(equalTo: mainTitleLabel.bottomAnchor, constant: 36),
             challengesView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             challengesView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            challengesView.heightAnchor.constraint(equalToConstant: 200)
+            challengesView.heightAnchor.constraint(equalToConstant: 200),
+            barView.leadingAnchor.constraint(equalTo: mainTitleLabel.leadingAnchor),
+            barView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            barView.topAnchor.constraint(equalTo: challengesView.bottomAnchor, constant: 23),
+            keywordsView.leadingAnchor.constraint(equalTo: challengesView.leadingAnchor),
+            keywordsView.trailingAnchor.constraint(equalTo: challengesView.trailingAnchor),
+            keywordsView.heightAnchor.constraint(equalToConstant: 128),
+            keywordsView.topAnchor.constraint(equalTo: barView.bottomAnchor, constant: 12)
         ])
     }
     

@@ -28,6 +28,8 @@
 		FA6100262A57F725002175CE /* KeywordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6100252A57F725002175CE /* KeywordViewController.swift */; };
 		FA6100282A57FA46002175CE /* ChallengeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6100272A57FA46002175CE /* ChallengeType.swift */; };
 		FA61002A2A57FC14002175CE /* ChallengesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6100292A57FC14002175CE /* ChallengesView.swift */; };
+		FA61002C2A5816E5002175CE /* KeywordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA61002B2A5816E5002175CE /* KeywordsView.swift */; };
+		FA61002E2A58180E002175CE /* SelectionStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA61002D2A58180E002175CE /* SelectionStyle.swift */; };
 		FA8CA6072A46D322005A6709 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8CA6062A46D322005A6709 /* AppDelegate.swift */; };
 		FA8CA6092A46D322005A6709 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8CA6082A46D322005A6709 /* SceneDelegate.swift */; };
 		FA8CA60B2A46D322005A6709 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8CA60A2A46D322005A6709 /* LoginViewController.swift */; };
@@ -62,6 +64,8 @@
 		FA6100252A57F725002175CE /* KeywordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordViewController.swift; sourceTree = "<group>"; };
 		FA6100272A57FA46002175CE /* ChallengeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeType.swift; sourceTree = "<group>"; };
 		FA6100292A57FC14002175CE /* ChallengesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesView.swift; sourceTree = "<group>"; };
+		FA61002B2A5816E5002175CE /* KeywordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsView.swift; sourceTree = "<group>"; };
+		FA61002D2A58180E002175CE /* SelectionStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionStyle.swift; sourceTree = "<group>"; };
 		FA8CA6032A46D322005A6709 /* Cider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA8CA6062A46D322005A6709 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA8CA6082A46D322005A6709 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 				FA3AE4082A57D3D70078A4DF /* ViewModelType.swift */,
 				FA3AE40C2A57DB140078A4DF /* CiderBottomButton.swift */,
 				FA6100272A57FA46002175CE /* ChallengeType.swift */,
+				FA61002D2A58180E002175CE /* SelectionStyle.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -210,6 +215,7 @@
 				FA4DDB962A4D66CB002EDEAD /* ServiceAgreeDetailCell.swift */,
 				FA3EC10A2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift */,
 				FA6100292A57FC14002175CE /* ChallengesView.swift */,
+				FA61002B2A5816E5002175CE /* KeywordsView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -327,11 +333,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA61002C2A5816E5002175CE /* KeywordsView.swift in Sources */,
 				FA3AE4092A57D3D70078A4DF /* ViewModelType.swift in Sources */,
 				FA3EC10B2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift in Sources */,
 				FA39D8492A4EA829001C7E0A /* AppAppearance.swift in Sources */,
 				FA44D3A12A4C5D070037E328 /* UIView+Extension.swift in Sources */,
 				FA44D39D2A4C52DA0037E328 /* UIViewController+Extension.swift in Sources */,
+				FA61002E2A58180E002175CE /* SelectionStyle.swift in Sources */,
 				FA44D39F2A4C5CE30037E328 /* UIStackView+Extension.swift in Sources */,
 				FA3AE40D2A57DB140078A4DF /* CiderBottomButton.swift in Sources */,
 				FA56F9842A542FA70099EC6F /* GenderAndBitrhdayViewController.swift in Sources */,
