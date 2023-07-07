@@ -92,6 +92,7 @@ final class GenderAndBitrhdayViewController: UIViewController {
         textField.layer.borderWidth = 2
         textField.layer.borderColor = UIColor.clear.cgColor
         textField.inputView = birthdatDatePicker
+        textField.heightAnchor.constraint(equalToConstant: 44).isActive = true
         return textField
     }()
     
@@ -101,6 +102,15 @@ final class GenderAndBitrhdayViewController: UIViewController {
         datePicker.datePickerMode = .date
         datePicker.backgroundColor = .white
         return datePicker
+    }()
+    
+    private lazy var errorLabel: UILabel = {
+        let label = UILabel()
+        label.text = "14세 이상으로 선택해주세요"
+        label.textColor = .custom.error
+        label.font = CustomFont.PretendardRegular(size: .lg).font
+        label.isHidden = true
+        return label
     }()
     
     private var nextButton = CiderBottomButton(style: .disabled, title: "다음")
@@ -123,7 +133,8 @@ private extension GenderAndBitrhdayViewController {
     func configure() {
         view.backgroundColor = .white
         processView.setProcessType(.dataInput)
-        view.addSubviews(processView, mainTitleLabel, generTitleLabel, generSubLabel, genderStackView, barView, birthdayTitleLabel, birthdayTextField, nextButton)
+        view.addSubviews(processView, mainTitleLabel, generTitleLabel, generSubLabel, genderStackView, barView,
+                         birthdayTitleLabel, birthdayTextField, nextButton, errorLabel)
         genderStackView.addArrangedSubviews(maleButton, femaleButton)
         NSLayoutConstraint.activate([
             processView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
@@ -146,6 +157,9 @@ private extension GenderAndBitrhdayViewController {
             birthdayTitleLabel.leadingAnchor.constraint(equalTo: mainTitleLabel.leadingAnchor),
             birthdayTextField.topAnchor.constraint(equalTo: birthdayTitleLabel.bottomAnchor, constant: 20),
             birthdayTextField.leadingAnchor.constraint(equalTo: mainTitleLabel.leadingAnchor),
+            birthdayTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            errorLabel.topAnchor.constraint(equalTo: birthdayTextField.bottomAnchor, constant: 8),
+            errorLabel.leadingAnchor.constraint(equalTo: mainTitleLabel.leadingAnchor),
             nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             nextButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
@@ -160,6 +174,11 @@ private extension GenderAndBitrhdayViewController {
                 switch state {
                 case .changeNextButtonState(let isEnabled):
                     self?.nextButton.setStyle(isEnabled == true ? .enabled : .disabled)
+                case .checkAge(let isEnabled):
+                    self?.birthdayTextField.layer.borderColor = isEnabled ? UIColor.clear.cgColor : UIColor.custom.error?.cgColor
+                    self?.errorLabel.isHidden = isEnabled
+                case .selectBitrhday(let birthday):
+                    self?.birthdayTextField.text = birthday
                 }
             }
             .store(in: &cancellables)
@@ -195,10 +214,8 @@ private extension GenderAndBitrhdayViewController {
 private extension GenderAndBitrhdayViewController {
     
     @objc func didTapDone(_ sender: UIBarButtonItem) {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy년 MM월 dd일"
-        birthdayTextField.text = formatter.string(from: birthdatDatePicker.date)
         birthdayTextField.resignFirstResponder()
+        viewModel.selectBirthday(date: birthdatDatePicker.date)
     }
     
     @objc func didTapCancel(_ sender: UIBarButtonItem) {
