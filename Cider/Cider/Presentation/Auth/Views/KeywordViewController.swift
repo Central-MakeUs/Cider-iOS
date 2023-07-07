@@ -31,6 +31,11 @@ final class KeywordViewController: UIViewController {
         return view
     }()
     
+    private lazy var completionButton: CiderBottomButton = {
+        let button = CiderBottomButton(style: .disabled, title: "완료")
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -49,7 +54,7 @@ private extension KeywordViewController {
     func configure() {
         view.backgroundColor = .white
         processView.setProcessType(.keywordRecommendation)
-        view.addSubviews(processView, mainTitleLabel, challengesView, keywordsView, barView)
+        view.addSubviews(processView, mainTitleLabel, challengesView, keywordsView, barView, completionButton)
         
         NSLayoutConstraint.activate([
             processView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
@@ -67,7 +72,10 @@ private extension KeywordViewController {
             keywordsView.leadingAnchor.constraint(equalTo: challengesView.leadingAnchor),
             keywordsView.trailingAnchor.constraint(equalTo: challengesView.trailingAnchor),
             keywordsView.heightAnchor.constraint(equalToConstant: 128),
-            keywordsView.topAnchor.constraint(equalTo: barView.bottomAnchor, constant: 12)
+            keywordsView.topAnchor.constraint(equalTo: barView.bottomAnchor, constant: 12),
+            completionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            completionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            completionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
     }
     
