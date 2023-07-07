@@ -28,7 +28,11 @@ final class KeywordViewController: UIViewController {
         configure()
     }
 
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigationBar()
+    }
+    
 }
 
 
@@ -49,6 +53,11 @@ private extension KeywordViewController {
             challengesView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             challengesView.heightAnchor.constraint(equalToConstant: 200)
         ])
+    }
+    
+    func setNavigationBar() {
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationItem.title = "회원가입"
     }
     
 }
