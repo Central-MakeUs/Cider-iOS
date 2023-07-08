@@ -68,7 +68,7 @@ final class ChallengeView: UIView {
         super.init(frame: frame)
     }
     
-    init(style: SelectionStyle, type: ChallengeType) {
+    init(style: CiderSelectionStyle, type: ChallengeType) {
         super.init(frame: .zero)
         self.type = type
         configure()
@@ -95,7 +95,7 @@ final class ChallengeView: UIView {
         ])
     }
     
-    func setStyle(_ style: SelectionStyle) {
+    func setStyle(_ style: CiderSelectionStyle) {
         titleLabel.textColor = style == .unselected ? .custom.gray4 : .white
         challengeImageView.image = UIImage(named: style == .unselected ? type.getUnselectedName() : type.getSelectedName())
         layer.borderColor = style == .unselected ? UIColor.custom.gray2?.cgColor : UIColor.clear.cgColor

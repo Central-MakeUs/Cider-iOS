@@ -83,7 +83,7 @@ final class KeywordView: UIView {
         super.init(frame: frame)
     }
     
-    init(style: SelectionStyle, title: String) {
+    init(style: CiderSelectionStyle, title: String) {
         super.init(frame: .zero)
         titleLabel.text = title
         configure()
@@ -107,7 +107,7 @@ final class KeywordView: UIView {
         ])
     }
     
-    func setStyle(_ style: SelectionStyle) {
+    func setStyle(_ style: CiderSelectionStyle) {
         titleLabel.textColor = style == .selected ? .white : .custom.gray4
         backgroundColor = style == .selected ? .custom.gray6 : .custom.gray1
         layer.borderColor = style == .selected ?  UIColor.clear.cgColor : UIColor.custom.gray2?.cgColor
