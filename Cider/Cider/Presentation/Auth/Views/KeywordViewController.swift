@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import Combine
 
 final class KeywordViewController: UIViewController {
 
+    private let viewModel = KeywordViewModel()
+    private var cancellables = Set<AnyCancellable>()
+    
     private let processView = ProcessView()
     
     private lazy var mainTitleLabel: UILabel = {
@@ -39,6 +43,8 @@ final class KeywordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        bind()
+        setTapGesture()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -82,6 +88,57 @@ private extension KeywordViewController {
     func setNavigationBar() {
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = "회원가입"
+    }
+    
+    func bind() {
+        viewModel.currentState.receive(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                switch state {
+                case .changeChallengeState(let type, let isSelected):
+                    switch type {
+                    case .financialTech:
+                        self?.challengesView.financialTechView.setStyle(isSelected ? .selected : .unselected)
+                    case .moneySaving:
+                        self?.challengesView.moneySavingView.setStyle(isSelected ? .selected : .unselected)
+                    case .moneyManagement:
+                        self?.challengesView.moneyManagementView.setStyle(isSelected ? .selected : .unselected)
+                    case .financialLearning:
+                        self?.challengesView.financialLearningView.setStyle(isSelected ? .selected : .unselected)
+                    }
+                case .changeNextButtonState(let isEnabled):
+                    self?.completionButton.setStyle(isEnabled == true ? .enabled : .disabled)
+                case .none:
+                    break
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    func setTapGesture() {
+        challengesView.financialTechView.addTapGesture(self, action: #selector(didTapFinancialTech))
+        challengesView.moneySavingView.addTapGesture(self, action: #selector(didTapMoneySaving))
+        challengesView.moneyManagementView.addTapGesture(self, action: #selector(didTapMoneyManagement))
+        challengesView.financialLearningView.addTapGesture(self, action: #selector(didTapFinancialLearning))
+    }
+    
+}
+
+private extension KeywordViewController {
+    
+    @objc func didTapFinancialTech(_ sender: Any?) {
+        viewModel.didSelectChallenge(.financialTech)
+    }
+    
+    @objc func didTapMoneySaving(_ sender: Any?) {
+        viewModel.didSelectChallenge(.moneySaving)
+    }
+    
+    @objc func didTapMoneyManagement(_ sender: Any?) {
+        viewModel.didSelectChallenge(.moneyManagement)
+    }
+    
+    @objc func didTapFinancialLearning(_ sender: Any?) {
+        viewModel.didSelectChallenge(.financialLearning)
     }
     
 }

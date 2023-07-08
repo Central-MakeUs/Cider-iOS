@@ -25,10 +25,10 @@ final class ChallengesView: UIView {
         return label
     }()
     
-    private let financialTechView = ChallengeView(style: .unselected, type: .financialTech)
-    private let financialLearningView = ChallengeView(style: .unselected, type: .financialLearning)
-    private let moneySavingView = ChallengeView(style: .unselected, type: .moneySaving)
-    private let moneyManagementView = ChallengeView(style: .unselected, type: .moneyManagement)
+    let financialTechView = ChallengeView(style: .unselected, type: .financialTech)
+    let financialLearningView = ChallengeView(style: .unselected, type: .financialLearning)
+    let moneySavingView = ChallengeView(style: .unselected, type: .moneySaving)
+    let moneyManagementView = ChallengeView(style: .unselected, type: .moneyManagement)
     
     private let stackView1 = UIStackView(axis: .horizontal, alignment: .center, distribution: .fillEqually, spacing: 12)
     private let stackView2 = UIStackView(axis: .horizontal, alignment: .center, distribution: .fillEqually, spacing: 12)
@@ -82,6 +82,12 @@ final class ChallengeView: UIView {
     
     var type: ChallengeType = .financialLearning
     
+    private lazy var gradientView: GradientView = {
+        let view = GradientView(type: type)
+        view.layer.cornerRadius = 4
+        return view
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -100,10 +106,14 @@ final class ChallengeView: UIView {
     private func configure() {
         layer.cornerRadius = 4
         layer.borderWidth = 1
-        addSubviews(challengeImageView, titleLabel)
+        addSubviews(gradientView, challengeImageView, titleLabel)
         
         NSLayoutConstraint.activate([
             heightAnchor.constraint(equalToConstant: 64),
+            gradientView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            gradientView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            gradientView.topAnchor.constraint(equalTo: topAnchor),
+            gradientView.bottomAnchor.constraint(equalTo: bottomAnchor),
             challengeImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
             challengeImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 35),
             titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
@@ -116,9 +126,12 @@ final class ChallengeView: UIView {
         titleLabel.font = style == .unselected ? CustomFont.PretendardRegular(size: .lg).font : CustomFont.PretendardBold(size: .lg).font
         challengeImageView.image = UIImage(named: style == .unselected ? type.getUnselectedName() : type.getSelectedName())
         layer.borderColor = style == .unselected ? UIColor.custom.gray2?.cgColor : UIColor.clear.cgColor
-        backgroundColor = style == .unselected ? .custom.gray1 : .custom.main
+        backgroundColor = style == .unselected ? .custom.gray1 : .clear
+        gradientView.isHidden = style == .unselected ? true : false
     }
     
-    
+    func addTapGesture(_ target: Any?, action: Selector) {
+        self.addGestureRecognizer(UITapGestureRecognizer(target: target, action: action))
+    }
     
 }
