@@ -7,10 +7,9 @@
 
 import Combine
 
-final class KeywordViewModel: ViewModelType {
+final class ChallengeSelectionViewModel: ViewModelType {
     
     enum ViewModelState {
-        case changeNextButtonState(isEnabled: Bool)
         case changeChallengeState(type: ChallengeType, isSelected: Bool)
     }
     
@@ -18,10 +17,10 @@ final class KeywordViewModel: ViewModelType {
     var currentState: CurrentValueSubject<ViewModelState?, Never> = .init(nil)
     private var cancellables: Set<AnyCancellable> = .init()
     var challenges: [ChallengeType: Bool] = [
-        .moneyManagement: false,
-        .moneySaving: false,
-        .financialLearning: false,
-        .financialTech: false
+        .moneyManagement: true,
+        .moneySaving: true,
+        .financialLearning: true,
+        .financialTech: true
     ]
     
     func didSelectChallenge(_ type: ChallengeType) {
