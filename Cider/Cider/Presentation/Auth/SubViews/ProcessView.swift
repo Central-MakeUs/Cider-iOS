@@ -34,7 +34,7 @@ final class ProcessView: UIStackView {
     
     private lazy var keywordRecommendationLabel: UILabel = {
         let label = UILabel()
-        label.text = "키워드 추천"
+        label.text = "챌린지 추천"
         label.textAlignment = .center
         label.font = CustomFont.PretendardRegular(size: .lg).font
         label.textColor = .custom.gray5
@@ -99,7 +99,7 @@ extension ProcessView {
             dataInputLabel.layer.cornerRadius = 8
             dataInputLabel.backgroundColor = .custom.lightBlue
            
-        case .keywordRecommendation:
+        case .challengeRecommendation:
             keywordRecommendationLabel.textColor = .custom.main
             keywordRecommendationLabel.layer.borderColor = UIColor.custom.main?.cgColor
             keywordRecommendationLabel.layer.borderWidth = 0.5

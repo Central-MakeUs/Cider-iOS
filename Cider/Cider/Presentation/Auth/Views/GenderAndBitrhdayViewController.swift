@@ -244,7 +244,7 @@ private extension GenderAndBitrhdayViewController {
     }
     
     @objc func didTapNext(_ sender: Any?) {
-        let viewController = KeywordViewController()
+        let viewController = ChallengeSelectionViewController()
         navigationController?.pushViewController(viewController, animated: true)
     }
     

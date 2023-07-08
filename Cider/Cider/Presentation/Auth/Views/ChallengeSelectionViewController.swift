@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class KeywordViewController: UIViewController {
+final class ChallengeSelectionViewController: UIViewController {
 
     private let viewModel = KeywordViewModel()
     private var cancellables = Set<AnyCancellable>()
@@ -55,11 +55,11 @@ final class KeywordViewController: UIViewController {
 }
 
 
-private extension KeywordViewController {
+private extension ChallengeSelectionViewController {
     
     func configure() {
         view.backgroundColor = .white
-        processView.setProcessType(.keywordRecommendation)
+        processView.setProcessType(.challengeRecommendation)
         view.addSubviews(processView, mainTitleLabel, challengesView, keywordsView, barView, completionButton)
         
         NSLayoutConstraint.activate([
@@ -123,7 +123,7 @@ private extension KeywordViewController {
     
 }
 
-private extension KeywordViewController {
+private extension ChallengeSelectionViewController {
     
     @objc func didTapFinancialTech(_ sender: Any?) {
         viewModel.didSelectChallenge(.financialTech)
@@ -152,7 +152,7 @@ struct KeywordViewController_Preview: PreviewProvider {
 
     static var previews: some View {
         ForEach(devices, id: \.self) { deviceName in
-            KeywordViewController()
+            ChallengeSelectionViewController()
                 .toPreview()
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)
