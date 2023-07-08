@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import Combine
 
 class ServiceAgreeViewController: UIViewController {
+    
+    private let viewModel = ServiceAgreeViewModel()
+    private var cancellables = Set<AnyCancellable>()
     
     private let processView = ProcessView()
     
@@ -26,14 +30,8 @@ class ServiceAgreeViewController: UIViewController {
         return tableView
     }()
     
-    private lazy var confirmButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .custom.gray4
-        button.setTitle("확인했어요", for: .normal)
-        button.titleLabel?.font = CustomFont.PretendardBold(size: .xl2).font
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.heightAnchor.constraint(equalToConstant: 48).isActive = true
-        button.layer.cornerRadius = 4
+    private lazy var confirmButton: CiderBottomButton = {
+        let button = CiderBottomButton(style: .disabled, title: "확인했어요")
         button.addTarget(self, action: #selector(didTapConfirm), for: .touchUpInside)
         return button
     }()
@@ -67,10 +65,13 @@ class ServiceAgreeViewController: UIViewController {
         """),
         ServiceAgreeCellData(mainTitle: "약관 전체 동의", subTitle: "전체 약관에 동의합니다")
     ]
+    
+    private var selectedStates = [false, false, false, false]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,6 +107,20 @@ private extension ServiceAgreeViewController {
         self.navigationItem.title = "회원가입"
     }
     
+    func bind() {
+        viewModel.state.receive(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                switch state {
+                case .changeCheckboxState(let selectedStates):
+                    self?.selectedStates = selectedStates
+                    self?.tableView.reloadData()
+                case .changeNextButtonState(let isEnabled):
+                    self?.confirmButton.setStyle(isEnabled == true ? .enabled : .disabled)
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
 }
 
 private extension ServiceAgreeViewController {
@@ -113,6 +128,11 @@ private extension ServiceAgreeViewController {
     @objc func didTapConfirm(_ sender: Any?) {
         let viewController = NicknameViewController()
         self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    @objc func didTapCheckbox(_ sender: UIButton) {
+        viewModel.didSelectedAgreement(index: sender.tag)
+        
     }
     
 }
@@ -138,6 +158,9 @@ extension ServiceAgreeViewController: UITableViewDataSource, UITableViewDelegate
                 return UITableViewCell()
             }
             cell.setUp(mainText: cellData[indexPath.section].mainTitle, subTitle: cellData[indexPath.section].subTitle)
+            cell.addTagCheckbox(indexPath.section)
+            cell.addTargetAction(self, action: #selector(didTapCheckbox))
+            cell.setCheckboxState(selectedStates[indexPath.section] == false ? .unselected : .selected)
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ServiceAgreeDetailCell.identifier) as? ServiceAgreeDetailCell else {

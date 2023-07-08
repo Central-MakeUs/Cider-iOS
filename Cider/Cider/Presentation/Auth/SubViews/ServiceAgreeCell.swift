@@ -29,7 +29,6 @@ final class ServiceAgreeCell: UITableViewCell {
         let button = UIButton()
         button.setImage(UIImage(named: "checkboxUnselected"), for: .normal)
         button.setImage(UIImage(named: "checkboxSelected"), for: .selected)
-        button.addTarget(self, action: #selector(didTapCheckbox), for: .touchUpInside)
         return button
     }()
 
@@ -72,10 +71,6 @@ private extension ServiceAgreeCell {
         ])
     }
     
-    @objc func didTapCheckbox(_ sender: UIButton) {
-        sender.isSelected.toggle()
-    }
-    
 }
 
 extension ServiceAgreeCell {
@@ -85,6 +80,18 @@ extension ServiceAgreeCell {
         if let subTitle {
             subTitleLabel.text = subTitle
         }
+    }
+    
+    func addTargetAction(_ target: Any?, action: Selector) {
+        checkButton.addTarget(target, action: action, for: .touchUpInside)
+    }
+    
+    func setCheckboxState(_ style: CiderSelectionStyle) {
+        checkButton.isSelected = style == .selected ? true : false
+    }
+    
+    func addTagCheckbox(_ index: Int) {
+        checkButton.tag = index
     }
     
 }

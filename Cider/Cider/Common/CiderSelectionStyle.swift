@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SelectionStyle {
+enum CiderSelectionStyle {
     case selected
     case unselected
 }
