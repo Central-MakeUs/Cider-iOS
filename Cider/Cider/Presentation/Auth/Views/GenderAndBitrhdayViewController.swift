@@ -113,7 +113,12 @@ final class GenderAndBitrhdayViewController: UIViewController {
         return label
     }()
     
-    private var nextButton = CiderBottomButton(style: .disabled, title: "다음")
+    
+    private lazy var nextButton: CiderBottomButton = {
+        let button = CiderBottomButton(style: .disabled, title: "다음")
+        button.addTarget(self, action: #selector(didTapNext), for: .touchUpInside)
+        return button
+    }()
     
     private let genderStackView = UIStackView(axis: .horizontal, alignment: .fill, distribution: .fillEqually, spacing: 8)
 
@@ -236,6 +241,11 @@ private extension GenderAndBitrhdayViewController {
     
     @objc func didTapFemale(_ sender: Any?) {
         viewModel.didTapFemaleButton()
+    }
+    
+    @objc func didTapNext(_ sender: Any?) {
+        let viewController = ChallengeSelectionViewController()
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
 }
