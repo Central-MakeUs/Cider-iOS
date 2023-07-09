@@ -62,6 +62,7 @@ final class NicknameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        hideKeyboard()
     }
     
     override func viewWillAppear(_ animated: Bool) {
