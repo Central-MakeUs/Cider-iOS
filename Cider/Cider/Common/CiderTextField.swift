@@ -15,14 +15,17 @@ enum CiderTextFieldStyle {
 
 final class CiderTextField: UITextField {
     
-    private lazy var clearButton: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "clearButton")
-        imageView.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 24).isActive = true
-        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapClear)))
-        return imageView
+    private lazy var clearButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(named: "clearButton"), for: .normal)
+        button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+        button.contentMode = .scaleAspectFit
+        button.contentMode = .scaleAspectFit
+        button.addTarget(self, action: #selector(didTapClear), for: .touchUpInside)
+        return button
     }()
+    
+    private let paddingView = UIView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -54,7 +57,6 @@ final class CiderTextField: UITextField {
 private extension CiderTextField {
     
     private func configure() {
-        delegate = self
         backgroundColor = .custom.gray1
         font = CustomFont.PretendardBold(size: .base).font
         heightAnchor.constraint(equalToConstant: 44).isActive = true
@@ -62,20 +64,30 @@ private extension CiderTextField {
         layer.cornerRadius = 4
         layer.borderWidth = 2
         layer.borderColor = UIColor.clear.cgColor
-        rightView = clearButton
+        
+        paddingView.addSubviews(clearButton)
+        NSLayoutConstraint.activate([
+            paddingView.widthAnchor.constraint(equalToConstant: 12+24),
+            paddingView.heightAnchor.constraint(equalToConstant: 24),
+            clearButton.topAnchor.constraint(equalTo: paddingView.topAnchor),
+            clearButton.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
+            clearButton.bottomAnchor.constraint(equalTo: paddingView.bottomAnchor)
+        ])
+        rightView = paddingView
         rightViewMode = .always
         setHiddenClearButton(true)
+        addTarget(self, action: #selector(didChangeTextField), for: .editingChanged)
+        addTarget(self, action: #selector(didChangeTextField), for: .editingDidBegin)
+
     }
     
     @objc func didTapClear(_ sender: Any?) {
         self.text = ""
+        setStyle(.plain)
+        setHiddenClearButton(true)
     }
     
-}
-
-extension CiderTextField: UITextFieldDelegate {
-    
-    func didChangeTextField(_ textField: UITextField) {
+    @objc func didChangeTextField(_ textField: UITextField) {
         if self.text == "" {
             setHiddenClearButton(true)
         } else {
