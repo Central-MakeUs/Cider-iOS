@@ -59,6 +59,14 @@ final class NicknameViewController: UIViewController {
         return button
     }()
     
+    private lazy var randomNicknameView: RandomNicknameView = {
+        let view = RandomNicknameView()
+        view.widthAnchor.constraint(equalToConstant: 170).isActive = true
+        view.heightAnchor.constraint(equalToConstant: 36).isActive = true
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapRandomNickname)))
+        return view
+    }()
+    
     var bottomConstraint: NSLayoutConstraint?
     
     override func viewDidLoad() {
@@ -85,7 +93,7 @@ private extension NicknameViewController {
         view.backgroundColor = .white
         processView.setProcessType(.dataInput)
         
-        view.addSubviews(processView, mainTitleLabel, subTitleLabel, nicknameTextField, nextButton)
+        view.addSubviews(processView, mainTitleLabel, subTitleLabel, nicknameTextField, nextButton, randomNicknameView)
         NSLayoutConstraint.activate([
             processView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             processView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
@@ -99,7 +107,9 @@ private extension NicknameViewController {
             nicknameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            nextButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
+            nextButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            randomNicknameView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            randomNicknameView.bottomAnchor.constraint(equalTo: nextButton.topAnchor, constant: -12)
         ])
         
         bottomConstraint = NSLayoutConstraint(item: nextButton, attribute: .bottom, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0)
@@ -140,7 +150,7 @@ private extension NicknameViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
-    @objc private func keyboardWillShow(notification: NSNotification) {
+    @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             let keyboardHeight: CGFloat
             keyboardHeight = keyboardSize.height - self.view.safeAreaInsets.bottom
@@ -149,10 +159,14 @@ private extension NicknameViewController {
         }
     }
 
-    @objc private func keyboardWillHide(notification: NSNotification) {
+    @objc func keyboardWillHide(notification: NSNotification) {
         debugPrint("keyboardWillHide")
         self.bottomConstraint?.constant = 0
         self.view.layoutIfNeeded()
+    }
+    
+    @objc func didTapRandomNickname(_ sender: Any?) {
+        print("didTapRandomNickname")
     }
     
 }
