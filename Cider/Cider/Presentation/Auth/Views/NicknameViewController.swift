@@ -59,10 +59,11 @@ final class NicknameViewController: UIViewController {
         return button
     }()
     
+    var bottomConstraint: NSLayoutConstraint?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
-        hideKeyboard()
+        setUp()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,9 +75,16 @@ final class NicknameViewController: UIViewController {
 
 private extension NicknameViewController {
     
+    func setUp() {
+        configure()
+        hideKeyboard()
+        addNotification()
+    }
+    
     func configure() {
         view.backgroundColor = .white
         processView.setProcessType(.dataInput)
+        
         view.addSubviews(processView, mainTitleLabel, subTitleLabel, nicknameTextField, nextButton)
         NSLayoutConstraint.activate([
             processView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
@@ -93,11 +101,19 @@ private extension NicknameViewController {
             nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             nextButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
+        
+        bottomConstraint = NSLayoutConstraint(item: nextButton, attribute: .bottom, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0)
+        bottomConstraint?.isActive = true
     }
     
     func setNavigationBar() {
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = "회원가입"
+    }
+    
+    func addNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
 }
@@ -122,6 +138,21 @@ private extension NicknameViewController {
     @objc func didTapNext(_ sender: UIButton) {
         let viewController = GenderAndBitrhdayViewController()
         self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight: CGFloat
+            keyboardHeight = keyboardSize.height - self.view.safeAreaInsets.bottom
+            self.bottomConstraint?.constant = -1 * keyboardHeight - 12
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        debugPrint("keyboardWillHide")
+        self.bottomConstraint?.constant = 0
+        self.view.layoutIfNeeded()
     }
     
 }
