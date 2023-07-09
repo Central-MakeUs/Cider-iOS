@@ -40,16 +40,9 @@ final class NicknameViewController: UIViewController {
         return label
     }()
     
-    private lazy var nicknameTextField: UITextField = {
-        let textField = UITextField()
-        textField.backgroundColor = .custom.gray1
+    private lazy var nicknameTextField: CiderTextField = {
+        let textField = CiderTextField()
         textField.placeholder = "2~10자로 입력해주세요"
-        textField.font = CustomFont.PretendardBold(size: .base).font
-        textField.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        textField.addLeftPadding()
-        textField.layer.cornerRadius = 4
-        textField.layer.borderWidth = 2
-        textField.layer.borderColor = UIColor.clear.cgColor
         textField.addTarget(self, action: #selector(didChangeTextField), for: .editingChanged)
         return textField
     }()
@@ -115,13 +108,13 @@ private extension NicknameViewController {
             return
         }
         if count > 0 && count <= 10 {
-            sender.layer.borderColor = UIColor.custom.main?.cgColor
+            nicknameTextField.setStyle(.enabled)
         }
         else if count > 10 {
-            sender.layer.borderColor = UIColor.custom.error?.cgColor
+            nicknameTextField.setStyle(.disabled)
         }
         else {
-            sender.layer.borderColor = UIColor.clear.cgColor
+            nicknameTextField.setStyle(.plain)
         }
     }
     
