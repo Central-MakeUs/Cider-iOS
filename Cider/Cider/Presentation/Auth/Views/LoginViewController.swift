@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import KakaoSDKAuth
+import KakaoSDKUser
 
 final class LoginViewController: UIViewController {
     
@@ -44,6 +46,7 @@ final class LoginViewController: UIViewController {
         button.heightAnchor.constraint(equalToConstant: 44).isActive = true
         button.setTitleColor(.custom.text, for: .normal)
         button.layer.cornerRadius = 4
+        button.addTarget(self, action: #selector(didTapKakaoLogin), for: .touchUpInside)
         return button
     }()
     
@@ -83,6 +86,34 @@ private extension LoginViewController {
         let viewController = ServiceAgreeViewController()
         self.navigationController?.pushViewController(viewController, animated: true)
     }
+    
+    @objc func didTapKakaoLogin() {
+        kakaoLogin()
+    }
+    
+}
+
+private extension LoginViewController {
+    
+    func kakaoLogin() {
+        if UserApi.isKakaoTalkLoginAvailable() {
+            UserApi.shared.loginWithKakaoTalk { [weak self] oauthToken, error in
+                if let error {
+                    print(error)
+                } else {
+                    print(oauthToken?.accessToken)
+                }
+            }
+        } else {
+            UserApi.shared.loginWithKakaoAccount { [weak self] oauthToken, error in
+                if let error {
+                    print(error)
+                } else {
+                    print(oauthToken?.accessToken)
+                }
+            }
+        }
+     }
     
 }
 
