@@ -180,7 +180,8 @@ extension ServiceAgreeViewController: UITableViewDataSource, UITableViewDelegate
         if (indexPath.section == 1 || indexPath.section == 2) && indexPath.row == 0 {
             cellData[indexPath.section].subTitle = cellData[indexPath.section].subTitle == "접기" ? "자세히 보기" : "접기"
             cellData[indexPath.section].opened.toggle()
-            tableView.reloadData()
+           // tableView.reloadData()
+            tableView.reloadSections(IndexSet(integer: indexPath.section), with: .fade)
         }
     }
     
