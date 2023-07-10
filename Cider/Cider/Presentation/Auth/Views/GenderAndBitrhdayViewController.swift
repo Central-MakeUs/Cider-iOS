@@ -86,13 +86,17 @@ final class GenderAndBitrhdayViewController: UIViewController {
         textField.backgroundColor = .custom.gray1
         textField.placeholder = "0000년 00월 00일"
         textField.font = CustomFont.PretendardBold(size: .base).font
+        textField.textColor = .custom.text
         textField.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        textField.addLeftPadding()
+        textField.addLeftPadding(12)
         textField.layer.cornerRadius = 4
         textField.layer.borderWidth = 2
         textField.layer.borderColor = UIColor.clear.cgColor
         textField.inputView = birthdatDatePicker
         textField.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        textField.setPlaceholderColor(.custom.gray4 ?? .gray)
+        textField.rightView = textFieldPaddingView
+        textField.rightViewMode = .always
         return textField
     }()
     
@@ -100,7 +104,7 @@ final class GenderAndBitrhdayViewController: UIViewController {
         let datePicker = UIDatePicker()
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.datePickerMode = .date
-        datePicker.backgroundColor = .white
+        datePicker.locale = Locale(identifier: "ko_KR")
         return datePicker
     }()
     
@@ -113,6 +117,13 @@ final class GenderAndBitrhdayViewController: UIViewController {
         return label
     }()
     
+    private let textFieldPaddingView = UIView()
+    
+    private lazy var calendarImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "clearButton")
+        return imageView
+    }()
     
     private lazy var nextButton: CiderBottomButton = {
         let button = CiderBottomButton(style: .disabled, title: "다음")
@@ -142,9 +153,12 @@ private extension GenderAndBitrhdayViewController {
         view.backgroundColor = .white
         processView.setProcessType(.dataInput)
         view.addSubviews(processView, mainTitleLabel, generTitleLabel, generSubLabel, genderStackView, barView,
-                         birthdayTitleLabel, birthdayTextField, nextButton, errorLabel)
+                         birthdayTitleLabel, birthdayTextField, nextButton, errorLabel, textFieldPaddingView)
+        textFieldPaddingView.addSubviews(calendarImageView)
         genderStackView.addArrangedSubviews(maleButton, femaleButton)
         NSLayoutConstraint.activate([
+            textFieldPaddingView.widthAnchor.constraint(equalToConstant: 12+24),
+            textFieldPaddingView.heightAnchor.constraint(equalToConstant: 24),
             processView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             processView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             processView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),

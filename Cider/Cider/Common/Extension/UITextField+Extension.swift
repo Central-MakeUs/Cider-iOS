@@ -8,9 +8,21 @@
 import UIKit
 
 extension UITextField {
-    func addLeftPadding() {
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: self.frame.height))
+    func addLeftPadding(_ padding: Int) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: padding, height: Int(self.frame.height)))
         self.leftView = paddingView
         self.leftViewMode = ViewMode.always
     }
+    
+    func setPlaceholderColor(_ placeholderColor: UIColor) {
+            attributedPlaceholder = NSAttributedString(
+                string: placeholder ?? "",
+                attributes: [
+                    .foregroundColor: placeholderColor,
+                    .font: font
+                ].compactMapValues { $0 }
+            )
+    }
+    
+    
 }

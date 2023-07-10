@@ -60,6 +60,7 @@ private extension ServiceAgreeCell {
     
     func confiure() {
         selectionStyle = .none
+        backgroundColor = .white
         contentView.addSubviews(mainTitleLabel, subTitleLabel, checkButton)
         NSLayoutConstraint.activate([
             checkButton.leadingAnchor.constraint(equalTo: leadingAnchor),

@@ -58,12 +58,6 @@ final class ChallengeView: UIView {
     
     var type: ChallengeType = .financialLearning
     
-    private lazy var gradientView: GradientView = {
-        let view = GradientView(type: type)
-        view.layer.cornerRadius = 4
-        return view
-    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -82,14 +76,10 @@ final class ChallengeView: UIView {
     private func configure() {
         layer.cornerRadius = 4
         layer.borderWidth = 1
-        addSubviews(gradientView, stackView)
+        addSubviews(stackView)
         stackView.addArrangedSubviews(challengeImageView, titleLabel)
         NSLayoutConstraint.activate([
             heightAnchor.constraint(equalToConstant: 64),
-            gradientView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            gradientView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            gradientView.topAnchor.constraint(equalTo: topAnchor),
-            gradientView.bottomAnchor.constraint(equalTo: bottomAnchor),
             stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
             stackView.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
@@ -99,8 +89,7 @@ final class ChallengeView: UIView {
         titleLabel.textColor = style == .unselected ? .custom.gray4 : .white
         challengeImageView.image = UIImage(named: style == .unselected ? type.getUnselectedName() : type.getSelectedName())
         layer.borderColor = style == .unselected ? UIColor.custom.gray2?.cgColor : UIColor.clear.cgColor
-        backgroundColor = style == .unselected ? .custom.gray1 : .red
-        gradientView.isHidden = style == .unselected ? true : false
+        backgroundColor = style == .unselected ? .custom.gray1 : type.getColor()
     }
     
     func addTapGesture(_ target: Any?, action: Selector) {

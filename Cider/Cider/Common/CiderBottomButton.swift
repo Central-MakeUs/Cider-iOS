@@ -7,18 +7,13 @@
 
 import UIKit
 
-enum CiderBottomButtonStyle {
-    case disabled
-    case enabled
-}
-
 final class CiderBottomButton: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    init(style: CiderBottomButtonStyle, title: String) {
+    init(style: CiderEnabledStyle, title: String) {
         super.init(frame: .zero)
         setTitle(title, for: .normal)
         setStyle(style)
@@ -36,7 +31,7 @@ final class CiderBottomButton: UIButton {
         layer.cornerRadius = 4
     }
     
-    func setStyle(_ style: CiderBottomButtonStyle) {
+    func setStyle(_ style: CiderEnabledStyle) {
         backgroundColor = style == .enabled ? UIColor.custom.main :  UIColor.custom.gray4
         isEnabled = style == .enabled ? true : false
     }

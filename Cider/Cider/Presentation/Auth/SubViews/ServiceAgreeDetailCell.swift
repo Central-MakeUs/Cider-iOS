@@ -47,6 +47,7 @@ final class ServiceAgreeDetailCell: UITableViewCell {
 private extension ServiceAgreeDetailCell {
     func confiure() {
         selectionStyle = .none
+        backgroundColor = .white
         contentView.addSubviews(textView)
         NSLayoutConstraint.activate([
             textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),

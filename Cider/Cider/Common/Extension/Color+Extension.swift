@@ -25,5 +25,10 @@ extension UIColor {
         static let warning = UIColor(named: "warning")
         static let kakao = UIColor(named: "kakao")
         static let text = UIColor(named: "text")
+        static let placeHolder = UIColor(named: "placeHolder")
+        static let btnMint = UIColor(named: "btnMint")
+        static let btnPink = UIColor(named: "btnPink")
+        static let btnPurple = UIColor(named: "btnPurple")
+        static let btnBlue = UIColor(named: "btnBlue")
     }
 }
