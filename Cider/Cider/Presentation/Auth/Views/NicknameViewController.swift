@@ -44,6 +44,7 @@ final class NicknameViewController: UIViewController {
         let textField = CiderTextField()
         textField.placeholder = "2~10자로 입력해주세요"
         textField.addTarget(self, action: #selector(didChangeTextField), for: .editingChanged)
+        textField.setPlaceholderColor(.custom.gray4 ?? .gray)
         return textField
     }()
     

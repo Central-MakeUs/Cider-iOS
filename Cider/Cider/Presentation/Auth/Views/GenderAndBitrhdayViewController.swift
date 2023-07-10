@@ -86,13 +86,15 @@ final class GenderAndBitrhdayViewController: UIViewController {
         textField.backgroundColor = .custom.gray1
         textField.placeholder = "0000년 00월 00일"
         textField.font = CustomFont.PretendardBold(size: .base).font
+        textField.textColor = .custom.text
         textField.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        textField.addLeftPadding()
+        textField.addLeftPadding(12)
         textField.layer.cornerRadius = 4
         textField.layer.borderWidth = 2
         textField.layer.borderColor = UIColor.clear.cgColor
         textField.inputView = birthdatDatePicker
         textField.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        textField.setPlaceholderColor(.custom.gray4 ?? .gray)
         return textField
     }()
     
@@ -100,7 +102,6 @@ final class GenderAndBitrhdayViewController: UIViewController {
         let datePicker = UIDatePicker()
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.datePickerMode = .date
-        datePicker.backgroundColor = .white
         return datePicker
     }()
     

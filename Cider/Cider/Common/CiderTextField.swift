@@ -60,10 +60,11 @@ private extension CiderTextField {
         backgroundColor = .custom.gray1
         font = CustomFont.PretendardBold(size: .base).font
         heightAnchor.constraint(equalToConstant: 44).isActive = true
-        addLeftPadding()
+        addLeftPadding(12)
         layer.cornerRadius = 4
         layer.borderWidth = 2
         layer.borderColor = UIColor.clear.cgColor
+        textColor = .custom.text
         
         paddingView.addSubviews(clearButton)
         NSLayoutConstraint.activate([
