@@ -95,6 +95,8 @@ final class GenderAndBitrhdayViewController: UIViewController {
         textField.inputView = birthdatDatePicker
         textField.heightAnchor.constraint(equalToConstant: 44).isActive = true
         textField.setPlaceholderColor(.custom.gray4 ?? .gray)
+        textField.rightView = textFieldPaddingView
+        textField.rightViewMode = .always
         return textField
     }()
     
@@ -114,6 +116,13 @@ final class GenderAndBitrhdayViewController: UIViewController {
         return label
     }()
     
+    private let textFieldPaddingView = UIView()
+    
+    private lazy var calendarImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "clearButton")
+        return imageView
+    }()
     
     private lazy var nextButton: CiderBottomButton = {
         let button = CiderBottomButton(style: .disabled, title: "다음")
@@ -143,9 +152,12 @@ private extension GenderAndBitrhdayViewController {
         view.backgroundColor = .white
         processView.setProcessType(.dataInput)
         view.addSubviews(processView, mainTitleLabel, generTitleLabel, generSubLabel, genderStackView, barView,
-                         birthdayTitleLabel, birthdayTextField, nextButton, errorLabel)
+                         birthdayTitleLabel, birthdayTextField, nextButton, errorLabel, textFieldPaddingView)
+        textFieldPaddingView.addSubviews(calendarImageView)
         genderStackView.addArrangedSubviews(maleButton, femaleButton)
         NSLayoutConstraint.activate([
+            textFieldPaddingView.widthAnchor.constraint(equalToConstant: 12+24),
+            textFieldPaddingView.heightAnchor.constraint(equalToConstant: 24),
             processView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             processView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             processView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),

@@ -20,7 +20,6 @@ final class CiderTextField: UITextField {
         button.setImage(UIImage(named: "clearButton"), for: .normal)
         button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
         button.contentMode = .scaleAspectFit
-        button.contentMode = .scaleAspectFit
         button.addTarget(self, action: #selector(didTapClear), for: .touchUpInside)
         return button
     }()
