@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum ChallengeType {
     case financialTech
@@ -51,6 +52,19 @@ extension ChallengeType {
             return "돈관리"
         case .financialLearning:
             return "금융학습"
+        }
+    }
+    
+    func getColor() -> UIColor? {
+        switch self {
+        case .financialTech:
+            return .custom.btnMint
+        case .moneySaving:
+            return .custom.btnPink
+        case .moneyManagement:
+            return .custom.btnBlue
+        case .financialLearning:
+            return .custom.btnPurple
         }
     }
 }
