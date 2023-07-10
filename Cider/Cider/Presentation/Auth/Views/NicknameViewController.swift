@@ -45,6 +45,8 @@ final class NicknameViewController: UIViewController {
         textField.placeholder = "2~10자로 입력해주세요"
         textField.addTarget(self, action: #selector(didChangeTextField), for: .editingChanged)
         textField.setPlaceholderColor(.custom.gray4 ?? .gray)
+        textField.addActionClearButton(self, action: #selector(didTapClear))
+        textField.delegate = self
         return textField
     }()
     
@@ -66,6 +68,23 @@ final class NicknameViewController: UIViewController {
         view.heightAnchor.constraint(equalToConstant: 36).isActive = true
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapRandomNickname)))
         return view
+    }()
+    
+    private lazy var nicknameCountLabel: UILabel = {
+        let label = UILabel()
+        label.text = "0/10"
+        label.font = CustomFont.PretendardRegular(size: .sm).font
+        label.textColor = .custom.gray4
+
+        return label
+    }()
+    
+    private lazy var nicknameErrorLabel: UILabel = {
+        let label = UILabel()
+        label.font = CustomFont.PretendardRegular(size: .sm).font
+        label.textColor = .custom.error
+        label.isHidden = true
+        return label
     }()
     
     var bottomConstraint: NSLayoutConstraint?
@@ -94,7 +113,7 @@ private extension NicknameViewController {
         view.backgroundColor = .white
         processView.setProcessType(.dataInput)
         
-        view.addSubviews(processView, mainTitleLabel, subTitleLabel, nicknameTextField, nextButton, randomNicknameView)
+        view.addSubviews(processView, mainTitleLabel, subTitleLabel, nicknameTextField, nextButton, randomNicknameView, nicknameCountLabel, nicknameErrorLabel)
         NSLayoutConstraint.activate([
             processView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             processView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
@@ -110,7 +129,11 @@ private extension NicknameViewController {
             nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             nextButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
             randomNicknameView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            randomNicknameView.bottomAnchor.constraint(equalTo: nextButton.topAnchor, constant: -12)
+            randomNicknameView.bottomAnchor.constraint(equalTo: nextButton.topAnchor, constant: -12),
+            nicknameCountLabel.topAnchor.constraint(equalTo: nicknameTextField.bottomAnchor, constant: 4),
+            nicknameCountLabel.trailingAnchor.constraint(equalTo: nicknameTextField.trailingAnchor),
+            nicknameErrorLabel.topAnchor.constraint(equalTo: nicknameCountLabel.topAnchor),
+            nicknameErrorLabel.leadingAnchor.constraint(equalTo: nicknameTextField.leadingAnchor)
         ])
         
         bottomConstraint = NSLayoutConstraint(item: nextButton, attribute: .bottom, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0)
@@ -132,14 +155,18 @@ private extension NicknameViewController {
 private extension NicknameViewController {
     
     @objc func didChangeTextField(_ sender: UITextField) {
+        nicknameErrorLabel.isHidden = true
         guard let count = sender.text?.count else {
             return
         }
-        if count > 0 && count <= 10 {
+        nicknameCountLabel.text = "\(count)/10"
+        if count >= 2 && count <= 10 {
             nicknameTextField.setStyle(.enabled)
         }
-        else if count > 10 {
+        else if count == 1 {
             nicknameTextField.setStyle(.disabled)
+            nicknameErrorLabel.isHidden = false
+            nicknameErrorLabel.text = "2자 이상이어야 합니다"
         }
         else {
             nicknameTextField.setStyle(.plain)
@@ -168,6 +195,22 @@ private extension NicknameViewController {
     
     @objc func didTapRandomNickname(_ sender: Any?) {
         print("didTapRandomNickname")
+    }
+    
+    @objc func didTapClear(_ sender: Any?) {
+        nicknameCountLabel.text = "0/10"
+        nicknameErrorLabel.isHidden = true
+    }
+    
+}
+
+extension NicknameViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let count = textField.text?.count else {
+            return false
+        }
+        return count < 10
     }
     
 }

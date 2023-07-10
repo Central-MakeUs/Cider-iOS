@@ -51,6 +51,10 @@ final class CiderTextField: UITextField {
         clearButton.isHidden = isHidden
     }
     
+    func addActionClearButton(_ target: Any?, action: Selector) {
+        clearButton.addTarget(target, action: action, for: .touchUpInside)
+    }
+    
 }
 
 
