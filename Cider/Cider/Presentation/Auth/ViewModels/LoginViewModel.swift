@@ -24,9 +24,6 @@ final class LoginViewModel: ViewModelType {
     
     func kakaoLogin(token: String) {
         useCase.kakaoLogin(token: token)
-            .sink { [weak self] completion in
-               
-            }
     }
     
 }
