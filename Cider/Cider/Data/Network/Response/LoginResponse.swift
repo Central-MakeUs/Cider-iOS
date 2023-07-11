@@ -8,6 +8,8 @@
 import Foundation
 
 struct LoginResponse: Codable {
+    let status: Int
+    let error: String?
     let accessToken, accessTokenExpireTime, refreshToken, refreshTokenExpireTime: String?
     let isNewMember: Bool?
     let memberId: Int?

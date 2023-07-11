@@ -9,6 +9,7 @@ import UIKit
 import Combine
 import KakaoSDKAuth
 import KakaoSDKUser
+import AuthenticationServices
 
 final class LoginViewController: UIViewController {
     
@@ -120,7 +121,7 @@ private extension LoginViewController {
 private extension LoginViewController {
     
     @objc func didTapAppleLogin() {
-        
+        appleLogin()
     }
     
     @objc func didTapKakaoLogin() {
@@ -159,8 +160,42 @@ private extension LoginViewController {
         }
     }
     
+    func appleLogin() {
+        let request = ASAuthorizationAppleIDProvider().createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        controller.delegate = self
+        controller.presentationContextProvider = self as? ASAuthorizationControllerPresentationContextProviding
+        controller.performRequests()
+    }
+    
 }
 
+extension LoginViewController: ASAuthorizationControllerDelegate {
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            
+            guard let identityToken = credential.identityToken,
+                  let token = String(data: identityToken, encoding: .utf8) else {
+                return
+            }
+            print(token)
+            
+            guard let code = credential.authorizationCode,
+                  let codeStr = String(data: code, encoding: .utf8) else {
+                return
+            }
+            print(codeStr)
+        }
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print(LoginError.loginFail)
+    }
+    
+}
 
 #if DEBUG
 import SwiftUI
