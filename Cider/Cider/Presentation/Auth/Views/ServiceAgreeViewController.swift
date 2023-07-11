@@ -10,7 +10,7 @@ import Combine
 
 class ServiceAgreeViewController: UIViewController {
     
-    private let viewModel = ServiceAgreeViewModel()
+    private let viewModel: ServiceAgreeViewModel
     private var cancellables = Set<AnyCancellable>()
     
     private let processView = ProcessView()
@@ -67,7 +67,16 @@ class ServiceAgreeViewController: UIViewController {
     ]
     
     private var selectedStates = [false, false, false, false]
-
+    
+    init(viewModel: ServiceAgreeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -228,7 +237,7 @@ struct ServiceAgreeViewController_Preview: PreviewProvider {
 
     static var previews: some View {
         ForEach(devices, id: \.self) { deviceName in
-            ServiceAgreeViewController()
+            ServiceAgreeViewController(viewModel: ServiceAgreeViewModel())
                 .toPreview()
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)

@@ -22,9 +22,11 @@ final class DefaultLoginUsecase: LoginUsecase {
     }
     
     func kakaoLogin(token: String) async throws -> Bool {
-        
+        Keychain.saveToken(data: token)
         let request = LoginRequest(socialType: "KAKAO", clientType: "IOS")
         let response = try await loginRepository.signInKakao(parameters: request)
+        // TODO: 실패 response 서버에서 전달해주면 로직 수정
+        print(response)
         guard let accessToken = response.accessToken else {
             return false
         }

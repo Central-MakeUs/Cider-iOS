@@ -9,7 +9,7 @@ import Foundation
 
 struct LoginResponse: Codable {
     let accessToken, accessTokenExpireTime, refreshToken, refreshTokenExpireTime: String?
-    let isNewMember: Bool
-    let memberId: Int
-    let memberName, birthday, gender: String
+    let isNewMember: Bool?
+    let memberId: Int?
+    let memberName, birthday, gender: String?
 }

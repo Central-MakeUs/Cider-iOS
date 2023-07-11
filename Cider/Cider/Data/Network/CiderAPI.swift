@@ -51,13 +51,7 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
     }
     
     var authorizationType: Moya.AuthorizationType? {
-        switch self {
-        case .signInApple,
-             .signInKakao:
-            return .none
-        default:
-            return .bearer
-        }
+        return .bearer
     }
     
     

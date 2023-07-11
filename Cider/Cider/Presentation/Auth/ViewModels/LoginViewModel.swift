@@ -23,7 +23,7 @@ final class LoginViewModel: ViewModelType {
         self.useCase = useCase
     }
     
-    func kakaoLogin(token: String) async throws {
+    func kakaoLogin(token: String) {
         Task {
             let isSuccess = try await useCase.kakaoLogin(token: token)
             currentState.send(.kakaoLogin(isSuccess))

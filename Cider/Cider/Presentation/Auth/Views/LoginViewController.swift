@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import Combine
 import KakaoSDKAuth
 import KakaoSDKUser
 
 final class LoginViewController: UIViewController {
     
     private let viewModel: LoginViewModel
+    private var cancellables = Set<AnyCancellable>()
     
     private lazy var logoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -72,6 +74,11 @@ final class LoginViewController: UIViewController {
 
 private extension LoginViewController {
     
+    func setUp() {
+        configure()
+        bind()
+    }
+    
     func configure() {
         view.addSubviews(logoImageView, titleLabel, appleLoginButton, kakaoLoginButton)
         NSLayoutConstraint.activate([
@@ -89,13 +96,31 @@ private extension LoginViewController {
         ])
     }
     
+    func bind() {
+        viewModel.state.receive(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                switch state {
+                case .kakaoLogin(let isSuccess):
+                    guard isSuccess else {
+                        return
+                    }
+                    self?.pushServiceAgreeViewController()
+                    
+                }
+            }.store(in: &cancellables)
+    }
+    
+    func pushServiceAgreeViewController() {
+        let viewController = ServiceAgreeViewController(viewModel: ServiceAgreeViewModel())
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
 }
 
 private extension LoginViewController {
     
     @objc func didTapAppleLogin() {
-        let viewController = ServiceAgreeViewController()
-        self.navigationController?.pushViewController(viewController, animated: true)
+        
     }
     
     @objc func didTapKakaoLogin() {
@@ -112,7 +137,11 @@ private extension LoginViewController {
                 if let error {
                     print(error)
                 } else {
-                    print(oauthToken?.accessToken)
+                    guard let accessToken = oauthToken?.accessToken else {
+                        return
+                    }
+                    print("accessToken = \(accessToken)")
+                    self?.viewModel.kakaoLogin(token: accessToken)
                 }
             }
         } else {
@@ -120,7 +149,11 @@ private extension LoginViewController {
                 if let error {
                     print(error)
                 } else {
-                    print(oauthToken?.accessToken)
+                    guard let accessToken = oauthToken?.accessToken else {
+                        return
+                    }
+                    print(accessToken)
+                    self?.viewModel.kakaoLogin(token: accessToken)
                 }
             }
         }
