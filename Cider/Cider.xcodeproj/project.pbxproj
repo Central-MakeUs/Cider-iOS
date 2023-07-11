@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		FA0322812A4DC2B0000993DF /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0322802A4DC2B0000993DF /* NicknameViewController.swift */; };
 		FA39D8492A4EA829001C7E0A /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39D8482A4EA829001C7E0A /* AppAppearance.swift */; };
-		FA3AE4072A57D2970078A4DF /* GenderAndBitrhdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3AE4062A57D2970078A4DF /* GenderAndBitrhdayViewModel.swift */; };
+		FA3AE4072A57D2970078A4DF /* GenderAndBirthdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3AE4062A57D2970078A4DF /* GenderAndBirthdayViewModel.swift */; };
 		FA3AE4092A57D3D70078A4DF /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3AE4082A57D3D70078A4DF /* ViewModelType.swift */; };
 		FA3AE40D2A57DB140078A4DF /* CiderBottomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3AE40C2A57DB140078A4DF /* CiderBottomButton.swift */; };
 		FA3EC10B2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3EC10A2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift */; };
@@ -28,7 +28,7 @@
 		FA553EB62A5C026300DAE63B /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = FA553EB52A5C026300DAE63B /* KakaoSDKCommon */; };
 		FA553EBD2A5C0D6900DAE63B /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA553EBC2A5C0D6900DAE63B /* APIKey.swift */; };
 		FA553EBF2A5C141B00DAE63B /* LoginUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA553EBE2A5C141B00DAE63B /* LoginUsecase.swift */; };
-		FA56F9842A542FA70099EC6F /* GenderAndBitrhdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56F9832A542FA70099EC6F /* GenderAndBitrhdayViewController.swift */; };
+		FA56F9842A542FA70099EC6F /* GenderAndBirthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56F9832A542FA70099EC6F /* GenderAndBirthdayViewController.swift */; };
 		FA57AF452A5C16EE008A5991 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57AF442A5C16EE008A5991 /* LoginViewModel.swift */; };
 		FA57AF482A5C5116008A5991 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = FA57AF472A5C5116008A5991 /* Moya */; };
 		FA57AF4B2A5D0D72008A5991 /* CiderAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57AF4A2A5D0D72008A5991 /* CiderAPI.swift */; };
@@ -66,7 +66,7 @@
 /* Begin PBXFileReference section */
 		FA0322802A4DC2B0000993DF /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
 		FA39D8482A4EA829001C7E0A /* AppAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
-		FA3AE4062A57D2970078A4DF /* GenderAndBitrhdayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderAndBitrhdayViewModel.swift; sourceTree = "<group>"; };
+		FA3AE4062A57D2970078A4DF /* GenderAndBirthdayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderAndBirthdayViewModel.swift; sourceTree = "<group>"; };
 		FA3AE4082A57D3D70078A4DF /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		FA3AE40C2A57DB140078A4DF /* CiderBottomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderBottomButton.swift; sourceTree = "<group>"; };
 		FA3EC10A2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAgreeHeaderView.swift; sourceTree = "<group>"; };
@@ -82,7 +82,7 @@
 		FA4DDB962A4D66CB002EDEAD /* ServiceAgreeDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAgreeDetailCell.swift; sourceTree = "<group>"; };
 		FA553EBC2A5C0D6900DAE63B /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		FA553EBE2A5C141B00DAE63B /* LoginUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsecase.swift; sourceTree = "<group>"; };
-		FA56F9832A542FA70099EC6F /* GenderAndBitrhdayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderAndBitrhdayViewController.swift; sourceTree = "<group>"; };
+		FA56F9832A542FA70099EC6F /* GenderAndBirthdayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderAndBirthdayViewController.swift; sourceTree = "<group>"; };
 		FA57AF442A5C16EE008A5991 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		FA57AF4A2A5D0D72008A5991 /* CiderAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderAPI.swift; sourceTree = "<group>"; };
 		FA57AF4C2A5D0E2A008A5991 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				FA6100332A59BAEA002175CE /* ServiceAgreeViewModel.swift */,
-				FA3AE4062A57D2970078A4DF /* GenderAndBitrhdayViewModel.swift */,
+				FA3AE4062A57D2970078A4DF /* GenderAndBirthdayViewModel.swift */,
 				FA61002F2A590431002175CE /* ChallengeSelectionViewModel.swift */,
 				FA57AF442A5C16EE008A5991 /* LoginViewModel.swift */,
 			);
@@ -169,7 +169,7 @@
 				FA8CA60A2A46D322005A6709 /* LoginViewController.swift */,
 				FA4DDB8D2A4D3177002EDEAD /* ServiceAgreeViewController.swift */,
 				FA0322802A4DC2B0000993DF /* NicknameViewController.swift */,
-				FA56F9832A542FA70099EC6F /* GenderAndBitrhdayViewController.swift */,
+				FA56F9832A542FA70099EC6F /* GenderAndBirthdayViewController.swift */,
 				FA6100252A57F725002175CE /* ChallengeSelectionViewController.swift */,
 			);
 			path = Views;
@@ -458,7 +458,7 @@
 				FA61002E2A58180E002175CE /* CiderSelectionStyle.swift in Sources */,
 				FA44D39F2A4C5CE30037E328 /* UIStackView+Extension.swift in Sources */,
 				FA3AE40D2A57DB140078A4DF /* CiderBottomButton.swift in Sources */,
-				FA56F9842A542FA70099EC6F /* GenderAndBitrhdayViewController.swift in Sources */,
+				FA56F9842A542FA70099EC6F /* GenderAndBirthdayViewController.swift in Sources */,
 				FA0322812A4DC2B0000993DF /* NicknameViewController.swift in Sources */,
 				FA57AF4B2A5D0D72008A5991 /* CiderAPI.swift in Sources */,
 				FA57AF632A5D22A0008A5991 /* LoginError.swift in Sources */,
@@ -487,7 +487,7 @@
 				FA61002A2A57FC14002175CE /* ChallengesView.swift in Sources */,
 				FA6100302A590431002175CE /* ChallengeSelectionViewModel.swift in Sources */,
 				FA44D3992A4C43B80037E328 /* Color+Extension.swift in Sources */,
-				FA3AE4072A57D2970078A4DF /* GenderAndBitrhdayViewModel.swift in Sources */,
+				FA3AE4072A57D2970078A4DF /* GenderAndBirthdayViewModel.swift in Sources */,
 				FAB9A73B2A4C64CF00757A80 /* UILabel+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

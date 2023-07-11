@@ -7,7 +7,7 @@
 import Foundation
 import Combine
 
-final class GenderAndBitrhdayViewModel: ViewModelType {
+final class GenderAndBirthdayViewModel: ViewModelType {
     
     enum ViewModelState {
         case changeNextButtonState(isEnabled: Bool)

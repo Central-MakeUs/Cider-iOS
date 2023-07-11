@@ -8,9 +8,9 @@
 import UIKit
 import Combine
 
-final class GenderAndBitrhdayViewController: UIViewController {
+final class GenderAndBirthdayViewController: UIViewController {
     
-    private let viewModel = GenderAndBitrhdayViewModel()
+    private let viewModel = GenderAndBirthdayViewModel()
     private var cancellables = Set<AnyCancellable>()
     
     private let processView = ProcessView()
@@ -147,7 +147,7 @@ final class GenderAndBitrhdayViewController: UIViewController {
 
 }
 
-private extension GenderAndBitrhdayViewController {
+private extension GenderAndBirthdayViewController {
     
     func configure() {
         view.backgroundColor = .white
@@ -238,7 +238,7 @@ private extension GenderAndBitrhdayViewController {
     
 }
 
-private extension GenderAndBitrhdayViewController {
+private extension GenderAndBirthdayViewController {
     
     @objc func didTapDone(_ sender: UIBarButtonItem) {
         birthdayTextField.resignFirstResponder()
@@ -274,7 +274,7 @@ struct BirthdayViewController_Preview: PreviewProvider {
 
     static var previews: some View {
         ForEach(devices, id: \.self) { deviceName in
-            GenderAndBitrhdayViewController()
+            GenderAndBirthdayViewController()
                 .toPreview()
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)
