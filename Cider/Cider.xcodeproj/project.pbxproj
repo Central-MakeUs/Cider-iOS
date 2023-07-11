@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		FA0322812A4DC2B0000993DF /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0322802A4DC2B0000993DF /* NicknameViewController.swift */; };
 		FA39D8492A4EA829001C7E0A /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39D8482A4EA829001C7E0A /* AppAppearance.swift */; };
-		FA3AE4072A57D2970078A4DF /* GenderAndBitrhdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3AE4062A57D2970078A4DF /* GenderAndBitrhdayViewModel.swift */; };
+		FA3AE4072A57D2970078A4DF /* GenderAndBirthdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3AE4062A57D2970078A4DF /* GenderAndBirthdayViewModel.swift */; };
 		FA3AE4092A57D3D70078A4DF /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3AE4082A57D3D70078A4DF /* ViewModelType.swift */; };
 		FA3AE40D2A57DB140078A4DF /* CiderBottomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3AE40C2A57DB140078A4DF /* CiderBottomButton.swift */; };
 		FA3EC10B2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3EC10A2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift */; };
@@ -23,7 +23,22 @@
 		FA4DDB922A4D5810002EDEAD /* ServiceAgreeCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DDB912A4D5810002EDEAD /* ServiceAgreeCellData.swift */; };
 		FA4DDB952A4D5A46002EDEAD /* ServiceAgreeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DDB942A4D5A46002EDEAD /* ServiceAgreeCell.swift */; };
 		FA4DDB972A4D66CB002EDEAD /* ServiceAgreeDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DDB962A4D66CB002EDEAD /* ServiceAgreeDetailCell.swift */; };
-		FA56F9842A542FA70099EC6F /* GenderAndBitrhdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56F9832A542FA70099EC6F /* GenderAndBitrhdayViewController.swift */; };
+		FA553EB22A5C026300DAE63B /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FA553EB12A5C026300DAE63B /* KakaoSDK */; };
+		FA553EB42A5C026300DAE63B /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FA553EB32A5C026300DAE63B /* KakaoSDKAuth */; };
+		FA553EB62A5C026300DAE63B /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = FA553EB52A5C026300DAE63B /* KakaoSDKCommon */; };
+		FA553EBD2A5C0D6900DAE63B /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA553EBC2A5C0D6900DAE63B /* APIKey.swift */; };
+		FA553EBF2A5C141B00DAE63B /* LoginUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA553EBE2A5C141B00DAE63B /* LoginUsecase.swift */; };
+		FA56F9842A542FA70099EC6F /* GenderAndBirthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56F9832A542FA70099EC6F /* GenderAndBirthdayViewController.swift */; };
+		FA57AF452A5C16EE008A5991 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57AF442A5C16EE008A5991 /* LoginViewModel.swift */; };
+		FA57AF482A5C5116008A5991 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = FA57AF472A5C5116008A5991 /* Moya */; };
+		FA57AF4B2A5D0D72008A5991 /* CiderAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57AF4A2A5D0D72008A5991 /* CiderAPI.swift */; };
+		FA57AF4D2A5D0E2A008A5991 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57AF4C2A5D0E2A008A5991 /* Keychain.swift */; };
+		FA57AF4F2A5D0EC7008A5991 /* LocalKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57AF4E2A5D0EC7008A5991 /* LocalKey.swift */; };
+		FA57AF572A5D14CC008A5991 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57AF562A5D14CC008A5991 /* LoginRequest.swift */; };
+		FA57AF5A2A5D154C008A5991 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57AF592A5D154C008A5991 /* LoginResponse.swift */; };
+		FA57AF5D2A5D17A0008A5991 /* LoginRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57AF5C2A5D17A0008A5991 /* LoginRepository.swift */; };
+		FA57AF602A5D1851008A5991 /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57AF5F2A5D1851008A5991 /* Encodable+Extension.swift */; };
+		FA57AF632A5D22A0008A5991 /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57AF622A5D22A0008A5991 /* LoginError.swift */; };
 		FA5B8BE12A4DCAE000CEB0F6 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B8BE02A4DCAE000CEB0F6 /* UITextField+Extension.swift */; };
 		FA6100262A57F725002175CE /* ChallengeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6100252A57F725002175CE /* ChallengeSelectionViewController.swift */; };
 		FA6100282A57FA46002175CE /* ChallengeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6100272A57FA46002175CE /* ChallengeType.swift */; };
@@ -51,7 +66,7 @@
 /* Begin PBXFileReference section */
 		FA0322802A4DC2B0000993DF /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
 		FA39D8482A4EA829001C7E0A /* AppAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
-		FA3AE4062A57D2970078A4DF /* GenderAndBitrhdayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderAndBitrhdayViewModel.swift; sourceTree = "<group>"; };
+		FA3AE4062A57D2970078A4DF /* GenderAndBirthdayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderAndBirthdayViewModel.swift; sourceTree = "<group>"; };
 		FA3AE4082A57D3D70078A4DF /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		FA3AE40C2A57DB140078A4DF /* CiderBottomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderBottomButton.swift; sourceTree = "<group>"; };
 		FA3EC10A2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAgreeHeaderView.swift; sourceTree = "<group>"; };
@@ -65,7 +80,19 @@
 		FA4DDB912A4D5810002EDEAD /* ServiceAgreeCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAgreeCellData.swift; sourceTree = "<group>"; };
 		FA4DDB942A4D5A46002EDEAD /* ServiceAgreeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAgreeCell.swift; sourceTree = "<group>"; };
 		FA4DDB962A4D66CB002EDEAD /* ServiceAgreeDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAgreeDetailCell.swift; sourceTree = "<group>"; };
-		FA56F9832A542FA70099EC6F /* GenderAndBitrhdayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderAndBitrhdayViewController.swift; sourceTree = "<group>"; };
+		FA553EBC2A5C0D6900DAE63B /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		FA553EBE2A5C141B00DAE63B /* LoginUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsecase.swift; sourceTree = "<group>"; };
+		FA56F9832A542FA70099EC6F /* GenderAndBirthdayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderAndBirthdayViewController.swift; sourceTree = "<group>"; };
+		FA57AF442A5C16EE008A5991 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		FA57AF4A2A5D0D72008A5991 /* CiderAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderAPI.swift; sourceTree = "<group>"; };
+		FA57AF4C2A5D0E2A008A5991 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		FA57AF4E2A5D0EC7008A5991 /* LocalKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalKey.swift; sourceTree = "<group>"; };
+		FA57AF562A5D14CC008A5991 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		FA57AF592A5D154C008A5991 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		FA57AF5C2A5D17A0008A5991 /* LoginRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRepository.swift; sourceTree = "<group>"; };
+		FA57AF5F2A5D1851008A5991 /* Encodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; };
+		FA57AF622A5D22A0008A5991 /* LoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginError.swift; sourceTree = "<group>"; };
+		FA57AF642A5D3D02008A5991 /* Cider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cider.entitlements; sourceTree = "<group>"; };
 		FA5B8BE02A4DCAE000CEB0F6 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		FA6100252A57F725002175CE /* ChallengeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeSelectionViewController.swift; sourceTree = "<group>"; };
 		FA6100272A57FA46002175CE /* ChallengeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeType.swift; sourceTree = "<group>"; };
@@ -97,6 +124,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA553EB22A5C026300DAE63B /* KakaoSDK in Frameworks */,
+				FA553EB62A5C026300DAE63B /* KakaoSDKCommon in Frameworks */,
+				FA57AF482A5C5116008A5991 /* Moya in Frameworks */,
+				FA553EB42A5C026300DAE63B /* KakaoSDKAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,8 +137,9 @@
 		FA3AE4052A57D2850078A4DF /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				FA57AF442A5C16EE008A5991 /* LoginViewModel.swift */,
 				FA6100332A59BAEA002175CE /* ServiceAgreeViewModel.swift */,
-				FA3AE4062A57D2970078A4DF /* GenderAndBitrhdayViewModel.swift */,
+				FA3AE4062A57D2970078A4DF /* GenderAndBirthdayViewModel.swift */,
 				FA61002F2A590431002175CE /* ChallengeSelectionViewModel.swift */,
 			);
 			path = ViewModels;
@@ -137,7 +169,7 @@
 				FA8CA60A2A46D322005A6709 /* LoginViewController.swift */,
 				FA4DDB8D2A4D3177002EDEAD /* ServiceAgreeViewController.swift */,
 				FA0322802A4DC2B0000993DF /* NicknameViewController.swift */,
-				FA56F9832A542FA70099EC6F /* GenderAndBitrhdayViewController.swift */,
+				FA56F9832A542FA70099EC6F /* GenderAndBirthdayViewController.swift */,
 				FA6100252A57F725002175CE /* ChallengeSelectionViewController.swift */,
 			);
 			path = Views;
@@ -162,6 +194,7 @@
 		FA44D3922A4C3DCA0037E328 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				FA553EBE2A5C141B00DAE63B /* LoginUsecase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -169,6 +202,8 @@
 		FA44D3932A4C3DF10037E328 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				FA57AF5B2A5D1780008A5991 /* Repositories */,
+				FA57AF492A5D0D63008A5991 /* Network */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -187,6 +222,9 @@
 				FA6100312A59AD8D002175CE /* GradientView.swift */,
 				FA6C21662A5A4DD3008A9ADD /* CiderTextField.swift */,
 				FA6C21682A5A4E21008A9ADD /* CiderEnabledStyle.swift */,
+				FA553EBC2A5C0D6900DAE63B /* APIKey.swift */,
+				FA57AF4C2A5D0E2A008A5991 /* Keychain.swift */,
+				FA57AF4E2A5D0EC7008A5991 /* LocalKey.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -220,6 +258,7 @@
 				FA44D3A02A4C5D070037E328 /* UIView+Extension.swift */,
 				FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */,
 				FA5B8BE02A4DCAE000CEB0F6 /* UITextField+Extension.swift */,
+				FA57AF5F2A5D1851008A5991 /* Encodable+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -236,6 +275,49 @@
 				FA6C216A2A5A78C4008A9ADD /* RandomNicknameView.swift */,
 			);
 			path = SubViews;
+			sourceTree = "<group>";
+		};
+		FA57AF492A5D0D63008A5991 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				FA57AF612A5D209D008A5991 /* Error */,
+				FA57AF552A5D14C1008A5991 /* Response */,
+				FA57AF542A5D14B7008A5991 /* Request */,
+				FA57AF4A2A5D0D72008A5991 /* CiderAPI.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		FA57AF542A5D14B7008A5991 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				FA57AF562A5D14CC008A5991 /* LoginRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		FA57AF552A5D14C1008A5991 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				FA57AF592A5D154C008A5991 /* LoginResponse.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		FA57AF5B2A5D1780008A5991 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				FA57AF5C2A5D17A0008A5991 /* LoginRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		FA57AF612A5D209D008A5991 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				FA57AF622A5D22A0008A5991 /* LoginError.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		FA8CA5FA2A46D322005A6709 = {
@@ -257,6 +339,7 @@
 		FA8CA6052A46D322005A6709 /* Cider */ = {
 			isa = PBXGroup;
 			children = (
+				FA57AF642A5D3D02008A5991 /* Cider.entitlements */,
 				FA44D3962A4C3E290037E328 /* Application */,
 				FA44D3952A4C3E1B0037E328 /* Resources */,
 				FA44D3942A4C3E150037E328 /* Common */,
@@ -294,6 +377,12 @@
 			dependencies = (
 			);
 			name = Cider;
+			packageProductDependencies = (
+				FA553EB12A5C026300DAE63B /* KakaoSDK */,
+				FA553EB32A5C026300DAE63B /* KakaoSDKAuth */,
+				FA553EB52A5C026300DAE63B /* KakaoSDKCommon */,
+				FA57AF472A5C5116008A5991 /* Moya */,
+			);
 			productName = Cider;
 			productReference = FA8CA6032A46D322005A6709 /* Cider.app */;
 			productType = "com.apple.product-type.application";
@@ -322,6 +411,10 @@
 				Base,
 			);
 			mainGroup = FA8CA5FA2A46D322005A6709;
+			packageReferences = (
+				FA553EB02A5C026300DAE63B /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				FA57AF462A5C5116008A5991 /* XCRemoteSwiftPackageReference "Moya" */,
+			);
 			productRefGroup = FA8CA6042A46D322005A6709 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -352,7 +445,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA61002C2A5816E5002175CE /* KeywordsView.swift in Sources */,
+				FA57AF5D2A5D17A0008A5991 /* LoginRepository.swift in Sources */,
 				FA6C216B2A5A78C4008A9ADD /* RandomNicknameView.swift in Sources */,
+				FA57AF4D2A5D0E2A008A5991 /* Keychain.swift in Sources */,
 				FA3AE4092A57D3D70078A4DF /* ViewModelType.swift in Sources */,
 				FA6C21672A5A4DD3008A9ADD /* CiderTextField.swift in Sources */,
 				FA6100322A59AD8D002175CE /* GradientView.swift in Sources */,
@@ -363,13 +458,18 @@
 				FA61002E2A58180E002175CE /* CiderSelectionStyle.swift in Sources */,
 				FA44D39F2A4C5CE30037E328 /* UIStackView+Extension.swift in Sources */,
 				FA3AE40D2A57DB140078A4DF /* CiderBottomButton.swift in Sources */,
-				FA56F9842A542FA70099EC6F /* GenderAndBitrhdayViewController.swift in Sources */,
+				FA56F9842A542FA70099EC6F /* GenderAndBirthdayViewController.swift in Sources */,
 				FA0322812A4DC2B0000993DF /* NicknameViewController.swift in Sources */,
+				FA57AF4B2A5D0D72008A5991 /* CiderAPI.swift in Sources */,
+				FA57AF632A5D22A0008A5991 /* LoginError.swift in Sources */,
 				FA4DDB8E2A4D3178002EDEAD /* ServiceAgreeViewController.swift in Sources */,
 				FA8CA60B2A46D322005A6709 /* LoginViewController.swift in Sources */,
 				FA4DDB922A4D5810002EDEAD /* ServiceAgreeCellData.swift in Sources */,
 				FA4DDB952A4D5A46002EDEAD /* ServiceAgreeCell.swift in Sources */,
 				FA5B8BE12A4DCAE000CEB0F6 /* UITextField+Extension.swift in Sources */,
+				FA57AF4F2A5D0EC7008A5991 /* LocalKey.swift in Sources */,
+				FA57AF602A5D1851008A5991 /* Encodable+Extension.swift in Sources */,
+				FA553EBF2A5C141B00DAE63B /* LoginUsecase.swift in Sources */,
 				FA6100282A57FA46002175CE /* ChallengeType.swift in Sources */,
 				FA4DDB972A4D66CB002EDEAD /* ServiceAgreeDetailCell.swift in Sources */,
 				FAB9A73F2A4C8DAB00757A80 /* ProcessView.swift in Sources */,
@@ -378,12 +478,16 @@
 				FA44D39B2A4C46A30037E328 /* CustomFont.swift in Sources */,
 				FA6100342A59BAEA002175CE /* ServiceAgreeViewModel.swift in Sources */,
 				FA6100262A57F725002175CE /* ChallengeSelectionViewController.swift in Sources */,
+				FA57AF5A2A5D154C008A5991 /* LoginResponse.swift in Sources */,
 				FA8CA6092A46D322005A6709 /* SceneDelegate.swift in Sources */,
+				FA57AF572A5D14CC008A5991 /* LoginRequest.swift in Sources */,
+				FA57AF452A5C16EE008A5991 /* LoginViewModel.swift in Sources */,
 				FA4DDB902A4D57D5002EDEAD /* ProcessType.swift in Sources */,
+				FA553EBD2A5C0D6900DAE63B /* APIKey.swift in Sources */,
 				FA61002A2A57FC14002175CE /* ChallengesView.swift in Sources */,
 				FA6100302A590431002175CE /* ChallengeSelectionViewModel.swift in Sources */,
 				FA44D3992A4C43B80037E328 /* Color+Extension.swift in Sources */,
-				FA3AE4072A57D2970078A4DF /* GenderAndBitrhdayViewModel.swift in Sources */,
+				FA3AE4072A57D2970078A4DF /* GenderAndBirthdayViewModel.swift in Sources */,
 				FAB9A73B2A4C64CF00757A80 /* UILabel+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -521,6 +625,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Cider/Cider.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9738W25PF4;
@@ -531,6 +636,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -550,6 +656,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Cider/Cider.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9738W25PF4;
@@ -560,6 +667,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -596,6 +704,48 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FA553EB02A5C026300DAE63B /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		FA57AF462A5C5116008A5991 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FA553EB12A5C026300DAE63B /* KakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA553EB02A5C026300DAE63B /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDK;
+		};
+		FA553EB32A5C026300DAE63B /* KakaoSDKAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA553EB02A5C026300DAE63B /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKAuth;
+		};
+		FA553EB52A5C026300DAE63B /* KakaoSDKCommon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA553EB02A5C026300DAE63B /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCommon;
+		};
+		FA57AF472A5C5116008A5991 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA57AF462A5C5116008A5991 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FA8CA5FB2A46D322005A6709 /* Project object */;
 }

@@ -10,7 +10,7 @@ import Combine
 
 class ServiceAgreeViewController: UIViewController {
     
-    private let viewModel = ServiceAgreeViewModel()
+    private let viewModel: ServiceAgreeViewModel
     private var cancellables = Set<AnyCancellable>()
     
     private let processView = ProcessView()
@@ -67,7 +67,16 @@ class ServiceAgreeViewController: UIViewController {
     ]
     
     private var selectedStates = [false, false, false, false]
-
+    
+    init(viewModel: ServiceAgreeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -180,7 +189,8 @@ extension ServiceAgreeViewController: UITableViewDataSource, UITableViewDelegate
         if (indexPath.section == 1 || indexPath.section == 2) && indexPath.row == 0 {
             cellData[indexPath.section].subTitle = cellData[indexPath.section].subTitle == "접기" ? "자세히 보기" : "접기"
             cellData[indexPath.section].opened.toggle()
-            tableView.reloadData()
+           // tableView.reloadData()
+            tableView.reloadSections(IndexSet(integer: indexPath.section), with: .fade)
         }
     }
     
@@ -227,7 +237,7 @@ struct ServiceAgreeViewController_Preview: PreviewProvider {
 
     static var previews: some View {
         ForEach(devices, id: \.self) { deviceName in
-            ServiceAgreeViewController()
+            ServiceAgreeViewController(viewModel: ServiceAgreeViewModel())
                 .toPreview()
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)

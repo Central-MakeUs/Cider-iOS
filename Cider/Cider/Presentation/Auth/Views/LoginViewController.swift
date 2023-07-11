@@ -6,8 +6,15 @@
 //
 
 import UIKit
+import Combine
+import KakaoSDKAuth
+import KakaoSDKUser
+import AuthenticationServices
 
 final class LoginViewController: UIViewController {
+    
+    private let viewModel: LoginViewModel
+    private var cancellables = Set<AnyCancellable>()
     
     private lazy var logoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -44,8 +51,18 @@ final class LoginViewController: UIViewController {
         button.heightAnchor.constraint(equalToConstant: 44).isActive = true
         button.setTitleColor(.custom.text, for: .normal)
         button.layer.cornerRadius = 4
+        button.addTarget(self, action: #selector(didTapKakaoLogin), for: .touchUpInside)
         return button
     }()
+    
+    init(viewModel: LoginViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,10 +70,15 @@ final class LoginViewController: UIViewController {
         configure()
         
     }
-
+    
 }
 
 private extension LoginViewController {
+    
+    func setUp() {
+        configure()
+        bind()
+    }
     
     func configure() {
         view.addSubviews(logoImageView, titleLabel, appleLoginButton, kakaoLoginButton)
@@ -75,17 +97,100 @@ private extension LoginViewController {
         ])
     }
     
-}
-
-private extension LoginViewController {
+    func bind() {
+        viewModel.state.receive(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                switch state {
+                case .login(let isSuccess):
+                    guard isSuccess else {
+                        return
+                    }
+                    self?.pushServiceAgreeViewController()
+                    
+                }
+            }.store(in: &cancellables)
+    }
     
-    @objc func didTapAppleLogin() {
-        let viewController = ServiceAgreeViewController()
+    func pushServiceAgreeViewController() {
+        let viewController = ServiceAgreeViewController(viewModel: ServiceAgreeViewModel())
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
 }
 
+private extension LoginViewController {
+    
+    @objc func didTapAppleLogin() {
+        appleLogin()
+    }
+    
+    @objc func didTapKakaoLogin() {
+        kakaoLogin()
+    }
+    
+}
+
+private extension LoginViewController {
+    
+    func kakaoLogin() {
+        if UserApi.isKakaoTalkLoginAvailable() {
+            UserApi.shared.loginWithKakaoTalk { [weak self] oauthToken, error in
+                if let error {
+                    print(error)
+                } else {
+                    guard let accessToken = oauthToken?.accessToken else {
+                        return
+                    }
+                    print("accessToken = \(accessToken)")
+                    self?.viewModel.kakaoLogin(token: accessToken)
+                }
+            }
+        } else {
+            UserApi.shared.loginWithKakaoAccount { [weak self] oauthToken, error in
+                if let error {
+                    print(error)
+                } else {
+                    guard let accessToken = oauthToken?.accessToken else {
+                        return
+                    }
+                    print(accessToken)
+                    self?.viewModel.kakaoLogin(token: accessToken)
+                }
+            }
+        }
+    }
+    
+    func appleLogin() {
+        let request = ASAuthorizationAppleIDProvider().createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        controller.delegate = self
+        controller.presentationContextProvider = self as? ASAuthorizationControllerPresentationContextProviding
+        controller.performRequests()
+    }
+    
+}
+
+extension LoginViewController: ASAuthorizationControllerDelegate {
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            
+            guard let identityToken = credential.identityToken,
+                  let token = String(data: identityToken, encoding: .utf8) else {
+                return
+            }
+            print(token)
+            viewModel.appleLogin(token: token)
+        }
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print(LoginError.loginFail)
+    }
+    
+}
 
 #if DEBUG
 import SwiftUI
@@ -93,13 +198,19 @@ import SwiftUI
 @available(iOS 13.0, *)
 struct VCPreview: PreviewProvider {
     static var devices = ["iPhone 12", "iPhone SE", "iPhone 11 Pro Max"]
-
+    
     static var previews: some View {
         ForEach(devices, id: \.self) { deviceName in
-           LoginViewController()
-                .toPreview()
-                .previewDevice(PreviewDevice(rawValue: deviceName))
-                .previewDisplayName(deviceName)
+            LoginViewController(
+                viewModel: LoginViewModel(
+                    useCase: DefaultLoginUsecase(
+                        loginRepository: DefaultLoginRepository()
+                    )
+                )
+            )
+            .toPreview()
+            .previewDevice(PreviewDevice(rawValue: deviceName))
+            .previewDisplayName(deviceName)
         }
     }
 }
