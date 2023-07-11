@@ -137,10 +137,10 @@
 		FA3AE4052A57D2850078A4DF /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				FA57AF442A5C16EE008A5991 /* LoginViewModel.swift */,
 				FA6100332A59BAEA002175CE /* ServiceAgreeViewModel.swift */,
 				FA3AE4062A57D2970078A4DF /* GenderAndBirthdayViewModel.swift */,
 				FA61002F2A590431002175CE /* ChallengeSelectionViewModel.swift */,
-				FA57AF442A5C16EE008A5991 /* LoginViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";

@@ -101,7 +101,7 @@ private extension LoginViewController {
         viewModel.state.receive(on: DispatchQueue.main)
             .sink { [weak self] state in
                 switch state {
-                case .kakaoLogin(let isSuccess):
+                case .login(let isSuccess):
                     guard isSuccess else {
                         return
                     }
@@ -182,12 +182,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 return
             }
             print(token)
-            
-            guard let code = credential.authorizationCode,
-                  let codeStr = String(data: code, encoding: .utf8) else {
-                return
-            }
-            print(codeStr)
+            viewModel.appleLogin(token: token)
         }
     }
     
