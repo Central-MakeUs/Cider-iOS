@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct LoginRequest: Codable {
+    let socialType: String
+    let clientType: String
+}

@@ -9,15 +9,27 @@ import Foundation
 import Combine
 
 protocol LoginUsecase {
-    func kakaoLogin(token: String)
+    func kakaoLogin(token: String) async throws -> Bool
 }
 
 
-final class LoginInteractor: LoginUsecase {
+final class DefaultLoginUsecase: LoginUsecase {
     
-    func kakaoLogin(token: String) {
+    let loginRepository: DefaultLoginRepository
     
-        
+    init(loginRepository: DefaultLoginRepository) {
+        self.loginRepository = loginRepository
     }
-
+    
+    func kakaoLogin(token: String) async throws -> Bool {
+        
+        let request = LoginRequest(socialType: "KAKAO", clientType: "IOS")
+        let response = try await loginRepository.signInKakao(parameters: request)
+        guard let accessToken = response.accessToken else {
+            return false
+        }
+        Keychain.saveToken(data: accessToken)
+        return true
+    }
+    
 }

@@ -11,19 +11,23 @@ import Combine
 final class LoginViewModel: ViewModelType {
     
     enum ViewModelState {
-        case kakaoLogin
+        case kakaoLogin(_ isSuccess: Bool)
     }
-    var useCase: LoginUsecase
+    
+    var useCase: DefaultLoginUsecase
     var state: AnyPublisher<ViewModelState, Never> { currentState.compactMap { $0 }.eraseToAnyPublisher() }
     var currentState: CurrentValueSubject<ViewModelState?, Never> = .init(nil)
     private var cancellables: Set<AnyCancellable> = .init()
     
-    init(useCase: LoginUsecase) {
+    init(useCase: DefaultLoginUsecase) {
         self.useCase = useCase
     }
     
-    func kakaoLogin(token: String) {
-        useCase.kakaoLogin(token: token)
+    func kakaoLogin(token: String) async throws {
+        Task {
+            let isSuccess = try await useCase.kakaoLogin(token: token)
+            currentState.send(.kakaoLogin(isSuccess))
+        }
     }
     
 }
