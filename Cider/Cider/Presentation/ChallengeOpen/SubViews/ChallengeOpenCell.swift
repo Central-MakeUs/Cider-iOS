@@ -9,17 +9,53 @@ import UIKit
 
 final class ChallengeOpenCell: UICollectionViewCell {
     
-    private let challengeTitleLabel = StarTitleLabel(title: "챌린지 제목 *")
+    private let challengeTitleLabel = StarTitleLabel(
+        title: "챌린지 제목 *"
+    )
+    
     private let challengeTitleTextFieldView: CiderTextFieldView = {
         let view = CiderTextFieldView(minLength: 5, maxLength: 30)
         view.setPlaceHoder("하루 만보 걷기 인증하기")
         return view
     }()
-    private let challengeIntroductionLabel = StarTitleLabel(title: "챌린지 소개 *")
-    private let challengeIntroductionTextView = CiderTextView(minLength: 5, maxLength: 1000, placeHolder: "챌린지 목적, 참여시 좋은 점, 참여 권유 대상 등\n챌린저들의 이해를 돕기 위한 설명을 적어주세요.")
-    private let memberView = ChallengeOpenSelectionView(mainTitle: "참여 정원 *", subTitle: "3명 이상 30명까지 가능합니다", unit: "3명")
-    private let recruitmentView = ChallengeOpenSelectionView(mainTitle: "모집 기간 *", subTitle: "최소 1일부터 7일까지 가능합니다", unit: "1일")
-    private let participationView = ChallengeOpenSelectionView(mainTitle: "챌린지 기간 *", subTitle: "최소 1주부터 8주까지 가능합니다", unit: "1주")
+    
+    private let challengeIntroductionLabel = StarTitleLabel(
+        title: "챌린지 소개 *"
+    )
+    
+    private let challengeIntroductionTextView = CiderTextView(
+        minLength: 5,
+        maxLength: 1000,
+        placeHolder: "챌린지 목적, 참여시 좋은 점, 참여 권유 대상 등\n챌린저들의 이해를 돕기 위한 설명을 적어주세요."
+    )
+    
+    private let memberView = ChallengeOpenSelectionView(
+        mainTitle: "참여 정원 *",
+        subTitle: "3명 이상 30명까지 가능합니다",
+        unit: "3명"
+    )
+    
+    private let recruitmentView = ChallengeOpenSelectionView(
+        mainTitle: "모집 기간 *",
+        subTitle: "최소 1일부터 7일까지 가능합니다",
+        unit: "1일"
+    )
+    
+    private let participationView = ChallengeOpenSelectionView(
+        mainTitle: "챌린지 기간 *",
+        subTitle: "최소 1주부터 8주까지 가능합니다",
+        unit: "1주"
+    )
+    
+    private let missionLabel = StarTitleLabel(
+        title: "인증 미션 *"
+    )
+    
+    private let missionTextFieldView: CiderTextFieldView = {
+        let view = CiderTextFieldView(minLength: 5, maxLength: 30)
+        view.setPlaceHoder("인증샷 모드에서 10,000원이 적힌 화면 인증")
+        return view
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,7 +67,9 @@ final class ChallengeOpenCell: UICollectionViewCell {
     }
     
     private func configure() {
-        addSubviews(challengeTitleLabel, challengeTitleTextFieldView, challengeIntroductionLabel, challengeIntroductionTextView, memberView, recruitmentView, participationView)
+        addSubviews(challengeTitleLabel, challengeTitleTextFieldView, challengeIntroductionLabel,
+                    challengeIntroductionTextView, memberView, recruitmentView, participationView,
+                    missionLabel, missionTextFieldView)
         NSLayoutConstraint.activate([
             challengeTitleLabel.topAnchor.constraint(equalTo: topAnchor),
             challengeTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -54,7 +92,12 @@ final class ChallengeOpenCell: UICollectionViewCell {
             recruitmentView.topAnchor.constraint(equalTo: memberView.bottomAnchor, constant: 24),
             participationView.leadingAnchor.constraint(equalTo: leadingAnchor),
             participationView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            participationView.topAnchor.constraint(equalTo: recruitmentView.bottomAnchor, constant: 24)
+            participationView.topAnchor.constraint(equalTo: recruitmentView.bottomAnchor, constant: 24),
+            missionLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            missionLabel.topAnchor.constraint(equalTo: participationView.bottomAnchor, constant: 36),
+            missionTextFieldView.topAnchor.constraint(equalTo: missionLabel.bottomAnchor, constant: 12),
+            missionTextFieldView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            missionTextFieldView.trailingAnchor.constraint(equalTo: trailingAnchor),
         ])
     }
     
