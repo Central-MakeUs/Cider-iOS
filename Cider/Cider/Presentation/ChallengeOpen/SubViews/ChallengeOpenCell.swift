@@ -17,6 +17,9 @@ final class ChallengeOpenCell: UICollectionViewCell {
     }()
     private let challengeIntroductionLabel = StarTitleLabel(title: "챌린지 소개 *")
     private let challengeIntroductionTextView = CiderTextView(minLength: 5, maxLength: 1000, placeHolder: "챌린지 목적, 참여시 좋은 점, 참여 권유 대상 등\n챌린저들의 이해를 돕기 위한 설명을 적어주세요.")
+    private let memberView = ChallengeOpenSelectionView(mainTitle: "참여 정원 *", subTitle: "3명 이상 30명까지 가능합니다", unit: "3명")
+    private let recruitmentView = ChallengeOpenSelectionView(mainTitle: "모집 기간 *", subTitle: "최소 1일부터 7일까지 가능합니다", unit: "1일")
+    private let participationView = ChallengeOpenSelectionView(mainTitle: "챌린지 기간 *", subTitle: "최소 1주부터 8주까지 가능합니다", unit: "1주")
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,7 +31,7 @@ final class ChallengeOpenCell: UICollectionViewCell {
     }
     
     private func configure() {
-        addSubviews(challengeTitleLabel, challengeTitleTextFieldView, challengeIntroductionLabel, challengeIntroductionTextView)
+        addSubviews(challengeTitleLabel, challengeTitleTextFieldView, challengeIntroductionLabel, challengeIntroductionTextView, memberView, recruitmentView, participationView)
         NSLayoutConstraint.activate([
             challengeTitleLabel.topAnchor.constraint(equalTo: topAnchor),
             challengeTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -41,7 +44,17 @@ final class ChallengeOpenCell: UICollectionViewCell {
             challengeIntroductionTextView.topAnchor.constraint(equalTo: challengeIntroductionLabel.bottomAnchor, constant: 8),
             challengeIntroductionTextView.leadingAnchor.constraint(equalTo: leadingAnchor),
             challengeIntroductionTextView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            challengeIntroductionTextView.heightAnchor.constraint(equalToConstant: 360)
+            challengeIntroductionTextView.heightAnchor.constraint(equalToConstant: 171),
+            memberView.topAnchor.constraint(equalTo: challengeIntroductionTextView.bottomAnchor, constant: 24),
+            memberView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            memberView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            memberView.topAnchor.constraint(equalTo: challengeIntroductionTextView.bottomAnchor, constant: 24),
+            recruitmentView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            recruitmentView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            recruitmentView.topAnchor.constraint(equalTo: memberView.bottomAnchor, constant: 24),
+            participationView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            participationView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            participationView.topAnchor.constraint(equalTo: recruitmentView.bottomAnchor, constant: 24)
         ])
     }
     
