@@ -9,7 +9,7 @@ import UIKit
 
 extension UILabel {
     
-    func editTextColor(of prefix: String, in color: UIColor) {
+    func editTextColor(of prefix: String, in color: UIColor?) {
         guard let text = text else {
             return
         }
