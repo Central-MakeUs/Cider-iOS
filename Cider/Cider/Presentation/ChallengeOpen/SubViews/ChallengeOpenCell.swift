@@ -57,6 +57,9 @@ final class ChallengeOpenCell: UICollectionViewCell {
         return view
     }()
     
+    private let missionSuccessView = MissionPhotoView(type: .success)
+    private let missionFailView = MissionPhotoView(type: .fail)
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -69,7 +72,7 @@ final class ChallengeOpenCell: UICollectionViewCell {
     private func configure() {
         addSubviews(challengeTitleLabel, challengeTitleTextFieldView, challengeIntroductionLabel,
                     challengeIntroductionTextView, memberView, recruitmentView, participationView,
-                    missionLabel, missionTextFieldView)
+                    missionLabel, missionTextFieldView, missionSuccessView, missionFailView)
         NSLayoutConstraint.activate([
             challengeTitleLabel.topAnchor.constraint(equalTo: topAnchor),
             challengeTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -98,6 +101,13 @@ final class ChallengeOpenCell: UICollectionViewCell {
             missionTextFieldView.topAnchor.constraint(equalTo: missionLabel.bottomAnchor, constant: 12),
             missionTextFieldView.leadingAnchor.constraint(equalTo: leadingAnchor),
             missionTextFieldView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            missionSuccessView.topAnchor.constraint(equalTo: missionTextFieldView.bottomAnchor, constant: 16),
+            missionSuccessView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            missionSuccessView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            missionFailView.topAnchor.constraint(equalTo: missionSuccessView.bottomAnchor, constant: 23),
+            missionFailView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            missionFailView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
         ])
     }
     
