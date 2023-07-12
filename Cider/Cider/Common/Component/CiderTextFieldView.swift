@@ -67,7 +67,7 @@ final class CiderTextFieldView: UIView {
             return
         }
         countLabel.text = "\(count)/\(maxLength)"
-        if count >= 2 && count <= 10 {
+        if count >= minLength && count <= maxLength {
             ciderTextField.setStyle(.enabled)
         }
         else if count < minLength {
