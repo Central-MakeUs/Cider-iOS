@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "filled_noti_16.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
