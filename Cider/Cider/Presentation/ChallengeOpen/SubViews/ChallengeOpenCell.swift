@@ -9,6 +9,8 @@ import UIKit
 
 final class ChallengeOpenCell: UICollectionViewCell {
     
+    static let identifier = "ChallengeOpenCell"
+    
     private let challengeTitleLabel = StarTitleLabel(
         title: "챌린지 제목 *"
     )
@@ -101,6 +103,7 @@ final class ChallengeOpenCell: UICollectionViewCell {
             missionTextFieldView.topAnchor.constraint(equalTo: missionLabel.bottomAnchor, constant: 12),
             missionTextFieldView.leadingAnchor.constraint(equalTo: leadingAnchor),
             missionTextFieldView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            missionTextFieldView.heightAnchor.constraint(equalToConstant: 65),
             missionSuccessView.topAnchor.constraint(equalTo: missionTextFieldView.bottomAnchor, constant: 16),
             missionSuccessView.leadingAnchor.constraint(equalTo: leadingAnchor),
             missionSuccessView.trailingAnchor.constraint(equalTo: trailingAnchor),
