@@ -53,6 +53,7 @@
 		FA6100322A59AD8D002175CE /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6100312A59AD8D002175CE /* GradientView.swift */; };
 		FA6100342A59BAEA002175CE /* ServiceAgreeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6100332A59BAEA002175CE /* ServiceAgreeViewModel.swift */; };
 		FA6AE8B02A6045AB00512EE1 /* ChallengeOpenSelectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AE8AF2A6045AB00512EE1 /* ChallengeOpenSelectionType.swift */; };
+		FA6AE8B22A6047CB00512EE1 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AE8B12A6047CB00512EE1 /* UITextView+Extension.swift */; };
 		FA6C21672A5A4DD3008A9ADD /* CiderTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C21662A5A4DD3008A9ADD /* CiderTextFieldView.swift */; };
 		FA6C21692A5A4E21008A9ADD /* CiderEnabledStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C21682A5A4E21008A9ADD /* CiderEnabledStyle.swift */; };
 		FA6C216B2A5A78C4008A9ADD /* RandomNicknameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C216A2A5A78C4008A9ADD /* RandomNicknameView.swift */; };
@@ -116,6 +117,7 @@
 		FA6100312A59AD8D002175CE /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		FA6100332A59BAEA002175CE /* ServiceAgreeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAgreeViewModel.swift; sourceTree = "<group>"; };
 		FA6AE8AF2A6045AB00512EE1 /* ChallengeOpenSelectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOpenSelectionType.swift; sourceTree = "<group>"; };
+		FA6AE8B12A6047CB00512EE1 /* UITextView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
 		FA6C21662A5A4DD3008A9ADD /* CiderTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderTextFieldView.swift; sourceTree = "<group>"; };
 		FA6C21682A5A4E21008A9ADD /* CiderEnabledStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderEnabledStyle.swift; sourceTree = "<group>"; };
 		FA6C216A2A5A78C4008A9ADD /* RandomNicknameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNicknameView.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */,
 				FA5B8BE02A4DCAE000CEB0F6 /* UITextField+Extension.swift */,
 				FA57AF5F2A5D1851008A5991 /* Encodable+Extension.swift */,
+				FA6AE8B12A6047CB00512EE1 /* UITextView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 				FA44D3A12A4C5D070037E328 /* UIView+Extension.swift in Sources */,
 				FA57AF6D2A5D76EF008A5991 /* UIPreview.swift in Sources */,
 				FA57AF662A5D6EF5008A5991 /* ChallengeOpenViewController.swift in Sources */,
+				FA6AE8B22A6047CB00512EE1 /* UITextView+Extension.swift in Sources */,
 				FA44D39D2A4C52DA0037E328 /* UIViewController+Extension.swift in Sources */,
 				FA758AC82A5EF418003E2F07 /* StarTitleLabel.swift in Sources */,
 				FA758ACA2A5EF528003E2F07 /* ChallengeOpenSelectionView.swift in Sources */,

@@ -140,6 +140,7 @@ final class CiderUITextView: UITextView {
 private extension CiderUITextView {
     
     private func configure() {
+        setTextWithLineHeight(lineHeight: 50)
         backgroundColor = .custom.gray1
         font = CustomFont.PretendardBold(size: .base).font
         heightAnchor.constraint(equalToConstant: 150).isActive = true
