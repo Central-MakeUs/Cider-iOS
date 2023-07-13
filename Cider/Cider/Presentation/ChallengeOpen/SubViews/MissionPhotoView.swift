@@ -23,7 +23,7 @@ final class MissionPhotoView: UIView {
     
     private lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "heart")
+        imageView.image = UIImage(named: type == .success ? "line_check_16" : "line_caution_16")
         imageView.heightAnchor.constraint(equalToConstant: 16).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 16).isActive = true
         return imageView
@@ -39,14 +39,19 @@ final class MissionPhotoView: UIView {
     }()
     
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(axis: .vertical, alignment: .fill, distribution: .fillEqually, spacing: 0)
+        let stackView = UIStackView(
+            axis: .vertical,
+            alignment: .fill,
+            distribution: .fillEqually,
+            spacing: 0
+        )
         stackView.addArrangedSubviews(cameraImageView, cameraLabel)
         return stackView
     }()
     
     private lazy var cameraImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "heart")
+        imageView.image = UIImage(named: "line_cam_24")
         imageView.heightAnchor.constraint(equalToConstant: 24).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 24).isActive = true
         return imageView
@@ -57,6 +62,7 @@ final class MissionPhotoView: UIView {
         label.text = "0/2"
         label.textColor = .custom.gray5
         label.font = CustomFont.PretendardRegular(size: .base).font
+        label.textAlignment = .center
         return label
     }()
     
