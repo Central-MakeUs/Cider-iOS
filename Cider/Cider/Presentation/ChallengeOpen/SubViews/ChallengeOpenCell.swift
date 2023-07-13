@@ -32,21 +32,15 @@ final class ChallengeOpenCell: UICollectionViewCell {
     )
     
     private let memberView = ChallengeOpenSelectionView(
-        mainTitle: "참여 정원 *",
-        subTitle: "3명 이상 30명까지 가능합니다",
-        unit: "3명"
+        type: .member
     )
     
     private let recruitmentView = ChallengeOpenSelectionView(
-        mainTitle: "모집 기간 *",
-        subTitle: "최소 1일부터 7일까지 가능합니다",
-        unit: "1일"
+        type: .recruitment
     )
     
     private let participationView = ChallengeOpenSelectionView(
-        mainTitle: "챌린지 기간 *",
-        subTitle: "최소 1주부터 8주까지 가능합니다",
-        unit: "1주"
+        type: .participation
     )
     
     private let missionLabel = StarTitleLabel(
@@ -122,7 +116,7 @@ import SwiftUI
 @available(iOS 13.0, *)
 struct ChallengeOpenCell_Preview: PreviewProvider {
     static var previews: some View {
-            
+        
         UIViewPreview {
             let cell = ChallengeOpenCell()
             return cell

@@ -114,7 +114,7 @@ final class CiderTextField: UITextField {
     
     private lazy var clearButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "clearButton"), for: .normal)
+        button.setImage(UIImage(named: "line_deletebox_24"), for: .normal)
         button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
         button.contentMode = .scaleAspectFit
         button.addTarget(self, action: #selector(didTapClear), for: .touchUpInside)

@@ -52,6 +52,7 @@
 		FA6100302A590431002175CE /* ChallengeSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA61002F2A590431002175CE /* ChallengeSelectionViewModel.swift */; };
 		FA6100322A59AD8D002175CE /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6100312A59AD8D002175CE /* GradientView.swift */; };
 		FA6100342A59BAEA002175CE /* ServiceAgreeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6100332A59BAEA002175CE /* ServiceAgreeViewModel.swift */; };
+		FA6AE8B02A6045AB00512EE1 /* ChallengeOpenSelectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AE8AF2A6045AB00512EE1 /* ChallengeOpenSelectionType.swift */; };
 		FA6C21672A5A4DD3008A9ADD /* CiderTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C21662A5A4DD3008A9ADD /* CiderTextFieldView.swift */; };
 		FA6C21692A5A4E21008A9ADD /* CiderEnabledStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C21682A5A4E21008A9ADD /* CiderEnabledStyle.swift */; };
 		FA6C216B2A5A78C4008A9ADD /* RandomNicknameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C216A2A5A78C4008A9ADD /* RandomNicknameView.swift */; };
@@ -114,6 +115,7 @@
 		FA61002F2A590431002175CE /* ChallengeSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeSelectionViewModel.swift; sourceTree = "<group>"; };
 		FA6100312A59AD8D002175CE /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		FA6100332A59BAEA002175CE /* ServiceAgreeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAgreeViewModel.swift; sourceTree = "<group>"; };
+		FA6AE8AF2A6045AB00512EE1 /* ChallengeOpenSelectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOpenSelectionType.swift; sourceTree = "<group>"; };
 		FA6C21662A5A4DD3008A9ADD /* CiderTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderTextFieldView.swift; sourceTree = "<group>"; };
 		FA6C21682A5A4E21008A9ADD /* CiderEnabledStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderEnabledStyle.swift; sourceTree = "<group>"; };
 		FA6C216A2A5A78C4008A9ADD /* RandomNicknameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNicknameView.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				FA57AF4E2A5D0EC7008A5991 /* LocalKey.swift */,
 				FA57AF6C2A5D76EF008A5991 /* UIPreview.swift */,
 				FA758ACD2A5F0374003E2F07 /* MissionType.swift */,
+				FA6AE8AF2A6045AB00512EE1 /* ChallengeOpenSelectionType.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -552,6 +555,7 @@
 				FA6100302A590431002175CE /* ChallengeSelectionViewModel.swift in Sources */,
 				FA44D3992A4C43B80037E328 /* Color+Extension.swift in Sources */,
 				FA3AE4072A57D2970078A4DF /* GenderAndBirthdayViewModel.swift in Sources */,
+				FA6AE8B02A6045AB00512EE1 /* ChallengeOpenSelectionType.swift in Sources */,
 				FAB9A73B2A4C64CF00757A80 /* UILabel+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

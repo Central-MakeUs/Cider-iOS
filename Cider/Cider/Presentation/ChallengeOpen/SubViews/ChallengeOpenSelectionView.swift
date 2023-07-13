@@ -10,15 +10,13 @@ import UIKit
 
 final class ChallengeOpenSelectionView: UIView {
     
-    private let mainTitle: String
-    private let subTitle: String
-    private let unit: String
+    private let type: ChallengeOpenSelectionType
     
-    private lazy var mainTitleLabel = StarTitleLabel(title: mainTitle)
+    private lazy var mainTitleLabel = StarTitleLabel(title: type.mainTitle)
     
     private lazy var subTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = subTitle
+        label.text = type.subTitle
         label.font = CustomFont.PretendardBold(size: .base).font
         label.textColor = .custom.icon
         return label
@@ -26,7 +24,7 @@ final class ChallengeOpenSelectionView: UIView {
     
     private lazy var unitLabel: UILabel = {
         let label = UILabel()
-        label.text = unit
+        label.text = type.unit
         label.font = CustomFont.PretendardRegular(size: .base).font
         label.textColor = .custom.text
         return label
@@ -41,16 +39,14 @@ final class ChallengeOpenSelectionView: UIView {
     
     private lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "line_arrow-down_24")
+        imageView.image = UIImage(named: type.iconName)
         imageView.heightAnchor.constraint(equalToConstant: 24).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 24).isActive = true
         return imageView
     }()
     
-    init(mainTitle: String, subTitle: String, unit: String) {
-        self.mainTitle = mainTitle
-        self.subTitle = subTitle
-        self.unit = unit
+    init(type: ChallengeOpenSelectionType) {
+        self.type = type
         super.init(frame: .zero)
         configure()
     }
