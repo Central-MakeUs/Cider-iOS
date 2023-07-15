@@ -13,6 +13,7 @@ enum CiderAPI {
     case signInKakao(paramters: [String: Any])
     case getRandomNickname
     case getDuplicateNickname(nickname: String)
+    case patchOnboarding(paramters: [String: Any])
 }
 
 extension CiderAPI: TargetType, AccessTokenAuthorizable {
@@ -29,6 +30,8 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             return "/api/member/nicknames"
         case .getDuplicateNickname(let nickname):
             return "/api/member/nicknames/exists/\(nickname)"
+        case .patchOnboarding:
+            return "/api/member"
         }
     }
     
@@ -41,13 +44,17 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
         case .getRandomNickname,
              .getDuplicateNickname:
             return .get
+            
+        case .patchOnboarding:
+            return .patch
         }
     }
     
     var task: Moya.Task {
         switch self {
         case .signInApple(let parameters),
-             .signInKakao(let parameters):
+             .signInKakao(let parameters),
+             .patchOnboarding(let parameters):
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         default:
             return .requestPlain

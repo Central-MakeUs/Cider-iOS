@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+struct OnboardingRequest: Codable {
+    let memberName, memberBirth, memberGender, interestChallenge: String
+}
