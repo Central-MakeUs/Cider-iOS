@@ -35,7 +35,7 @@ final class GenderAndBirthdayViewController: UIViewController {
     
     private lazy var generSubLabel: UILabel = {
         let label = UILabel()
-        label.text = "본인의 성별을 반드시 1개 선택해주세요"
+        label.text = "본인의 성별을 선택해주세요"
         label.font = CustomFont.PretendardRegular(size: .base).font
         label.textColor = .custom.icon
         return label
@@ -69,7 +69,7 @@ final class GenderAndBirthdayViewController: UIViewController {
     private lazy var barView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.custom.gray1
-        view.heightAnchor.constraint(equalToConstant: 2).isActive = true
+        view.heightAnchor.constraint(equalToConstant: 3).isActive = true
         return view
     }()
     
@@ -105,6 +105,7 @@ final class GenderAndBirthdayViewController: UIViewController {
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.datePickerMode = .date
         datePicker.locale = Locale(identifier: "ko_KR")
+        datePicker.backgroundColor = .white
         return datePicker
     }()
     
@@ -121,7 +122,7 @@ final class GenderAndBirthdayViewController: UIViewController {
     
     private lazy var calendarImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "clearButton")
+        imageView.image = UIImage(named: "line_calender_24")
         return imageView
     }()
     
@@ -167,7 +168,7 @@ private extension GenderAndBirthdayViewController {
             generTitleLabel.topAnchor.constraint(equalTo: mainTitleLabel.bottomAnchor, constant: 45),
             generTitleLabel.leadingAnchor.constraint(equalTo: mainTitleLabel.leadingAnchor),
             generSubLabel.centerYAnchor.constraint(equalTo: generTitleLabel.centerYAnchor),
-            generSubLabel.leadingAnchor.constraint(equalTo: generTitleLabel.trailingAnchor, constant: 8),
+            generSubLabel.trailingAnchor.constraint(equalTo: processView.trailingAnchor),
             genderStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             genderStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             genderStackView.topAnchor.constraint(equalTo: generTitleLabel.bottomAnchor, constant: 21),
