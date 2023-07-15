@@ -15,9 +15,9 @@ protocol NicknameUsecase {
 
 final class DefaultNicknameUsecase: NicknameUsecase {
     
-    let repository: DefaultNicknameRepository
+    let repository: NicknameRepository
     
-    init(repository: DefaultNicknameRepository) {
+    init(repository: NicknameRepository) {
         self.repository = repository
     }
     

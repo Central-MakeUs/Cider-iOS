@@ -133,7 +133,7 @@ final class GenderAndBirthdayViewController: UIViewController {
     }()
     
     private let genderStackView = UIStackView(axis: .horizontal, alignment: .fill, distribution: .fillEqually, spacing: 8)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -145,7 +145,7 @@ final class GenderAndBirthdayViewController: UIViewController {
         super.viewWillAppear(animated)
         setNavigationBar()
     }
-
+    
 }
 
 private extension GenderAndBirthdayViewController {
@@ -237,6 +237,17 @@ private extension GenderAndBirthdayViewController {
         self.navigationItem.title = "회원가입"
     }
     
+    func pushChallengeSelectionViewController() {
+        let viewController = ChallengeSelectionViewController(
+            viewModel: ChallengeSelectionViewModel(
+                useCase: DefaultOnboardingUsecase(
+                    repository: DefaultOnboardingRepository()
+                )
+            )
+        )
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
 }
 
 private extension GenderAndBirthdayViewController {
@@ -259,8 +270,8 @@ private extension GenderAndBirthdayViewController {
     }
     
     @objc func didTapNext(_ sender: Any?) {
-        let viewController = ChallengeSelectionViewController()
-        navigationController?.pushViewController(viewController, animated: true)
+        viewModel.didTapNext()
+        pushChallengeSelectionViewController()
     }
     
 }
@@ -272,7 +283,7 @@ import SwiftUI
 @available(iOS 13.0, *)
 struct BirthdayViewController_Preview: PreviewProvider {
     static var devices = ["iPhone 12", "iPhone SE", "iPhone 11 Pro Max"]
-
+    
     static var previews: some View {
         ForEach(devices, id: \.self) { deviceName in
             GenderAndBirthdayViewController()

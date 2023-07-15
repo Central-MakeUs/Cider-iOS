@@ -38,19 +38,21 @@ final class GenderAndBirthdayViewModel: ViewModelType {
     
     func selectBirthday(date: Date) {
         birthday = date
-        let birthday = formatDate(date)
+        let birthday = date.formatYYYYMMDDKorean()
         currentState.send(.selectBitrhday(birthday: birthday))
         currentState.send(.checkAge(isEnabled: isAvaliableAge(date)))
         currentState.send(.changeNextButtonState(isEnabled: isEnableNextButton()))
     }
     
-    func formatDate(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy년 MM월 dd일"
-        return formatter.string(from: date)
+    func didTapNext() {
+        guard let birthday else {
+            return
+        }
+        Onboarding.shared.memberBirth = birthday.formatYYYYMMDDDash()
+        Onboarding.shared.memberGender = maleButtonIsPressed ? "M" : "F"
     }
-    
-    func isAvaliableAge(_ date: Date) -> Bool {
+   
+    private func isAvaliableAge(_ date: Date) -> Bool {
         let currentDate = Date()
         let calendar = Calendar.current
         let currentComponents = calendar.dateComponents([.year, .month, .day], from: currentDate)
@@ -60,7 +62,7 @@ final class GenderAndBirthdayViewModel: ViewModelType {
         return yearOfCurrent-yearOfBirth+1 >= 14
     }
     
-    func isEnableNextButton() -> Bool {
+    private func isEnableNextButton() -> Bool {
         guard let birthday else {
             return false
         }

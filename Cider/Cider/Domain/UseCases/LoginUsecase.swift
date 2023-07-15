@@ -16,9 +16,9 @@ protocol LoginUsecase {
 
 final class DefaultLoginUsecase: LoginUsecase {
     
-    let loginRepository: DefaultLoginRepository
+    let loginRepository: LoginRepository
     
-    init(loginRepository: DefaultLoginRepository) {
+    init(loginRepository: LoginRepository) {
         self.loginRepository = loginRepository
     }
     

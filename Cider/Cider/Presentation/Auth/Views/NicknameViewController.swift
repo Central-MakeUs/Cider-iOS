@@ -153,6 +153,7 @@ private extension NicknameViewController {
 private extension NicknameViewController {
     
     @objc func didTapNext(_ sender: UIButton) {
+        Onboarding.shared.memberName = ciderTextFieldView.ciderTextField.text
         let viewController = GenderAndBirthdayViewController()
         self.navigationController?.pushViewController(viewController, animated: true)
     }

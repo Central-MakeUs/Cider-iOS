@@ -18,6 +18,12 @@
 		FA3AE4092A57D3D70078A4DF /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3AE4082A57D3D70078A4DF /* ViewModelType.swift */; };
 		FA3AE40D2A57DB140078A4DF /* CiderBottomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3AE40C2A57DB140078A4DF /* CiderBottomButton.swift */; };
 		FA3C43232A62EA18009E820B /* OnboardingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3C43222A62EA18009E820B /* OnboardingRequest.swift */; };
+		FA3C43252A62ECBA009E820B /* OnboardingUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3C43242A62ECBA009E820B /* OnboardingUsecase.swift */; };
+		FA3C43282A62ED37009E820B /* OnboardingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3C43272A62ED37009E820B /* OnboardingRepository.swift */; };
+		FA3C432A2A62F1FB009E820B /* OnboardingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3C43292A62F1FB009E820B /* OnboardingResponse.swift */; };
+		FA3C432C2A62F816009E820B /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3C432B2A62F816009E820B /* Onboarding.swift */; };
+		FA3C432E2A62FA0E009E820B /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3C432D2A62FA0E009E820B /* Date+Extension.swift */; };
+		FA3C43302A6300DF009E820B /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3C432F2A6300DF009E820B /* String+Extension.swift */; };
 		FA3EC10B2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3EC10A2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift */; };
 		FA44D3992A4C43B80037E328 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44D3982A4C43B80037E328 /* Color+Extension.swift */; };
 		FA44D39B2A4C46A30037E328 /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44D39A2A4C46A30037E328 /* CustomFont.swift */; };
@@ -91,6 +97,12 @@
 		FA3AE4082A57D3D70078A4DF /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		FA3AE40C2A57DB140078A4DF /* CiderBottomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderBottomButton.swift; sourceTree = "<group>"; };
 		FA3C43222A62EA18009E820B /* OnboardingRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRequest.swift; sourceTree = "<group>"; };
+		FA3C43242A62ECBA009E820B /* OnboardingUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUsecase.swift; sourceTree = "<group>"; };
+		FA3C43272A62ED37009E820B /* OnboardingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRepository.swift; sourceTree = "<group>"; };
+		FA3C43292A62F1FB009E820B /* OnboardingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingResponse.swift; sourceTree = "<group>"; };
+		FA3C432B2A62F816009E820B /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
+		FA3C432D2A62FA0E009E820B /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		FA3C432F2A6300DF009E820B /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		FA3EC10A2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAgreeHeaderView.swift; sourceTree = "<group>"; };
 		FA44D3982A4C43B80037E328 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		FA44D39A2A4C46A30037E328 /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
@@ -230,6 +242,7 @@
 			children = (
 				FA553EBE2A5C141B00DAE63B /* LoginUsecase.swift */,
 				FA348ED22A61180400EA3D04 /* NicknameUsecase.swift */,
+				FA3C43242A62ECBA009E820B /* OnboardingUsecase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -259,6 +272,7 @@
 				FA57AF6C2A5D76EF008A5991 /* UIPreview.swift */,
 				FA758ACD2A5F0374003E2F07 /* MissionType.swift */,
 				FA6AE8AF2A6045AB00512EE1 /* ChallengeOpenSelectionType.swift */,
+				FA3C432B2A62F816009E820B /* Onboarding.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -294,6 +308,8 @@
 				FA5B8BE02A4DCAE000CEB0F6 /* UITextField+Extension.swift */,
 				FA57AF5F2A5D1851008A5991 /* Encodable+Extension.swift */,
 				FA6AE8B12A6047CB00512EE1 /* UITextView+Extension.swift */,
+				FA3C432D2A62FA0E009E820B /* Date+Extension.swift */,
+				FA3C432F2A6300DF009E820B /* String+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -338,6 +354,7 @@
 				FA57AF592A5D154C008A5991 /* LoginResponse.swift */,
 				FA348ED62A61190900EA3D04 /* RandomNicknameResponse.swift */,
 				FA348ED82A6119B600EA3D04 /* DuplicateNicknameResponse.swift */,
+				FA3C43292A62F1FB009E820B /* OnboardingResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -347,6 +364,7 @@
 			children = (
 				FA57AF5C2A5D17A0008A5991 /* LoginRepository.swift */,
 				FA348ED42A61185500EA3D04 /* NicknameRepository.swift */,
+				FA3C43272A62ED37009E820B /* OnboardingRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -529,22 +547,26 @@
 				FA6C216B2A5A78C4008A9ADD /* RandomNicknameView.swift in Sources */,
 				FA57AF4D2A5D0E2A008A5991 /* Keychain.swift in Sources */,
 				FA3AE4092A57D3D70078A4DF /* ViewModelType.swift in Sources */,
+				FA3C432A2A62F1FB009E820B /* OnboardingResponse.swift in Sources */,
 				FA6C21672A5A4DD3008A9ADD /* CiderTextFieldView.swift in Sources */,
 				FA6100322A59AD8D002175CE /* GradientView.swift in Sources */,
 				FA3C43232A62EA18009E820B /* OnboardingRequest.swift in Sources */,
 				FA758ACE2A5F0374003E2F07 /* MissionType.swift in Sources */,
 				FA3EC10B2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift in Sources */,
+				FA3C43302A6300DF009E820B /* String+Extension.swift in Sources */,
 				FA39D8492A4EA829001C7E0A /* AppAppearance.swift in Sources */,
 				FA44D3A12A4C5D070037E328 /* UIView+Extension.swift in Sources */,
 				FA57AF6D2A5D76EF008A5991 /* UIPreview.swift in Sources */,
 				FA57AF662A5D6EF5008A5991 /* ChallengeOpenViewController.swift in Sources */,
 				FA6AE8B22A6047CB00512EE1 /* UITextView+Extension.swift in Sources */,
 				FA44D39D2A4C52DA0037E328 /* UIViewController+Extension.swift in Sources */,
+				FA3C43252A62ECBA009E820B /* OnboardingUsecase.swift in Sources */,
 				FA758AC82A5EF418003E2F07 /* StarTitleLabel.swift in Sources */,
 				FA758ACA2A5EF528003E2F07 /* ChallengeOpenSelectionView.swift in Sources */,
 				FA57AF6B2A5D73F8008A5991 /* ChallengeOpenCell.swift in Sources */,
 				FA57AF752A5E9DED008A5991 /* CiderTextView.swift in Sources */,
 				FA61002E2A58180E002175CE /* CiderSelectionStyle.swift in Sources */,
+				FA3C432E2A62FA0E009E820B /* Date+Extension.swift in Sources */,
 				FA44D39F2A4C5CE30037E328 /* UIStackView+Extension.swift in Sources */,
 				FA348ED52A61185500EA3D04 /* NicknameRepository.swift in Sources */,
 				FA348ED92A6119B600EA3D04 /* DuplicateNicknameResponse.swift in Sources */,
@@ -569,6 +591,7 @@
 				FA6C21692A5A4E21008A9ADD /* CiderEnabledStyle.swift in Sources */,
 				FA8CA6072A46D322005A6709 /* AppDelegate.swift in Sources */,
 				FA44D39B2A4C46A30037E328 /* CustomFont.swift in Sources */,
+				FA3C432C2A62F816009E820B /* Onboarding.swift in Sources */,
 				FA6100342A59BAEA002175CE /* ServiceAgreeViewModel.swift in Sources */,
 				FA6100262A57F725002175CE /* ChallengeSelectionViewController.swift in Sources */,
 				FA57AF5A2A5D154C008A5991 /* LoginResponse.swift in Sources */,
@@ -579,6 +602,7 @@
 				FA4DDB902A4D57D5002EDEAD /* ProcessType.swift in Sources */,
 				FA553EBD2A5C0D6900DAE63B /* APIKey.swift in Sources */,
 				FA61002A2A57FC14002175CE /* ChallengesView.swift in Sources */,
+				FA3C43282A62ED37009E820B /* OnboardingRepository.swift in Sources */,
 				FA6100302A590431002175CE /* ChallengeSelectionViewModel.swift in Sources */,
 				FA44D3992A4C43B80037E328 /* Color+Extension.swift in Sources */,
 				FA348ED02A61170800EA3D04 /* NicknameViewModel.swift in Sources */,
