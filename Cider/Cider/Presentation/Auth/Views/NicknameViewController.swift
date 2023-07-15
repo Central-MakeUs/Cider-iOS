@@ -37,8 +37,9 @@ final class NicknameViewController: UIViewController {
     
     private lazy var ciderTextFieldView: CiderTextFieldView = {
         let view = CiderTextFieldView(minLength: 2, maxLength: 10)
+        view.ciderTextField.addTarget(self, action: #selector(isAvailableNickname), for: .editingChanged)
+        view.ciderTextField.addActionClearButton(self, action: #selector(didTapClear))
         view.setPlaceHoder("2~10자로 입력해주세요")
-        view.ciderTextField.delegate = self
         return view
     }()
     
@@ -94,10 +95,16 @@ private extension NicknameViewController {
                 switch state {
                 case .changeNextButtonState(let isEnabled):
                     self?.nextButton.setStyle(isEnabled ? .enabled : .disabled)
+                    
                 case .isEnabledNickname(let isEnabled, let message):
+                    print(isEnabled, message)
                     self?.ciderTextFieldView.setErrorMessage(message: message, isEnabled: isEnabled)
+                    
                 case .getRandomNickname(let nickname):
                     self?.ciderTextFieldView.ciderTextField.text = nickname
+                    self?.ciderTextFieldView.ciderTextField.setStyle(.enabled)
+                    self?.ciderTextFieldView.isHiddenErrorMessage(true)
+                    self?.ciderTextFieldView.setTextCount(nickname.count)
                 }
             }
             .store(in: &cancellables)
@@ -168,15 +175,19 @@ private extension NicknameViewController {
         viewModel.didTapRandomNickname()
     }
     
-}
-
-extension NicknameViewController: UITextFieldDelegate {
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let text = textField.text else {
+    @objc func isAvailableNickname(_ sender: Any?) {
+        guard let text = ciderTextFieldView.ciderTextField.text else {
             return
         }
-        viewModel.endEditingNickname(text)
+        if text.count >= 2 {
+            viewModel.endEditingNickname(text)
+        } else {
+            nextButton.setStyle(.disabled)
+        }
+    }
+    
+    @objc func didTapClear(_ sender: Any?) {
+        nextButton.setStyle(.disabled)
     }
     
 }

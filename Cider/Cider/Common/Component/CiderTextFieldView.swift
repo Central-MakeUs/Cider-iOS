@@ -62,7 +62,6 @@ final class CiderTextFieldView: UIView {
     }
     
     @objc private func didChangeTextField(_ sender: UITextField) {
-        errorLabel.isHidden = true
         guard let count = sender.text?.count else {
             return
         }
@@ -73,6 +72,7 @@ final class CiderTextFieldView: UIView {
         else if count < minLength {
             ciderTextField.setStyle(.disabled)
             errorLabel.isHidden = false
+            errorLabel.textColor = .custom.error
             errorLabel.text = "최소 \(minLength)자 이상이어야 합니다"
         }
         else {
@@ -90,9 +90,18 @@ final class CiderTextFieldView: UIView {
     }
     
     func setErrorMessage(message: String, isEnabled: Bool) {
+        errorLabel.isHidden = false
         ciderTextField.setStyle(isEnabled ? .enabled : .disabled)
         errorLabel.text = message
         errorLabel.textColor = isEnabled ? .custom.main : .custom.error
+    }
+    
+    func setTextCount(_ count: Int) {
+        countLabel.text = "\(count)/\(maxLength)"
+    }
+    
+    func isHiddenErrorMessage(_ isHidden: Bool) {
+        errorLabel.isHidden = isHidden
     }
     
     
