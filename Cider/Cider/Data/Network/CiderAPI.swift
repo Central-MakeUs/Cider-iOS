@@ -11,6 +11,8 @@ import Moya
 enum CiderAPI {
     case signInApple(paramters: [String: Any])
     case signInKakao(paramters: [String: Any])
+    case getRandomNickname
+    case getDuplicateNickname(nickname: String)
 }
 
 extension CiderAPI: TargetType, AccessTokenAuthorizable {
@@ -23,8 +25,10 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
         case .signInApple,
              .signInKakao:
             return "/api/oauth/login"
-       
-            
+        case .getRandomNickname:
+            return "/api/member/nicknames"
+        case .getDuplicateNickname(let nickname):
+            return "/api/member/nicknames/exists/\(nickname)"
         }
     }
     
@@ -33,6 +37,10 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
         case .signInApple,
              .signInKakao:
             return .post
+            
+        case .getRandomNickname,
+             .getDuplicateNickname:
+            return .get
         }
     }
     
@@ -51,7 +59,14 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
     }
     
     var authorizationType: Moya.AuthorizationType? {
-        return .bearer
+        switch self {
+        case .getDuplicateNickname,
+             .getRandomNickname:
+            return .none
+            
+        default:
+            return .bearer
+        }
     }
     
     

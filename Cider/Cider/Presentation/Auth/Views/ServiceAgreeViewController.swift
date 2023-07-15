@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class ServiceAgreeViewController: UIViewController {
+final class ServiceAgreeViewController: UIViewController {
     
     private let viewModel: ServiceAgreeViewModel
     private var cancellables = Set<AnyCancellable>()
@@ -135,7 +135,13 @@ private extension ServiceAgreeViewController {
 private extension ServiceAgreeViewController {
     
     @objc func didTapConfirm(_ sender: Any?) {
-        let viewController = NicknameViewController()
+        let viewController = NicknameViewController(
+            viewModel: NicknameViewModel(
+                useCase: DefaultNicknameUsecase(
+                    repository: DefaultNicknameRepository()
+                )
+            )
+        )
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     

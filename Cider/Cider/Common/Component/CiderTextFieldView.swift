@@ -10,7 +10,7 @@ import UIKit
 
 final class CiderTextFieldView: UIView {
     
-    private var ciderTextField = CiderTextField()
+    var ciderTextField = CiderTextField()
     let maxLength: Int
     let minLength: Int
     
@@ -87,6 +87,12 @@ final class CiderTextFieldView: UIView {
     
     func setPlaceHoder(_ text: String) {
         ciderTextField.placeholder = text
+    }
+    
+    func setErrorMessage(message: String, isEnabled: Bool) {
+        ciderTextField.setStyle(isEnabled ? .enabled : .disabled)
+        errorLabel.text = message
+        errorLabel.textColor = isEnabled ? .custom.main : .custom.error
     }
     
     
