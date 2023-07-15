@@ -29,7 +29,7 @@ final class DefaultLoginUsecase: LoginUsecase {
 //        let request = LoginRequest(socialType: "KAKAO", clientType: "IOS")
 //        let response = try await loginRepository.signInKakao(parameters: request)
 //        print(response)
-//        guard response.status == 200,
+//        guard response.status == nil,
 //              let accessToken = response.accessToken else {
 //            return false
 //        }
@@ -42,8 +42,7 @@ final class DefaultLoginUsecase: LoginUsecase {
         Keychain.saveToken(data: token)
         let request = LoginRequest(socialType: "APPLE", clientType: "IOS")
         let response = try await loginRepository.signInKakao(parameters: request)
-        print(response)
-        guard response.status == 200,
+        guard response.status == nil,
               let accessToken = response.accessToken else {
             return false
         }

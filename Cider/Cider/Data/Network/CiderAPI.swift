@@ -55,18 +55,20 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
     }
     
     var headers: [String : String]? {
-        return nil
+        switch self {
+        case .getRandomNickname,
+             .getDuplicateNickname:
+            return nil
+        default:
+            guard let token = Keychain.loadToken() else {
+                return nil
+            }
+            return ["Authorization": token]
+        }
     }
     
     var authorizationType: Moya.AuthorizationType? {
-        switch self {
-        case .getDuplicateNickname,
-             .getRandomNickname:
-            return .none
-            
-        default:
-            return .bearer
-        }
+        return .none
     }
     
     
@@ -87,7 +89,7 @@ extension CiderAPI {
     
     static func request<T: Decodable>(target: CiderAPI, dataType: T.Type) async throws -> T {
         return try await withCheckedThrowingContinuation { continuation in
-            let provider = MoyaProvider<CiderAPI>(plugins: [getAuthPlugin(), MoyaCacheablePlugin()])
+            let provider = MoyaProvider<CiderAPI>()
             provider.request(target) { result in
                 switch result {
                 case .success(let response):

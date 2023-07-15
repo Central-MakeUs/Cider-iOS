@@ -67,7 +67,7 @@ final class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        configure()
+        setUp()
         
     }
     
@@ -106,7 +106,6 @@ private extension LoginViewController {
                         return
                     }
                     self?.pushServiceAgreeViewController()
-                    
                 }
             }.store(in: &cancellables)
     }
