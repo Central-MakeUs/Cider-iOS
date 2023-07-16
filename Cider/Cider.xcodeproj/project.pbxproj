@@ -10,6 +10,9 @@
 		FA0322812A4DC2B0000993DF /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0322802A4DC2B0000993DF /* NicknameViewController.swift */; };
 		FA316D672A63A15100C7AA88 /* OnboardingCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D662A63A15100C7AA88 /* OnboardingCompleteViewController.swift */; };
 		FA316D692A63A18700C7AA88 /* MainTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D682A63A18700C7AA88 /* MainTitleLabel.swift */; };
+		FA316D6C2A63BAB500C7AA88 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D6B2A63BAB500C7AA88 /* TabBarViewController.swift */; };
+		FA316D6F2A63FE8E00C7AA88 /* WritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D6E2A63FE8E00C7AA88 /* WritingViewController.swift */; };
+		FA316D742A64155B00C7AA88 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D732A64155B00C7AA88 /* UserManager.swift */; };
 		FA348ED02A61170800EA3D04 /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ECF2A61170800EA3D04 /* NicknameViewModel.swift */; };
 		FA348ED32A61180400EA3D04 /* NicknameUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ED22A61180400EA3D04 /* NicknameUsecase.swift */; };
 		FA348ED52A61185500EA3D04 /* NicknameRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ED42A61185500EA3D04 /* NicknameRepository.swift */; };
@@ -91,6 +94,9 @@
 		FA0322802A4DC2B0000993DF /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
 		FA316D662A63A15100C7AA88 /* OnboardingCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompleteViewController.swift; sourceTree = "<group>"; };
 		FA316D682A63A18700C7AA88 /* MainTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTitleLabel.swift; sourceTree = "<group>"; };
+		FA316D6B2A63BAB500C7AA88 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		FA316D6E2A63FE8E00C7AA88 /* WritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingViewController.swift; sourceTree = "<group>"; };
+		FA316D732A64155B00C7AA88 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		FA348ECF2A61170800EA3D04 /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
 		FA348ED22A61180400EA3D04 /* NicknameUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameUsecase.swift; sourceTree = "<group>"; };
 		FA348ED42A61185500EA3D04 /* NicknameRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameRepository.swift; sourceTree = "<group>"; };
@@ -182,6 +188,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA316D6A2A63BA8B00C7AA88 /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				FA316D6B2A63BAB500C7AA88 /* TabBarViewController.swift */,
+			);
+			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		FA316D6D2A63FE5B00C7AA88 /* Writing */ = {
+			isa = PBXGroup;
+			children = (
+				FA316D6E2A63FE8E00C7AA88 /* WritingViewController.swift */,
+			);
+			path = Writing;
+			sourceTree = "<group>";
+		};
+		FA316D702A6413B800C7AA88 /* Type */ = {
+			isa = PBXGroup;
+			children = (
+				FA3C432B2A62F816009E820B /* Onboarding.swift */,
+				FA4DDB912A4D5810002EDEAD /* ServiceAgreeCellData.swift */,
+				FA6AE8AF2A6045AB00512EE1 /* ChallengeOpenSelectionType.swift */,
+				FA758ACD2A5F0374003E2F07 /* MissionType.swift */,
+				FA6100272A57FA46002175CE /* ChallengeType.swift */,
+				FA3AE4082A57D3D70078A4DF /* ViewModelType.swift */,
+				FA4DDB8F2A4D57D5002EDEAD /* ProcessType.swift */,
+			);
+			path = Type;
+			sourceTree = "<group>";
+		};
+		FA316D712A6414D500C7AA88 /* Storages */ = {
+			isa = PBXGroup;
+			children = (
+				FA57AF4C2A5D0E2A008A5991 /* Keychain.swift */,
+				FA57AF4E2A5D0EC7008A5991 /* LocalKey.swift */,
+				FA316D732A64155B00C7AA88 /* UserManager.swift */,
+			);
+			path = Storages;
+			sourceTree = "<group>";
+		};
 		FA3AE4052A57D2850078A4DF /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +243,8 @@
 		FA44D38D2A4C3CB10037E328 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				FA316D6D2A63FE5B00C7AA88 /* Writing */,
+				FA316D6A2A63BA8B00C7AA88 /* Tabbar */,
 				FA57AF672A5D7374008A5991 /* ChallengeOpen */,
 				FA44D38E2A4C3CBA0037E328 /* Auth */,
 			);
@@ -255,6 +303,7 @@
 		FA44D3932A4C3DF10037E328 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				FA316D712A6414D500C7AA88 /* Storages */,
 				FA57AF5B2A5D1780008A5991 /* Repositories */,
 				FA57AF492A5D0D63008A5991 /* Network */,
 			);
@@ -264,20 +313,12 @@
 		FA44D3942A4C3E150037E328 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				FA316D702A6413B800C7AA88 /* Type */,
 				FA758AC62A5EF191003E2F07 /* Component */,
 				FA44D3972A4C43A70037E328 /* Extension */,
-				FA4DDB8F2A4D57D5002EDEAD /* ProcessType.swift */,
-				FA4DDB912A4D5810002EDEAD /* ServiceAgreeCellData.swift */,
 				FA39D8482A4EA829001C7E0A /* AppAppearance.swift */,
-				FA3AE4082A57D3D70078A4DF /* ViewModelType.swift */,
-				FA6100272A57FA46002175CE /* ChallengeType.swift */,
 				FA553EBC2A5C0D6900DAE63B /* APIKey.swift */,
-				FA57AF4C2A5D0E2A008A5991 /* Keychain.swift */,
-				FA57AF4E2A5D0EC7008A5991 /* LocalKey.swift */,
 				FA57AF6C2A5D76EF008A5991 /* UIPreview.swift */,
-				FA758ACD2A5F0374003E2F07 /* MissionType.swift */,
-				FA6AE8AF2A6045AB00512EE1 /* ChallengeOpenSelectionType.swift */,
-				FA3C432B2A62F816009E820B /* Onboarding.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -560,12 +601,14 @@
 				FA758ACE2A5F0374003E2F07 /* MissionType.swift in Sources */,
 				FA3EC10B2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift in Sources */,
 				FA3C43302A6300DF009E820B /* String+Extension.swift in Sources */,
+				FA316D6F2A63FE8E00C7AA88 /* WritingViewController.swift in Sources */,
 				FA39D8492A4EA829001C7E0A /* AppAppearance.swift in Sources */,
 				FA44D3A12A4C5D070037E328 /* UIView+Extension.swift in Sources */,
 				FA57AF6D2A5D76EF008A5991 /* UIPreview.swift in Sources */,
 				FA57AF662A5D6EF5008A5991 /* ChallengeOpenViewController.swift in Sources */,
 				FA6AE8B22A6047CB00512EE1 /* UITextView+Extension.swift in Sources */,
 				FA44D39D2A4C52DA0037E328 /* UIViewController+Extension.swift in Sources */,
+				FA316D6C2A63BAB500C7AA88 /* TabBarViewController.swift in Sources */,
 				FA3C43252A62ECBA009E820B /* OnboardingUsecase.swift in Sources */,
 				FA758AC82A5EF418003E2F07 /* StarTitleLabel.swift in Sources */,
 				FA758ACA2A5EF528003E2F07 /* ChallengeOpenSelectionView.swift in Sources */,
@@ -600,6 +643,7 @@
 				FA8CA6072A46D322005A6709 /* AppDelegate.swift in Sources */,
 				FA44D39B2A4C46A30037E328 /* CustomFont.swift in Sources */,
 				FA3C432C2A62F816009E820B /* Onboarding.swift in Sources */,
+				FA316D742A64155B00C7AA88 /* UserManager.swift in Sources */,
 				FA6100342A59BAEA002175CE /* ServiceAgreeViewModel.swift in Sources */,
 				FA6100262A57F725002175CE /* ChallengeSelectionViewController.swift in Sources */,
 				FA57AF5A2A5D154C008A5991 /* LoginResponse.swift in Sources */,

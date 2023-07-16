@@ -10,8 +10,10 @@ import UIKit
 final class OnboardingCompleteViewController: UIViewController {
 
     private let mainTitleLabel = MainTitleLabel(title: "회원가입이\n완료되었어요")
-    private let bottomButton: CiderBottomButton = {
+    
+    private lazy var bottomButton: CiderBottomButton = {
         let button = CiderBottomButton(style: .enabled, title: "홈으로 이동")
+        button.addTarget(self, action: #selector(didTapBottomButton), for: .touchUpInside)
         return button
     }()
     
@@ -49,6 +51,16 @@ private extension OnboardingCompleteViewController {
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = "회원가입 완료"
         self.navigationItem.setHidesBackButton(true, animated: true)
+    }
+    
+    func showTabBarViewController() {
+        let viewController = TabBarViewController()
+        viewController.modalPresentationStyle = .fullScreen
+        self.present(viewController, animated: true)
+    }
+    
+    @objc func didTapBottomButton(_ sender: Any?) {
+        showTabBarViewController()
     }
     
 }
