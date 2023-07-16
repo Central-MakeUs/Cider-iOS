@@ -15,15 +15,7 @@ final class GenderAndBirthdayViewController: UIViewController {
     
     private let processView = ProcessView()
     
-    private lazy var mainTitleLabel: UILabel = {
-        let label = UILabel()
-        label.font = CustomFont.PretendardBold(size: .xl5).font
-        label.text = "성별과 생년월일을\n입력해주세요"
-        label.textColor = .custom.text
-        label.setTextWithLineHeight(lineHeight: 39.2)
-        label.numberOfLines = 0
-        return label
-    }()
+    private lazy var mainTitleLabel = MainTitleLabel(title: "성별과 생년월일을\n입력해주세요")
     
     private lazy var generTitleLabel: UILabel = {
         let label = UILabel()

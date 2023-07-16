@@ -36,6 +36,7 @@ final class ServiceAgreeViewController: UIViewController {
         return button
     }()
     
+    // TODO: 약관 내용 나오면 수정
     private var cellData = [
         ServiceAgreeCellData(mainTitle: "만 14세 이상입니다(필수)"),
         ServiceAgreeCellData(mainTitle: "서비스 이용 약관(필수)", subTitle: "자세히 보기", detailText: """

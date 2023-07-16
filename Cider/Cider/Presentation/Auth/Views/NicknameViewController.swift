@@ -15,15 +15,7 @@ final class NicknameViewController: UIViewController {
     
     private let processView = ProcessView()
     
-    private lazy var mainTitleLabel: UILabel = {
-        let label = UILabel()
-        label.font = CustomFont.PretendardBold(size: .xl5).font
-        label.text = "닉네임을\n입력해주세요"
-        label.textColor = .custom.text
-        label.setTextWithLineHeight(lineHeight: 39.2)
-        label.numberOfLines = 0
-        return label
-    }()
+    private let mainTitleLabel = MainTitleLabel(title: "닉네임을\n입력해주세요")
     
     private lazy var subTitleLabel: UILabel = {
         let label = UILabel()

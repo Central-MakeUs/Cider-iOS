@@ -16,15 +16,7 @@ final class ChallengeSelectionViewController: UIViewController {
     private let processView = ProcessView()
     private let challengesView = ChallengesView()
     
-    private lazy var mainTitleLabel: UILabel = {
-        let label = UILabel()
-        label.font = CustomFont.PretendardBold(size: .xl5).font
-        label.text = "원하는 챌린지 분야를\n선택해보세요"
-        label.textColor = .custom.text
-        label.setTextWithLineHeight(lineHeight: 39.2)
-        label.numberOfLines = 0
-        return label
-    }()
+    private let mainTitleLabel = MainTitleLabel(title: "원하는 챌린지 분야를\n선택해보세요")
     
     private lazy var rightButton: UIButton = {
         let button = UIButton()
@@ -102,7 +94,10 @@ private extension ChallengeSelectionViewController {
                     }
                     
                 case .isSuccessOnboarding(let isSuccess):
-                    print(isSuccess)
+                    guard isSuccess else {
+                        return
+                    }
+                    self?.pushOnboardingCompleteViewController()
                 case .none:
                     break
                 }
@@ -115,6 +110,11 @@ private extension ChallengeSelectionViewController {
         challengesView.moneySavingView.addTapGesture(self, action: #selector(didTapMoneySaving))
         challengesView.moneyManagementView.addTapGesture(self, action: #selector(didTapMoneyManagement))
         challengesView.financialLearningView.addTapGesture(self, action: #selector(didTapFinancialLearning))
+    }
+    
+    func pushOnboardingCompleteViewController() {
+        let viewController = OnboardingCompleteViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
 }

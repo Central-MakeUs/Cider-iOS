@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		FA0322812A4DC2B0000993DF /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0322802A4DC2B0000993DF /* NicknameViewController.swift */; };
+		FA316D672A63A15100C7AA88 /* OnboardingCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D662A63A15100C7AA88 /* OnboardingCompleteViewController.swift */; };
+		FA316D692A63A18700C7AA88 /* MainTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D682A63A18700C7AA88 /* MainTitleLabel.swift */; };
 		FA348ED02A61170800EA3D04 /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ECF2A61170800EA3D04 /* NicknameViewModel.swift */; };
 		FA348ED32A61180400EA3D04 /* NicknameUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ED22A61180400EA3D04 /* NicknameUsecase.swift */; };
 		FA348ED52A61185500EA3D04 /* NicknameRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ED42A61185500EA3D04 /* NicknameRepository.swift */; };
@@ -87,6 +89,8 @@
 
 /* Begin PBXFileReference section */
 		FA0322802A4DC2B0000993DF /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
+		FA316D662A63A15100C7AA88 /* OnboardingCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompleteViewController.swift; sourceTree = "<group>"; };
+		FA316D682A63A18700C7AA88 /* MainTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTitleLabel.swift; sourceTree = "<group>"; };
 		FA348ECF2A61170800EA3D04 /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
 		FA348ED22A61180400EA3D04 /* NicknameUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameUsecase.swift; sourceTree = "<group>"; };
 		FA348ED42A61185500EA3D04 /* NicknameRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameRepository.swift; sourceTree = "<group>"; };
@@ -217,6 +221,7 @@
 				FA0322802A4DC2B0000993DF /* NicknameViewController.swift */,
 				FA56F9832A542FA70099EC6F /* GenderAndBirthdayViewController.swift */,
 				FA6100252A57F725002175CE /* ChallengeSelectionViewController.swift */,
+				FA316D662A63A15100C7AA88 /* OnboardingCompleteViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -414,6 +419,7 @@
 				FA6C21662A5A4DD3008A9ADD /* CiderTextFieldView.swift */,
 				FA6C21682A5A4E21008A9ADD /* CiderEnabledStyle.swift */,
 				FA57AF742A5E9DED008A5991 /* CiderTextView.swift */,
+				FA316D682A63A18700C7AA88 /* MainTitleLabel.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -566,10 +572,12 @@
 				FA57AF6B2A5D73F8008A5991 /* ChallengeOpenCell.swift in Sources */,
 				FA57AF752A5E9DED008A5991 /* CiderTextView.swift in Sources */,
 				FA61002E2A58180E002175CE /* CiderSelectionStyle.swift in Sources */,
+				FA316D672A63A15100C7AA88 /* OnboardingCompleteViewController.swift in Sources */,
 				FA3C432E2A62FA0E009E820B /* Date+Extension.swift in Sources */,
 				FA44D39F2A4C5CE30037E328 /* UIStackView+Extension.swift in Sources */,
 				FA348ED52A61185500EA3D04 /* NicknameRepository.swift in Sources */,
 				FA348ED92A6119B600EA3D04 /* DuplicateNicknameResponse.swift in Sources */,
+				FA316D692A63A18700C7AA88 /* MainTitleLabel.swift in Sources */,
 				FA3AE40D2A57DB140078A4DF /* CiderBottomButton.swift in Sources */,
 				FA56F9842A542FA70099EC6F /* GenderAndBirthdayViewController.swift in Sources */,
 				FA0322812A4DC2B0000993DF /* NicknameViewController.swift in Sources */,
