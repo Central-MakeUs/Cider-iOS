@@ -6,20 +6,16 @@
 //
 
 import UIKit
+import Combine
 
 final class NicknameViewController: UIViewController {
-
+    
+    private let viewModel: NicknameViewModel
+    private var cancellables = Set<AnyCancellable>()
+    
     private let processView = ProcessView()
     
-    private lazy var mainTitleLabel: UILabel = {
-        let label = UILabel()
-        label.font = CustomFont.PretendardBold(size: .xl5).font
-        label.text = "닉네임을\n입력해주세요"
-        label.textColor = .custom.text
-        label.setTextWithLineHeight(lineHeight: 39.2)
-        label.numberOfLines = 0
-        return label
-    }()
+    private let mainTitleLabel = MainTitleLabel(title: "닉네임을\n입력해주세요")
     
     private lazy var subTitleLabel: UILabel = {
         let label = UILabel()
@@ -33,18 +29,14 @@ final class NicknameViewController: UIViewController {
     
     private lazy var ciderTextFieldView: CiderTextFieldView = {
         let view = CiderTextFieldView(minLength: 2, maxLength: 10)
+        view.ciderTextField.addTarget(self, action: #selector(isAvailableNickname), for: .editingChanged)
+        view.ciderTextField.addActionClearButton(self, action: #selector(didTapClear))
         view.setPlaceHoder("2~10자로 입력해주세요")
         return view
     }()
     
-    private lazy var nextButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .custom.gray4
-        button.setTitle("다음", for: .normal)
-        button.titleLabel?.font = CustomFont.PretendardBold(size: .xl2).font
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.heightAnchor.constraint(equalToConstant: 48).isActive = true
-        button.layer.cornerRadius = 4
+    private lazy var nextButton: CiderBottomButton = {
+        let button = CiderBottomButton(style: .disabled, title: "다음")
         button.addTarget(self, action: #selector(didTapNext), for: .touchUpInside)
         return button
     }()
@@ -58,6 +50,15 @@ final class NicknameViewController: UIViewController {
     }()
     
     var bottomConstraint: NSLayoutConstraint?
+    
+    init(viewModel: NicknameViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +78,28 @@ private extension NicknameViewController {
         configure()
         hideKeyboard()
         addNotification()
+        bind()
+    }
+    
+    func bind() {
+        viewModel.state.receive(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                switch state {
+                case .changeNextButtonState(let isEnabled):
+                    self?.nextButton.setStyle(isEnabled ? .enabled : .disabled)
+                    
+                case .isEnabledNickname(let isEnabled, let message):
+                    print(isEnabled, message)
+                    self?.ciderTextFieldView.setErrorMessage(message: message, isEnabled: isEnabled)
+                    
+                case .getRandomNickname(let nickname):
+                    self?.ciderTextFieldView.ciderTextField.text = nickname
+                    self?.ciderTextFieldView.ciderTextField.setStyle(.enabled)
+                    self?.ciderTextFieldView.isHiddenErrorMessage(true)
+                    self?.ciderTextFieldView.setTextCount(nickname.count)
+                }
+            }
+            .store(in: &cancellables)
     }
     
     func configure() {
@@ -122,6 +145,7 @@ private extension NicknameViewController {
 private extension NicknameViewController {
     
     @objc func didTapNext(_ sender: UIButton) {
+        Onboarding.shared.memberName = ciderTextFieldView.ciderTextField.text
         let viewController = GenderAndBirthdayViewController()
         self.navigationController?.pushViewController(viewController, animated: true)
     }
@@ -134,17 +158,31 @@ private extension NicknameViewController {
             self.view.layoutIfNeeded()
         }
     }
-
+    
     @objc func keyboardWillHide(notification: NSNotification) {
         self.bottomConstraint?.constant = 0
         self.view.layoutIfNeeded()
     }
     
     @objc func didTapRandomNickname(_ sender: Any?) {
-        print("didTapRandomNickname")
+        viewModel.didTapRandomNickname()
     }
     
-   
+    @objc func isAvailableNickname(_ sender: Any?) {
+        guard let text = ciderTextFieldView.ciderTextField.text else {
+            return
+        }
+        if text.count >= 2 {
+            viewModel.endEditingNickname(text)
+        } else {
+            nextButton.setStyle(.disabled)
+        }
+    }
+    
+    @objc func didTapClear(_ sender: Any?) {
+        nextButton.setStyle(.disabled)
+    }
+    
 }
 
 #if DEBUG
@@ -153,13 +191,19 @@ import SwiftUI
 @available(iOS 13.0, *)
 struct NicknameViewController_Preview: PreviewProvider {
     static var devices = ["iPhone 12", "iPhone SE", "iPhone 11 Pro Max"]
-
+    
     static var previews: some View {
         ForEach(devices, id: \.self) { deviceName in
-            NicknameViewController()
-                .toPreview()
-                .previewDevice(PreviewDevice(rawValue: deviceName))
-                .previewDisplayName(deviceName)
+            NicknameViewController(
+                viewModel: NicknameViewModel(
+                    useCase: DefaultNicknameUsecase(
+                        repository: DefaultNicknameRepository()
+                    )
+                )
+            )
+            .toPreview()
+            .previewDevice(PreviewDevice(rawValue: deviceName))
+            .previewDisplayName(deviceName)
         }
     }
 }

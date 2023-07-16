@@ -10,29 +10,31 @@ import Combine
 
 final class ChallengeSelectionViewController: UIViewController {
 
-    private let viewModel = ChallengeSelectionViewModel()
+    private let viewModel: ChallengeSelectionViewModel
     private var cancellables = Set<AnyCancellable>()
     
     private let processView = ProcessView()
     private let challengesView = ChallengesView()
     
-    private lazy var mainTitleLabel: UILabel = {
-        let label = UILabel()
-        label.font = CustomFont.PretendardBold(size: .xl5).font
-        label.text = "원하는 챌린지 분야를\n선택해보세요"
-        label.textColor = .custom.text
-        label.setTextWithLineHeight(lineHeight: 39.2)
-        label.numberOfLines = 0
-        return label
-    }()
+    private let mainTitleLabel = MainTitleLabel(title: "원하는 챌린지 분야를\n선택해보세요")
     
     private lazy var rightButton: UIButton = {
         let button = UIButton()
         button.setTitle("완료", for: .normal)
         button.titleLabel?.font = CustomFont.PretendardBold(size: .lg).font
         button.setTitleColor(.custom.gray7, for: .normal)
+        button.addTarget(self, action: #selector(didTapCompletion), for: .touchUpInside)
         return button
     }()
+    
+    init(viewModel: ChallengeSelectionViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,6 +92,12 @@ private extension ChallengeSelectionViewController {
                     case .financialLearning:
                         self?.challengesView.financialLearningView.setStyle(isSelected ? .selected : .unselected)
                     }
+                    
+                case .isSuccessOnboarding(let isSuccess):
+                    guard isSuccess else {
+                        return
+                    }
+                    self?.pushOnboardingCompleteViewController()
                 case .none:
                     break
                 }
@@ -102,6 +110,11 @@ private extension ChallengeSelectionViewController {
         challengesView.moneySavingView.addTapGesture(self, action: #selector(didTapMoneySaving))
         challengesView.moneyManagementView.addTapGesture(self, action: #selector(didTapMoneyManagement))
         challengesView.financialLearningView.addTapGesture(self, action: #selector(didTapFinancialLearning))
+    }
+    
+    func pushOnboardingCompleteViewController() {
+        let viewController = OnboardingCompleteViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
 }
@@ -125,7 +138,7 @@ private extension ChallengeSelectionViewController {
     }
     
     @objc func didTapCompletion(_ sender: Any?) {
-        
+        viewModel.didTapComplete()
     }
     
 }
@@ -139,7 +152,13 @@ struct KeywordViewController_Preview: PreviewProvider {
 
     static var previews: some View {
         ForEach(devices, id: \.self) { deviceName in
-            ChallengeSelectionViewController()
+            ChallengeSelectionViewController(
+                viewModel: ChallengeSelectionViewModel(
+                    useCase: DefaultOnboardingUsecase(
+                        repository: DefaultOnboardingRepository()
+                    )
+                )
+            )
                 .toPreview()
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)

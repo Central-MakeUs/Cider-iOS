@@ -14,12 +14,12 @@ final class LoginViewModel: ViewModelType {
         case login(_ isSuccess: Bool)
     }
     
-    var useCase: DefaultLoginUsecase
+    var useCase: LoginUsecase
     var state: AnyPublisher<ViewModelState, Never> { currentState.compactMap { $0 }.eraseToAnyPublisher() }
     var currentState: CurrentValueSubject<ViewModelState?, Never> = .init(nil)
     private var cancellables: Set<AnyCancellable> = .init()
     
-    init(useCase: DefaultLoginUsecase) {
+    init(useCase: LoginUsecase) {
         self.useCase = useCase
     }
     

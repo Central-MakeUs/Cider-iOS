@@ -35,8 +35,14 @@ final class LoginViewController: UIViewController {
     }()
     
     private lazy var appleLoginButton: UIButton = {
-        let button = UIButton()
+        var configuration = UIButton.Configuration.plain()
+        configuration.image = UIImage(systemName: "apple.logo", withConfiguration: UIImage.SymbolConfiguration(pointSize: 13))
+        configuration.imagePadding = 10
+        configuration.imagePlacement = .leading
+        let button = UIButton(configuration: configuration)
         button.setTitle("Apple로 시작", for: .normal)
+        button.titleLabel?.font = CustomFont.PretendardMedium(size: .xl2).font
+        button.tintColor = .white
         button.backgroundColor = .black
         button.heightAnchor.constraint(equalToConstant: 44).isActive = true
         button.layer.cornerRadius = 4
@@ -47,6 +53,8 @@ final class LoginViewController: UIViewController {
     private lazy var kakaoLoginButton: UIButton = {
         let button = UIButton()
         button.setTitle("카카오톡으로 시작", for: .normal)
+        button.titleLabel?.font = CustomFont.PretendardMedium(size: .xl2).font
+        button.setImage(UIImage(named: "kakao"), for: .normal)
         button.backgroundColor = .custom.kakao
         button.heightAnchor.constraint(equalToConstant: 44).isActive = true
         button.setTitleColor(.custom.text, for: .normal)
@@ -67,7 +75,7 @@ final class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        configure()
+        setUp()
         
     }
     
@@ -106,7 +114,6 @@ private extension LoginViewController {
                         return
                     }
                     self?.pushServiceAgreeViewController()
-                    
                 }
             }.store(in: &cancellables)
     }

@@ -11,6 +11,9 @@ import Moya
 enum CiderAPI {
     case signInApple(paramters: [String: Any])
     case signInKakao(paramters: [String: Any])
+    case getRandomNickname
+    case getDuplicateNickname(nickname: String)
+    case patchOnboarding(paramters: [String: Any])
 }
 
 extension CiderAPI: TargetType, AccessTokenAuthorizable {
@@ -23,8 +26,12 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
         case .signInApple,
              .signInKakao:
             return "/api/oauth/login"
-       
-            
+        case .getRandomNickname:
+            return "/api/member/nicknames"
+        case .getDuplicateNickname(let nickname):
+            return "/api/member/nicknames/exists/\(nickname)"
+        case .patchOnboarding:
+            return "/api/member"
         }
     }
     
@@ -33,13 +40,21 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
         case .signInApple,
              .signInKakao:
             return .post
+            
+        case .getRandomNickname,
+             .getDuplicateNickname:
+            return .get
+            
+        case .patchOnboarding:
+            return .patch
         }
     }
     
     var task: Moya.Task {
         switch self {
         case .signInApple(let parameters),
-             .signInKakao(let parameters):
+             .signInKakao(let parameters),
+             .patchOnboarding(let parameters):
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         default:
             return .requestPlain
@@ -47,11 +62,20 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
     }
     
     var headers: [String : String]? {
-        return nil
+        switch self {
+        case .getRandomNickname,
+             .getDuplicateNickname:
+            return nil
+        default:
+            guard let token = Keychain.loadToken() else {
+                return nil
+            }
+            return ["Authorization": token]
+        }
     }
     
     var authorizationType: Moya.AuthorizationType? {
-        return .bearer
+        return .none
     }
     
     
@@ -72,7 +96,7 @@ extension CiderAPI {
     
     static func request<T: Decodable>(target: CiderAPI, dataType: T.Type) async throws -> T {
         return try await withCheckedThrowingContinuation { continuation in
-            let provider = MoyaProvider<CiderAPI>(plugins: [getAuthPlugin(), MoyaCacheablePlugin()])
+            let provider = MoyaProvider<CiderAPI>()
             provider.request(target) { result in
                 switch result {
                 case .success(let response):

@@ -15,15 +15,7 @@ final class GenderAndBirthdayViewController: UIViewController {
     
     private let processView = ProcessView()
     
-    private lazy var mainTitleLabel: UILabel = {
-        let label = UILabel()
-        label.font = CustomFont.PretendardBold(size: .xl5).font
-        label.text = "성별과 생년월일을\n입력해주세요"
-        label.textColor = .custom.text
-        label.setTextWithLineHeight(lineHeight: 39.2)
-        label.numberOfLines = 0
-        return label
-    }()
+    private lazy var mainTitleLabel = MainTitleLabel(title: "성별과 생년월일을\n입력해주세요")
     
     private lazy var generTitleLabel: UILabel = {
         let label = UILabel()
@@ -35,7 +27,7 @@ final class GenderAndBirthdayViewController: UIViewController {
     
     private lazy var generSubLabel: UILabel = {
         let label = UILabel()
-        label.text = "본인의 성별을 반드시 1개 선택해주세요"
+        label.text = "본인의 성별을 선택해주세요"
         label.font = CustomFont.PretendardRegular(size: .base).font
         label.textColor = .custom.icon
         return label
@@ -69,7 +61,7 @@ final class GenderAndBirthdayViewController: UIViewController {
     private lazy var barView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.custom.gray1
-        view.heightAnchor.constraint(equalToConstant: 2).isActive = true
+        view.heightAnchor.constraint(equalToConstant: 3).isActive = true
         return view
     }()
     
@@ -105,6 +97,7 @@ final class GenderAndBirthdayViewController: UIViewController {
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.datePickerMode = .date
         datePicker.locale = Locale(identifier: "ko_KR")
+        datePicker.backgroundColor = .white
         return datePicker
     }()
     
@@ -121,7 +114,7 @@ final class GenderAndBirthdayViewController: UIViewController {
     
     private lazy var calendarImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "clearButton")
+        imageView.image = UIImage(named: "line_calender_24")
         return imageView
     }()
     
@@ -132,7 +125,7 @@ final class GenderAndBirthdayViewController: UIViewController {
     }()
     
     private let genderStackView = UIStackView(axis: .horizontal, alignment: .fill, distribution: .fillEqually, spacing: 8)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -144,7 +137,7 @@ final class GenderAndBirthdayViewController: UIViewController {
         super.viewWillAppear(animated)
         setNavigationBar()
     }
-
+    
 }
 
 private extension GenderAndBirthdayViewController {
@@ -167,7 +160,7 @@ private extension GenderAndBirthdayViewController {
             generTitleLabel.topAnchor.constraint(equalTo: mainTitleLabel.bottomAnchor, constant: 45),
             generTitleLabel.leadingAnchor.constraint(equalTo: mainTitleLabel.leadingAnchor),
             generSubLabel.centerYAnchor.constraint(equalTo: generTitleLabel.centerYAnchor),
-            generSubLabel.leadingAnchor.constraint(equalTo: generTitleLabel.trailingAnchor, constant: 8),
+            generSubLabel.trailingAnchor.constraint(equalTo: processView.trailingAnchor),
             genderStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             genderStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             genderStackView.topAnchor.constraint(equalTo: generTitleLabel.bottomAnchor, constant: 21),
@@ -236,6 +229,17 @@ private extension GenderAndBirthdayViewController {
         self.navigationItem.title = "회원가입"
     }
     
+    func pushChallengeSelectionViewController() {
+        let viewController = ChallengeSelectionViewController(
+            viewModel: ChallengeSelectionViewModel(
+                useCase: DefaultOnboardingUsecase(
+                    repository: DefaultOnboardingRepository()
+                )
+            )
+        )
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
 }
 
 private extension GenderAndBirthdayViewController {
@@ -258,8 +262,8 @@ private extension GenderAndBirthdayViewController {
     }
     
     @objc func didTapNext(_ sender: Any?) {
-        let viewController = ChallengeSelectionViewController()
-        navigationController?.pushViewController(viewController, animated: true)
+        viewModel.didTapNext()
+        pushChallengeSelectionViewController()
     }
     
 }
@@ -271,7 +275,7 @@ import SwiftUI
 @available(iOS 13.0, *)
 struct BirthdayViewController_Preview: PreviewProvider {
     static var devices = ["iPhone 12", "iPhone SE", "iPhone 11 Pro Max"]
-
+    
     static var previews: some View {
         ForEach(devices, id: \.self) { deviceName in
             GenderAndBirthdayViewController()
