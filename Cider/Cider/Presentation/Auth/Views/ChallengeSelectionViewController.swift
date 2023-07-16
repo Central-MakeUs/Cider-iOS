@@ -97,6 +97,7 @@ private extension ChallengeSelectionViewController {
                     guard isSuccess else {
                         return
                     }
+                    UserManager.shared.updateLoginState(true)
                     self?.pushOnboardingCompleteViewController()
                 case .none:
                     break
