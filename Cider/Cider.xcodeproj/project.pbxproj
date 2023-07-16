@@ -10,6 +10,7 @@
 		FA0322812A4DC2B0000993DF /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0322802A4DC2B0000993DF /* NicknameViewController.swift */; };
 		FA316D672A63A15100C7AA88 /* OnboardingCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D662A63A15100C7AA88 /* OnboardingCompleteViewController.swift */; };
 		FA316D692A63A18700C7AA88 /* MainTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D682A63A18700C7AA88 /* MainTitleLabel.swift */; };
+		FA316D6C2A63BAB500C7AA88 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D6B2A63BAB500C7AA88 /* TabBarViewController.swift */; };
 		FA348ED02A61170800EA3D04 /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ECF2A61170800EA3D04 /* NicknameViewModel.swift */; };
 		FA348ED32A61180400EA3D04 /* NicknameUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ED22A61180400EA3D04 /* NicknameUsecase.swift */; };
 		FA348ED52A61185500EA3D04 /* NicknameRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ED42A61185500EA3D04 /* NicknameRepository.swift */; };
@@ -91,6 +92,7 @@
 		FA0322802A4DC2B0000993DF /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
 		FA316D662A63A15100C7AA88 /* OnboardingCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompleteViewController.swift; sourceTree = "<group>"; };
 		FA316D682A63A18700C7AA88 /* MainTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTitleLabel.swift; sourceTree = "<group>"; };
+		FA316D6B2A63BAB500C7AA88 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		FA348ECF2A61170800EA3D04 /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
 		FA348ED22A61180400EA3D04 /* NicknameUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameUsecase.swift; sourceTree = "<group>"; };
 		FA348ED42A61185500EA3D04 /* NicknameRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameRepository.swift; sourceTree = "<group>"; };
@@ -182,6 +184,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA316D6A2A63BA8B00C7AA88 /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				FA316D6B2A63BAB500C7AA88 /* TabBarViewController.swift */,
+			);
+			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		FA316D6D2A63FE5B00C7AA88 /* Writing */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Writing;
+			sourceTree = "<group>";
+		};
 		FA3AE4052A57D2850078A4DF /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +214,8 @@
 		FA44D38D2A4C3CB10037E328 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				FA316D6D2A63FE5B00C7AA88 /* Writing */,
+				FA316D6A2A63BA8B00C7AA88 /* Tabbar */,
 				FA57AF672A5D7374008A5991 /* ChallengeOpen */,
 				FA44D38E2A4C3CBA0037E328 /* Auth */,
 			);
@@ -566,6 +585,7 @@
 				FA57AF662A5D6EF5008A5991 /* ChallengeOpenViewController.swift in Sources */,
 				FA6AE8B22A6047CB00512EE1 /* UITextView+Extension.swift in Sources */,
 				FA44D39D2A4C52DA0037E328 /* UIViewController+Extension.swift in Sources */,
+				FA316D6C2A63BAB500C7AA88 /* TabBarViewController.swift in Sources */,
 				FA3C43252A62ECBA009E820B /* OnboardingUsecase.swift in Sources */,
 				FA758AC82A5EF418003E2F07 /* StarTitleLabel.swift in Sources */,
 				FA758ACA2A5EF528003E2F07 /* ChallengeOpenSelectionView.swift in Sources */,

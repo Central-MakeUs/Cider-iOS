@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //                )
 //            )
 //        )
-        let mainViewController = ChallengeOpenViewController()
+        let mainViewController = TabBarViewController()
 
         window?.rootViewController = UINavigationController(rootViewController: mainViewController)
         window?.makeKeyAndVisible()
