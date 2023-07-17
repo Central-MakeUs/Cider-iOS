@@ -9,9 +9,24 @@ import UIKit
 
 final class WritingViewController: UIViewController {
     
-    private let authenticationView = WritingView(type: .authentication)
-    private let feedView = WritingView(type: .feed)
-    private let challengeOpenView = WritingView(type: .challengeOpen)
+    private lazy var authenticationView: WritingView = {
+        let view = WritingView(type: .authentication)
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapAuthentication)))
+        return view
+    }()
+    
+    private lazy var feedView: WritingView = {
+        let view = WritingView(type: .feed)
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapFeed)))
+        return view
+    }()
+    
+    private lazy var challengeOpenView: WritingView = {
+        let view = WritingView(type: .challengeOpen)
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapChallengeOpen)))
+        return view
+    }()
+    
     private let stackView = UIStackView(
         axis: .vertical,
         alignment: .fill,
@@ -42,6 +57,28 @@ private extension WritingViewController {
             stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 56),
             stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -56)
         ])
+    }
+    
+    func pushChallengeTypeViewController() {
+        let viewController = UINavigationController(rootViewController: ChallengeTypeViewController())
+        viewController.modalPresentationStyle = .fullScreen
+        self.present(viewController, animated: true)
+    }
+    
+}
+
+private extension WritingViewController {
+    
+    @objc func didTapAuthentication(_ sender: Any?) {
+        print("didTapAuthentication")
+    }
+    
+    @objc func didTapFeed(_ sender: Any?) {
+        print("didTapFeed")
+    }
+    
+    @objc func didTapChallengeOpen(_ sender: Any?) {
+        pushChallengeTypeViewController()
     }
     
 }
