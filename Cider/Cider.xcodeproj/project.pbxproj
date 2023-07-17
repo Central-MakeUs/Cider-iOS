@@ -88,6 +88,8 @@
 		FA8CA6282A49B541005A6709 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA8CA6252A49B541005A6709 /* Pretendard-Medium.otf */; };
 		FAB9A73B2A4C64CF00757A80 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */; };
 		FAB9A73F2A4C8DAB00757A80 /* ProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */; };
+		FAD6E3D42A64F2A6002C8007 /* WritingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD6E3D32A64F2A6002C8007 /* WritingView.swift */; };
+		FAD6E3D62A64F2F5002C8007 /* WritingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD6E3D52A64F2F5002C8007 /* WritingType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -171,6 +173,8 @@
 		FA8CA6252A49B541005A6709 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessView.swift; sourceTree = "<group>"; };
+		FAD6E3D32A64F2A6002C8007 /* WritingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingView.swift; sourceTree = "<group>"; };
+		FAD6E3D52A64F2F5002C8007 /* WritingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,7 +203,8 @@
 		FA316D6D2A63FE5B00C7AA88 /* Writing */ = {
 			isa = PBXGroup;
 			children = (
-				FA316D6E2A63FE8E00C7AA88 /* WritingViewController.swift */,
+				FAD6E3D22A64F28B002C8007 /* SubViews */,
+				FAD6E3D12A64F283002C8007 /* Views */,
 			);
 			path = Writing;
 			sourceTree = "<group>";
@@ -214,6 +219,7 @@
 				FA6100272A57FA46002175CE /* ChallengeType.swift */,
 				FA3AE4082A57D3D70078A4DF /* ViewModelType.swift */,
 				FA4DDB8F2A4D57D5002EDEAD /* ProcessType.swift */,
+				FAD6E3D52A64F2F5002C8007 /* WritingType.swift */,
 			);
 			path = Type;
 			sourceTree = "<group>";
@@ -506,6 +512,22 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		FAD6E3D12A64F283002C8007 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA316D6E2A63FE8E00C7AA88 /* WritingViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FAD6E3D22A64F28B002C8007 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				FAD6E3D32A64F2A6002C8007 /* WritingView.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -611,6 +633,7 @@
 				FA316D6C2A63BAB500C7AA88 /* TabBarViewController.swift in Sources */,
 				FA3C43252A62ECBA009E820B /* OnboardingUsecase.swift in Sources */,
 				FA758AC82A5EF418003E2F07 /* StarTitleLabel.swift in Sources */,
+				FAD6E3D62A64F2F5002C8007 /* WritingType.swift in Sources */,
 				FA758ACA2A5EF528003E2F07 /* ChallengeOpenSelectionView.swift in Sources */,
 				FA57AF6B2A5D73F8008A5991 /* ChallengeOpenCell.swift in Sources */,
 				FA57AF752A5E9DED008A5991 /* CiderTextView.swift in Sources */,
@@ -657,6 +680,7 @@
 				FA3C43282A62ED37009E820B /* OnboardingRepository.swift in Sources */,
 				FA6100302A590431002175CE /* ChallengeSelectionViewModel.swift in Sources */,
 				FA44D3992A4C43B80037E328 /* Color+Extension.swift in Sources */,
+				FAD6E3D42A64F2A6002C8007 /* WritingView.swift in Sources */,
 				FA348ED02A61170800EA3D04 /* NicknameViewModel.swift in Sources */,
 				FA3AE4072A57D2970078A4DF /* GenderAndBirthdayViewModel.swift in Sources */,
 				FA6AE8B02A6045AB00512EE1 /* ChallengeOpenSelectionType.swift in Sources */,
