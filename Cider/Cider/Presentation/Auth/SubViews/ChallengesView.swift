@@ -56,15 +56,11 @@ final class ChallengeView: UIView {
     
     private let stackView = UIStackView(axis: .horizontal, alignment: .center, distribution: .fill, spacing: 8)
     
-    var type: ChallengeType = .financialLearning
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
+    var type: ChallengeType
     
     init(style: CiderSelectionStyle, type: ChallengeType) {
-        super.init(frame: .zero)
         self.type = type
+        super.init(frame: .zero)
         configure()
         setStyle(style)
     }

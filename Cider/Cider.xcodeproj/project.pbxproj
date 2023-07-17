@@ -443,8 +443,8 @@
 		FA57AF682A5D7385008A5991 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FA57AF652A5D6EF5008A5991 /* ChallengeOpenViewController.swift */,
 				FAD6E3D72A64F9B5002C8007 /* ChallengeTypeViewController.swift */,
+				FA57AF652A5D6EF5008A5991 /* ChallengeOpenViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

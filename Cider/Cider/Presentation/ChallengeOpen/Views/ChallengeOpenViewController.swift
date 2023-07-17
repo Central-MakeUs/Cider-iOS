@@ -22,14 +22,32 @@ final class ChallengeOpenViewController: UIViewController {
         return button
     }()
     
+    private let challengeType: ChallengeType
+    
     private enum Section { case main }
     private struct Item: Hashable { let uuid = UUID() }
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
+    init(challengeType: ChallengeType) {
+        self.challengeType = challengeType
+        print(challengeType)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigationBar()
     }
     
 }
@@ -54,6 +72,11 @@ private extension ChallengeOpenViewController {
             bottomButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             bottomButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
+    }
+    
+    func setNavigationBar() {
+        self.navigationController?.navigationBar.topItem?.title = "챌린지 개설"
+        self.navigationItem.title = ""
     }
     
     func setUpDataSource() {
@@ -102,7 +125,7 @@ struct ChallengeOpenViewController_Preview: PreviewProvider {
 
     static var previews: some View {
         ForEach(devices, id: \.self) { deviceName in
-            ChallengeOpenViewController()
+            ChallengeOpenViewController(challengeType: .financialLearning)
             .toPreview()
             .previewDevice(PreviewDevice(rawValue: deviceName))
             .previewDisplayName(deviceName)

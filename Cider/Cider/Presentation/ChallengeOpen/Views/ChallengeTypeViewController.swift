@@ -10,7 +10,14 @@ import UIKit
 class ChallengeTypeViewController: UIViewController {
 
     private let mainTitleLabel = MainTitleLabel(title: "개설을 원하는\n챌린지 분야를\n선택해보세요")
-    private let challengesView = ChallengesView()
+    private lazy var challengesView: ChallengesView =  {
+        let view = ChallengesView()
+        view.financialTechView.addTapGesture(self, action: #selector(didTapFinancialTech))
+        view.financialLearningView.addTapGesture(self, action: #selector(didTapFinancialLearning))
+        view.moneySavingView.addTapGesture(self, action: #selector(didMoneySaving))
+        view.moneyManagementView.addTapGesture(self, action: #selector(didTapMoneyManagement))
+        return view
+    }()
     
     private lazy var leftBarButton: UIButton = {
         var configuration = UIButton.Configuration.plain()
@@ -57,6 +64,14 @@ private extension ChallengeTypeViewController {
     
     func setNavigationBar() {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftBarButton)
+        self.navigationItem.title = ""
+    }
+    
+    func pushChallengeOpenViewController(_ type: ChallengeType) {
+        let viewController = ChallengeOpenViewController(
+            challengeType: type
+        )
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
 }
@@ -65,6 +80,22 @@ private extension ChallengeTypeViewController {
     
     @objc func didTapLeftBarButton(_ sender: Any?) {
         self.dismiss(animated: true)
+    }
+    
+    @objc func didTapFinancialTech(_ sender: Any?) {
+        pushChallengeOpenViewController(.financialTech)
+    }
+    
+    @objc func didTapFinancialLearning(_ sender: Any?) {
+        pushChallengeOpenViewController(.financialLearning)
+    }
+    
+    @objc func didMoneySaving(_ sender: Any?) {
+        pushChallengeOpenViewController(.moneySaving)
+    }
+    
+    @objc func didTapMoneyManagement(_ sender: Any?) {
+        pushChallengeOpenViewController(.moneyManagement)
     }
     
 }
