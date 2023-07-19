@@ -22,12 +22,24 @@ final class ChallengeOpenViewController: UIViewController {
         return button
     }()
     
+    private lazy var imagePickerController: UIImagePickerController = {
+        let controller = UIImagePickerController()
+        controller.delegate = self
+        controller.sourceType = .photoLibrary
+        controller.allowsEditing = true
+        return controller
+    }()
+    
     private let challengeType: ChallengeType
     
     private enum Section { case main }
     private struct Item: Hashable { let uuid = UUID() }
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
+    
+    private var failImage = UIImage()
+    private var successImage = UIImage()
+    private var missionType: MissionType?
     
     init(challengeType: ChallengeType) {
         self.challengeType = challengeType
@@ -80,10 +92,14 @@ private extension ChallengeOpenViewController {
     }
     
     func setUpDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+        dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { [weak self] collectionView, indexPath, itemIdentifier in
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeOpenCell.identifier, for: indexPath) as? ChallengeOpenCell else {
                 return UICollectionViewCell()
             }
+            cell.missionSuccessView.addTapGestureCameraView(self, action: #selector(self?.didTapSuccessMissionView))
+            cell.missionFailView.addTapGestureCameraView(self, action: #selector(self?.didTapFailMissionView))
+            cell.missionFailView.setCameraImage(self?.failImage)
+            cell.missionSuccessView.setCameraImage(self?.successImage)
             return cell
         })
     }
@@ -114,6 +130,41 @@ private extension ChallengeOpenViewController {
     }
     
 }
+
+private extension ChallengeOpenViewController {
+    
+    @objc func didTapSuccessMissionView(_ sender: Any?) {
+        missionType = .success
+       self.present(imagePickerController, animated: true)
+    }
+    
+    @objc func didTapFailMissionView(_ sender: Any?) {
+        missionType = .fail
+       self.present(imagePickerController, animated: true)
+    }
+    
+}
+
+extension ChallengeOpenViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            if missionType == .success {
+                successImage = image
+            } else {
+                failImage = image
+            }
+        }
+        picker.dismiss(animated: true, completion: nil)
+        applySnapshot()
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+}
+
 
 
 #if DEBUG

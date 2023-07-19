@@ -53,8 +53,8 @@ final class ChallengeOpenCell: UICollectionViewCell {
         return view
     }()
     
-    private let missionSuccessView = MissionPhotoView(type: .success)
-    private let missionFailView = MissionPhotoView(type: .fail)
+    let missionSuccessView = MissionPhotoView(type: .success)
+    let missionFailView = MissionPhotoView(type: .fail)
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -38,6 +38,15 @@ final class MissionPhotoView: UIView {
         return view
     }()
     
+    private lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.isHidden = true
+        imageView.layer.cornerRadius = 4
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+    
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(
             axis: .vertical,
@@ -46,6 +55,7 @@ final class MissionPhotoView: UIView {
             spacing: 0
         )
         stackView.addArrangedSubviews(cameraImageView, cameraLabel)
+        stackView.isUserInteractionEnabled = false
         return stackView
     }()
     
@@ -77,7 +87,7 @@ final class MissionPhotoView: UIView {
     }
     
     private func configure() {
-        addSubviews(iconImageView, titleLabel, backgroundView, stackView)
+        addSubviews(iconImageView, titleLabel, backgroundView, stackView, imageView)
         NSLayoutConstraint.activate([
             self.heightAnchor.constraint(equalToConstant: stackViewHeight+34),
             iconImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -87,12 +97,24 @@ final class MissionPhotoView: UIView {
             backgroundView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 19),
             backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
             stackView.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor),
-            stackView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor)
+            stackView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
+            imageView.topAnchor.constraint(equalTo: backgroundView.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor)
         ])
     }
     
+    func setCameraImage(_ image: UIImage?) {
+        imageView.isHidden = false
+        imageView.image = image
+    }
+    
+    func addTapGestureCameraView(_ target: Any?, action: Selector) {
+        backgroundView.addGestureRecognizer(UITapGestureRecognizer(target: target, action: action))
+    }
+    
 }
-
 
 #if DEBUG
 import SwiftUI
