@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 
 final class CiderTextFieldView: UIView {
@@ -67,6 +68,7 @@ final class CiderTextFieldView: UIView {
         }
         countLabel.text = "\(count)/\(maxLength)"
         if count >= minLength && count <= maxLength {
+            errorLabel.isHidden = true
             ciderTextField.setStyle(.enabled)
         }
         else if count < minLength {
@@ -78,6 +80,11 @@ final class CiderTextFieldView: UIView {
         else {
             ciderTextField.setStyle(.plain)
         }
+        
+        NotificationCenter.default.post(
+            name: .didChangedCiderTextField,
+            object: sender.text
+        )
     }
     
     @objc private func didTapClear(_ sender: Any?) {
@@ -102,6 +109,18 @@ final class CiderTextFieldView: UIView {
     
     func isHiddenErrorMessage(_ isHidden: Bool) {
         errorLabel.isHidden = isHidden
+    }
+    
+    func textPublisher() -> AnyPublisher<String, Never> {
+        var textPublisher: AnyPublisher<String, Never> {
+            NotificationCenter.default.publisher(
+                for: .didChangedCiderTextField,
+                object: nil
+            )
+            .compactMap { $0.object as? String }
+            .eraseToAnyPublisher()
+        }
+        return textPublisher
     }
     
     
@@ -201,6 +220,10 @@ private extension CiderTextField {
         self.text = ""
         setStyle(.plain)
         setHiddenClearButton(true)
+        NotificationCenter.default.post(
+            name: .didChangedCiderTextField,
+            object: self.text
+        )
     }
     
     @objc func didChangeTextField(_ textField: UITextField) {

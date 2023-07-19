@@ -96,7 +96,7 @@ private extension ChallengeOpenViewController {
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            collectionView.bottomAnchor.constraint(equalTo: bottomButton.topAnchor, constant: -24),
+            collectionView.bottomAnchor.constraint(equalTo: bottomButton.topAnchor),
             bottomButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             bottomButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             bottomButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
@@ -110,13 +110,46 @@ private extension ChallengeOpenViewController {
     
     func setUpDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { [weak self] collectionView, indexPath, itemIdentifier in
+            guard let self = self else {
+                return UICollectionViewCell()
+            }
+            
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeOpenCell.identifier, for: indexPath) as? ChallengeOpenCell else {
                 return UICollectionViewCell()
             }
-            cell.missionSuccessView.addTapGestureCameraView(self, action: #selector(self?.didTapSuccessMissionView))
-            cell.missionFailView.addTapGestureCameraView(self, action: #selector(self?.didTapFailMissionView))
-            cell.missionFailView.setCameraImage(self?.failImage)
-            cell.missionSuccessView.setCameraImage(self?.successImage)
+            cell.missionSuccessView.addTapGestureCameraView(self, action: #selector(self.didTapSuccessMissionView))
+            cell.missionFailView.addTapGestureCameraView(self, action: #selector(self.didTapFailMissionView))
+            cell.missionFailView.setCameraImage(self.failImage)
+            cell.missionSuccessView.setCameraImage(self.successImage)
+            
+            cell.challengeTitleTextFieldView.textPublisher()
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] name in
+                    self?.viewModel.changeChallengeName(name)
+                }
+                .store(in: &self.cancellables)
+            
+            cell.missionTextFieldView.textPublisher()
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] missionInfo in
+                    self?.viewModel.changeMissionInfo(missionInfo)
+                }
+                .store(in: &self.cancellables)
+            
+            cell.challengeIntroductionTextView.textPublisher()
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] challengeInfo  in
+                    self?.viewModel.changeChallengeInfo(challengeInfo)
+                }
+                .store(in: &self.cancellables)
+            
+            cell.memberView.unitPublisher()
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] recruitPeriod in
+                    self?.viewModel.changeRecruitPeriod(recruitPeriod)
+                }
+                .store(in: &self.cancellables)
+            
             return cell
         })
     }
@@ -199,7 +232,7 @@ struct ChallengeOpenViewController_Preview: PreviewProvider {
 
     static var previews: some View {
         ForEach(devices, id: \.self) { deviceName in
-            ChallengeOpenViewController(challengeType: .financialLearning)
+            ChallengeOpenViewController(challengeType: .financialLearning, viewModel: ChallengeOpenViewModel())
             .toPreview()
             .previewDevice(PreviewDevice(rawValue: deviceName))
             .previewDisplayName(deviceName)

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Combine
 
 final class ChallengeOpenSelectionView: UIView {
     
@@ -60,7 +60,7 @@ final class ChallengeOpenSelectionView: UIView {
         return pickerView
     }()
     
-    private lazy var selectedPickerViewData = String(type.defaultUnit) + type.unitString
+    private lazy var selectedPickerViewData = type.defaultUnit
     
     init(type: ChallengeOpenSelectionType) {
         self.type = type
@@ -70,6 +70,18 @@ final class ChallengeOpenSelectionView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func unitPublisher() -> AnyPublisher<Int, Never> {
+        var unitPublisher: AnyPublisher<Int, Never> {
+            NotificationCenter.default.publisher(
+                for: .didChangedUnit,
+                object: nil
+            )
+            .compactMap { $0.object as? Int }
+            .eraseToAnyPublisher()
+        }
+        return unitPublisher
     }
     
 }
@@ -114,7 +126,8 @@ private extension ChallengeOpenSelectionView {
     
     @objc func didTapDone(_ sender: UIBarButtonItem) {
         textField.resignFirstResponder()
-        textField.text = selectedPickerViewData
+        textField.text = String(selectedPickerViewData) + type.unitString
+        NotificationCenter.default.post(name: .didChangedUnit, object: selectedPickerViewData)
     }
     
     @objc func didTapCancel(_ sender: UIBarButtonItem) {
@@ -138,7 +151,7 @@ extension ChallengeOpenSelectionView: UIPickerViewDelegate, UIPickerViewDataSour
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedPickerViewData = String(type.unitList[row]) + type.unitString
+        selectedPickerViewData = type.unitList[row]
     }
     
 }

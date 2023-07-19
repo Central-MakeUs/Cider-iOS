@@ -12,19 +12,23 @@ import UIKit
 final class ChallengeOpenViewModel: ViewModelType {
     
     enum ViewModelState {
-        case changeNextButtonState(isEnabled: Bool)
+        case changeNextButtonState(_ isEnabled: Bool)
     }
     
     var state: AnyPublisher<ViewModelState, Never> { currentState.compactMap { $0 }.eraseToAnyPublisher() }
     var currentState: CurrentValueSubject<ViewModelState?, Never> = .init(nil)
     private var cancellables: Set<AnyCancellable> = .init()
     
+    private let textFieldMinLength = 5
+    private let textViewMinLength = 30
+    
     private var challengeType: String?
     private var challengeName: String?
     private var challengeInfo: String?
-    private var challengeCapacity: Int?
-    private var recruitPeriod: Int?
-    private var challengePeriod: Int?
+    private var missionInfo: String?
+    private var challengeCapacity: Int = 3
+    private var recruitPeriod: Int = 1
+    private var challengePeriod: Int = 1
     private var failImageData: Data?
     private var successImageData: Data?
     private var isPublic = false
@@ -32,15 +36,71 @@ final class ChallengeOpenViewModel: ViewModelType {
     func selectFailImage(_ image: UIImage) {
         let data = image.jpegData(compressionQuality: 0.9)
         failImageData = data
+        currentState.send(.changeNextButtonState(isAvailableNextButton()))
     }
     
     func selectSuccessImage(_ image: UIImage) {
         let data = image.jpegData(compressionQuality: 0.9)
         successImageData = data
+        currentState.send(.changeNextButtonState(isAvailableNextButton()))
     }
     
     func selectChallengeType(_ type: ChallengeType) {
         challengeType = type.getAlphabet()
+    }
+    
+    func changeChallengeName(_ challengeName: String) {
+        self.challengeName = challengeName
+        currentState.send(.changeNextButtonState(isAvailableNextButton()))
+    }
+    
+    func changeMissionInfo(_ missionInfo: String) {
+        self.missionInfo = missionInfo
+        currentState.send(.changeNextButtonState(isAvailableNextButton()))
+    }
+    
+    func changeChallengeInfo(_ challengeInfo: String) {
+        self.challengeInfo = challengeInfo
+        currentState.send(.changeNextButtonState(isAvailableNextButton()))
+    }
+    
+    func changeChallengeCapacity(_ challengeCapacity: Int) {
+        self.challengeCapacity = challengeCapacity
+        currentState.send(.changeNextButtonState(isAvailableNextButton()))
+    }
+    
+    func changeRecruitPeriod(_ recruitPeriod: Int) {
+        self.recruitPeriod = recruitPeriod
+        currentState.send(.changeNextButtonState(isAvailableNextButton()))
+    }
+    
+    func changeChallengePeriod(_ challengePeriod: Int) {
+        self.challengePeriod = challengePeriod
+        currentState.send(.changeNextButtonState(isAvailableNextButton()))
+    }
+    
+}
+
+
+private extension ChallengeOpenViewModel {
+    
+    func isAvailableNextButton() -> Bool {
+        guard let challengeName = challengeName,
+              let challengeInfo = challengeInfo,
+              let missionInfo = missionInfo,
+              let _ = challengeType,
+              let _ = successImageData,
+              let _ = failImageData else {
+            return false
+        }
+        
+        guard challengeName.count >= textFieldMinLength,
+              challengeInfo.count >= textViewMinLength,
+              missionInfo.count >= textFieldMinLength else {
+            return false
+        }
+        
+        return true
     }
     
 }

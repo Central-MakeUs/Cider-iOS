@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FA0322812A4DC2B0000993DF /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0322802A4DC2B0000993DF /* NicknameViewController.swift */; };
+		FA2F052F2A683E9E00E2CCF2 /* Notification.Name+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2F052E2A683E9E00E2CCF2 /* Notification.Name+Extension.swift */; };
 		FA316D672A63A15100C7AA88 /* OnboardingCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D662A63A15100C7AA88 /* OnboardingCompleteViewController.swift */; };
 		FA316D692A63A18700C7AA88 /* MainTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D682A63A18700C7AA88 /* MainTitleLabel.swift */; };
 		FA316D6C2A63BAB500C7AA88 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D6B2A63BAB500C7AA88 /* TabBarViewController.swift */; };
@@ -96,6 +97,7 @@
 
 /* Begin PBXFileReference section */
 		FA0322802A4DC2B0000993DF /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
+		FA2F052E2A683E9E00E2CCF2 /* Notification.Name+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+Extension.swift"; sourceTree = "<group>"; };
 		FA316D662A63A15100C7AA88 /* OnboardingCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompleteViewController.swift; sourceTree = "<group>"; };
 		FA316D682A63A18700C7AA88 /* MainTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTitleLabel.swift; sourceTree = "<group>"; };
 		FA316D6B2A63BAB500C7AA88 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 				FA6AE8B12A6047CB00512EE1 /* UITextView+Extension.swift */,
 				FA3C432D2A62FA0E009E820B /* Date+Extension.swift */,
 				FA3C432F2A6300DF009E820B /* String+Extension.swift */,
+				FA2F052E2A683E9E00E2CCF2 /* Notification.Name+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -682,6 +685,7 @@
 				FA44D39B2A4C46A30037E328 /* CustomFont.swift in Sources */,
 				FA3C432C2A62F816009E820B /* Onboarding.swift in Sources */,
 				FA316D742A64155B00C7AA88 /* UserManager.swift in Sources */,
+				FA2F052F2A683E9E00E2CCF2 /* Notification.Name+Extension.swift in Sources */,
 				FA6100342A59BAEA002175CE /* ServiceAgreeViewModel.swift in Sources */,
 				FA6100262A57F725002175CE /* ChallengeSelectionViewController.swift in Sources */,
 				FA57AF5A2A5D154C008A5991 /* LoginResponse.swift in Sources */,

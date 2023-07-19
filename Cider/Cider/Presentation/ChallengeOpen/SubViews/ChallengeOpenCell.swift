@@ -15,7 +15,7 @@ final class ChallengeOpenCell: UICollectionViewCell {
         title: "챌린지 제목 *"
     )
     
-    private let challengeTitleTextFieldView: CiderTextFieldView = {
+    let challengeTitleTextFieldView: CiderTextFieldView = {
         let view = CiderTextFieldView(minLength: 5, maxLength: 30)
         view.setPlaceHoder("하루 만보 걷기 인증하기")
         return view
@@ -25,21 +25,21 @@ final class ChallengeOpenCell: UICollectionViewCell {
         title: "챌린지 소개 *"
     )
     
-    private let challengeIntroductionTextView = CiderTextView(
-        minLength: 5,
+    let challengeIntroductionTextView = CiderTextView(
+        minLength: 30,
         maxLength: 1000,
         placeHolder: "챌린지 목적, 참여시 좋은 점, 참여 권유 대상 등\n챌린저들의 이해를 돕기 위한 설명을 적어주세요."
     )
     
-    private let memberView = ChallengeOpenSelectionView(
+    let memberView = ChallengeOpenSelectionView(
         type: .member
     )
     
-    private let recruitmentView = ChallengeOpenSelectionView(
+    let recruitmentView = ChallengeOpenSelectionView(
         type: .recruitment
     )
     
-    private let participationView = ChallengeOpenSelectionView(
+    let participationView = ChallengeOpenSelectionView(
         type: .participation
     )
     
@@ -47,7 +47,7 @@ final class ChallengeOpenCell: UICollectionViewCell {
         title: "인증 미션 *"
     )
     
-    private let missionTextFieldView: CiderTextFieldView = {
+    let missionTextFieldView: CiderTextFieldView = {
         let view = CiderTextFieldView(minLength: 5, maxLength: 30)
         view.setPlaceHoder("인증샷 모드에서 10,000원이 적힌 화면 인증")
         return view

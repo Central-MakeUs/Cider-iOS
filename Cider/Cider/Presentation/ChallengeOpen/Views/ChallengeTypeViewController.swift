@@ -69,7 +69,8 @@ private extension ChallengeTypeViewController {
     
     func pushChallengeOpenViewController(_ type: ChallengeType) {
         let viewController = ChallengeOpenViewController(
-            challengeType: type
+            challengeType: type,
+            viewModel: ChallengeOpenViewModel()
         )
         self.navigationController?.pushViewController(viewController, animated: true)
     }
