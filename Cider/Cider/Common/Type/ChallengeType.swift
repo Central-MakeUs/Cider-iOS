@@ -67,4 +67,18 @@ extension ChallengeType {
             return .custom.btnPurple
         }
     }
+    
+    func getAlphabet() -> String {
+        switch self {
+        case .financialTech:
+            return "T"
+        case .moneySaving:
+            return "C"
+        case .moneyManagement:
+            return "M"
+        case .financialLearning:
+            return "L"
+        }
+    }
+    
 }

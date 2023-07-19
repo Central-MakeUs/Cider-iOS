@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 final class ChallengeOpenViewController: UIViewController {
     
@@ -30,6 +31,9 @@ final class ChallengeOpenViewController: UIViewController {
         return controller
     }()
     
+    private let viewModel: ChallengeOpenViewModel
+    private var cancellables = Set<AnyCancellable>()
+    
     private let challengeType: ChallengeType
     
     private enum Section { case main }
@@ -41,10 +45,11 @@ final class ChallengeOpenViewController: UIViewController {
     private var successImage = UIImage()
     private var missionType: MissionType?
     
-    init(challengeType: ChallengeType) {
+    init(challengeType: ChallengeType, viewModel: ChallengeOpenViewModel) {
         self.challengeType = challengeType
-        print(challengeType)
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        viewModel.selectChallengeType(challengeType)
     }
     
     required init?(coder: NSCoder) {
@@ -70,6 +75,18 @@ private extension ChallengeOpenViewController {
         configure()
         setUpDataSource()
         applySnapshot()
+        bind()
+    }
+    
+    func bind() {
+        viewModel.state.receive(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                switch state {
+                case .changeNextButtonState(let isEnabled):
+                    self?.bottomButton.setStyle(isEnabled ? .enabled : .disabled)
+                }
+            }
+            .store(in: &cancellables)
     }
     
     func configure() {
@@ -148,11 +165,17 @@ private extension ChallengeOpenViewController {
 extension ChallengeOpenViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let missionType else {
+            return
+        }
+        
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             if missionType == .success {
                 successImage = image
+                viewModel.selectSuccessImage(image)
             } else {
                 failImage = image
+                viewModel.selectFailImage(image)
             }
         }
         picker.dismiss(animated: true, completion: nil)
