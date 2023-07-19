@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 final class CiderTextView: UIView {
     
@@ -61,6 +62,18 @@ final class CiderTextView: UIView {
             errorLabel.leadingAnchor.constraint(equalTo: textView.leadingAnchor)
         ])
        
+    }
+    
+    func textPublisher() -> AnyPublisher<String, Never> {
+        var textPublisher: AnyPublisher<String, Never> {
+            NotificationCenter.default.publisher(
+                for: UITextView.textDidChangeNotification,
+                object: textView
+            )
+            .compactMap { ($0.object as? UITextView)?.text }
+            .eraseToAnyPublisher()
+        }
+        return textPublisher
     }
   
 }

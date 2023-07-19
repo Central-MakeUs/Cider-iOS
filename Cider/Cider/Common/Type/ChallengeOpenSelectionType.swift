@@ -35,14 +35,25 @@ enum ChallengeOpenSelectionType {
         }
     }
     
-    var unit: String {
+    var defaultUnit: Int {
         switch self {
         case .member:
-            return "3명"
+            return 3
         case .recruitment:
-            return "1일"
+            return 1
         case .participation:
-            return "1주"
+            return 1
+        }
+    }
+    
+    var unitString: String {
+        switch self {
+        case .member:
+            return "명"
+        case .recruitment:
+            return "일"
+        case .participation:
+            return "주"
         }
     }
     
@@ -56,4 +67,28 @@ enum ChallengeOpenSelectionType {
             return "line_arrow-down_24"
         }
     }
+    
+    var unitList: [Int] {
+        var list = [Int]()
+        switch self {
+        case .member:
+            for i in 3...30 {
+                list.append(i)
+            }
+            return list
+            
+        case .recruitment:
+            for i in 1...7 {
+                list.append(i)
+            }
+            return list
+            
+        case .participation:
+            for i in 1...8 {
+                list.append(i)
+            }
+            return list
+        }
+    }
+    
 }

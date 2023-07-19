@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FA0322812A4DC2B0000993DF /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0322802A4DC2B0000993DF /* NicknameViewController.swift */; };
+		FA2F052F2A683E9E00E2CCF2 /* Notification.Name+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2F052E2A683E9E00E2CCF2 /* Notification.Name+Extension.swift */; };
 		FA316D672A63A15100C7AA88 /* OnboardingCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D662A63A15100C7AA88 /* OnboardingCompleteViewController.swift */; };
 		FA316D692A63A18700C7AA88 /* MainTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D682A63A18700C7AA88 /* MainTitleLabel.swift */; };
 		FA316D6C2A63BAB500C7AA88 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D6B2A63BAB500C7AA88 /* TabBarViewController.swift */; };
@@ -30,6 +31,7 @@
 		FA3C432E2A62FA0E009E820B /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3C432D2A62FA0E009E820B /* Date+Extension.swift */; };
 		FA3C43302A6300DF009E820B /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3C432F2A6300DF009E820B /* String+Extension.swift */; };
 		FA3EC10B2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3EC10A2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift */; };
+		FA43C4E52A681E16001BB9B4 /* ChallengeOpenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43C4E42A681E16001BB9B4 /* ChallengeOpenViewModel.swift */; };
 		FA44D3992A4C43B80037E328 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44D3982A4C43B80037E328 /* Color+Extension.swift */; };
 		FA44D39B2A4C46A30037E328 /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44D39A2A4C46A30037E328 /* CustomFont.swift */; };
 		FA44D39D2A4C52DA0037E328 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44D39C2A4C52DA0037E328 /* UIViewController+Extension.swift */; };
@@ -88,10 +90,14 @@
 		FA8CA6282A49B541005A6709 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA8CA6252A49B541005A6709 /* Pretendard-Medium.otf */; };
 		FAB9A73B2A4C64CF00757A80 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */; };
 		FAB9A73F2A4C8DAB00757A80 /* ProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */; };
+		FAD6E3D42A64F2A6002C8007 /* WritingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD6E3D32A64F2A6002C8007 /* WritingView.swift */; };
+		FAD6E3D62A64F2F5002C8007 /* WritingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD6E3D52A64F2F5002C8007 /* WritingType.swift */; };
+		FAD6E3D82A64F9B5002C8007 /* ChallengeTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD6E3D72A64F9B5002C8007 /* ChallengeTypeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FA0322802A4DC2B0000993DF /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
+		FA2F052E2A683E9E00E2CCF2 /* Notification.Name+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+Extension.swift"; sourceTree = "<group>"; };
 		FA316D662A63A15100C7AA88 /* OnboardingCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompleteViewController.swift; sourceTree = "<group>"; };
 		FA316D682A63A18700C7AA88 /* MainTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTitleLabel.swift; sourceTree = "<group>"; };
 		FA316D6B2A63BAB500C7AA88 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +120,7 @@
 		FA3C432D2A62FA0E009E820B /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		FA3C432F2A6300DF009E820B /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		FA3EC10A2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAgreeHeaderView.swift; sourceTree = "<group>"; };
+		FA43C4E42A681E16001BB9B4 /* ChallengeOpenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOpenViewModel.swift; sourceTree = "<group>"; };
 		FA44D3982A4C43B80037E328 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		FA44D39A2A4C46A30037E328 /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
 		FA44D39C2A4C52DA0037E328 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -171,6 +178,9 @@
 		FA8CA6252A49B541005A6709 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessView.swift; sourceTree = "<group>"; };
+		FAD6E3D32A64F2A6002C8007 /* WritingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingView.swift; sourceTree = "<group>"; };
+		FAD6E3D52A64F2F5002C8007 /* WritingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingType.swift; sourceTree = "<group>"; };
+		FAD6E3D72A64F9B5002C8007 /* ChallengeTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeTypeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,7 +209,8 @@
 		FA316D6D2A63FE5B00C7AA88 /* Writing */ = {
 			isa = PBXGroup;
 			children = (
-				FA316D6E2A63FE8E00C7AA88 /* WritingViewController.swift */,
+				FAD6E3D22A64F28B002C8007 /* SubViews */,
+				FAD6E3D12A64F283002C8007 /* Views */,
 			);
 			path = Writing;
 			sourceTree = "<group>";
@@ -214,6 +225,7 @@
 				FA6100272A57FA46002175CE /* ChallengeType.swift */,
 				FA3AE4082A57D3D70078A4DF /* ViewModelType.swift */,
 				FA4DDB8F2A4D57D5002EDEAD /* ProcessType.swift */,
+				FAD6E3D52A64F2F5002C8007 /* WritingType.swift */,
 			);
 			path = Type;
 			sourceTree = "<group>";
@@ -236,6 +248,14 @@
 				FA348ECF2A61170800EA3D04 /* NicknameViewModel.swift */,
 				FA3AE4062A57D2970078A4DF /* GenderAndBirthdayViewModel.swift */,
 				FA61002F2A590431002175CE /* ChallengeSelectionViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		FA43C4E32A681E08001BB9B4 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FA43C4E42A681E16001BB9B4 /* ChallengeOpenViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -356,6 +376,7 @@
 				FA6AE8B12A6047CB00512EE1 /* UITextView+Extension.swift */,
 				FA3C432D2A62FA0E009E820B /* Date+Extension.swift */,
 				FA3C432F2A6300DF009E820B /* String+Extension.swift */,
+				FA2F052E2A683E9E00E2CCF2 /* Notification.Name+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -426,6 +447,7 @@
 		FA57AF672A5D7374008A5991 /* ChallengeOpen */ = {
 			isa = PBXGroup;
 			children = (
+				FA43C4E32A681E08001BB9B4 /* ViewModels */,
 				FA57AF692A5D73C4008A5991 /* SubViews */,
 				FA57AF682A5D7385008A5991 /* Views */,
 			);
@@ -435,6 +457,7 @@
 		FA57AF682A5D7385008A5991 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FAD6E3D72A64F9B5002C8007 /* ChallengeTypeViewController.swift */,
 				FA57AF652A5D6EF5008A5991 /* ChallengeOpenViewController.swift */,
 			);
 			path = Views;
@@ -504,6 +527,22 @@
 				FA44D39A2A4C46A30037E328 /* CustomFont.swift */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		FAD6E3D12A64F283002C8007 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA316D6E2A63FE8E00C7AA88 /* WritingViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FAD6E3D22A64F28B002C8007 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				FAD6E3D32A64F2A6002C8007 /* WritingView.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -601,6 +640,7 @@
 				FA758ACE2A5F0374003E2F07 /* MissionType.swift in Sources */,
 				FA3EC10B2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift in Sources */,
 				FA3C43302A6300DF009E820B /* String+Extension.swift in Sources */,
+				FA43C4E52A681E16001BB9B4 /* ChallengeOpenViewModel.swift in Sources */,
 				FA316D6F2A63FE8E00C7AA88 /* WritingViewController.swift in Sources */,
 				FA39D8492A4EA829001C7E0A /* AppAppearance.swift in Sources */,
 				FA44D3A12A4C5D070037E328 /* UIView+Extension.swift in Sources */,
@@ -611,6 +651,7 @@
 				FA316D6C2A63BAB500C7AA88 /* TabBarViewController.swift in Sources */,
 				FA3C43252A62ECBA009E820B /* OnboardingUsecase.swift in Sources */,
 				FA758AC82A5EF418003E2F07 /* StarTitleLabel.swift in Sources */,
+				FAD6E3D62A64F2F5002C8007 /* WritingType.swift in Sources */,
 				FA758ACA2A5EF528003E2F07 /* ChallengeOpenSelectionView.swift in Sources */,
 				FA57AF6B2A5D73F8008A5991 /* ChallengeOpenCell.swift in Sources */,
 				FA57AF752A5E9DED008A5991 /* CiderTextView.swift in Sources */,
@@ -644,6 +685,7 @@
 				FA44D39B2A4C46A30037E328 /* CustomFont.swift in Sources */,
 				FA3C432C2A62F816009E820B /* Onboarding.swift in Sources */,
 				FA316D742A64155B00C7AA88 /* UserManager.swift in Sources */,
+				FA2F052F2A683E9E00E2CCF2 /* Notification.Name+Extension.swift in Sources */,
 				FA6100342A59BAEA002175CE /* ServiceAgreeViewModel.swift in Sources */,
 				FA6100262A57F725002175CE /* ChallengeSelectionViewController.swift in Sources */,
 				FA57AF5A2A5D154C008A5991 /* LoginResponse.swift in Sources */,
@@ -657,6 +699,8 @@
 				FA3C43282A62ED37009E820B /* OnboardingRepository.swift in Sources */,
 				FA6100302A590431002175CE /* ChallengeSelectionViewModel.swift in Sources */,
 				FA44D3992A4C43B80037E328 /* Color+Extension.swift in Sources */,
+				FAD6E3D42A64F2A6002C8007 /* WritingView.swift in Sources */,
+				FAD6E3D82A64F9B5002C8007 /* ChallengeTypeViewController.swift in Sources */,
 				FA348ED02A61170800EA3D04 /* NicknameViewModel.swift in Sources */,
 				FA3AE4072A57D2970078A4DF /* GenderAndBirthdayViewModel.swift in Sources */,
 				FA6AE8B02A6045AB00512EE1 /* ChallengeOpenSelectionType.swift in Sources */,
@@ -804,6 +848,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cider/Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "챌린지 인증을 위해 카메라 권한이 필요합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "챌린지 인증을 위해 앨범 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -835,6 +881,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cider/Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "챌린지 인증을 위해 카메라 권한이 필요합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "챌린지 인증을 위해 앨범 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
