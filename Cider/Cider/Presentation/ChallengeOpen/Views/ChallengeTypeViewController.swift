@@ -18,19 +18,7 @@ class ChallengeTypeViewController: UIViewController {
         view.moneyManagementView.addTapGesture(self, action: #selector(didTapMoneyManagement))
         return view
     }()
-    
-//    private lazy var leftBarButton: UIButton = {
-//        var configuration = UIButton.Configuration.plain()
-//        configuration.image = UIImage(systemName: "chevron.left")
-//        configuration.imagePadding = 10
-//        let button = UIButton(configuration: configuration)
-//        button.setTitle("챌린지 개설", for: .normal)
-//        button.setTitleColor(.custom.text, for: .normal)
-//        button.tintColor = .custom.text
-//        button.addTarget(self, action: #selector(didTapLeftBarButton), for: .touchUpInside)
-//        return button
-//    }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
@@ -63,7 +51,6 @@ private extension ChallengeTypeViewController {
     }
     
     func setNavigationBar() {
-       // self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftBarButton)
         self.navigationItem.title = ""
     }
     
