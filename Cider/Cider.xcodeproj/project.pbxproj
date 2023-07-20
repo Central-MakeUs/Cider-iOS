@@ -13,6 +13,7 @@
 		FA2A06502A68DF5B00AC649F /* PrecautionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A064F2A68DF5B00AC649F /* PrecautionViewModel.swift */; };
 		FA2A06522A68F19700AC649F /* ReviewInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A06512A68F19700AC649F /* ReviewInfoView.swift */; };
 		FA2A06542A68F31C00AC649F /* ChallengeCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A06532A68F31C00AC649F /* ChallengeCompleteViewController.swift */; };
+		FA2A06582A69014100AC649F /* ChallengeHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A06572A69014100AC649F /* ChallengeHomeView.swift */; };
 		FA2F052F2A683E9E00E2CCF2 /* Notification.Name+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2F052E2A683E9E00E2CCF2 /* Notification.Name+Extension.swift */; };
 		FA316D672A63A15100C7AA88 /* OnboardingCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D662A63A15100C7AA88 /* OnboardingCompleteViewController.swift */; };
 		FA316D692A63A18700C7AA88 /* MainTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D682A63A18700C7AA88 /* MainTitleLabel.swift */; };
@@ -107,6 +108,7 @@
 		FA2A064F2A68DF5B00AC649F /* PrecautionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecautionViewModel.swift; sourceTree = "<group>"; };
 		FA2A06512A68F19700AC649F /* ReviewInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewInfoView.swift; sourceTree = "<group>"; };
 		FA2A06532A68F31C00AC649F /* ChallengeCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCompleteViewController.swift; sourceTree = "<group>"; };
+		FA2A06572A69014100AC649F /* ChallengeHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeHomeView.swift; sourceTree = "<group>"; };
 		FA2F052E2A683E9E00E2CCF2 /* Notification.Name+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+Extension.swift"; sourceTree = "<group>"; };
 		FA316D662A63A15100C7AA88 /* OnboardingCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompleteViewController.swift; sourceTree = "<group>"; };
 		FA316D682A63A18700C7AA88 /* MainTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTitleLabel.swift; sourceTree = "<group>"; };
@@ -208,6 +210,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA2A06552A69006B00AC649F /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				FA2A06562A69010A00AC649F /* SubViews */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		FA2A06562A69010A00AC649F /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				FA2A06572A69014100AC649F /* ChallengeHomeView.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
 		FA316D6A2A63BA8B00C7AA88 /* Tabbar */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,6 +292,7 @@
 		FA44D38D2A4C3CB10037E328 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				FA2A06552A69006B00AC649F /* Home */,
 				FA316D6D2A63FE5B00C7AA88 /* Writing */,
 				FA316D6A2A63BA8B00C7AA88 /* Tabbar */,
 				FA57AF672A5D7374008A5991 /* ChallengeOpen */,
@@ -648,6 +667,7 @@
 				FA6C216B2A5A78C4008A9ADD /* RandomNicknameView.swift in Sources */,
 				FA57AF4D2A5D0E2A008A5991 /* Keychain.swift in Sources */,
 				FA3AE4092A57D3D70078A4DF /* ViewModelType.swift in Sources */,
+				FA2A06582A69014100AC649F /* ChallengeHomeView.swift in Sources */,
 				FA3C432A2A62F1FB009E820B /* OnboardingResponse.swift in Sources */,
 				FA6C21672A5A4DD3008A9ADD /* CiderTextFieldView.swift in Sources */,
 				FA6100322A59AD8D002175CE /* GradientView.swift in Sources */,
