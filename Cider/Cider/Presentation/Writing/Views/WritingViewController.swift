@@ -60,9 +60,14 @@ private extension WritingViewController {
     }
     
     func pushChallengeTypeViewController() {
-        let viewController = UINavigationController(rootViewController: ChallengeTypeViewController())
-        viewController.modalPresentationStyle = .fullScreen
-        self.present(viewController, animated: true)
+        guard let presentingViewController = self.presentingViewController as? UINavigationController else {
+            return
+        }
+        print(type(of: presentingViewController))
+        self.dismiss(animated: true) {
+            let viewController = ChallengeTypeViewController()
+            presentingViewController.pushViewController(viewController, animated: true)
+        }
     }
     
 }
