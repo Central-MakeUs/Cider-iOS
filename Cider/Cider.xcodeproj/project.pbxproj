@@ -10,6 +10,7 @@
 		FA0322812A4DC2B0000993DF /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0322802A4DC2B0000993DF /* NicknameViewController.swift */; };
 		FA2A064C2A68DC0F00AC649F /* PrecautionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A064B2A68DC0F00AC649F /* PrecautionView.swift */; };
 		FA2A064E2A68DCE000AC649F /* PrecautionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A064D2A68DCE000AC649F /* PrecautionViewController.swift */; };
+		FA2A06502A68DF5B00AC649F /* PrecautionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A064F2A68DF5B00AC649F /* PrecautionViewModel.swift */; };
 		FA2F052F2A683E9E00E2CCF2 /* Notification.Name+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2F052E2A683E9E00E2CCF2 /* Notification.Name+Extension.swift */; };
 		FA316D672A63A15100C7AA88 /* OnboardingCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D662A63A15100C7AA88 /* OnboardingCompleteViewController.swift */; };
 		FA316D692A63A18700C7AA88 /* MainTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D682A63A18700C7AA88 /* MainTitleLabel.swift */; };
@@ -101,6 +102,7 @@
 		FA0322802A4DC2B0000993DF /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
 		FA2A064B2A68DC0F00AC649F /* PrecautionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecautionView.swift; sourceTree = "<group>"; };
 		FA2A064D2A68DCE000AC649F /* PrecautionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecautionViewController.swift; sourceTree = "<group>"; };
+		FA2A064F2A68DF5B00AC649F /* PrecautionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecautionViewModel.swift; sourceTree = "<group>"; };
 		FA2F052E2A683E9E00E2CCF2 /* Notification.Name+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+Extension.swift"; sourceTree = "<group>"; };
 		FA316D662A63A15100C7AA88 /* OnboardingCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompleteViewController.swift; sourceTree = "<group>"; };
 		FA316D682A63A18700C7AA88 /* MainTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTitleLabel.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				FA43C4E42A681E16001BB9B4 /* ChallengeOpenViewModel.swift */,
+				FA2A064F2A68DF5B00AC649F /* PrecautionViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -660,6 +663,7 @@
 				FAD6E3D62A64F2F5002C8007 /* WritingType.swift in Sources */,
 				FA758ACA2A5EF528003E2F07 /* ChallengeOpenSelectionView.swift in Sources */,
 				FA57AF6B2A5D73F8008A5991 /* ChallengeOpenCell.swift in Sources */,
+				FA2A06502A68DF5B00AC649F /* PrecautionViewModel.swift in Sources */,
 				FA57AF752A5E9DED008A5991 /* CiderTextView.swift in Sources */,
 				FA61002E2A58180E002175CE /* CiderSelectionStyle.swift in Sources */,
 				FA316D672A63A15100C7AA88 /* OnboardingCompleteViewController.swift in Sources */,

@@ -40,7 +40,10 @@ final class PrecautionView: UIView {
         checkButton.addTarget(target, action: action, for: .touchUpInside)
     }
     
-   
+    func setButtonTag(_ index: Int) {
+        checkButton.tag = index
+    }
+    
 }
 
 private extension PrecautionView {

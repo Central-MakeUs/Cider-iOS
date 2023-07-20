@@ -27,7 +27,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             )
         )
         let tabBarViewController = TabBarViewController()
-        let mainViewController = UserManager.shared.getLoginState() ? tabBarViewController : tabBarViewController
+        let test = PrecautionViewController(viewModel: PrecautionViewModel())
+        let mainViewController = UserManager.shared.getLoginState() ? test : test
 
         window?.rootViewController = UINavigationController(rootViewController: mainViewController)
         window?.makeKeyAndVisible()
