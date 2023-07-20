@@ -20,6 +20,7 @@ final class ChallengeOpenViewController: UIViewController {
     
     private lazy var bottomButton: CiderBottomButton = {
         let button = CiderBottomButton(style: .disabled, title: "챌린지 개설 신청하기")
+        button.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
         return button
     }()
     
@@ -179,6 +180,13 @@ private extension ChallengeOpenViewController {
         return layout
     }
     
+    func pushPrecautionViewController() {
+        let viewController = PrecautionViewController(
+            viewModel: PrecautionViewModel()
+        )
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
 }
 
 private extension ChallengeOpenViewController {
@@ -191,6 +199,10 @@ private extension ChallengeOpenViewController {
     @objc func didTapFailMissionView(_ sender: Any?) {
         missionType = .fail
        self.present(imagePickerController, animated: true)
+    }
+    
+    @objc func didTapNextButton(_ sender: Any?) {
+        pushPrecautionViewController()
     }
     
 }

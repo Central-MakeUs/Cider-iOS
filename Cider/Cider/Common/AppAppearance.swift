@@ -10,7 +10,10 @@ import UIKit
 final class AppAppearance {
     
     static func setUpAppearance() {
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: CustomFont.PretendardMedium(size: .xl2).font ?? .systemFont(ofSize: 16)]
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSAttributedString.Key.font: CustomFont.PretendardMedium(size: .xl2).font ?? .systemFont(ofSize: 16),
+            .foregroundColor: UIColor.black
+        ]
         UINavigationBar.appearance().tintColor = .custom.icon
         
         let appearance = UITabBarItem.appearance()
