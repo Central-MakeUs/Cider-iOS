@@ -23,7 +23,6 @@ final class PrecautionViewModel: ViewModelType {
     
     func didTapCheckbox(index: Int) {
         isSelectedList[index].toggle()
-        print(isSelectedList)
         currentState.send(.changeNextButtonState(isAvailableNextButton()))
     }
     

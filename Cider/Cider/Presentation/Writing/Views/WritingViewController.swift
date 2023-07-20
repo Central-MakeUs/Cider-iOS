@@ -63,7 +63,6 @@ private extension WritingViewController {
         guard let presentingViewController = self.presentingViewController as? UINavigationController else {
             return
         }
-        print(type(of: presentingViewController))
         self.dismiss(animated: true) {
             let viewController = ChallengeTypeViewController()
             presentingViewController.pushViewController(viewController, animated: true)
