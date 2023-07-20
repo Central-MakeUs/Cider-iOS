@@ -10,12 +10,21 @@ import UIKit
 final class ChallengeCompleteViewController: UIViewController {
 
     private let titleLabel = MainTitleLabel(title: "챌린지 신청이\n완료되었습니다")
+    
     private let reviewInfoView = ReviewInfoView(titles: [
         "·   심사는 최소 1일에서 최대 7일까지 소요되어요",
         "·   규칙에 어긋나는 내용이 있을시 반려될 수 있어요"
     ])
+    
     private lazy var bottomButton: CiderBottomButton = {
         let button = CiderBottomButton(style: .enabled, title: "돌아가기")
+        button.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var homeButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "line_home_24"), for: .normal)
         button.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
         return button
     }()
@@ -23,6 +32,11 @@ final class ChallengeCompleteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigationBar()
     }
 
 }
@@ -47,6 +61,12 @@ private extension ChallengeCompleteViewController {
             reviewInfoView.bottomAnchor.constraint(equalTo: bottomButton.topAnchor, constant: -12),
             reviewInfoView.heightAnchor.constraint(equalToConstant: 88)
         ])
+    }
+    
+    func setNavigationBar() {
+        self.navigationController?.navigationBar.topItem?.title = "챌린지 신청 완료"
+        self.navigationItem.title = ""
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: homeButton)
     }
     
 }
