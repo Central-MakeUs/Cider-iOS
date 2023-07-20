@@ -51,6 +51,7 @@ final class PrecautionViewController: UIViewController {
    
     private lazy var bottomButton: CiderBottomButton = {
         let button = CiderBottomButton(style: .disabled, title: "확인했어요")
+        button.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
         return button
     }()
     
@@ -105,9 +106,22 @@ private extension PrecautionViewController {
         ])
     }
     
+    func pushChallengeOpenCompleteViewController() {
+        let viewController = ChallengeCompleteViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+}
+
+private extension PrecautionViewController {
+    
     @objc func didTapCheckbox(_ sender: UIButton) {
         viewModel.didTapCheckbox(index: sender.tag)
         sender.isSelected.toggle()
+    }
+    
+    @objc func didTapNextButton(_ sender: Any?) {
+        pushChallengeOpenCompleteViewController()
     }
     
 }

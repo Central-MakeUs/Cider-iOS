@@ -9,12 +9,16 @@ import UIKit
 
 final class ChallengeCompleteViewController: UIViewController {
 
-    let titleLabel = MainTitleLabel(title: "챌린지 신청이\n완료되었습니다")
-    let reviewInfoView = ReviewInfoView(titles: [
+    private let titleLabel = MainTitleLabel(title: "챌린지 신청이\n완료되었습니다")
+    private let reviewInfoView = ReviewInfoView(titles: [
         "·   심사는 최소 1일에서 최대 7일까지 소요되어요",
         "·   규칙에 어긋나는 내용이 있을시 반려될 수 있어요"
     ])
-    let bottomButton = CiderBottomButton(style: .enabled, title: "돌아가기")
+    private lazy var bottomButton: CiderBottomButton = {
+        let button = CiderBottomButton(style: .enabled, title: "돌아가기")
+        button.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +34,7 @@ private extension ChallengeCompleteViewController {
     }
     
     func configure() {
+        view.backgroundColor = .white
         view.addSubviews(titleLabel, reviewInfoView, bottomButton)
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
@@ -41,8 +46,15 @@ private extension ChallengeCompleteViewController {
             reviewInfoView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             reviewInfoView.bottomAnchor.constraint(equalTo: bottomButton.topAnchor, constant: -12),
             reviewInfoView.heightAnchor.constraint(equalToConstant: 88)
-            
         ])
+    }
+    
+}
+
+private extension ChallengeCompleteViewController {
+    
+    @objc func didTapNextButton(_ sender: Any?) {
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
 }
