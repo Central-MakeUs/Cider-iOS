@@ -53,7 +53,8 @@ final class ChallengeHomeView: UIView {
     
     private lazy var heartButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "line_like_24"), for: .normal)
+        button.setImage(UIImage(named: "line_like_24")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = .white
         return button
     }()
     
@@ -71,6 +72,8 @@ final class ChallengeHomeView: UIView {
     }
     
     private func configure() {
+        clipsToBounds = true
+        layer.cornerRadius = 4
         addSubviews(backgroundImageView, statusView, rewardLabel, typeLabel, dateLabel, statusLabel, heartButton)
         NSLayoutConstraint.activate([
             backgroundImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -128,6 +131,7 @@ final class ChallengeTagLabel: UILabel {
         backgroundColor = .white.withAlphaComponent(0.8)
         layer.borderColor = UIColor.custom.gray8?.cgColor
         layer.borderWidth = 0.5
+        clipsToBounds = true
     }
     
     private func setCornerRadius() {
