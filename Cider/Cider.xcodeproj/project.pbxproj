@@ -25,6 +25,7 @@
 		FA32B8362A6A4F0B0086497D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B8352A6A4F0B0086497D /* HomeViewController.swift */; };
 		FA32B8382A6A67EA0086497D /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B8372A6A67EA0086497D /* Item.swift */; };
 		FA32B83A2A6A6C2D0086497D /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B8392A6A6C2D0086497D /* HomeHeaderView.swift */; };
+		FA32B83C2A6A79070086497D /* HomeNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B83B2A6A79070086497D /* HomeNavigationView.swift */; };
 		FA348ED02A61170800EA3D04 /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ECF2A61170800EA3D04 /* NicknameViewModel.swift */; };
 		FA348ED32A61180400EA3D04 /* NicknameUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ED22A61180400EA3D04 /* NicknameUsecase.swift */; };
 		FA348ED52A61185500EA3D04 /* NicknameRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ED42A61185500EA3D04 /* NicknameRepository.swift */; };
@@ -125,6 +126,7 @@
 		FA32B8352A6A4F0B0086497D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		FA32B8372A6A67EA0086497D /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		FA32B8392A6A6C2D0086497D /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
+		FA32B83B2A6A79070086497D /* HomeNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationView.swift; sourceTree = "<group>"; };
 		FA348ECF2A61170800EA3D04 /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
 		FA348ED22A61180400EA3D04 /* NicknameUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameUsecase.swift; sourceTree = "<group>"; };
 		FA348ED42A61185500EA3D04 /* NicknameRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameRepository.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				FA31A9432A6A33BE004D1C3B /* ChallengeHomeCell.swift */,
 				FA31A9452A6A4BB8004D1C3B /* CiderInfoView.swift */,
 				FA32B8392A6A6C2D0086497D /* HomeHeaderView.swift */,
+				FA32B83B2A6A79070086497D /* HomeNavigationView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -757,6 +760,7 @@
 				FA6100342A59BAEA002175CE /* ServiceAgreeViewModel.swift in Sources */,
 				FA6100262A57F725002175CE /* ChallengeSelectionViewController.swift in Sources */,
 				FA57AF5A2A5D154C008A5991 /* LoginResponse.swift in Sources */,
+				FA32B83C2A6A79070086497D /* HomeNavigationView.swift in Sources */,
 				FA8CA6092A46D322005A6709 /* SceneDelegate.swift in Sources */,
 				FA57AF572A5D14CC008A5991 /* LoginRequest.swift in Sources */,
 				FA57AF452A5C16EE008A5991 /* LoginViewModel.swift in Sources */,

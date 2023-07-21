@@ -18,6 +18,12 @@ final class HomeViewController: UIViewController {
         return collectionView
     }()
     
+    private lazy var rightBarButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "line_mychallenge_24"), for: .normal)
+        return button
+    }()
+    
     private enum Section: Int {
         case popluarChallenge = 0
         case publicChallenge = 1
@@ -57,13 +63,15 @@ private extension HomeViewController {
     }
     
     func setNavigationBar() {
-        self.navigationItem.title = "챌린지"
+        let leftView = HomeNavigationView()
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftView)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBarButton)
     }
     
     func setUpDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { [weak self] collectionView, indexPath, itemIdentifier in
-            
-            switch Section(rawValue: indexPath.section)  {
+            let section = Section(rawValue: indexPath.section)
+            switch section {
             case .popluarChallenge:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeHomeCell.identifier, for: indexPath) as? ChallengeHomeCell else {
                     return UICollectionViewCell()

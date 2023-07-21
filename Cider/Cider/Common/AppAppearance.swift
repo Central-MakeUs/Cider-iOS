@@ -10,15 +10,20 @@ import UIKit
 final class AppAppearance {
     
     static func setUpAppearance() {
-        UINavigationBar.appearance().titleTextAttributes = [
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.configureWithOpaqueBackground()
+        navigationBarAppearance.backgroundColor = UIColor.white
+        navigationBarAppearance.titleTextAttributes = [
             NSAttributedString.Key.font: CustomFont.PretendardMedium(size: .xl2).font ?? .systemFont(ofSize: 16),
             .foregroundColor: UIColor.black
         ]
         UINavigationBar.appearance().tintColor = .custom.icon
+        UINavigationBar.appearance().standardAppearance = navigationBarAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
         
-        let appearance = UITabBarItem.appearance()
+        let tabBarItemappearance = UITabBarItem.appearance()
         let attributes = [NSAttributedString.Key.font: CustomFont.PretendardBold(size: FontSize(rawValue: 10)!).font]
-        appearance.setTitleTextAttributes(attributes as [NSAttributedString.Key : Any], for: .normal)
+        tabBarItemappearance.setTitleTextAttributes(attributes as [NSAttributedString.Key : Any], for: .normal)
     }
     
 }
