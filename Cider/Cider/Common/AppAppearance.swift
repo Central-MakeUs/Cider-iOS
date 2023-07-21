@@ -24,6 +24,11 @@ final class AppAppearance {
         let tabBarItemappearance = UITabBarItem.appearance()
         let attributes = [NSAttributedString.Key.font: CustomFont.PretendardBold(size: FontSize(rawValue: 10)!).font]
         tabBarItemappearance.setTitleTextAttributes(attributes as [NSAttributedString.Key : Any], for: .normal)
+        
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.backgroundColor = .white
+        UITabBar.appearance().standardAppearance = tabBarAppearance
+        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
     }
     
 }
