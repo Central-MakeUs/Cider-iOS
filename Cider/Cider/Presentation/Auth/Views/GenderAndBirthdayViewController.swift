@@ -217,8 +217,8 @@ private extension GenderAndBirthdayViewController {
         let toolbar = UIToolbar()
         toolbar.barTintColor = .white
         toolbar.sizeToFit()
-        let cancelButton =  UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didTapCancel))
-        let doneButton =  UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDone))
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didTapCancel))
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDone))
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolbar.setItems([cancelButton, space, doneButton], animated: true)
         birthdayTextField.inputAccessoryView = toolbar

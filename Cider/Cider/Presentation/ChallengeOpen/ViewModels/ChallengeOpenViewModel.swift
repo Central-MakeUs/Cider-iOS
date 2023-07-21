@@ -46,7 +46,7 @@ final class ChallengeOpenViewModel: ViewModelType {
     }
     
     func selectChallengeType(_ type: ChallengeType) {
-        challengeType = type.getAlphabet()
+        challengeType = type.alphabet
     }
     
     func changeChallengeName(_ challengeName: String) {

@@ -13,12 +13,20 @@
 		FA2A06502A68DF5B00AC649F /* PrecautionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A064F2A68DF5B00AC649F /* PrecautionViewModel.swift */; };
 		FA2A06522A68F19700AC649F /* ReviewInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A06512A68F19700AC649F /* ReviewInfoView.swift */; };
 		FA2A06542A68F31C00AC649F /* ChallengeCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A06532A68F31C00AC649F /* ChallengeCompleteViewController.swift */; };
+		FA2A06582A69014100AC649F /* ChallengeHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A06572A69014100AC649F /* ChallengeHomeView.swift */; };
 		FA2F052F2A683E9E00E2CCF2 /* Notification.Name+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2F052E2A683E9E00E2CCF2 /* Notification.Name+Extension.swift */; };
 		FA316D672A63A15100C7AA88 /* OnboardingCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D662A63A15100C7AA88 /* OnboardingCompleteViewController.swift */; };
 		FA316D692A63A18700C7AA88 /* MainTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D682A63A18700C7AA88 /* MainTitleLabel.swift */; };
 		FA316D6C2A63BAB500C7AA88 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D6B2A63BAB500C7AA88 /* TabBarViewController.swift */; };
 		FA316D6F2A63FE8E00C7AA88 /* WritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D6E2A63FE8E00C7AA88 /* WritingViewController.swift */; };
 		FA316D742A64155B00C7AA88 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D732A64155B00C7AA88 /* UserManager.swift */; };
+		FA31A9442A6A33BE004D1C3B /* ChallengeHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA31A9432A6A33BE004D1C3B /* ChallengeHomeCell.swift */; };
+		FA31A9462A6A4BB8004D1C3B /* CiderInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA31A9452A6A4BB8004D1C3B /* CiderInfoView.swift */; };
+		FA32B8362A6A4F0B0086497D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B8352A6A4F0B0086497D /* HomeViewController.swift */; };
+		FA32B8382A6A67EA0086497D /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B8372A6A67EA0086497D /* Item.swift */; };
+		FA32B83A2A6A6C2D0086497D /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B8392A6A6C2D0086497D /* HomeHeaderView.swift */; };
+		FA32B83C2A6A79070086497D /* HomeNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B83B2A6A79070086497D /* HomeNavigationView.swift */; };
+		FA32B83E2A6A848C0086497D /* BannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B83D2A6A848C0086497D /* BannerCell.swift */; };
 		FA348ED02A61170800EA3D04 /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ECF2A61170800EA3D04 /* NicknameViewModel.swift */; };
 		FA348ED32A61180400EA3D04 /* NicknameUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ED22A61180400EA3D04 /* NicknameUsecase.swift */; };
 		FA348ED52A61185500EA3D04 /* NicknameRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ED42A61185500EA3D04 /* NicknameRepository.swift */; };
@@ -107,12 +115,20 @@
 		FA2A064F2A68DF5B00AC649F /* PrecautionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecautionViewModel.swift; sourceTree = "<group>"; };
 		FA2A06512A68F19700AC649F /* ReviewInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewInfoView.swift; sourceTree = "<group>"; };
 		FA2A06532A68F31C00AC649F /* ChallengeCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCompleteViewController.swift; sourceTree = "<group>"; };
+		FA2A06572A69014100AC649F /* ChallengeHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeHomeView.swift; sourceTree = "<group>"; };
 		FA2F052E2A683E9E00E2CCF2 /* Notification.Name+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+Extension.swift"; sourceTree = "<group>"; };
 		FA316D662A63A15100C7AA88 /* OnboardingCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompleteViewController.swift; sourceTree = "<group>"; };
 		FA316D682A63A18700C7AA88 /* MainTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTitleLabel.swift; sourceTree = "<group>"; };
 		FA316D6B2A63BAB500C7AA88 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		FA316D6E2A63FE8E00C7AA88 /* WritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingViewController.swift; sourceTree = "<group>"; };
 		FA316D732A64155B00C7AA88 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		FA31A9432A6A33BE004D1C3B /* ChallengeHomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeHomeCell.swift; sourceTree = "<group>"; };
+		FA31A9452A6A4BB8004D1C3B /* CiderInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderInfoView.swift; sourceTree = "<group>"; };
+		FA32B8352A6A4F0B0086497D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		FA32B8372A6A67EA0086497D /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		FA32B8392A6A6C2D0086497D /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
+		FA32B83B2A6A79070086497D /* HomeNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationView.swift; sourceTree = "<group>"; };
+		FA32B83D2A6A848C0086497D /* BannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCell.swift; sourceTree = "<group>"; };
 		FA348ECF2A61170800EA3D04 /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
 		FA348ED22A61180400EA3D04 /* NicknameUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameUsecase.swift; sourceTree = "<group>"; };
 		FA348ED42A61185500EA3D04 /* NicknameRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameRepository.swift; sourceTree = "<group>"; };
@@ -208,6 +224,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA2A06552A69006B00AC649F /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				FA31A9472A6A4E30004D1C3B /* Views */,
+				FA2A06562A69010A00AC649F /* SubViews */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		FA2A06562A69010A00AC649F /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				FA2A06572A69014100AC649F /* ChallengeHomeView.swift */,
+				FA31A9432A6A33BE004D1C3B /* ChallengeHomeCell.swift */,
+				FA31A9452A6A4BB8004D1C3B /* CiderInfoView.swift */,
+				FA32B8392A6A6C2D0086497D /* HomeHeaderView.swift */,
+				FA32B83B2A6A79070086497D /* HomeNavigationView.swift */,
+				FA32B83D2A6A848C0086497D /* BannerCell.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
 		FA316D6A2A63BA8B00C7AA88 /* Tabbar */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +274,7 @@
 				FA3AE4082A57D3D70078A4DF /* ViewModelType.swift */,
 				FA4DDB8F2A4D57D5002EDEAD /* ProcessType.swift */,
 				FAD6E3D52A64F2F5002C8007 /* WritingType.swift */,
+				FA32B8372A6A67EA0086497D /* Item.swift */,
 			);
 			path = Type;
 			sourceTree = "<group>";
@@ -248,6 +287,14 @@
 				FA316D732A64155B00C7AA88 /* UserManager.swift */,
 			);
 			path = Storages;
+			sourceTree = "<group>";
+		};
+		FA31A9472A6A4E30004D1C3B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA32B8352A6A4F0B0086497D /* HomeViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		FA3AE4052A57D2850078A4DF /* ViewModels */ = {
@@ -274,6 +321,7 @@
 		FA44D38D2A4C3CB10037E328 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				FA2A06552A69006B00AC649F /* Home */,
 				FA316D6D2A63FE5B00C7AA88 /* Writing */,
 				FA316D6A2A63BA8B00C7AA88 /* Tabbar */,
 				FA57AF672A5D7374008A5991 /* ChallengeOpen */,
@@ -648,6 +696,7 @@
 				FA6C216B2A5A78C4008A9ADD /* RandomNicknameView.swift in Sources */,
 				FA57AF4D2A5D0E2A008A5991 /* Keychain.swift in Sources */,
 				FA3AE4092A57D3D70078A4DF /* ViewModelType.swift in Sources */,
+				FA2A06582A69014100AC649F /* ChallengeHomeView.swift in Sources */,
 				FA3C432A2A62F1FB009E820B /* OnboardingResponse.swift in Sources */,
 				FA6C21672A5A4DD3008A9ADD /* CiderTextFieldView.swift in Sources */,
 				FA6100322A59AD8D002175CE /* GradientView.swift in Sources */,
@@ -660,6 +709,8 @@
 				FA39D8492A4EA829001C7E0A /* AppAppearance.swift in Sources */,
 				FA2A06542A68F31C00AC649F /* ChallengeCompleteViewController.swift in Sources */,
 				FA44D3A12A4C5D070037E328 /* UIView+Extension.swift in Sources */,
+				FA31A9462A6A4BB8004D1C3B /* CiderInfoView.swift in Sources */,
+				FA32B8362A6A4F0B0086497D /* HomeViewController.swift in Sources */,
 				FA57AF6D2A5D76EF008A5991 /* UIPreview.swift in Sources */,
 				FA57AF662A5D6EF5008A5991 /* ChallengeOpenViewController.swift in Sources */,
 				FA6AE8B22A6047CB00512EE1 /* UITextView+Extension.swift in Sources */,
@@ -668,6 +719,8 @@
 				FA3C43252A62ECBA009E820B /* OnboardingUsecase.swift in Sources */,
 				FA758AC82A5EF418003E2F07 /* StarTitleLabel.swift in Sources */,
 				FAD6E3D62A64F2F5002C8007 /* WritingType.swift in Sources */,
+				FA32B83A2A6A6C2D0086497D /* HomeHeaderView.swift in Sources */,
+				FA32B8382A6A67EA0086497D /* Item.swift in Sources */,
 				FA758ACA2A5EF528003E2F07 /* ChallengeOpenSelectionView.swift in Sources */,
 				FA57AF6B2A5D73F8008A5991 /* ChallengeOpenCell.swift in Sources */,
 				FA2A06502A68DF5B00AC649F /* PrecautionViewModel.swift in Sources */,
@@ -696,6 +749,7 @@
 				FA57AF602A5D1851008A5991 /* Encodable+Extension.swift in Sources */,
 				FA553EBF2A5C141B00DAE63B /* LoginUsecase.swift in Sources */,
 				FA6100282A57FA46002175CE /* ChallengeType.swift in Sources */,
+				FA31A9442A6A33BE004D1C3B /* ChallengeHomeCell.swift in Sources */,
 				FA4DDB972A4D66CB002EDEAD /* ServiceAgreeDetailCell.swift in Sources */,
 				FAB9A73F2A4C8DAB00757A80 /* ProcessView.swift in Sources */,
 				FA2A06522A68F19700AC649F /* ReviewInfoView.swift in Sources */,
@@ -708,7 +762,9 @@
 				FA2F052F2A683E9E00E2CCF2 /* Notification.Name+Extension.swift in Sources */,
 				FA6100342A59BAEA002175CE /* ServiceAgreeViewModel.swift in Sources */,
 				FA6100262A57F725002175CE /* ChallengeSelectionViewController.swift in Sources */,
+				FA32B83E2A6A848C0086497D /* BannerCell.swift in Sources */,
 				FA57AF5A2A5D154C008A5991 /* LoginResponse.swift in Sources */,
+				FA32B83C2A6A79070086497D /* HomeNavigationView.swift in Sources */,
 				FA8CA6092A46D322005A6709 /* SceneDelegate.swift in Sources */,
 				FA57AF572A5D14CC008A5991 /* LoginRequest.swift in Sources */,
 				FA57AF452A5C16EE008A5991 /* LoginViewModel.swift in Sources */,

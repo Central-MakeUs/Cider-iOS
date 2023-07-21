@@ -64,8 +64,8 @@ private extension ChallengeCompleteViewController {
     }
     
     func setNavigationBar() {
-        self.navigationController?.navigationBar.topItem?.title = "챌린지 신청 완료"
-        self.navigationItem.title = ""
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationItem.title = "챌린지 신청 완료"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: homeButton)
     }
     
