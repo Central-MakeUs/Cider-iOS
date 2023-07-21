@@ -12,6 +12,7 @@ final class HomeViewController: UIViewController {
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.register(ChallengeHomeCell.self, forCellWithReuseIdentifier: ChallengeHomeCell.identifier)
+        collectionView.register(BannerCell.self, forCellWithReuseIdentifier: BannerCell.identifier)
         collectionView.register(HomeHeaderView.self, forSupplementaryViewOfKind: HomeHeaderView.identifier, withReuseIdentifier: HomeHeaderView.identifier)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.keyboardDismissMode = .onDrag
@@ -25,8 +26,9 @@ final class HomeViewController: UIViewController {
     }()
     
     private enum Section: Int {
-        case popluarChallenge = 0
-        case publicChallenge = 1
+        case banner = 0
+        case popluarChallenge = 1
+        case publicChallenge = 2
     }
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
@@ -72,6 +74,13 @@ private extension HomeViewController {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { [weak self] collectionView, indexPath, itemIdentifier in
             let section = Section(rawValue: indexPath.section)
             switch section {
+            case .banner:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BannerCell.identifier, for: indexPath) as? BannerCell else {
+                    return UICollectionViewCell()
+                }
+                cell.setUp(0)
+                return cell
+                
             case .popluarChallenge:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeHomeCell.identifier, for: indexPath) as? ChallengeHomeCell else {
                     return UICollectionViewCell()
@@ -94,10 +103,10 @@ private extension HomeViewController {
                     return UICollectionViewCell()
                 }
                 cell.setUp(
-                    type: .financialTech,
+                    type: .moneySaving,
                     isReward: true,
                     date: "1주",
-                    ranking: "1위",
+                    ranking: nil,
                     title: "만보걷기",
                     status: "종료",
                     people: "5명 모집중",
@@ -120,7 +129,7 @@ private extension HomeViewController {
                     withReuseIdentifier: HomeHeaderView.identifier,
                     for: indexPath
                 ) as? HomeHeaderView
-                headerView?.setUp(leftTitle: "인기 챌린지", rightTitle: "더보기 >")
+                headerView?.setUp(leftTitle: "인기 챌린지", rightTitle: "더보기  >")
                 return headerView
                 
             case .publicChallenge:
@@ -132,7 +141,7 @@ private extension HomeViewController {
                 headerView?.setUp(leftTitle: "바로 참여 가능! 공식 챌린지", rightTitle: "더보기 >")
                 return headerView
                 
-            case .none:
+            default:
                 return nil
             }
         }
@@ -140,6 +149,8 @@ private extension HomeViewController {
     
     func applySnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+        snapshot.appendSections([.banner])
+        snapshot.appendItems([Item(),Item(),Item(),Item(),Item(),Item()])
         snapshot.appendSections([.popluarChallenge])
         snapshot.appendItems([Item(),Item(),Item(),Item(),Item(),Item()])
         snapshot.appendSections([.publicChallenge])
@@ -151,6 +162,9 @@ private extension HomeViewController {
         return UICollectionViewCompositionalLayout { [weak self] (sectionNumber, _) -> NSCollectionLayoutSection? in
             let section = Section(rawValue: sectionNumber)
             switch section {
+            case .banner:
+                return self?.bannerSectionLayout()
+                
             case .publicChallenge:
                 return self?.challengeSectionLayout()
                 
@@ -160,8 +174,29 @@ private extension HomeViewController {
             default:
                 return nil
             }
-            
         }
+    }
+    
+    func bannerSectionLayout() -> NSCollectionLayoutSection {
+        let layoutSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .absolute(260)
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: .init(
+                widthDimension: layoutSize.widthDimension,
+                heightDimension: layoutSize.heightDimension
+            ),
+            subitems: [.init(layoutSize: layoutSize)]
+        )
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+        
+        section.interGroupSpacing = 0
+        section.orthogonalScrollingBehavior = .paging
+        return section
     }
     
     func challengeSectionLayout() -> NSCollectionLayoutSection {
@@ -179,7 +214,7 @@ private extension HomeViewController {
         )
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = .init(top: 20, leading: 20, bottom: 80, trailing: 20)
+        section.contentInsets = .init(top: 0, leading: 24, bottom: 32, trailing: 20)
         
         section.interGroupSpacing = 12
         section.orthogonalScrollingBehavior = .continuous
@@ -188,7 +223,7 @@ private extension HomeViewController {
             NSCollectionLayoutBoundarySupplementaryItem(
                 layoutSize: .init(
                     widthDimension: .absolute(view.safeAreaLayoutGuide.layoutFrame.width),
-                    heightDimension: .estimated(49)
+                    heightDimension: .absolute(49)
                 ),
                 elementKind: HomeHeaderView.identifier, alignment: .top)
         ]

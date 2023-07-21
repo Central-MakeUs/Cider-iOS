@@ -35,6 +35,15 @@ final class CiderInfoView: UIView {
         return label
     }()
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configure()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private func configure() {
         backgroundColor = .custom.main
         addSubviews(infoLabel, titleLabel, readingLabel)
@@ -43,7 +52,7 @@ final class CiderInfoView: UIView {
             infoLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             titleLabel.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 16),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            readingLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 24),
+            readingLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24),
             readingLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20)
         ])
     }
