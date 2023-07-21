@@ -38,7 +38,6 @@ final class ChallengeOpenViewController: UIViewController {
     private let challengeType: ChallengeType
     
     private enum Section { case main }
-    private struct Item: Hashable { let uuid = UUID() }
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     

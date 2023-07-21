@@ -21,6 +21,10 @@
 		FA316D6F2A63FE8E00C7AA88 /* WritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D6E2A63FE8E00C7AA88 /* WritingViewController.swift */; };
 		FA316D742A64155B00C7AA88 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D732A64155B00C7AA88 /* UserManager.swift */; };
 		FA31A9442A6A33BE004D1C3B /* ChallengeHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA31A9432A6A33BE004D1C3B /* ChallengeHomeCell.swift */; };
+		FA31A9462A6A4BB8004D1C3B /* CiderInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA31A9452A6A4BB8004D1C3B /* CiderInfoView.swift */; };
+		FA32B8362A6A4F0B0086497D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B8352A6A4F0B0086497D /* HomeViewController.swift */; };
+		FA32B8382A6A67EA0086497D /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B8372A6A67EA0086497D /* Item.swift */; };
+		FA32B83A2A6A6C2D0086497D /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B8392A6A6C2D0086497D /* HomeHeaderView.swift */; };
 		FA348ED02A61170800EA3D04 /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ECF2A61170800EA3D04 /* NicknameViewModel.swift */; };
 		FA348ED32A61180400EA3D04 /* NicknameUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ED22A61180400EA3D04 /* NicknameUsecase.swift */; };
 		FA348ED52A61185500EA3D04 /* NicknameRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ED42A61185500EA3D04 /* NicknameRepository.swift */; };
@@ -117,6 +121,10 @@
 		FA316D6E2A63FE8E00C7AA88 /* WritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingViewController.swift; sourceTree = "<group>"; };
 		FA316D732A64155B00C7AA88 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		FA31A9432A6A33BE004D1C3B /* ChallengeHomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeHomeCell.swift; sourceTree = "<group>"; };
+		FA31A9452A6A4BB8004D1C3B /* CiderInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderInfoView.swift; sourceTree = "<group>"; };
+		FA32B8352A6A4F0B0086497D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		FA32B8372A6A67EA0086497D /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		FA32B8392A6A6C2D0086497D /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		FA348ECF2A61170800EA3D04 /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
 		FA348ED22A61180400EA3D04 /* NicknameUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameUsecase.swift; sourceTree = "<group>"; };
 		FA348ED42A61185500EA3D04 /* NicknameRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameRepository.swift; sourceTree = "<group>"; };
@@ -215,6 +223,7 @@
 		FA2A06552A69006B00AC649F /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				FA31A9472A6A4E30004D1C3B /* Views */,
 				FA2A06562A69010A00AC649F /* SubViews */,
 			);
 			path = Home;
@@ -225,6 +234,8 @@
 			children = (
 				FA2A06572A69014100AC649F /* ChallengeHomeView.swift */,
 				FA31A9432A6A33BE004D1C3B /* ChallengeHomeCell.swift */,
+				FA31A9452A6A4BB8004D1C3B /* CiderInfoView.swift */,
+				FA32B8392A6A6C2D0086497D /* HomeHeaderView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -257,6 +268,7 @@
 				FA3AE4082A57D3D70078A4DF /* ViewModelType.swift */,
 				FA4DDB8F2A4D57D5002EDEAD /* ProcessType.swift */,
 				FAD6E3D52A64F2F5002C8007 /* WritingType.swift */,
+				FA32B8372A6A67EA0086497D /* Item.swift */,
 			);
 			path = Type;
 			sourceTree = "<group>";
@@ -269,6 +281,14 @@
 				FA316D732A64155B00C7AA88 /* UserManager.swift */,
 			);
 			path = Storages;
+			sourceTree = "<group>";
+		};
+		FA31A9472A6A4E30004D1C3B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA32B8352A6A4F0B0086497D /* HomeViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		FA3AE4052A57D2850078A4DF /* ViewModels */ = {
@@ -683,6 +703,8 @@
 				FA39D8492A4EA829001C7E0A /* AppAppearance.swift in Sources */,
 				FA2A06542A68F31C00AC649F /* ChallengeCompleteViewController.swift in Sources */,
 				FA44D3A12A4C5D070037E328 /* UIView+Extension.swift in Sources */,
+				FA31A9462A6A4BB8004D1C3B /* CiderInfoView.swift in Sources */,
+				FA32B8362A6A4F0B0086497D /* HomeViewController.swift in Sources */,
 				FA57AF6D2A5D76EF008A5991 /* UIPreview.swift in Sources */,
 				FA57AF662A5D6EF5008A5991 /* ChallengeOpenViewController.swift in Sources */,
 				FA6AE8B22A6047CB00512EE1 /* UITextView+Extension.swift in Sources */,
@@ -691,6 +713,8 @@
 				FA3C43252A62ECBA009E820B /* OnboardingUsecase.swift in Sources */,
 				FA758AC82A5EF418003E2F07 /* StarTitleLabel.swift in Sources */,
 				FAD6E3D62A64F2F5002C8007 /* WritingType.swift in Sources */,
+				FA32B83A2A6A6C2D0086497D /* HomeHeaderView.swift in Sources */,
+				FA32B8382A6A67EA0086497D /* Item.swift in Sources */,
 				FA758ACA2A5EF528003E2F07 /* ChallengeOpenSelectionView.swift in Sources */,
 				FA57AF6B2A5D73F8008A5991 /* ChallengeOpenCell.swift in Sources */,
 				FA2A06502A68DF5B00AC649F /* PrecautionViewModel.swift in Sources */,

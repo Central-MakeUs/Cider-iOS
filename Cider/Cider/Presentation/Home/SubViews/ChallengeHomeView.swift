@@ -9,45 +9,37 @@ import UIKit
 
 final class ChallengeHomeView: UIView {
     
-    private let type: ChallengeType
-    private let status: String
-    private let isReward: Bool
-    private let date: String
-    
     private lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: type.backgroundImageName)
         return imageView
     }()
     
     private lazy var statusView: UIView = {
         let view = UIView()
         view.backgroundColor = .custom.gray6
-        view.layer.cornerRadius = 12
+        view.layer.cornerRadius = 10
         return view
     }()
     
     private lazy var statusLabel: UILabel = {
         let label = UILabel()
-        label.text = status
         label.font = CustomFont.PretendardRegular(size: .sm).font
         label.textColor = .white
         return label
     }()
     
     private lazy var rewardLabel: ChallengeTagLabel = {
-        let label = ChallengeTagLabel(title: "리워드")
-        label.isHidden = !isReward
+        let label = ChallengeTagLabel()
         return label
     }()
     
     private lazy var typeLabel: ChallengeTagLabel = {
-        let label = ChallengeTagLabel(title: type.koreanName)
+        let label = ChallengeTagLabel()
         return label
     }()
     
     private lazy var dateLabel: ChallengeTagLabel = {
-        let label = ChallengeTagLabel(title: date)
+        let label = ChallengeTagLabel()
         return label
     }()
     
@@ -58,12 +50,8 @@ final class ChallengeHomeView: UIView {
         return button
     }()
     
-    init(type: ChallengeType, status: String, isReward: Bool, date: String) {
-        self.type = type
-        self.status = status
-        self.isReward = isReward
-        self.date = date
-        super.init(frame: .zero)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         configure()
     }
     
@@ -97,18 +85,29 @@ final class ChallengeHomeView: UIView {
         ])
     }
     
+    func setUp(
+        type: ChallengeType,
+        status: String,
+        isReward: Bool,
+        date: String
+    ) {
+        backgroundImageView.image = UIImage(named: type.backgroundImageName)
+        statusLabel.text = status
+        rewardLabel.isHidden = !isReward
+        rewardLabel.setUp(title: "리워드")
+        typeLabel.setUp(title: type.koreanName)
+        dateLabel.setUp(title: date)
+    }
+    
 }
 
 final class ChallengeTagLabel: UILabel {
     
-    private let title: String
     private var padding = UIEdgeInsets(top: 2.0, left: 6.0, bottom: 2.0, right: 6.0)
     
-    init(title: String) {
-        self.title = title
-        super.init(frame: .zero)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         configure()
-        setCornerRadius()
     }
     
     required init?(coder: NSCoder) {
@@ -124,23 +123,27 @@ final class ChallengeTagLabel: UILabel {
     }
     
     private func configure() {
-        text = title
         textAlignment = .center
         font = CustomFont.PretendardRegular(size: .sm).font
         textColor = .custom.gray8
         backgroundColor = .white.withAlphaComponent(0.8)
         layer.borderColor = UIColor.custom.gray8?.cgColor
         layer.borderWidth = 0.5
-        clipsToBounds = true
     }
     
     private func setCornerRadius() {
+        clipsToBounds = true
         let width = super.intrinsicContentSize.width
         let height = super.intrinsicContentSize.height
         let longLength = width > height ? width : height
         let shortLength = width < height ? width : height
         let cornerRadius = (longLength * (shortLength/longLength))/2 * 1.2
         layer.cornerRadius = cornerRadius
+    }
+    
+    func setUp(title: String) {
+        text = title
+        setCornerRadius()
     }
     
 }
@@ -153,7 +156,8 @@ struct ChallengeHomeView_Preview: PreviewProvider {
     static var previews: some View {
         
         UIViewPreview {
-            let view = ChallengeHomeView(type: .financialTech, status: "모집중", isReward: false, date: "1주")
+            let view = ChallengeHomeView()
+            view.setUp(type: .financialTech, status: "모집중", isReward: true, date: "10주")
             return view
         }
         .previewLayout(.fixed(width: 150, height: 192))

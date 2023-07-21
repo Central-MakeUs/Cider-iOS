@@ -9,22 +9,12 @@ import UIKit
 
 final class ChallengeHomeCell: UICollectionViewCell {
     
-    private let type: ChallengeType
-    private let status: String
-    private let isReward: Bool
-    private let date: String
-    private let ranking: String?
-    private let title: String
-    private let people: String
-    private let isPublic: Bool
-    private let dDay: String
+    static let identifier = "ChallengeHomeCell"
 
-    
     private lazy var rankingLabel: UILabel = {
         let label = UILabel()
         label.textColor = .custom.main
         label.font = CustomFont.PretendardBold(size: .xs).font
-        label.text = ranking
         return label
     }()
     
@@ -32,7 +22,6 @@ final class ChallengeHomeCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .custom.text
         label.font = CustomFont.PretendardBold(size: .xl).font
-        label.text = title
         return label
     }()
 
@@ -40,7 +29,6 @@ final class ChallengeHomeCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .custom.gray6
         label.font = CustomFont.PretendardRegular(size: .xs).font
-        label.text = people
         return label
     }()
 
@@ -49,7 +37,6 @@ final class ChallengeHomeCell: UICollectionViewCell {
         label.text = "공식 챌린지"
         label.textColor = .custom.gray6
         label.font = CustomFont.PretendardRegular(size: .xs).font
-        label.isHidden = !isPublic
         return label
     }()
 
@@ -73,12 +60,11 @@ final class ChallengeHomeCell: UICollectionViewCell {
         imageView.image = UIImage(named: "line_certificate_16")
         imageView.heightAnchor.constraint(equalToConstant: 16).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 16).isActive = true
-        imageView.isHidden = !isPublic
         return imageView
     }()
     
     private lazy var challengeHomeView: ChallengeHomeView = {
-        let view = ChallengeHomeView(type: type, status: status, isReward: isReward, date: date)
+        let view = ChallengeHomeView()
         return view
     }()
     
@@ -87,31 +73,12 @@ final class ChallengeHomeCell: UICollectionViewCell {
         stackView.axis = .vertical
         return stackView
     }()
-
-    
-    init(type: ChallengeType, isReward: Bool, date: String, ranking: String?, title: String, status: String, people: String, isPublic: Bool, dDay: String) {
-        self.type = type
-        self.isReward = isReward
-        self.date = date
-        self.ranking = ranking
-        self.title = title
-        self.status = status
-        self.people = people
-        self.isPublic = isPublic
-        self.dDay = dDay
-        super.init(frame: .zero)
-        configure()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
 }
 
 private extension ChallengeHomeCell {
     
-    func configure() {
+    func configure(ranking: String?) {
         contentView.addSubviews(challengeHomeView, stackView, peopleLabel, publicLabel,
                                 dDayLabel, peopleImageView, publicImageView)
         stackView.addArrangedSubviews(ranking == nil ? titleLabel : rankingLabel, titleLabel)
@@ -139,6 +106,29 @@ private extension ChallengeHomeCell {
     
 }
 
+extension ChallengeHomeCell {
+    func setUp(
+        type: ChallengeType,
+        isReward: Bool,
+        date: String,
+        ranking: String?,
+        title: String,
+        status: String,
+        people: String,
+        isPublic: Bool,
+        dDay: String
+    ) {
+        rankingLabel.text = ranking
+        titleLabel.text = title
+        peopleLabel.text = people
+        publicLabel.isHidden = !isPublic
+        dDayLabel.text = dDay
+        publicImageView.isHidden = !isPublic
+        configure(ranking: ranking)
+        challengeHomeView.setUp(type: type, status: status, isReward: isReward, date: date)
+    }
+}
+
 
 #if DEBUG
 import SwiftUI
@@ -146,9 +136,10 @@ import SwiftUI
 @available(iOS 13.0, *)
 struct ChallengeHomeCell_Preview: PreviewProvider {
     static var previews: some View {
-        
+
         UIViewPreview {
-            let view = ChallengeHomeCell(type: .moneyManagement, isReward: true, date: "3주", ranking: "1위", title: "만보 걷기", status: "모집중", people: "5명 진행중", isPublic: true, dDay: "D-32")
+            let view = ChallengeHomeCell()
+            view.setUp(type: .financialTech, isReward: true, date: "1주", ranking: "1위", title: "만보걷기", status: "종료", people: "5명 모집중", isPublic: true, dDay: "D-12")
             return view
         }
         .previewLayout(.fixed(width: 150, height: 192))
