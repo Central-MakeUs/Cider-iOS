@@ -10,6 +10,9 @@ import UIKit
 final class ChallengeHomeView: UIView {
     
     private let type: ChallengeType
+    private let status: String
+    private let isReward: Bool
+    private let date: String
     
     private lazy var statusView: UIView = {
         let view = UIView()
@@ -20,7 +23,7 @@ final class ChallengeHomeView: UIView {
     
     private lazy var statusLabel: UILabel = {
         let label = UILabel()
-        label.text = "모집중"
+        label.text = status
         label.font = CustomFont.PretendardRegular(size: .sm).font
         label.textColor = .white
         return label
@@ -28,6 +31,7 @@ final class ChallengeHomeView: UIView {
     
     private lazy var rewardLabel: ChallengeTagLabel = {
         let label = ChallengeTagLabel(title: "리워드")
+        label.isHidden = !isReward
         return label
     }()
     
@@ -37,7 +41,7 @@ final class ChallengeHomeView: UIView {
     }()
     
     private lazy var dateLabel: ChallengeTagLabel = {
-        let label = ChallengeTagLabel(title: "1주")
+        let label = ChallengeTagLabel(title: date)
         return label
     }()
     
@@ -47,8 +51,11 @@ final class ChallengeHomeView: UIView {
         return button
     }()
     
-    init(type: ChallengeType) {
+    init(type: ChallengeType, status: String, isReward: Bool, date: String) {
         self.type = type
+        self.status = status
+        self.isReward = isReward
+        self.date = date
         super.init(frame: .zero)
         configure()
     }
@@ -109,7 +116,7 @@ final class ChallengeTagLabel: UILabel {
         textAlignment = .center
         font = CustomFont.PretendardRegular(size: .sm).font
         textColor = .custom.gray8
-        backgroundColor = .white
+        backgroundColor = .white.withAlphaComponent(0.8)
         layer.borderColor = UIColor.custom.gray8?.cgColor
         layer.borderWidth = 0.5
     }
@@ -133,7 +140,7 @@ struct ChallengeHomeView_Preview: PreviewProvider {
     static var previews: some View {
         
         UIViewPreview {
-            let view = ChallengeHomeView(type: .financialTech)
+            let view = ChallengeHomeView(type: .financialTech, status: "모집중", isReward: false, date: "1주")
             return view
         }
         .previewLayout(.fixed(width: 150, height: 192))
