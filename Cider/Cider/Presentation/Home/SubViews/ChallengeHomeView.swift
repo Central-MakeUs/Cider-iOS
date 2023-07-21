@@ -14,6 +14,12 @@ final class ChallengeHomeView: UIView {
     private let isReward: Bool
     private let date: String
     
+    private lazy var backgroundImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: type.backgroundImageName)
+        return imageView
+    }()
+    
     private lazy var statusView: UIView = {
         let view = UIView()
         view.backgroundColor = .custom.gray6
@@ -36,7 +42,7 @@ final class ChallengeHomeView: UIView {
     }()
     
     private lazy var typeLabel: ChallengeTagLabel = {
-        let label = ChallengeTagLabel(title: type.getKoreanName())
+        let label = ChallengeTagLabel(title: type.koreanName)
         return label
     }()
     
@@ -65,9 +71,12 @@ final class ChallengeHomeView: UIView {
     }
     
     private func configure() {
-        backgroundColor = .blue
-        addSubviews(statusView, rewardLabel, typeLabel, dateLabel, statusLabel, heartButton)
+        addSubviews(backgroundImageView, statusView, rewardLabel, typeLabel, dateLabel, statusLabel, heartButton)
         NSLayoutConstraint.activate([
+            backgroundImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundImageView.topAnchor.constraint(equalTo: topAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
             statusView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             statusView.topAnchor.constraint(equalTo: topAnchor, constant: 11.5),
             statusView.widthAnchor.constraint(equalToConstant: 53),

@@ -16,7 +16,7 @@ enum ChallengeType {
 }
 
 extension ChallengeType {
-    func getSelectedName() -> String {
+    var selectedName: String {
         switch self {
         case .financialTech:
             return "financialTechSelected"
@@ -29,7 +29,7 @@ extension ChallengeType {
         }
     }
     
-    func getUnselectedName() -> String {
+    var unselectedName: String {
         switch self {
         case .financialTech:
             return "financialTechUnselected"
@@ -42,7 +42,7 @@ extension ChallengeType {
         }
     }
     
-    func getKoreanName() -> String {
+    var koreanName: String {
         switch self {
         case .financialTech:
             return "재테크"
@@ -55,7 +55,7 @@ extension ChallengeType {
         }
     }
     
-    func getColor() -> UIColor? {
+    var color: UIColor? {
         switch self {
         case .financialTech:
             return .custom.btnMint
@@ -68,7 +68,7 @@ extension ChallengeType {
         }
     }
     
-    func getAlphabet() -> String {
+    var alphabet: String {
         switch self {
         case .financialTech:
             return "T"
@@ -78,6 +78,19 @@ extension ChallengeType {
             return "M"
         case .financialLearning:
             return "L"
+        }
+    }
+    
+    var backgroundImageName: String {
+        switch self {
+        case .financialTech:
+            return "financialTechBG"
+        case .moneySaving:
+            return "moneySavingBG"
+        case .moneyManagement:
+            return "moneyManagementBG"
+        case .financialLearning:
+            return "financialLearningBG"
         }
     }
     

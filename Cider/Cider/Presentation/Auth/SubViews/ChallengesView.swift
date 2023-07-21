@@ -41,14 +41,14 @@ final class ChallengeView: UIView {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = type.getKoreanName()
+        label.text = type.koreanName
         label.font = CustomFont.PretendardBold(size: .xl2).font
         return label
     }()
     
     private lazy var challengeImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: type.getUnselectedName())
+        imageView.image = UIImage(named: type.unselectedName)
         imageView.heightAnchor.constraint(equalToConstant: 36).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 36).isActive = true
         return imageView
@@ -83,9 +83,9 @@ final class ChallengeView: UIView {
     
     func setStyle(_ style: CiderSelectionStyle) {
         titleLabel.textColor = style == .unselected ? .custom.gray4 : .white
-        challengeImageView.image = UIImage(named: style == .unselected ? type.getUnselectedName() : type.getSelectedName())
+        challengeImageView.image = UIImage(named: style == .unselected ? type.unselectedName : type.selectedName)
         layer.borderColor = style == .unselected ? UIColor.custom.gray2?.cgColor : UIColor.clear.cgColor
-        backgroundColor = style == .unselected ? .custom.gray1 : type.getColor()
+        backgroundColor = style == .unselected ? .custom.gray1 : type.color
     }
     
     func addTapGesture(_ target: Any?, action: Selector) {
