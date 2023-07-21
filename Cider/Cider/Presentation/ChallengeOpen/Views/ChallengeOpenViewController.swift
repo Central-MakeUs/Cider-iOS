@@ -104,10 +104,8 @@ private extension ChallengeOpenViewController {
     }
     
     func setNavigationBar() {
-        func setNavigationBar() {
-            self.navigationController?.navigationBar.topItem?.title = ""
-            self.navigationItem.title = "챌린지 개설"
-        }
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationItem.title = "챌린지 개설"
     }
     
     func setUpDataSource() {
@@ -194,12 +192,12 @@ private extension ChallengeOpenViewController {
     
     @objc func didTapSuccessMissionView(_ sender: Any?) {
         missionType = .success
-       self.present(imagePickerController, animated: true)
+        self.present(imagePickerController, animated: true)
     }
     
     @objc func didTapFailMissionView(_ sender: Any?) {
         missionType = .fail
-       self.present(imagePickerController, animated: true)
+        self.present(imagePickerController, animated: true)
     }
     
     @objc func didTapNextButton(_ sender: Any?) {
@@ -242,13 +240,13 @@ import SwiftUI
 @available(iOS 13.0, *)
 struct ChallengeOpenViewController_Preview: PreviewProvider {
     static var devices = ["iPhone 12", "iPhone SE", "iPhone 11 Pro Max"]
-
+    
     static var previews: some View {
         ForEach(devices, id: \.self) { deviceName in
             ChallengeOpenViewController(challengeType: .financialLearning, viewModel: ChallengeOpenViewModel())
-            .toPreview()
-            .previewDevice(PreviewDevice(rawValue: deviceName))
-            .previewDisplayName(deviceName)
+                .toPreview()
+                .previewDevice(PreviewDevice(rawValue: deviceName))
+                .previewDisplayName(deviceName)
         }
     }
 }
