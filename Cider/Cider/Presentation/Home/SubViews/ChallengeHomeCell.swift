@@ -71,6 +71,7 @@ final class ChallengeHomeCell: UICollectionViewCell {
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
+        stackView.spacing = 2
         return stackView
     }()
     
@@ -90,7 +91,6 @@ private extension ChallengeHomeCell {
             stackView.topAnchor.constraint(equalTo: challengeHomeView.bottomAnchor, constant: 8),
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 6),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -6),
-            stackView.heightAnchor.constraint(equalToConstant: ranking == nil ? 22 : 36),
             peopleImageView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 4),
             peopleImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 6),
             peopleLabel.centerYAnchor.constraint(equalTo: peopleImageView.centerYAnchor),

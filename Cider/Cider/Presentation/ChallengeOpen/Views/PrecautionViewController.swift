@@ -68,6 +68,11 @@ final class PrecautionViewController: UIViewController {
         super.viewDidLoad()
         setUp()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigationBar()
+    }
 
 }
 
@@ -109,6 +114,11 @@ private extension PrecautionViewController {
     func pushChallengeOpenCompleteViewController() {
         let viewController = ChallengeCompleteViewController()
         self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func setNavigationBar() {
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationItem.title = "유의사항"
     }
     
 }

@@ -104,8 +104,10 @@ private extension ChallengeOpenViewController {
     }
     
     func setNavigationBar() {
-        self.navigationController?.navigationBar.topItem?.title = "챌린지 개설"
-        self.navigationItem.title = ""
+        func setNavigationBar() {
+            self.navigationController?.navigationBar.topItem?.title = ""
+            self.navigationItem.title = "챌린지 개설"
+        }
     }
     
     func setUpDataSource() {
