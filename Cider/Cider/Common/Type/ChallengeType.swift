@@ -94,4 +94,17 @@ extension ChallengeType {
         }
     }
     
+    var infoMessage: String {
+        switch self {
+        case .financialTech:
+            return "돈을 버는 습관을 길러주는 재테크 챌린지를 소개해요"
+        case .moneySaving:
+            return "불필요한 지출 줄이고 절약하는 챌린지를 소개해요"
+        case .moneyManagement:
+            return "상태 파악 및 관리 습관을 만드는 챌린지를 소개해요"
+        case .financialLearning:
+            return "재테크, 금융, 투자에 대한 지식을 쌓는 챌린지를 소개해요"
+        }
+    }
+    
 }
