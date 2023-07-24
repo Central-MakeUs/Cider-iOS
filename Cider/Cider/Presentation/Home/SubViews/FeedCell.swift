@@ -83,13 +83,15 @@ class FeedCell: UICollectionViewCell {
     private lazy var challengeTypeLabel: UILabel = {
         let label = UILabel()
         label.font = CustomFont.PretendardBold(size: .sm).font
+        label.setContentHuggingPriority(UILayoutPriority(252), for: .horizontal)
         return label
     }()
     
     private lazy var challengeTitleLabel: UILabel = {
         let label = UILabel()
         label.font = CustomFont.PretendardRegular(size: .sm).font
-        label.textColor = .custom.gray4
+        label.textColor = .custom.gray6
+        label.setContentCompressionResistancePriority(UILayoutPriority(749), for: .horizontal)
         return label
     }()
     
@@ -97,6 +99,7 @@ class FeedCell: UICollectionViewCell {
         let label = UILabel()
         label.font = CustomFont.PretendardRegular(size: .sm).font
         label.textColor = .custom.gray5
+        label.setContentHuggingPriority(UILayoutPriority(252), for: .horizontal)
         return label
     }()
     
@@ -107,7 +110,7 @@ class FeedCell: UICollectionViewCell {
     }()
     
     private lazy var challengeTypeStackView: UIStackView = {
-        let stackView = UIStackView(axis: .horizontal, alignment: .center, distribution: .fillEqually, spacing: 4)
+        let stackView = UIStackView(axis: .horizontal, alignment: .center, distribution: .fill, spacing: 4)
         stackView.addArrangedSubviews(challengeTypeLabel, challengeTitleLabel, peopleImageView, peopleLabel)
         stackView.setCustomSpacing(0, after: peopleImageView)
         return stackView
@@ -134,6 +137,12 @@ class FeedCell: UICollectionViewCell {
         return label
     }()
     
+    private lazy var bottomView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .custom.gray2
+        return view
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         configure()
@@ -145,11 +154,11 @@ class FeedCell: UICollectionViewCell {
     
     private func configure() {
         addSubviews(profileImageView, nicknameLabel, levelLabel, dateLabel, meatballButton,
-                    moreButton, mainTitleLabel, subTitleLabel, feedImageView, challengeTypeStackView, roundView, heartImageView, heartLabel)
+                    moreButton, mainTitleLabel, subTitleLabel, feedImageView, challengeTypeStackView, roundView, heartImageView, heartLabel, bottomView)
         NSLayoutConstraint.activate([
             profileImageView.widthAnchor.constraint(equalToConstant: 36),
             profileImageView.heightAnchor.constraint(equalToConstant: 36),
-            profileImageView.topAnchor.constraint(equalTo: topAnchor),
+            profileImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             profileImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             nicknameLabel.topAnchor.constraint(equalTo: profileImageView.topAnchor),
             nicknameLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 6),
@@ -187,7 +196,12 @@ class FeedCell: UICollectionViewCell {
             heartImageView.widthAnchor.constraint(equalToConstant: 16),
             heartImageView.heightAnchor.constraint(equalToConstant: 16),
             heartImageView.topAnchor.constraint(equalTo: roundView.bottomAnchor, constant: 8.5),
-            heartImageView.trailingAnchor.constraint(equalTo: heartLabel.leadingAnchor, constant: -4)
+            heartImageView.trailingAnchor.constraint(equalTo: heartLabel.leadingAnchor, constant: -4),
+            bottomView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: -24),
+            bottomView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 24),
+            bottomView.heightAnchor.constraint(equalToConstant: 8),
+            bottomView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            challengeTitleLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 167)
         ])
     }
     

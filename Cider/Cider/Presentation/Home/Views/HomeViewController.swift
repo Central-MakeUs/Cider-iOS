@@ -132,7 +132,7 @@ private extension HomeViewController {
                     title: "만보걷기",
                     status: "종료",
                     people: "5명 모집중",
-                    isPublic: false,
+                    isPublic: true,
                     dDay: "D-12"
                 )
                 return cell
@@ -329,39 +329,22 @@ private extension HomeViewController {
     }
     
     func feedSectionLayout() -> NSCollectionLayoutSection {
-//        let layoutSize = NSCollectionLayoutSize(
-//            widthDimension: .fractionalWidth(1),
-//            heightDimension: .fractionalHeight(1)
-//        )
-//
-//        let group = NSCollectionLayoutGroup.vertical(
-//            layoutSize: .init(
-//                widthDimension: .fractionalWidth(1),
-//                heightDimension: .estimated(149+UIScreen.main.bounds.width+41+41-16-16)
-//            ),
-//            subitems: [.init(layoutSize: layoutSize)]
-//        )
-//
-//        let section = NSCollectionLayoutSection(group: group)
-//        section.contentInsets = .init(top: 0, leading: 0, bottom: 32, trailing: 0)
-//
-//        section.interGroupSpacing = 12
-//        section.orthogonalScrollingBehavior = .groupPaging
-        
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
-                                              , heightDimension: .fractionalHeight(1))
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(1)
+        )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
-                                               , heightDimension: .estimated(149+UIScreen.main.bounds.width+41+41-16-16))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize
-                                                     , subitems: [item])
-        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0
-                                                      , bottom: 8, trailing: 0)
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(149+UIScreen.main.bounds.width+41+41-16-16)
+        )
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize,
+                                                     subitems: [item])
+        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0)
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 24
-                                                        , bottom: 10, trailing: 24)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 24)
         
         section.boundarySupplementaryItems = [
             NSCollectionLayoutBoundarySupplementaryItem(
