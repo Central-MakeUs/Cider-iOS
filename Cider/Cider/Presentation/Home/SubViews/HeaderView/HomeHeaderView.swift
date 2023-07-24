@@ -25,6 +25,12 @@ class HomeHeaderView: UICollectionReusableView {
         return label
     }()
     
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView(axis: .horizontal, alignment: .fill, distribution: .fill, spacing: 4)
+        stackView.addArrangedSubviews(rightTitleLabel)
+        return stackView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -35,14 +41,14 @@ class HomeHeaderView: UICollectionReusableView {
     }
     
     private func configure() {
-        addSubviews(leftTitleLabel, rightTitleLabel)
+        addSubviews(leftTitleLabel, stackView)
         NSLayoutConstraint.activate([
             leftTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12),
             leftTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
             leftTitleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            rightTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
-            rightTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12),
-            rightTitleLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            stackView.topAnchor.constraint(equalTo: topAnchor, constant: 12),
+            stackView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
     
@@ -56,7 +62,7 @@ extension HomeHeaderView {
     }
     
     func addActionRightTitle(_ target: Any?, action: Selector) {
-        rightTitleLabel.addGestureRecognizer(UITapGestureRecognizer(target: target, action: action))
+        stackView.addGestureRecognizer(UITapGestureRecognizer(target: target, action: action))
     }
     
 }

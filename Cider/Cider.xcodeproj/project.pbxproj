@@ -48,6 +48,7 @@
 		FA3FC7FA2A6E92C60022CA3A /* HomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3FC7F92A6E92C60022CA3A /* HomeDetailViewController.swift */; };
 		FA3FC7FC2A6E93B70022CA3A /* SortingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3FC7FB2A6E93B70022CA3A /* SortingHeaderView.swift */; };
 		FA3FC8002A6E94690022CA3A /* HomeDetailInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3FC7FF2A6E94690022CA3A /* HomeDetailInfoCell.swift */; };
+		FA3FC8032A6E95540022CA3A /* HomeDetailType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3FC8022A6E95540022CA3A /* HomeDetailType.swift */; };
 		FA43C4E52A681E16001BB9B4 /* ChallengeOpenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43C4E42A681E16001BB9B4 /* ChallengeOpenViewModel.swift */; };
 		FA44D3992A4C43B80037E328 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44D3982A4C43B80037E328 /* Color+Extension.swift */; };
 		FA44D39B2A4C46A30037E328 /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44D39A2A4C46A30037E328 /* CustomFont.swift */; };
@@ -156,6 +157,7 @@
 		FA3FC7F92A6E92C60022CA3A /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewController.swift; sourceTree = "<group>"; };
 		FA3FC7FB2A6E93B70022CA3A /* SortingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingHeaderView.swift; sourceTree = "<group>"; };
 		FA3FC7FF2A6E94690022CA3A /* HomeDetailInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailInfoCell.swift; sourceTree = "<group>"; };
+		FA3FC8022A6E95540022CA3A /* HomeDetailType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailType.swift; sourceTree = "<group>"; };
 		FA43C4E42A681E16001BB9B4 /* ChallengeOpenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOpenViewModel.swift; sourceTree = "<group>"; };
 		FA44D3982A4C43B80037E328 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		FA44D39A2A4C46A30037E328 /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				FA4DDB8F2A4D57D5002EDEAD /* ProcessType.swift */,
 				FAD6E3D52A64F2F5002C8007 /* WritingType.swift */,
 				FA32B8372A6A67EA0086497D /* Item.swift */,
+				FA3FC8022A6E95540022CA3A /* HomeDetailType.swift */,
 			);
 			path = Type;
 			sourceTree = "<group>";
@@ -758,6 +761,7 @@
 				FA32B8382A6A67EA0086497D /* Item.swift in Sources */,
 				FA758ACA2A5EF528003E2F07 /* ChallengeOpenSelectionView.swift in Sources */,
 				FA57AF6B2A5D73F8008A5991 /* ChallengeOpenCell.swift in Sources */,
+				FA3FC8032A6E95540022CA3A /* HomeDetailType.swift in Sources */,
 				FA2A06502A68DF5B00AC649F /* PrecautionViewModel.swift in Sources */,
 				FA57AF752A5E9DED008A5991 /* CiderTextView.swift in Sources */,
 				FA61002E2A58180E002175CE /* CiderSelectionStyle.swift in Sources */,
