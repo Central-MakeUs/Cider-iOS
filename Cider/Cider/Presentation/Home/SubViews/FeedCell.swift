@@ -9,6 +9,8 @@ import UIKit
 
 class FeedCell: UICollectionViewCell {
     
+    static let identifier = "FeedCell"
+    
     // TODO: 프로필 default 이미지 제거하기
     private lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
@@ -148,7 +150,7 @@ class FeedCell: UICollectionViewCell {
             profileImageView.widthAnchor.constraint(equalToConstant: 36),
             profileImageView.heightAnchor.constraint(equalToConstant: 36),
             profileImageView.topAnchor.constraint(equalTo: topAnchor),
-            profileImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
+            profileImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             nicknameLabel.topAnchor.constraint(equalTo: profileImageView.topAnchor),
             nicknameLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 6),
             levelLabel.topAnchor.constraint(equalTo: profileImageView.topAnchor),
@@ -157,11 +159,11 @@ class FeedCell: UICollectionViewCell {
             dateLabel.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor),
             meatballButton.widthAnchor.constraint(equalToConstant: 24),
             meatballButton.heightAnchor.constraint(equalToConstant: 24),
-            meatballButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            meatballButton.trailingAnchor.constraint(equalTo: trailingAnchor),
             meatballButton.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor),
             mainTitleLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 12),
             mainTitleLabel.leadingAnchor.constraint(equalTo: profileImageView.leadingAnchor),
-            mainTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            mainTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             subTitleLabel.topAnchor.constraint(equalTo: mainTitleLabel.bottomAnchor, constant: 4),
             subTitleLabel.leadingAnchor.constraint(equalTo: mainTitleLabel.leadingAnchor),
             subTitleLabel.trailingAnchor.constraint(equalTo: mainTitleLabel.trailingAnchor),
@@ -169,10 +171,10 @@ class FeedCell: UICollectionViewCell {
             moreButton.leadingAnchor.constraint(equalTo: profileImageView.leadingAnchor),
             feedImageView.topAnchor.constraint(equalTo: moreButton.bottomAnchor, constant: 16),
             feedImageView.leadingAnchor.constraint(equalTo: profileImageView.leadingAnchor),
-            feedImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            feedImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             feedImageView.heightAnchor.constraint(equalTo: feedImageView.widthAnchor),
             roundView.leadingAnchor.constraint(equalTo: profileImageView.leadingAnchor),
-            roundView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            roundView.trailingAnchor.constraint(equalTo: trailingAnchor),
             roundView.heightAnchor.constraint(equalToConstant: 33),
             peopleImageView.heightAnchor.constraint(equalToConstant: 16),
             peopleImageView.widthAnchor.constraint(equalToConstant: 16),
@@ -180,7 +182,7 @@ class FeedCell: UICollectionViewCell {
             challengeTypeStackView.leadingAnchor.constraint(equalTo: roundView.leadingAnchor, constant: 12),
             challengeTypeStackView.trailingAnchor.constraint(equalTo: roundView.trailingAnchor, constant: -12),
             challengeTypeStackView.centerYAnchor.constraint(equalTo: roundView.centerYAnchor),
-            heartLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            heartLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             heartLabel.centerYAnchor.constraint(equalTo: heartImageView.centerYAnchor),
             heartImageView.widthAnchor.constraint(equalToConstant: 16),
             heartImageView.heightAnchor.constraint(equalToConstant: 16),
