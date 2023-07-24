@@ -13,7 +13,10 @@ final class HomeViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.register(ChallengeHomeCell.self, forCellWithReuseIdentifier: ChallengeHomeCell.identifier)
         collectionView.register(BannerCell.self, forCellWithReuseIdentifier: BannerCell.identifier)
+        collectionView.register(FeedCell.self, forCellWithReuseIdentifier: FeedCell.identifier)
         collectionView.register(HomeHeaderView.self, forSupplementaryViewOfKind: HomeHeaderView.identifier, withReuseIdentifier: HomeHeaderView.identifier)
+        collectionView.register(CategoryHeaderView.self, forSupplementaryViewOfKind: CategoryHeaderView.identifier, withReuseIdentifier: CategoryHeaderView.identifier)
+
         collectionView.showsVerticalScrollIndicator = false
         collectionView.keyboardDismissMode = .onDrag
         return collectionView
@@ -29,6 +32,8 @@ final class HomeViewController: UIViewController {
         case banner = 0
         case popluarChallenge = 1
         case publicChallenge = 2
+        case category = 3
+        case feed = 4
     }
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
@@ -115,6 +120,40 @@ private extension HomeViewController {
                 )
                 return cell
                 
+            case .category:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeHomeCell.identifier, for: indexPath) as? ChallengeHomeCell else {
+                    return UICollectionViewCell()
+                }
+                cell.setUp(
+                    type: .moneyManagement,
+                    isReward: true,
+                    date: "1주",
+                    ranking: nil,
+                    title: "만보걷기",
+                    status: "종료",
+                    people: "5명 모집중",
+                    isPublic: true,
+                    dDay: "D-12"
+                )
+                return cell
+                
+            case .feed:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCell.identifier, for: indexPath) as? FeedCell else {
+                    return UICollectionViewCell()
+                }
+                cell.setUp(
+                    nickname: "화이팅",
+                    level: "LV 1",
+                    date: "23.05.15 15:45",
+                    mainTitle: "오늘 챌린지 인증하는데",
+                    subTitle: "챌린지 하면 할수록 너무 힘들구 어쩌고 저쩌고 근데 할 수 있다 챌린지 하면 할수록 챌린지 하면 할수록\n챌린지 하면 할수록 너무 힘들구 어쩌고 저쩌고 근데 할 수 있다\n챌린지 하면 할수록 너무 힘들구 어쩌고 저쩌고 근데 할 수 있다",
+                    challengeType: .financialTech,
+                    challengeTitle: "하루에 만보 걷기 챌린지 하루를 열심히 살아보아요!!!",
+                    people: "231",
+                    heart: "1111"
+                )
+                return cell
+                
             case .none:
                 return UICollectionViewCell()
             }
@@ -141,6 +180,24 @@ private extension HomeViewController {
                 headerView?.setUp(leftTitle: "바로 참여 가능! 공식 챌린지", rightTitle: "더보기 >")
                 return headerView
                 
+            case .category:
+                let headerView = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: elementKind,
+                    withReuseIdentifier: CategoryHeaderView.identifier,
+                    for: indexPath
+                ) as? CategoryHeaderView
+                headerView?.setUp(leftTitle: "카테고리", rightTitle: "전체 챌린지 보기", selectedType: .financialTech)
+                return headerView
+                
+            case .feed:
+                let headerView = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: elementKind,
+                    withReuseIdentifier: HomeHeaderView.identifier,
+                    for: indexPath
+                ) as? HomeHeaderView
+                headerView?.setUp(leftTitle: "추천 피드", rightTitle: "오늘의 활동 추천 피드")
+                return headerView
+                
             default:
                 return nil
             }
@@ -154,6 +211,10 @@ private extension HomeViewController {
         snapshot.appendSections([.popluarChallenge])
         snapshot.appendItems([Item(),Item(),Item(),Item(),Item(),Item()])
         snapshot.appendSections([.publicChallenge])
+        snapshot.appendItems([Item(),Item(),Item(),Item(),Item(),Item()])
+        snapshot.appendSections([.category])
+        snapshot.appendItems([Item(),Item(),Item(),Item(),Item(),Item()])
+        snapshot.appendSections([.feed])
         snapshot.appendItems([Item(),Item(),Item(),Item(),Item(),Item()])
         dataSource?.apply(snapshot)
     }
@@ -170,6 +231,12 @@ private extension HomeViewController {
                 
             case .popluarChallenge:
                 return self?.challengeSectionLayout()
+                
+            case .category:
+                return self?.categorySectionLayout()
+                
+            case .feed:
+                return self?.feedSectionLayout()
                 
             default:
                 return nil
@@ -214,10 +281,70 @@ private extension HomeViewController {
         )
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = .init(top: 0, leading: 24, bottom: 32, trailing: 20)
+        section.contentInsets = .init(top: 0, leading: 24, bottom: 32, trailing: 24)
         
         section.interGroupSpacing = 12
         section.orthogonalScrollingBehavior = .continuous
+        
+        section.boundarySupplementaryItems = [
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: .init(
+                    widthDimension: .absolute(view.safeAreaLayoutGuide.layoutFrame.width),
+                    heightDimension: .absolute(49)
+                ),
+                elementKind: HomeHeaderView.identifier, alignment: .top)
+        ]
+        return section
+    }
+    
+    func categorySectionLayout() -> NSCollectionLayoutSection {
+        let layoutSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(150),
+            heightDimension: .absolute(273)
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: .init(
+                widthDimension: layoutSize.widthDimension,
+                heightDimension: layoutSize.heightDimension
+            ),
+            subitems: [.init(layoutSize: layoutSize)]
+        )
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = .init(top: 0, leading: 24, bottom: 32, trailing: 24)
+        
+        section.interGroupSpacing = 12
+        section.orthogonalScrollingBehavior = .continuous
+        
+        section.boundarySupplementaryItems = [
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: .init(
+                    widthDimension: .absolute(view.safeAreaLayoutGuide.layoutFrame.width),
+                    heightDimension: .absolute(182)
+                ),
+                elementKind: CategoryHeaderView.identifier, alignment: .top)
+        ]
+        return section
+    }
+    
+    func feedSectionLayout() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(149+UIScreen.main.bounds.width+41+41-16-16)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(149+UIScreen.main.bounds.width+41+41-16-16)
+        )
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize,
+                                                     subitems: [item])
+        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 24)
         
         section.boundarySupplementaryItems = [
             NSCollectionLayoutBoundarySupplementaryItem(

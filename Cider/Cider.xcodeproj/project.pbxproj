@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FA0322812A4DC2B0000993DF /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0322802A4DC2B0000993DF /* NicknameViewController.swift */; };
+		FA08D99B2A6D78CE0061C567 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA08D99A2A6D78CE0061C567 /* FeedCell.swift */; };
 		FA2A064C2A68DC0F00AC649F /* PrecautionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A064B2A68DC0F00AC649F /* PrecautionView.swift */; };
 		FA2A064E2A68DCE000AC649F /* PrecautionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A064D2A68DCE000AC649F /* PrecautionViewController.swift */; };
 		FA2A06502A68DF5B00AC649F /* PrecautionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A064F2A68DF5B00AC649F /* PrecautionViewModel.swift */; };
@@ -55,6 +56,8 @@
 		FA4DDB922A4D5810002EDEAD /* ServiceAgreeCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DDB912A4D5810002EDEAD /* ServiceAgreeCellData.swift */; };
 		FA4DDB952A4D5A46002EDEAD /* ServiceAgreeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DDB942A4D5A46002EDEAD /* ServiceAgreeCell.swift */; };
 		FA4DDB972A4D66CB002EDEAD /* ServiceAgreeDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DDB962A4D66CB002EDEAD /* ServiceAgreeDetailCell.swift */; };
+		FA4DF29A2A6C191C007F3035 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DF2992A6C191C007F3035 /* CategoryView.swift */; };
+		FA4DF29C2A6C1F5D007F3035 /* CategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DF29B2A6C1F5D007F3035 /* CategoryHeaderView.swift */; };
 		FA553EB22A5C026300DAE63B /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FA553EB12A5C026300DAE63B /* KakaoSDK */; };
 		FA553EB42A5C026300DAE63B /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FA553EB32A5C026300DAE63B /* KakaoSDKAuth */; };
 		FA553EB62A5C026300DAE63B /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = FA553EB52A5C026300DAE63B /* KakaoSDKCommon */; };
@@ -110,6 +113,7 @@
 
 /* Begin PBXFileReference section */
 		FA0322802A4DC2B0000993DF /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
+		FA08D99A2A6D78CE0061C567 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		FA2A064B2A68DC0F00AC649F /* PrecautionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecautionView.swift; sourceTree = "<group>"; };
 		FA2A064D2A68DCE000AC649F /* PrecautionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecautionViewController.swift; sourceTree = "<group>"; };
 		FA2A064F2A68DF5B00AC649F /* PrecautionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecautionViewModel.swift; sourceTree = "<group>"; };
@@ -157,6 +161,8 @@
 		FA4DDB912A4D5810002EDEAD /* ServiceAgreeCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAgreeCellData.swift; sourceTree = "<group>"; };
 		FA4DDB942A4D5A46002EDEAD /* ServiceAgreeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAgreeCell.swift; sourceTree = "<group>"; };
 		FA4DDB962A4D66CB002EDEAD /* ServiceAgreeDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAgreeDetailCell.swift; sourceTree = "<group>"; };
+		FA4DF2992A6C191C007F3035 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
+		FA4DF29B2A6C1F5D007F3035 /* CategoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHeaderView.swift; sourceTree = "<group>"; };
 		FA553EBC2A5C0D6900DAE63B /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		FA553EBE2A5C141B00DAE63B /* LoginUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsecase.swift; sourceTree = "<group>"; };
 		FA56F9832A542FA70099EC6F /* GenderAndBirthdayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderAndBirthdayViewController.swift; sourceTree = "<group>"; };
@@ -242,6 +248,9 @@
 				FA32B8392A6A6C2D0086497D /* HomeHeaderView.swift */,
 				FA32B83B2A6A79070086497D /* HomeNavigationView.swift */,
 				FA32B83D2A6A848C0086497D /* BannerCell.swift */,
+				FA4DF2992A6C191C007F3035 /* CategoryView.swift */,
+				FA4DF29B2A6C1F5D007F3035 /* CategoryHeaderView.swift */,
+				FA08D99A2A6D78CE0061C567 /* FeedCell.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -720,6 +729,7 @@
 				FA758AC82A5EF418003E2F07 /* StarTitleLabel.swift in Sources */,
 				FAD6E3D62A64F2F5002C8007 /* WritingType.swift in Sources */,
 				FA32B83A2A6A6C2D0086497D /* HomeHeaderView.swift in Sources */,
+				FA4DF29C2A6C1F5D007F3035 /* CategoryHeaderView.swift in Sources */,
 				FA32B8382A6A67EA0086497D /* Item.swift in Sources */,
 				FA758ACA2A5EF528003E2F07 /* ChallengeOpenSelectionView.swift in Sources */,
 				FA57AF6B2A5D73F8008A5991 /* ChallengeOpenCell.swift in Sources */,
@@ -743,11 +753,13 @@
 				FA4DDB922A4D5810002EDEAD /* ServiceAgreeCellData.swift in Sources */,
 				FA4DDB952A4D5A46002EDEAD /* ServiceAgreeCell.swift in Sources */,
 				FA758ACC2A5F0316003E2F07 /* MissionPhotoView.swift in Sources */,
+				FA08D99B2A6D78CE0061C567 /* FeedCell.swift in Sources */,
 				FA5B8BE12A4DCAE000CEB0F6 /* UITextField+Extension.swift in Sources */,
 				FA57AF4F2A5D0EC7008A5991 /* LocalKey.swift in Sources */,
 				FA2A064E2A68DCE000AC649F /* PrecautionViewController.swift in Sources */,
 				FA57AF602A5D1851008A5991 /* Encodable+Extension.swift in Sources */,
 				FA553EBF2A5C141B00DAE63B /* LoginUsecase.swift in Sources */,
+				FA4DF29A2A6C191C007F3035 /* CategoryView.swift in Sources */,
 				FA6100282A57FA46002175CE /* ChallengeType.swift in Sources */,
 				FA31A9442A6A33BE004D1C3B /* ChallengeHomeCell.swift in Sources */,
 				FA4DDB972A4D66CB002EDEAD /* ServiceAgreeDetailCell.swift in Sources */,
