@@ -160,12 +160,12 @@ class FeedCell: UICollectionViewCell {
             profileImageView.heightAnchor.constraint(equalToConstant: 36),
             profileImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             profileImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            nicknameLabel.topAnchor.constraint(equalTo: profileImageView.topAnchor),
+            nicknameLabel.topAnchor.constraint(equalTo: profileImageView.topAnchor, constant: 2),
             nicknameLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 6),
-            levelLabel.topAnchor.constraint(equalTo: profileImageView.topAnchor),
+            levelLabel.topAnchor.constraint(equalTo: nicknameLabel.topAnchor),
             levelLabel.leadingAnchor.constraint(equalTo: nicknameLabel.trailingAnchor, constant: 6),
             dateLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 6),
-            dateLabel.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor),
+            dateLabel.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: -2),
             meatballButton.widthAnchor.constraint(equalToConstant: 24),
             meatballButton.heightAnchor.constraint(equalToConstant: 24),
             meatballButton.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -178,6 +178,7 @@ class FeedCell: UICollectionViewCell {
             subTitleLabel.trailingAnchor.constraint(equalTo: mainTitleLabel.trailingAnchor),
             moreButton.topAnchor.constraint(equalTo: subTitleLabel.bottomAnchor, constant: 8),
             moreButton.leadingAnchor.constraint(equalTo: profileImageView.leadingAnchor),
+            moreButton.heightAnchor.constraint(equalToConstant: 12),
             feedImageView.topAnchor.constraint(equalTo: moreButton.bottomAnchor, constant: 16),
             feedImageView.leadingAnchor.constraint(equalTo: profileImageView.leadingAnchor),
             feedImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -200,8 +201,7 @@ class FeedCell: UICollectionViewCell {
             bottomView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: -24),
             bottomView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 24),
             bottomView.heightAnchor.constraint(equalToConstant: 8),
-            bottomView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            challengeTitleLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 167)
+            bottomView.topAnchor.constraint(equalTo: heartImageView.bottomAnchor, constant: 16)
         ])
     }
     
@@ -249,7 +249,7 @@ struct FeedCell_Preview: PreviewProvider {
                 level: "LV 1",
                 date: "23.05.15 15:45",
                 mainTitle: "오늘 챌린지 인증하는데",
-                subTitle: "챌린지 하면 할수록 너무 힘들구 어쩌고 저쩌고 근데 할 수 있다\n챌린지 하면 할수록 너무 힘들구 어쩌고 저쩌고 근데 할 수 있다\n챌린지 하면 할수록 너무 힘들구 어쩌고 저쩌고 근데 할 수 있다\n",
+                subTitle: "챌린지 하면 할수록 너무 힘들구 어쩌고 저쩌고 근데 할 수 있다 챌린지 하면 할수록 챌린지 하면 할수록\n챌린지 하면 할수록 너무 힘들구 어쩌고 저쩌고 근데 할 수 있다\n챌린지 하면 할수록 너무 힘들구 어쩌고 저쩌고 근데 할 수 있다\n",
                 challengeType: .financialTech,
                 challengeTitle: "하루에 만보 걷기 챌린지 하루를 열심히 살아보아요!!!",
                 people: "231",
