@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FeedCell: UICollectionViewCell {
+final class FeedCell: UICollectionViewCell {
     
     static let identifier = "FeedCell"
     
