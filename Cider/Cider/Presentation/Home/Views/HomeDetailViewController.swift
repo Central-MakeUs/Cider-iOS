@@ -153,8 +153,8 @@ private extension HomeDetailViewController {
     
     func infoSectionLayout() -> NSCollectionLayoutSection {
         let layoutSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1),
-            heightDimension: .fractionalWidth(0.72)
+            widthDimension: .fractionalWidth(homeDetailType == .allChallenge ? 0 : 1),
+            heightDimension: .fractionalWidth(homeDetailType == .allChallenge ? 0 : 0.72)
         )
         
         let group = NSCollectionLayoutGroup.horizontal(
