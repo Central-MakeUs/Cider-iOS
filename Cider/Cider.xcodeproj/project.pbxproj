@@ -55,6 +55,7 @@
 		FA44D39D2A4C52DA0037E328 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44D39C2A4C52DA0037E328 /* UIViewController+Extension.swift */; };
 		FA44D39F2A4C5CE30037E328 /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44D39E2A4C5CE20037E328 /* UIStackView+Extension.swift */; };
 		FA44D3A12A4C5D070037E328 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44D3A02A4C5D070037E328 /* UIView+Extension.swift */; };
+		FA4A24B92A6FD6360078A86C /* SortingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A24B82A6FD6360078A86C /* SortingView.swift */; };
 		FA4DDB8E2A4D3178002EDEAD /* ServiceAgreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DDB8D2A4D3177002EDEAD /* ServiceAgreeViewController.swift */; };
 		FA4DDB902A4D57D5002EDEAD /* ProcessType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DDB8F2A4D57D5002EDEAD /* ProcessType.swift */; };
 		FA4DDB922A4D5810002EDEAD /* ServiceAgreeCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DDB912A4D5810002EDEAD /* ServiceAgreeCellData.swift */; };
@@ -164,6 +165,7 @@
 		FA44D39C2A4C52DA0037E328 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		FA44D39E2A4C5CE20037E328 /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		FA44D3A02A4C5D070037E328 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		FA4A24B82A6FD6360078A86C /* SortingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingView.swift; sourceTree = "<group>"; };
 		FA4DDB8D2A4D3177002EDEAD /* ServiceAgreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAgreeViewController.swift; sourceTree = "<group>"; };
 		FA4DDB8F2A4D57D5002EDEAD /* ProcessType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessType.swift; sourceTree = "<group>"; };
 		FA4DDB912A4D5810002EDEAD /* ServiceAgreeCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAgreeCellData.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				FA31A9452A6A4BB8004D1C3B /* CiderInfoView.swift */,
 				FA32B83B2A6A79070086497D /* HomeNavigationView.swift */,
 				FA4DF2992A6C191C007F3035 /* CategoryView.swift */,
+				FA4A24B82A6FD6360078A86C /* SortingView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -813,6 +816,7 @@
 				FA348ED32A61180400EA3D04 /* NicknameUsecase.swift in Sources */,
 				FA4DDB902A4D57D5002EDEAD /* ProcessType.swift in Sources */,
 				FA553EBD2A5C0D6900DAE63B /* APIKey.swift in Sources */,
+				FA4A24B92A6FD6360078A86C /* SortingView.swift in Sources */,
 				FA61002A2A57FC14002175CE /* ChallengesView.swift in Sources */,
 				FA3C43282A62ED37009E820B /* OnboardingRepository.swift in Sources */,
 				FA3FC7FC2A6E93B70022CA3A /* SortingHeaderView.swift in Sources */,

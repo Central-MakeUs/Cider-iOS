@@ -10,13 +10,7 @@ import UIKit
 class SortingHeaderView: UICollectionReusableView {
     
     static let identifier = "SortingHeaderView"
-        
-    private lazy var sortingButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("최신순", for: .normal)
-        button.setTitleColor(UIColor.custom.text, for: .normal)
-        return button
-    }()
+    private let sortingView = SortingView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,10 +22,12 @@ class SortingHeaderView: UICollectionReusableView {
     }
     
     private func configure() {
-        addSubviews(sortingButton)
+        addSubviews(sortingView)
         NSLayoutConstraint.activate([
-            sortingButton.leadingAnchor.constraint(equalTo: leadingAnchor),
-            sortingButton.centerYAnchor.constraint(equalTo: centerYAnchor)
+            sortingView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            sortingView.topAnchor.constraint(equalTo: topAnchor),
+            sortingView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            sortingView.widthAnchor.constraint(equalToConstant: 75)
         ])
     }
 }
