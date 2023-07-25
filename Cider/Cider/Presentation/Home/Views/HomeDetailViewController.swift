@@ -13,10 +13,9 @@ class HomeDetailViewController: UIViewController {
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
-        collectionView.register(ChallengeHomeCell.self, forCellWithReuseIdentifier: ChallengeHomeCell.identifier)
         collectionView.register(HomeDetailInfoCell.self, forCellWithReuseIdentifier: HomeDetailInfoCell.identifier)
+        collectionView.register(ChallengeHomeCell.self, forCellWithReuseIdentifier: ChallengeHomeCell.identifier)
         collectionView.register(SortingHeaderView.self, forSupplementaryViewOfKind: SortingHeaderView.identifier, withReuseIdentifier: SortingHeaderView.identifier)
-
         collectionView.showsVerticalScrollIndicator = false
         collectionView.keyboardDismissMode = .onDrag
         return collectionView
@@ -98,7 +97,7 @@ private extension HomeDetailViewController {
                     type: .financialTech,
                     isReward: true,
                     date: "1주",
-                    ranking: "1위",
+                    ranking: self.homeDetailType == .popularChallenge ? "1위" : nil,
                     title: "만보걷기",
                     status: "종료",
                     people: "5명 모집중",
@@ -123,7 +122,7 @@ private extension HomeDetailViewController {
                     for: indexPath
                 ) as? SortingHeaderView
                 return headerView
-                
+
             default:
                 return nil
             }
@@ -136,6 +135,7 @@ private extension HomeDetailViewController {
         snapshot.appendItems([Item()])
         snapshot.appendSections([.challenge])
         snapshot.appendItems([Item(),Item(),Item(),Item(),Item(),Item()])
+        dataSource?.apply(snapshot)
     }
     
     func createLayout() -> UICollectionViewCompositionalLayout {
@@ -175,29 +175,41 @@ private extension HomeDetailViewController {
     }
     
     func challengeSectionLayout() -> NSCollectionLayoutSection {
-        let layoutSize = NSCollectionLayoutSize(
-            widthDimension: .absolute(150),
-            heightDimension: .absolute(273)
-        )
+        let width = (UIScreen.main.bounds.width-48-12)/2
         
-        let group = NSCollectionLayoutGroup.horizontal(
-            layoutSize: .init(
-                widthDimension: layoutSize.widthDimension,
-                heightDimension: layoutSize.heightDimension
-            ),
-            subitems: [.init(layoutSize: layoutSize)]
+        let height: CGFloat
+        switch homeDetailType {
+        case .popularChallenge:
+            height = width*1.82+15
+        case .publicChallenge, .allChallenge:
+            height = width*1.72+13
+        }
+        
+        print(width, width*1.82)
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(width),
+            heightDimension: .fractionalWidth(1)
         )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .absolute(height)
+        )
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: groupSize,
+            subitems: [item, item]
+        )
+        group.interItemSpacing = .fixed(12)
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = .init(top: 0, leading: 24, bottom: 32, trailing: 24)
-        
-        section.interGroupSpacing = 12
-        section.orthogonalScrollingBehavior = .continuous
+        section.contentInsets = .init(top: 0, leading: 24, bottom: 24, trailing: 24)
+        section.interGroupSpacing = 0
         
         section.boundarySupplementaryItems = [
             NSCollectionLayoutBoundarySupplementaryItem(
                 layoutSize: .init(
-                    widthDimension: .absolute(view.safeAreaLayoutGuide.layoutFrame.width),
+                    widthDimension: .fractionalWidth(1),
                     heightDimension: .absolute(49)
                 ),
                 elementKind: SortingHeaderView.identifier, alignment: .top)

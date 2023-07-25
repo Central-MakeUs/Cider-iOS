@@ -75,6 +75,11 @@ private extension HomeViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBarButton)
     }
     
+    func pushHomeDetailViewController(_ type: HomeDetailType) {
+        let viewController = HomeDetailViewController(homeDetailType: type)
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
     func setUpDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { [weak self] collectionView, indexPath, itemIdentifier in
             let section = Section(rawValue: indexPath.section)
@@ -159,7 +164,11 @@ private extension HomeViewController {
             }
         })
         
-        dataSource?.supplementaryViewProvider = { collectionView, elementKind, indexPath in
+        dataSource?.supplementaryViewProvider = { [weak self] collectionView, elementKind, indexPath in
+            guard let self = self else {
+                return nil
+            }
+            
             let section = Section(rawValue: indexPath.section)
             switch section {
             case .popluarChallenge:
@@ -169,6 +178,7 @@ private extension HomeViewController {
                     for: indexPath
                 ) as? HomeHeaderView
                 headerView?.setUp(leftTitle: "인기 챌린지", rightTitle: "더보기  >")
+                headerView?.addActionRightTitle(self, action: #selector(self.didTapPopularChallenge))
                 return headerView
                 
             case .publicChallenge:
@@ -178,6 +188,7 @@ private extension HomeViewController {
                     for: indexPath
                 ) as? HomeHeaderView
                 headerView?.setUp(leftTitle: "바로 참여 가능! 공식 챌린지", rightTitle: "더보기 >")
+                headerView?.addActionRightTitle(self, action: #selector(self.didTapPublicChallenge))
                 return headerView
                 
             case .category:
@@ -187,6 +198,7 @@ private extension HomeViewController {
                     for: indexPath
                 ) as? CategoryHeaderView
                 headerView?.setUp(leftTitle: "카테고리", rightTitle: "전체 챌린지 보기", selectedType: .financialTech)
+                headerView?.addActionRightTitle(self, action: #selector(self.didTapAllChallenge))
                 return headerView
                 
             case .feed:
@@ -355,6 +367,22 @@ private extension HomeViewController {
                 elementKind: HomeHeaderView.identifier, alignment: .top)
         ]
         return section
+    }
+    
+}
+
+private extension HomeViewController {
+    
+    @objc func didTapPopularChallenge(_ sender: Any?) {
+        pushHomeDetailViewController(.popularChallenge)
+    }
+    
+    @objc func didTapPublicChallenge(_ sender: Any?) {
+        pushHomeDetailViewController(.publicChallenge)
+    }
+    
+    @objc func didTapAllChallenge(_ sender: Any?) {
+        pushHomeDetailViewController(.allChallenge)
     }
     
 }
