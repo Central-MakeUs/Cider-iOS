@@ -53,6 +53,7 @@ class FeedCell: UICollectionViewCell {
         button.setTitle("자세히 보기", for: .normal)
         button.setTitleColor(UIColor.custom.gray5, for: .normal)
         button.titleLabel?.font = CustomFont.PretendardBold(size: .sm).font
+        button.addTarget(self, action: #selector(didTapMore), for: .touchUpInside)
         return button
     }()
     
@@ -201,7 +202,8 @@ class FeedCell: UICollectionViewCell {
             bottomView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: -24),
             bottomView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 24),
             bottomView.heightAnchor.constraint(equalToConstant: 8),
-            bottomView.topAnchor.constraint(equalTo: heartImageView.bottomAnchor, constant: 16)
+            bottomView.topAnchor.constraint(equalTo: heartImageView.bottomAnchor, constant: 16),
+            bottomView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     
@@ -231,6 +233,16 @@ extension FeedCell {
         challengeTitleLabel.text = challengeTitle
         peopleLabel.text = people + "명"
         heartLabel.text = heart
+    }
+    
+    func addMoreButtonAction(_ target: Any?, action: Selector) {
+        moreButton.addTarget(target, action: action, for: .touchUpInside)
+    }
+    
+    @objc func didTapMore(_ sender: Any?) {
+        // TODO: collectionView applysnapshot 해주기
+        subTitleLabel.numberOfLines = subTitleLabel.numberOfLines == 0 ? 1 : 0
+        subTitleLabel.text = subTitleLabel.text == "자세히 보기" ? "접기" : "자세히 보기"
     }
     
 }
