@@ -28,6 +28,13 @@ final class HomeViewController: UIViewController {
         return button
     }()
     
+    private lazy var arrowTopButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "arrowTopButton"), for: .normal)
+        button.addTarget(self, action: #selector(didTapArrowTop), for: .touchUpInside)
+        return button
+    }()
+    
     private enum Section: Int {
         case banner = 0
         case popluarChallenge = 1
@@ -60,12 +67,14 @@ private extension HomeViewController {
     
     func configure() {
         view.backgroundColor = .white
-        view.addSubviews(collectionView)
+        view.addSubviews(collectionView, arrowTopButton)
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            arrowTopButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
+            arrowTopButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24)
         ])
     }
     
@@ -384,6 +393,10 @@ private extension HomeViewController {
     
     @objc func didTapAllChallenge(_ sender: Any?) {
         pushHomeDetailViewController(.allChallenge)
+    }
+    
+    @objc func didTapArrowTop(_ sender: Any?) {
+        collectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
 }
