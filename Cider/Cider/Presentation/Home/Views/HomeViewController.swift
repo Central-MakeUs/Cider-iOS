@@ -75,6 +75,12 @@ private extension HomeViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBarButton)
     }
     
+    func pushHomeDetailViewController(_ type: HomeDetailType) {
+        let viewController = HomeDetailViewController(homeDetailType: type)
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
     func setUpDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { [weak self] collectionView, indexPath, itemIdentifier in
             let section = Section(rawValue: indexPath.section)
@@ -159,7 +165,11 @@ private extension HomeViewController {
             }
         })
         
-        dataSource?.supplementaryViewProvider = { collectionView, elementKind, indexPath in
+        dataSource?.supplementaryViewProvider = { [weak self] collectionView, elementKind, indexPath in
+            guard let self = self else {
+                return UICollectionReusableView()
+            }
+            
             let section = Section(rawValue: indexPath.section)
             switch section {
             case .popluarChallenge:
@@ -168,8 +178,9 @@ private extension HomeViewController {
                     withReuseIdentifier: HomeHeaderView.identifier,
                     for: indexPath
                 ) as? HomeHeaderView
-                headerView?.setUp(leftTitle: "인기 챌린지", rightTitle: "더보기  >")
-                return headerView
+                headerView?.setUp(leftTitle: "인기 챌린지", rightTitle: "더보기", isClicked: true)
+                headerView?.addActionRightTitle(self, action: #selector(self.didTapPopularChallenge))
+                return headerView ?? UICollectionReusableView()
                 
             case .publicChallenge:
                 let headerView = collectionView.dequeueReusableSupplementaryView(
@@ -177,8 +188,9 @@ private extension HomeViewController {
                     withReuseIdentifier: HomeHeaderView.identifier,
                     for: indexPath
                 ) as? HomeHeaderView
-                headerView?.setUp(leftTitle: "바로 참여 가능! 공식 챌린지", rightTitle: "더보기 >")
-                return headerView
+                headerView?.setUp(leftTitle: "바로 참여 가능! 공식 챌린지", rightTitle: "더보기", isClicked: true)
+                headerView?.addActionRightTitle(self, action: #selector(self.didTapPublicChallenge))
+                return headerView ?? UICollectionReusableView()
                 
             case .category:
                 let headerView = collectionView.dequeueReusableSupplementaryView(
@@ -187,7 +199,8 @@ private extension HomeViewController {
                     for: indexPath
                 ) as? CategoryHeaderView
                 headerView?.setUp(leftTitle: "카테고리", rightTitle: "전체 챌린지 보기", selectedType: .financialTech)
-                return headerView
+                headerView?.addActionRightTitle(self, action: #selector(self.didTapAllChallenge))
+                return headerView ?? UICollectionReusableView()
                 
             case .feed:
                 let headerView = collectionView.dequeueReusableSupplementaryView(
@@ -195,7 +208,7 @@ private extension HomeViewController {
                     withReuseIdentifier: HomeHeaderView.identifier,
                     for: indexPath
                 ) as? HomeHeaderView
-                headerView?.setUp(leftTitle: "추천 피드", rightTitle: "오늘의 활동 추천 피드")
+                headerView?.setUp(leftTitle: "추천 피드", rightTitle: "오늘의 활동 추천 피드", isClicked: false)
                 return headerView
                 
             default:
@@ -247,7 +260,7 @@ private extension HomeViewController {
     func bannerSectionLayout() -> NSCollectionLayoutSection {
         let layoutSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
-            heightDimension: .absolute(260)
+            heightDimension: .fractionalWidth(0.72)
         )
         
         let group = NSCollectionLayoutGroup.horizontal(
@@ -355,6 +368,22 @@ private extension HomeViewController {
                 elementKind: HomeHeaderView.identifier, alignment: .top)
         ]
         return section
+    }
+    
+}
+
+private extension HomeViewController {
+    
+    @objc func didTapPopularChallenge(_ sender: Any?) {
+        pushHomeDetailViewController(.popularChallenge)
+    }
+    
+    @objc func didTapPublicChallenge(_ sender: Any?) {
+        pushHomeDetailViewController(.publicChallenge)
+    }
+    
+    @objc func didTapAllChallenge(_ sender: Any?) {
+        pushHomeDetailViewController(.allChallenge)
     }
     
 }

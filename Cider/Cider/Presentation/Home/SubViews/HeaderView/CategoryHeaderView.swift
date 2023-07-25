@@ -25,6 +25,18 @@ class CategoryHeaderView: UICollectionReusableView {
         return label
     }()
     
+    private lazy var rightChevronImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "line_arrow-right_24")
+        return imageView
+    }()
+    
+    private lazy var allChallnegeStackView: UIStackView = {
+        let stackView = UIStackView(axis: .horizontal, alignment: .fill, distribution: .fill, spacing: 4)
+        stackView.addArrangedSubviews(rightTitleLabel, rightChevronImageView)
+        return stackView
+    }()
+    
     private lazy var financialTechView: CategoryView = {
         let view = CategoryView(type: .financialTech, style: .selected)
         return view
@@ -77,12 +89,14 @@ class CategoryHeaderView: UICollectionReusableView {
     }
     
     private func configure() {
-        addSubviews(leftTitleLabel, rightTitleLabel, stackView, backgroundView, infoLabel)
+        addSubviews(leftTitleLabel, allChallnegeStackView, stackView, backgroundView, infoLabel)
         NSLayoutConstraint.activate([
             leftTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12),
             leftTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-            rightTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12),
-            rightTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            allChallnegeStackView.topAnchor.constraint(equalTo: topAnchor, constant: 12),
+            allChallnegeStackView.heightAnchor.constraint(equalToConstant: 16),
+            allChallnegeStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            rightChevronImageView.widthAnchor.constraint(equalToConstant: 16),
             stackView.topAnchor.constraint(equalTo: leftTitleLabel.bottomAnchor, constant: 12),
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
@@ -115,7 +129,7 @@ extension CategoryHeaderView {
     }
     
     func addActionRightTitle(_ target: Any?, action: Selector) {
-        rightTitleLabel.addGestureRecognizer(UITapGestureRecognizer(target: target, action: action))
+        allChallnegeStackView.addGestureRecognizer(UITapGestureRecognizer(target: target, action: action))
     }
     
 }

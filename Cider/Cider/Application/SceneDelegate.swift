@@ -26,10 +26,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 )
             )
         )
+        let loginNavigationController = UINavigationController(rootViewController: loginViewController)
         let tabBarViewController = TabBarViewController()
         let mainViewController = UserManager.shared.getLoginState() ? tabBarViewController : tabBarViewController
 
-        window?.rootViewController = UINavigationController(rootViewController: mainViewController)
+        window?.rootViewController = mainViewController
         window?.makeKeyAndVisible()
     }
     
