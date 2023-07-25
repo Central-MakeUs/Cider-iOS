@@ -77,6 +77,7 @@ private extension HomeViewController {
     
     func pushHomeDetailViewController(_ type: HomeDetailType) {
         let viewController = HomeDetailViewController(homeDetailType: type)
+        viewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     

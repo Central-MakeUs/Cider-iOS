@@ -13,7 +13,7 @@ final class AppAppearance {
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.configureWithOpaqueBackground()
         navigationBarAppearance.backgroundColor = UIColor.white
-        navigationBarAppearance.shadowColor = .white
+        navigationBarAppearance.shadowColor = .custom.gray2
         navigationBarAppearance.titleTextAttributes = [
             NSAttributedString.Key.font: CustomFont.PretendardMedium(size: .xl2).font ?? .systemFont(ofSize: 16),
             .foregroundColor: UIColor.black

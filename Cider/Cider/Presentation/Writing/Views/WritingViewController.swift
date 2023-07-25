@@ -60,12 +60,16 @@ private extension WritingViewController {
     }
     
     func pushChallengeTypeViewController() {
-        guard let presentingViewController = self.presentingViewController as? UINavigationController else {
+        guard let tabBarController = self.presentingViewController as? UITabBarController else {
+            return
+        }
+        guard let navigationController = tabBarController.selectedViewController as? UINavigationController else {
             return
         }
         self.dismiss(animated: true) {
             let viewController = ChallengeTypeViewController()
-            presentingViewController.pushViewController(viewController, animated: true)
+            viewController.hidesBottomBarWhenPushed = true
+            navigationController.pushViewController(viewController, animated: true)
         }
     }
     
