@@ -69,9 +69,8 @@ private extension HomeDetailViewController {
     }
     
     func setNavigationBar() {
-//        let leftView = HomeNavigationView()
-//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftView)
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBarButton)
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationItem.title = homeDetailType.navigationBarTitle
     }
     
     func setUpDataSource() {
@@ -155,7 +154,7 @@ private extension HomeDetailViewController {
     func infoSectionLayout() -> NSCollectionLayoutSection {
         let layoutSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
-            heightDimension: .absolute(260)
+            heightDimension: .fractionalWidth(0.72)
         )
         
         let group = NSCollectionLayoutGroup.horizontal(
@@ -185,7 +184,6 @@ private extension HomeDetailViewController {
             height = width*1.72+13
         }
         
-        print(width, width*1.82)
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .absolute(width),
             heightDimension: .fractionalWidth(1)

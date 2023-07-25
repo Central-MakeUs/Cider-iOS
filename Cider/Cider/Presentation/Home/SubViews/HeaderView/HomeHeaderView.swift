@@ -25,20 +25,16 @@ class HomeHeaderView: UICollectionReusableView {
         return label
     }()
     
-    private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(axis: .horizontal, alignment: .fill, distribution: .fill, spacing: 4)
-        stackView.addArrangedSubviews(rightTitleLabel)
-        return stackView
+    private lazy var rightChevronImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "line_arrow-right_24")
+        return imageView
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configure()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView(axis: .horizontal, alignment: .fill, distribution: .fill, spacing: 4)
+        return stackView
+    }()
     
     private func configure() {
         addSubviews(leftTitleLabel, stackView)
@@ -46,9 +42,10 @@ class HomeHeaderView: UICollectionReusableView {
             leftTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12),
             leftTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
             leftTitleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            stackView.heightAnchor.constraint(equalToConstant: 16),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
-            stackView.topAnchor.constraint(equalTo: topAnchor, constant: 12),
-            stackView.centerYAnchor.constraint(equalTo: centerYAnchor)
+            stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            rightChevronImageView.widthAnchor.constraint(equalToConstant: 16),
         ])
     }
     
@@ -56,9 +53,14 @@ class HomeHeaderView: UICollectionReusableView {
 
 extension HomeHeaderView {
     
-    func setUp(leftTitle: String, rightTitle: String) {
+    func setUp(leftTitle: String, rightTitle: String, isClicked: Bool) {
         leftTitleLabel.text = leftTitle
         rightTitleLabel.text = rightTitle
+        isClicked ? stackView.addArrangedSubviews(rightTitleLabel, rightChevronImageView)
+        : stackView.addArrangedSubviews(rightTitleLabel)
+        rightChevronImageView.isHidden = !isClicked
+        stackView.isUserInteractionEnabled = isClicked
+        configure()
     }
     
     func addActionRightTitle(_ target: Any?, action: Selector) {

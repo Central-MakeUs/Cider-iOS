@@ -166,7 +166,7 @@ private extension HomeViewController {
         
         dataSource?.supplementaryViewProvider = { [weak self] collectionView, elementKind, indexPath in
             guard let self = self else {
-                return nil
+                return UICollectionReusableView()
             }
             
             let section = Section(rawValue: indexPath.section)
@@ -177,9 +177,9 @@ private extension HomeViewController {
                     withReuseIdentifier: HomeHeaderView.identifier,
                     for: indexPath
                 ) as? HomeHeaderView
-                headerView?.setUp(leftTitle: "인기 챌린지", rightTitle: "더보기  >")
+                headerView?.setUp(leftTitle: "인기 챌린지", rightTitle: "더보기", isClicked: true)
                 headerView?.addActionRightTitle(self, action: #selector(self.didTapPopularChallenge))
-                return headerView
+                return headerView ?? UICollectionReusableView()
                 
             case .publicChallenge:
                 let headerView = collectionView.dequeueReusableSupplementaryView(
@@ -187,9 +187,9 @@ private extension HomeViewController {
                     withReuseIdentifier: HomeHeaderView.identifier,
                     for: indexPath
                 ) as? HomeHeaderView
-                headerView?.setUp(leftTitle: "바로 참여 가능! 공식 챌린지", rightTitle: "더보기 >")
+                headerView?.setUp(leftTitle: "바로 참여 가능! 공식 챌린지", rightTitle: "더보기", isClicked: true)
                 headerView?.addActionRightTitle(self, action: #selector(self.didTapPublicChallenge))
-                return headerView
+                return headerView ?? UICollectionReusableView()
                 
             case .category:
                 let headerView = collectionView.dequeueReusableSupplementaryView(
@@ -199,7 +199,7 @@ private extension HomeViewController {
                 ) as? CategoryHeaderView
                 headerView?.setUp(leftTitle: "카테고리", rightTitle: "전체 챌린지 보기", selectedType: .financialTech)
                 headerView?.addActionRightTitle(self, action: #selector(self.didTapAllChallenge))
-                return headerView
+                return headerView ?? UICollectionReusableView()
                 
             case .feed:
                 let headerView = collectionView.dequeueReusableSupplementaryView(
@@ -207,7 +207,7 @@ private extension HomeViewController {
                     withReuseIdentifier: HomeHeaderView.identifier,
                     for: indexPath
                 ) as? HomeHeaderView
-                headerView?.setUp(leftTitle: "추천 피드", rightTitle: "오늘의 활동 추천 피드")
+                headerView?.setUp(leftTitle: "추천 피드", rightTitle: "오늘의 활동 추천 피드", isClicked: false)
                 return headerView
                 
             default:
@@ -259,7 +259,7 @@ private extension HomeViewController {
     func bannerSectionLayout() -> NSCollectionLayoutSection {
         let layoutSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
-            heightDimension: .absolute(260)
+            heightDimension: .fractionalWidth(0.72)
         )
         
         let group = NSCollectionLayoutGroup.horizontal(

@@ -45,4 +45,15 @@ enum HomeDetailType {
             return nil
         }
     }
+    
+    var navigationBarTitle: String {
+        switch self {
+        case .popularChallenge:
+            return "인기 챌린지"
+        case .publicChallenge:
+            return "공식 챌린지"
+        case .allChallenge:
+            return "전체 챌린지"
+        }
+    }
 }

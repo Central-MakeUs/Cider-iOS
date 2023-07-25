@@ -23,7 +23,6 @@ class HomeDetailInfoCell: UICollectionViewCell {
         label.textColor = .white
         label.font = CustomFont.PretendardMedium(size: .xl4).font
         label.numberOfLines = 0
-        label.setTextWithLineHeight(lineHeight: 33.6)
         return label
     }()
     
@@ -53,6 +52,7 @@ extension HomeDetailInfoCell {
     func setUp(_ type: HomeDetailType) {
         backgroundColor = type.mainColor
         mainTitleLabel.text = type.mainTitle
+        mainTitleLabel.setTextWithLineHeight(lineHeight: 33.6)
         subTitleLabel.text = type.subTitle
     }
     
