@@ -13,6 +13,7 @@ class MyChallengeViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.register(ChallengeHomeCell.self, forCellWithReuseIdentifier: ChallengeHomeCell.identifier)
         collectionView.register(OngoingCell.self, forCellWithReuseIdentifier: OngoingCell.identifier)
+        collectionView.register(ReviewCell.self, forCellWithReuseIdentifier: ReviewCell.identifier)
         collectionView.register(HomeHeaderView.self, forSupplementaryViewOfKind: HomeHeaderView.identifier, withReuseIdentifier: HomeHeaderView.identifier)
         collectionView.register(SeparatorFooterView.self, forSupplementaryViewOfKind: SeparatorFooterView.identifier, withReuseIdentifier: SeparatorFooterView.identifier)
         collectionView.showsVerticalScrollIndicator = false
@@ -23,6 +24,7 @@ class MyChallengeViewController: UIViewController {
     private enum Section: Int {
         case onGoingChallenge = 0
         case closedChallenge = 1
+        case reviewChallenge = 2
     }
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
@@ -96,6 +98,18 @@ private extension MyChallengeViewController {
                 )
                 return cell
                 
+            case .reviewChallenge:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewCell.identifier, for: indexPath) as? ReviewCell else {
+                    return UICollectionViewCell()
+                }
+                cell.setUp(
+                    title: "만보 걷기",
+                    challengeType: .moneySaving,
+                    reviewType: .successReview,
+                    challengeSuccessMessage: "2023.07.11 챌린지 모집 시작"
+                )
+                return cell
+                
             case .none:
                 return UICollectionViewCell()
             }
@@ -134,12 +148,35 @@ private extension MyChallengeViewController {
                 }
                 
             case .closedChallenge:
+                switch elementKind {
+                case HomeHeaderView.identifier:
+                    let headerView = collectionView.dequeueReusableSupplementaryView(
+                        ofKind: elementKind,
+                        withReuseIdentifier: HomeHeaderView.identifier,
+                        for: indexPath
+                    ) as? HomeHeaderView
+                    headerView?.setUp(leftTitle: "최근 종료된 챌린지", rightTitle: "8개", isClicked: false)
+                    return headerView ?? UICollectionReusableView()
+                    
+                case SeparatorFooterView.identifier:
+                    let footerView = collectionView.dequeueReusableSupplementaryView(
+                        ofKind: elementKind,
+                        withReuseIdentifier: SeparatorFooterView.identifier,
+                        for: indexPath
+                    ) as? SeparatorFooterView
+                    return footerView ?? UICollectionReusableView()
+                    
+                default:
+                    return nil
+                }
+                
+            case .reviewChallenge:
                 let headerView = collectionView.dequeueReusableSupplementaryView(
                     ofKind: elementKind,
                     withReuseIdentifier: HomeHeaderView.identifier,
                     for: indexPath
                 ) as? HomeHeaderView
-                headerView?.setUp(leftTitle: "최근 종료된 챌린지", rightTitle: "8개", isClicked: false)
+                headerView?.setUp(leftTitle: "심사중인 챌린지", rightTitle: "2개", isClicked: false)
                 return headerView ?? UICollectionReusableView()
                 
             default:
@@ -155,6 +192,8 @@ private extension MyChallengeViewController {
         snapshot.appendItems([Item(), Item(), Item(), Item(), Item(), Item()])
         snapshot.appendSections([.closedChallenge])
         snapshot.appendItems([Item(), Item(), Item(), Item(), Item(), Item()])
+        snapshot.appendSections([.reviewChallenge])
+        snapshot.appendItems([Item(), Item(), Item(), Item(), Item(), Item()])
         dataSource?.apply(snapshot)
     }
     
@@ -167,6 +206,9 @@ private extension MyChallengeViewController {
                 
             case .closedChallenge:
                 return self?.challengeSectionLayout()
+                
+            case .reviewChallenge:
+                return self?.reviewSectionLayout()
                 
             case .none:
                 return nil
@@ -228,7 +270,7 @@ private extension MyChallengeViewController {
         )
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = .init(top: 0, leading: 24, bottom: 32, trailing: 24)
+        section.contentInsets = .init(top: 0, leading: 24, bottom: 16, trailing: 24)
         
         section.interGroupSpacing = 12
         section.orthogonalScrollingBehavior = .continuous
@@ -239,7 +281,46 @@ private extension MyChallengeViewController {
                     widthDimension: .absolute(view.safeAreaLayoutGuide.layoutFrame.width),
                     heightDimension: .absolute(49)
                 ),
-                elementKind: HomeHeaderView.identifier, alignment: .top)
+                elementKind: HomeHeaderView.identifier, alignment: .top
+            ),
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: .init(
+                    widthDimension: .absolute(UIScreen.main.bounds.width),
+                    heightDimension: .absolute(8)
+                ),
+                elementKind: SeparatorFooterView.identifier, alignment: .bottom
+            )
+        ]
+        return section
+    }
+    
+    func reviewSectionLayout() -> NSCollectionLayoutSection {
+        let layoutSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .absolute(115.8)
+        )
+        
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: .init(
+                widthDimension: layoutSize.widthDimension,
+                heightDimension: layoutSize.heightDimension
+            ),
+            subitems: [.init(layoutSize: layoutSize)]
+        )
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = .init(top: 0, leading: 24, bottom: 16, trailing: 24)
+        
+        section.interGroupSpacing = 16
+       
+        section.boundarySupplementaryItems = [
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: .init(
+                    widthDimension: .absolute(UIScreen.main.bounds.width),
+                    heightDimension: .absolute(49)
+                ),
+                elementKind: HomeHeaderView.identifier, alignment: .top
+            )
         ]
         return section
     }

@@ -102,7 +102,7 @@ final class ReviewStatusView: UIView {
     }
     
     private func cofigure() {
-        layer.cornerRadius = 10
+        layer.cornerRadius = 8
         layer.borderWidth = 0.5
         addSubviews(titleLabel)
         NSLayoutConstraint.activate([

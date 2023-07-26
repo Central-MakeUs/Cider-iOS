@@ -9,6 +9,8 @@ import UIKit
 
 final class ReviewCell: UICollectionViewCell {
     
+    static let identifier = "ReviewCell"
+    
     private lazy var mainTitleLabel: UILabel = {
         let label = UILabel()
         label.font = CustomFont.PretendardBold(size: .lg).font
@@ -85,6 +87,7 @@ final class ReviewCell: UICollectionViewCell {
     }
     
     private func configure() {
+        backgroundColor = .custom.gray1
         addSubviews(mainTitleLabel, challengeTypeLabel, leftStackView, rightStackView, rightLabel, reviewstatusBarView)
         NSLayoutConstraint.activate([
             mainTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12),
