@@ -14,6 +14,7 @@ class MyChallengeViewController: UIViewController {
         collectionView.register(ChallengeHomeCell.self, forCellWithReuseIdentifier: ChallengeHomeCell.identifier)
         collectionView.register(OngoingCell.self, forCellWithReuseIdentifier: OngoingCell.identifier)
         collectionView.register(HomeHeaderView.self, forSupplementaryViewOfKind: HomeHeaderView.identifier, withReuseIdentifier: HomeHeaderView.identifier)
+        collectionView.register(SeparatorFooterView.self, forSupplementaryViewOfKind: SeparatorFooterView.identifier, withReuseIdentifier: SeparatorFooterView.identifier)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.keyboardDismissMode = .onDrag
         return collectionView
@@ -109,14 +110,28 @@ private extension MyChallengeViewController {
             let section = Section(rawValue: indexPath.section)
             switch section {
             case .onGoingChallenge:
-                let headerView = collectionView.dequeueReusableSupplementaryView(
-                    ofKind: elementKind,
-                    withReuseIdentifier: HomeHeaderView.identifier,
-                    for: indexPath
-                ) as? HomeHeaderView
-                headerView?.setUp(leftTitle: "진행중인 챌린지", rightTitle: "2개", isClicked: false)
-                headerView?.setRightLabelColor(.custom.main)
-                return headerView ?? UICollectionReusableView()
+                switch elementKind {
+                case HomeHeaderView.identifier:
+                    let headerView = collectionView.dequeueReusableSupplementaryView(
+                        ofKind: elementKind,
+                        withReuseIdentifier: HomeHeaderView.identifier,
+                        for: indexPath
+                    ) as? HomeHeaderView
+                    headerView?.setUp(leftTitle: "진행중인 챌린지", rightTitle: "2개", isClicked: false)
+                    headerView?.setRightLabelColor(.custom.main)
+                    return headerView ?? UICollectionReusableView()
+                    
+                case SeparatorFooterView.identifier:
+                    let footerView = collectionView.dequeueReusableSupplementaryView(
+                        ofKind: elementKind,
+                        withReuseIdentifier: SeparatorFooterView.identifier,
+                        for: indexPath
+                    ) as? SeparatorFooterView
+                    return footerView ?? UICollectionReusableView()
+                    
+                default:
+                    return nil
+                }
                 
             case .closedChallenge:
                 let headerView = collectionView.dequeueReusableSupplementaryView(
@@ -174,7 +189,7 @@ private extension MyChallengeViewController {
         )
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = .init(top: 0, leading: 24, bottom: 32, trailing: 24)
+        section.contentInsets = .init(top: 0, leading: 24, bottom: 16, trailing: 24)
         
         section.interGroupSpacing = 12
         section.orthogonalScrollingBehavior = .continuous
@@ -182,10 +197,18 @@ private extension MyChallengeViewController {
         section.boundarySupplementaryItems = [
             NSCollectionLayoutBoundarySupplementaryItem(
                 layoutSize: .init(
-                    widthDimension: .absolute(view.safeAreaLayoutGuide.layoutFrame.width),
+                    widthDimension: .absolute(UIScreen.main.bounds.width),
                     heightDimension: .absolute(49)
                 ),
-                elementKind: HomeHeaderView.identifier, alignment: .top)
+                elementKind: HomeHeaderView.identifier, alignment: .top
+            ),
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: .init(
+                    widthDimension: .absolute(UIScreen.main.bounds.width),
+                    heightDimension: .absolute(8)
+                ),
+                elementKind: SeparatorFooterView.identifier, alignment: .bottom
+            )
         ]
         return section
     }

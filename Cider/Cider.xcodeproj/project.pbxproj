@@ -113,6 +113,7 @@
 		FA8CA6282A49B541005A6709 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA8CA6252A49B541005A6709 /* Pretendard-Medium.otf */; };
 		FAB9A73B2A4C64CF00757A80 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */; };
 		FAB9A73F2A4C8DAB00757A80 /* ProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */; };
+		FABF17532A70D8910073C13B /* SeparatorFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABF17522A70D8910073C13B /* SeparatorFooterView.swift */; };
 		FAD6E3D42A64F2A6002C8007 /* WritingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD6E3D32A64F2A6002C8007 /* WritingView.swift */; };
 		FAD6E3D62A64F2F5002C8007 /* WritingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD6E3D52A64F2F5002C8007 /* WritingType.swift */; };
 		FAD6E3D82A64F9B5002C8007 /* ChallengeTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD6E3D72A64F9B5002C8007 /* ChallengeTypeViewController.swift */; };
@@ -224,6 +225,7 @@
 		FA8CA6252A49B541005A6709 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessView.swift; sourceTree = "<group>"; };
+		FABF17522A70D8910073C13B /* SeparatorFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorFooterView.swift; sourceTree = "<group>"; };
 		FAD6E3D32A64F2A6002C8007 /* WritingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingView.swift; sourceTree = "<group>"; };
 		FAD6E3D52A64F2F5002C8007 /* WritingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingType.swift; sourceTree = "<group>"; };
 		FAD6E3D72A64F9B5002C8007 /* ChallengeTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeTypeViewController.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 		FA2A06562A69010A00AC649F /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				FABF17512A70D86E0073C13B /* FooterView */,
 				FA3FC7FE2A6E93C70022CA3A /* Cell */,
 				FA3FC7FD2A6E93BB0022CA3A /* HeaderView */,
 				FA2A06572A69014100AC649F /* ChallengeHomeView.swift */,
@@ -638,6 +641,14 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		FABF17512A70D86E0073C13B /* FooterView */ = {
+			isa = PBXGroup;
+			children = (
+				FABF17522A70D8910073C13B /* SeparatorFooterView.swift */,
+			);
+			path = FooterView;
+			sourceTree = "<group>";
+		};
 		FAD6E3D12A64F283002C8007 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -741,6 +752,7 @@
 				FA57AF5D2A5D17A0008A5991 /* LoginRepository.swift in Sources */,
 				FA6C216B2A5A78C4008A9ADD /* RandomNicknameView.swift in Sources */,
 				FA57AF4D2A5D0E2A008A5991 /* Keychain.swift in Sources */,
+				FABF17532A70D8910073C13B /* SeparatorFooterView.swift in Sources */,
 				FA3AE4092A57D3D70078A4DF /* ViewModelType.swift in Sources */,
 				FA2A06582A69014100AC649F /* ChallengeHomeView.swift in Sources */,
 				FA3C432A2A62F1FB009E820B /* OnboardingResponse.swift in Sources */,
