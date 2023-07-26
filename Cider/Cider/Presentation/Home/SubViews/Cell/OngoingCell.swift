@@ -9,6 +9,8 @@ import UIKit
 
 final class OngoingCell: UICollectionViewCell {
     
+    static let identifier = "OngoingCell"
+    
     private lazy var mainTitleLabel: UILabel = {
         let label = UILabel()
         label.font = CustomFont.PretendardBold(size: .lg).font

@@ -63,6 +63,10 @@ extension HomeHeaderView {
         configure()
     }
     
+    func setRightLabelColor(_ color: UIColor?) {
+        rightTitleLabel.textColor = color
+    }
+    
     func addActionRightTitle(_ target: Any?, action: Selector) {
         stackView.addGestureRecognizer(UITapGestureRecognizer(target: target, action: action))
     }

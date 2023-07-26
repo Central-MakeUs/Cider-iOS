@@ -16,7 +16,6 @@ final class HomeViewController: UIViewController {
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: FeedCell.identifier)
         collectionView.register(HomeHeaderView.self, forSupplementaryViewOfKind: HomeHeaderView.identifier, withReuseIdentifier: HomeHeaderView.identifier)
         collectionView.register(CategoryHeaderView.self, forSupplementaryViewOfKind: CategoryHeaderView.identifier, withReuseIdentifier: CategoryHeaderView.identifier)
-
         collectionView.showsVerticalScrollIndicator = false
         collectionView.keyboardDismissMode = .onDrag
         return collectionView
@@ -25,6 +24,7 @@ final class HomeViewController: UIViewController {
     private lazy var rightBarButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "line_mychallenge_24"), for: .normal)
+        button.addTarget(self, action: #selector(didTapMyChallenge), for: .touchUpInside)
         return button
     }()
     
@@ -86,6 +86,12 @@ private extension HomeViewController {
     
     func pushHomeDetailViewController(_ type: HomeDetailType) {
         let viewController = HomeDetailViewController(homeDetailType: type)
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func pushMyChallengeViewController() {
+        let viewController = MyChallengeViewController()
         viewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(viewController, animated: true)
     }
@@ -397,6 +403,10 @@ private extension HomeViewController {
     
     @objc func didTapArrowTop(_ sender: Any?) {
         collectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    
+    @objc func didTapMyChallenge(_ sender: Any?) {
+        pushMyChallengeViewController()
     }
     
 }
