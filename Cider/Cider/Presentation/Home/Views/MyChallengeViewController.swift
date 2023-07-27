@@ -21,6 +21,15 @@ class MyChallengeViewController: UIViewController {
         return collectionView
     }()
     
+    private lazy var rightBarButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "line_profile_24"), for: .normal)
+        button.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        button.addTarget(self, action: #selector(didTapRightBarButton), for: .touchUpInside)
+        return button
+    }()
+    
     private enum Section: Int {
         case onGoingChallenge = 0
         case closedChallenge = 1
@@ -63,6 +72,7 @@ private extension MyChallengeViewController {
     func setNavigationBar() {
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = "내 챌린지"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBarButton)
     }
     
     func setUpDataSource() {
@@ -325,5 +335,12 @@ private extension MyChallengeViewController {
         return section
     }
 
+}
+
+private extension MyChallengeViewController {
+
+    @objc func didTapRightBarButton(_ sender: Any?) {
+       print("didTapRightBarButton")
+    }
     
 }
