@@ -9,7 +9,7 @@ import UIKit
 
 final class MissionPhotoView: UIView {
     
-    private let type: MissionType
+    private let type: ChallengeResultType
     
     private let stackViewHeight = (UIScreen.main.bounds.width-48)/2-5
     
@@ -76,7 +76,7 @@ final class MissionPhotoView: UIView {
         return label
     }()
     
-    init(type: MissionType) {
+    init(type: ChallengeResultType) {
         self.type = type
         super.init(frame: .zero)
         configure()

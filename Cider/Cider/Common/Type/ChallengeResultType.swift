@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum MissionType {
+enum ChallengeResultType {
     case success
     case fail
 }

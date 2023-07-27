@@ -43,7 +43,7 @@ final class ChallengeOpenViewController: UIViewController {
     
     private var failImage = UIImage()
     private var successImage = UIImage()
-    private var missionType: MissionType?
+    private var missionType: ChallengeResultType?
     
     init(challengeType: ChallengeType, viewModel: ChallengeOpenViewModel) {
         self.challengeType = challengeType

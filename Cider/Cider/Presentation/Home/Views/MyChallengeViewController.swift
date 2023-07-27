@@ -11,7 +11,7 @@ class MyChallengeViewController: UIViewController {
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
-        collectionView.register(ChallengeHomeCell.self, forCellWithReuseIdentifier: ChallengeHomeCell.identifier)
+        collectionView.register(ClosedChallengeCell.self, forCellWithReuseIdentifier: ClosedChallengeCell.identifier)
         collectionView.register(OngoingCell.self, forCellWithReuseIdentifier: OngoingCell.identifier)
         collectionView.register(ReviewCell.self, forCellWithReuseIdentifier: ReviewCell.identifier)
         collectionView.register(HomeHeaderView.self, forSupplementaryViewOfKind: HomeHeaderView.identifier, withReuseIdentifier: HomeHeaderView.identifier)
@@ -92,20 +92,19 @@ private extension MyChallengeViewController {
                 return cell
                 
             case .closedChallenge:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeHomeCell.identifier, for: indexPath) as? ChallengeHomeCell else {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ClosedChallengeCell.identifier, for: indexPath) as? ClosedChallengeCell else {
                     return UICollectionViewCell()
                 }
                 cell.setUp(
                     type: .financialTech,
                     isReward: true,
                     date: "1주",
-                    ranking: "1위",
                     title: "만보걷기",
                     status: "종료",
                     people: "5명 모집중",
-                    isPublic: true,
-                    dDay: "D-12"
+                    isPublic: true
                 )
+                cell.challengeHomeView.setClosedChallenge(.fail)
                 return cell
                 
             case .reviewChallenge:

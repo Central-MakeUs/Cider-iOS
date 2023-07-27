@@ -99,6 +99,12 @@ final class ChallengeHomeView: UIView {
         dateLabel.setUp(title: date)
     }
     
+    func setClosedChallenge(_ type: ChallengeResultType) {
+        statusView.backgroundColor = type == .success ? .custom.main : .custom.gray6
+        statusLabel.text = type == .success ? "성공" : "실패"
+        heartButton.setImage(UIImage(named: "filled_trash_24"), for: .normal)
+    }
+    
 }
 
 final class ChallengeTagLabel: UILabel {
