@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FeedCell: UICollectionViewCell {
+final class FeedCell: UICollectionViewCell {
     
     static let identifier = "FeedCell"
     
@@ -242,7 +242,6 @@ extension FeedCell {
     @objc func didTapMore(_ sender: Any?) {
         // TODO: collectionView applysnapshot 해주기
         subTitleLabel.numberOfLines = subTitleLabel.numberOfLines == 0 ? 1 : 0
-        subTitleLabel.text = subTitleLabel.text == "자세히 보기" ? "접기" : "자세히 보기"
     }
     
 }

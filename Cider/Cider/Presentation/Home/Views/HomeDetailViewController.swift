@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeDetailViewController: UIViewController {
+final class HomeDetailViewController: UIViewController {
     
     private let homeDetailType: HomeDetailType
     
@@ -19,6 +19,13 @@ class HomeDetailViewController: UIViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.keyboardDismissMode = .onDrag
         return collectionView
+    }()
+    
+    private lazy var arrowTopButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "arrowTopButton"), for: .normal)
+        button.addTarget(self, action: #selector(didTapArrowTop), for: .touchUpInside)
+        return button
     }()
     
     private enum Section: Int {
@@ -59,12 +66,14 @@ private extension HomeDetailViewController {
     
     func configure() {
         view.backgroundColor = .white
-        view.addSubviews(collectionView)
+        view.addSubviews(collectionView, arrowTopButton)
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            arrowTopButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
+            arrowTopButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24)
         ])
     }
     
@@ -215,5 +224,13 @@ private extension HomeDetailViewController {
         return section
     }
         
+    
+}
+
+private extension HomeDetailViewController {
+    
+    @objc func didTapArrowTop(_ sender: Any?) {
+        collectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
     
 }
