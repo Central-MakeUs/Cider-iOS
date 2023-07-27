@@ -186,6 +186,7 @@ private extension MyChallengeViewController {
                     for: indexPath
                 ) as? HomeHeaderView
                 headerView?.setUp(leftTitle: "심사중인 챌린지", rightTitle: "2개", isClicked: false)
+                headerView?.setReviewSuccessLabel(successCount: 3)
                 return headerView ?? UICollectionReusableView()
                 
             default:

@@ -36,8 +36,20 @@ class HomeHeaderView: UICollectionReusableView {
         return stackView
     }()
     
+    private lazy var reviewSuccessLabel: UILabel = {
+        let label = UILabel()
+        label.font = CustomFont.PretendardBold(size: .sm).font
+        label.textColor = .custom.main
+        label.isHidden = true
+        return label
+    }()
+    
+    override func prepareForReuse() {
+        reviewSuccessLabel.isHidden = true
+    }
+    
     private func configure() {
-        addSubviews(leftTitleLabel, stackView)
+        addSubviews(leftTitleLabel, stackView, reviewSuccessLabel)
         NSLayoutConstraint.activate([
             leftTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12),
             leftTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
@@ -46,6 +58,8 @@ class HomeHeaderView: UICollectionReusableView {
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
             stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
             rightChevronImageView.widthAnchor.constraint(equalToConstant: 16),
+            reviewSuccessLabel.leadingAnchor.constraint(equalTo: leftTitleLabel.trailingAnchor, constant: 6),
+            reviewSuccessLabel.centerYAnchor.constraint(equalTo: leftTitleLabel.centerYAnchor)
         ])
     }
     
@@ -65,6 +79,11 @@ extension HomeHeaderView {
     
     func setRightLabelColor(_ color: UIColor?) {
         rightTitleLabel.textColor = color
+    }
+    
+    func setReviewSuccessLabel(successCount: Int) {
+        reviewSuccessLabel.isHidden = false
+        reviewSuccessLabel.text = "심사완료 \(successCount)"
     }
     
     func addActionRightTitle(_ target: Any?, action: Selector) {
