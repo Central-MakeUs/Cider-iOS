@@ -16,6 +16,7 @@ class ChallengeDetailViewController: UIViewController {
         collectionView.register(ProgressBarCell.self, forCellWithReuseIdentifier: ProgressBarCell.identifier)
         collectionView.register(ChallengeIntroCell.self, forCellWithReuseIdentifier: ChallengeIntroCell.identifier)
         collectionView.register(ChallengeInfoCell.self, forCellWithReuseIdentifier: ChallengeInfoCell.identifier)
+        collectionView.register(RuleCell.self, forCellWithReuseIdentifier: RuleCell.identifier)
         collectionView.register(HomeHeaderView.self, forSupplementaryViewOfKind: HomeHeaderView.identifier, withReuseIdentifier: HomeHeaderView.identifier)
         collectionView.register(SeparatorFooterView.self, forSupplementaryViewOfKind: SeparatorFooterView.identifier, withReuseIdentifier: SeparatorFooterView.identifier)
         collectionView.showsVerticalScrollIndicator = false
@@ -28,6 +29,7 @@ class ChallengeDetailViewController: UIViewController {
         case progress = 1
         case challengeIntro = 2
         case challengeInfo = 3
+        case rule = 4
     }
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
@@ -116,6 +118,13 @@ private extension ChallengeDetailViewController {
                 )
                 return cell
                 
+            case .rule:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RuleCell.identifier, for: indexPath) as? RuleCell else {
+                    return UICollectionViewCell()
+                }
+                cell.setUp(failText: "30회 미만 인증")
+                return cell
+                
             case .none:
                 return UICollectionViewCell()
             }
@@ -200,6 +209,30 @@ private extension ChallengeDetailViewController {
                     return nil
                     
                 }
+                
+            case .rule:
+                switch elementKind {
+                case HomeHeaderView.identifier:
+                    let headerView = collectionView.dequeueReusableSupplementaryView(
+                        ofKind: elementKind,
+                        withReuseIdentifier: HomeHeaderView.identifier,
+                        for: indexPath
+                    ) as? HomeHeaderView
+                    headerView?.setUp(leftTitle: "챌린지 규칙", rightTitle: "", isClicked: false)
+                    return headerView ?? UICollectionReusableView()
+                    
+                case SeparatorFooterView.identifier:
+                    let headerView = collectionView.dequeueReusableSupplementaryView(
+                        ofKind: elementKind,
+                        withReuseIdentifier: SeparatorFooterView.identifier,
+                        for: indexPath
+                    ) as? SeparatorFooterView
+                    return headerView ?? UICollectionReusableView()
+                    
+                default:
+                    return nil
+                    
+                }
                
                 
             default:
@@ -219,6 +252,8 @@ private extension ChallengeDetailViewController {
         snapshot.appendItems([Item()])
         snapshot.appendSections([.challengeInfo])
         snapshot.appendItems([Item()])
+        snapshot.appendSections([.rule])
+        snapshot.appendItems([Item()])
         dataSource?.apply(snapshot)
     }
     
@@ -237,6 +272,9 @@ private extension ChallengeDetailViewController {
                 
             case .challengeInfo:
                 return self?.challengeInfoSectionLayout()
+                
+            case .rule:
+                return self?.ruleSectionLayout()
                 
             default:
                 return nil
@@ -381,4 +419,59 @@ private extension ChallengeDetailViewController {
         return section
     }
     
+    func ruleSectionLayout() -> NSCollectionLayoutSection {
+        let layoutSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(100)
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: .init(
+                widthDimension: layoutSize.widthDimension,
+                heightDimension: layoutSize.heightDimension
+            ),
+            subitems: [.init(layoutSize: layoutSize)]
+        )
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = .init(top: 0, leading: 24, bottom: 0, trailing: 24)
+        
+        section.boundarySupplementaryItems = [
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: .init(
+                    widthDimension: .absolute(view.safeAreaLayoutGuide.layoutFrame.width),
+                    heightDimension: .absolute(65)
+                ),
+                elementKind: HomeHeaderView.identifier, alignment: .top
+            ),
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: .init(
+                    widthDimension: .absolute(view.safeAreaLayoutGuide.layoutFrame.width),
+                    heightDimension: .absolute(8)
+                ),
+                elementKind: SeparatorFooterView.identifier, alignment: .bottom
+            )
+        ]
+        return section
+    }
+    
 }
+
+
+#if DEBUG
+import SwiftUI
+
+@available(iOS 13.0, *)
+struct ChallengeDetailViewController_Preview: PreviewProvider {
+    static var devices = ["iPhone 12", "iPhone SE", "iPhone 11 Pro Max"]
+    
+    static var previews: some View {
+        ForEach(devices, id: \.self) { deviceName in
+            ChallengeDetailViewController()
+                .toPreview()
+                .previewDevice(PreviewDevice(rawValue: deviceName))
+                .previewDisplayName(deviceName)
+        }
+    }
+}
+#endif

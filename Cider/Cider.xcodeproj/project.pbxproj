@@ -61,6 +61,8 @@
 		FA4280862A73D4B800828F93 /* ChallengeIntroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280852A73D4B800828F93 /* ChallengeIntroCell.swift */; };
 		FA4280882A73DA4B00828F93 /* ChallengeInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280872A73DA4B00828F93 /* ChallengeInfoView.swift */; };
 		FA42808A2A73DC0D00828F93 /* ChallengeInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280892A73DC0D00828F93 /* ChallengeInfoCell.swift */; };
+		FA42808E2A73E79C00828F93 /* RuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA42808D2A73E79C00828F93 /* RuleView.swift */; };
+		FA4280902A73F58000828F93 /* RuleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA42808F2A73F58000828F93 /* RuleCell.swift */; };
 		FA43C4E52A681E16001BB9B4 /* ChallengeOpenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43C4E42A681E16001BB9B4 /* ChallengeOpenViewModel.swift */; };
 		FA44D3992A4C43B80037E328 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44D3982A4C43B80037E328 /* Color+Extension.swift */; };
 		FA44D39B2A4C46A30037E328 /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44D39A2A4C46A30037E328 /* CustomFont.swift */; };
@@ -186,6 +188,8 @@
 		FA4280852A73D4B800828F93 /* ChallengeIntroCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeIntroCell.swift; sourceTree = "<group>"; };
 		FA4280872A73DA4B00828F93 /* ChallengeInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeInfoView.swift; sourceTree = "<group>"; };
 		FA4280892A73DC0D00828F93 /* ChallengeInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeInfoCell.swift; sourceTree = "<group>"; };
+		FA42808D2A73E79C00828F93 /* RuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleView.swift; sourceTree = "<group>"; };
+		FA42808F2A73F58000828F93 /* RuleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleCell.swift; sourceTree = "<group>"; };
 		FA43C4E42A681E16001BB9B4 /* ChallengeOpenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOpenViewModel.swift; sourceTree = "<group>"; };
 		FA44D3982A4C43B80037E328 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		FA44D39A2A4C46A30037E328 /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
@@ -406,9 +410,8 @@
 		FA4280772A736BEC00828F93 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				FA42808C2A73E77B00828F93 /* View */,
 				FA4280822A73ADDF00828F93 /* Cell */,
-				FA42807E2A73882900828F93 /* ProgressBarView.swift */,
-				FA4280872A73DA4B00828F93 /* ChallengeInfoView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -420,8 +423,19 @@
 				FA4280832A73ADF900828F93 /* ProgressBarCell.swift */,
 				FA4280852A73D4B800828F93 /* ChallengeIntroCell.swift */,
 				FA4280892A73DC0D00828F93 /* ChallengeInfoCell.swift */,
+				FA42808F2A73F58000828F93 /* RuleCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		FA42808C2A73E77B00828F93 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FA42807E2A73882900828F93 /* ProgressBarView.swift */,
+				FA4280872A73DA4B00828F93 /* ChallengeInfoView.swift */,
+				FA42808D2A73E79C00828F93 /* RuleView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		FA43C4E32A681E08001BB9B4 /* ViewModels */ = {
@@ -816,6 +830,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA42808E2A73E79C00828F93 /* RuleView.swift in Sources */,
 				FA61002C2A5816E5002175CE /* KeywordsView.swift in Sources */,
 				FA57AF5D2A5D17A0008A5991 /* LoginRepository.swift in Sources */,
 				FA6C216B2A5A78C4008A9ADD /* RandomNicknameView.swift in Sources */,
@@ -885,6 +900,7 @@
 				FA553EBF2A5C141B00DAE63B /* LoginUsecase.swift in Sources */,
 				FA4DF29A2A6C191C007F3035 /* CategoryView.swift in Sources */,
 				FA6100282A57FA46002175CE /* ChallengeType.swift in Sources */,
+				FA4280902A73F58000828F93 /* RuleCell.swift in Sources */,
 				FA31A9442A6A33BE004D1C3B /* ChallengeHomeCell.swift in Sources */,
 				FA4DDB972A4D66CB002EDEAD /* ServiceAgreeDetailCell.swift in Sources */,
 				FAB9A73F2A4C8DAB00757A80 /* ProcessView.swift in Sources */,
