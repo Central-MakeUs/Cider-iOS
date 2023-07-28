@@ -18,6 +18,7 @@ final class HomeViewController: UIViewController {
         collectionView.register(CategoryHeaderView.self, forSupplementaryViewOfKind: CategoryHeaderView.identifier, withReuseIdentifier: CategoryHeaderView.identifier)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.keyboardDismissMode = .onDrag
+        collectionView.delegate = self
         return collectionView
     }()
     
@@ -82,18 +83,6 @@ private extension HomeViewController {
         let leftView = HomeNavigationView()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftView)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBarButton)
-    }
-    
-    func pushHomeDetailViewController(_ type: HomeDetailType) {
-        let viewController = HomeDetailViewController(homeDetailType: type)
-        viewController.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(viewController, animated: true)
-    }
-    
-    func pushMyChallengeViewController() {
-        let viewController = MyChallengeViewController()
-        viewController.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     func setUpDataSource() {
@@ -407,6 +396,50 @@ private extension HomeViewController {
     
     @objc func didTapMyChallenge(_ sender: Any?) {
         pushMyChallengeViewController()
+    }
+    
+}
+
+private extension HomeViewController {
+    
+    func pushHomeDetailViewController(_ type: HomeDetailType) {
+        let viewController = HomeDetailViewController(homeDetailType: type)
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func pushMyChallengeViewController() {
+        let viewController = MyChallengeViewController()
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func pushChallengeDetailViewController() {
+        let viewController = ChallengeDetailViewController()
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+}
+
+
+extension HomeViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let section = Section(rawValue: indexPath.section)
+        switch section {
+        case .popluarChallenge:
+            pushChallengeDetailViewController()
+            
+        case .publicChallenge:
+            pushChallengeDetailViewController()
+            
+        case .category:
+            pushChallengeDetailViewController()
+            
+        default:
+            break
+        }
     }
     
 }

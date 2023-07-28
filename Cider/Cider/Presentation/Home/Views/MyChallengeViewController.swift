@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MyChallengeViewController: UIViewController {
+final class MyChallengeViewController: UIViewController {
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
