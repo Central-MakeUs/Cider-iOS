@@ -58,6 +58,7 @@
 		FA42807D2A737C3600828F93 /* ChallengeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA42807C2A737C3600828F93 /* ChallengeDetailViewController.swift */; };
 		FA42807F2A73882900828F93 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA42807E2A73882900828F93 /* ProgressBarView.swift */; };
 		FA4280842A73ADF900828F93 /* ProgressBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280832A73ADF900828F93 /* ProgressBarCell.swift */; };
+		FA4280862A73D4B800828F93 /* ChallengeIntroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280852A73D4B800828F93 /* ChallengeIntroCell.swift */; };
 		FA43C4E52A681E16001BB9B4 /* ChallengeOpenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43C4E42A681E16001BB9B4 /* ChallengeOpenViewModel.swift */; };
 		FA44D3992A4C43B80037E328 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44D3982A4C43B80037E328 /* Color+Extension.swift */; };
 		FA44D39B2A4C46A30037E328 /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44D39A2A4C46A30037E328 /* CustomFont.swift */; };
@@ -180,6 +181,7 @@
 		FA42807C2A737C3600828F93 /* ChallengeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailViewController.swift; sourceTree = "<group>"; };
 		FA42807E2A73882900828F93 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		FA4280832A73ADF900828F93 /* ProgressBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarCell.swift; sourceTree = "<group>"; };
+		FA4280852A73D4B800828F93 /* ChallengeIntroCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeIntroCell.swift; sourceTree = "<group>"; };
 		FA43C4E42A681E16001BB9B4 /* ChallengeOpenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOpenViewModel.swift; sourceTree = "<group>"; };
 		FA44D3982A4C43B80037E328 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		FA44D39A2A4C46A30037E328 /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
@@ -411,6 +413,7 @@
 			children = (
 				FA4280782A736C5800828F93 /* ChallengeDetailMenuCell.swift */,
 				FA4280832A73ADF900828F93 /* ProgressBarCell.swift */,
+				FA4280852A73D4B800828F93 /* ChallengeIntroCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -882,6 +885,7 @@
 				FA2A06522A68F19700AC649F /* ReviewInfoView.swift in Sources */,
 				FA2A064C2A68DC0F00AC649F /* PrecautionView.swift in Sources */,
 				FA6C21692A5A4E21008A9ADD /* CiderEnabledStyle.swift in Sources */,
+				FA4280862A73D4B800828F93 /* ChallengeIntroCell.swift in Sources */,
 				FA8CA6072A46D322005A6709 /* AppDelegate.swift in Sources */,
 				FA4280692A721C7900828F93 /* ClosedChallengeCell.swift in Sources */,
 				FA44D39B2A4C46A30037E328 /* CustomFont.swift in Sources */,
