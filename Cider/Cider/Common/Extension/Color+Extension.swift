@@ -30,5 +30,6 @@ extension UIColor {
         static let btnPink = UIColor(named: "btnPink")
         static let btnPurple = UIColor(named: "btnPurple")
         static let btnBlue = UIColor(named: "btnBlue")
+        static let secondary = UIColor(named: "secondary")
     }
 }
