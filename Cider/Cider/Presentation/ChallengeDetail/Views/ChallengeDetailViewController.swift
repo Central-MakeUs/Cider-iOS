@@ -15,6 +15,7 @@ class ChallengeDetailViewController: UIViewController {
         collectionView.register(ProgressBarCell.self, forCellWithReuseIdentifier: ProgressBarCell.identifier)
         collectionView.register(ProgressBarCell.self, forCellWithReuseIdentifier: ProgressBarCell.identifier)
         collectionView.register(ChallengeIntroCell.self, forCellWithReuseIdentifier: ChallengeIntroCell.identifier)
+        collectionView.register(ChallengeInfoCell.self, forCellWithReuseIdentifier: ChallengeInfoCell.identifier)
         collectionView.register(HomeHeaderView.self, forSupplementaryViewOfKind: HomeHeaderView.identifier, withReuseIdentifier: HomeHeaderView.identifier)
         collectionView.register(SeparatorFooterView.self, forSupplementaryViewOfKind: SeparatorFooterView.identifier, withReuseIdentifier: SeparatorFooterView.identifier)
         collectionView.showsVerticalScrollIndicator = false
@@ -26,6 +27,7 @@ class ChallengeDetailViewController: UIViewController {
         case menu = 0
         case progress = 1
         case challengeIntro = 2
+        case challengeInfo = 3
     }
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
@@ -100,6 +102,20 @@ private extension ChallengeDetailViewController {
                 cell.setUp(info: "하루 한번 아침에 일어나서 물이 담긴 컵사진 인증하루 만보 걷기 챌린지는 쉽고 재미있게 만보를 걸을 수있는 챌린지로, 제가 맨날 일하다가 한번 입원하고 나서 심각성을 느끼고 만들게 된 멋진 챌린지\n\n안녕하세요")
                 return cell
                 
+            case .challengeInfo:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeInfoCell.identifier, for: indexPath) as? ChallengeInfoCell else {
+                    return UICollectionViewCell()
+                }
+                cell.setUp(
+                    recruit: "06월 26일(월) - 06월 28일(수)",
+                    date: "6월 30일(금) - 07월 7일(금)",
+                    people: "30명",
+                    missionCount: "총 14회",
+                    missionTime: "매일 자정까지",
+                    reward: "있음"
+                )
+                return cell
+                
             case .none:
                 return UICollectionViewCell()
             }
@@ -160,6 +176,30 @@ private extension ChallengeDetailViewController {
                     return nil
                     
                 }
+                
+            case .challengeInfo:
+                switch elementKind {
+                case HomeHeaderView.identifier:
+                    let headerView = collectionView.dequeueReusableSupplementaryView(
+                        ofKind: elementKind,
+                        withReuseIdentifier: HomeHeaderView.identifier,
+                        for: indexPath
+                    ) as? HomeHeaderView
+                    headerView?.setUp(leftTitle: "챌린지 정보", rightTitle: "", isClicked: false)
+                    return headerView ?? UICollectionReusableView()
+                    
+                case SeparatorFooterView.identifier:
+                    let headerView = collectionView.dequeueReusableSupplementaryView(
+                        ofKind: elementKind,
+                        withReuseIdentifier: SeparatorFooterView.identifier,
+                        for: indexPath
+                    ) as? SeparatorFooterView
+                    return headerView ?? UICollectionReusableView()
+                    
+                default:
+                    return nil
+                    
+                }
                
                 
             default:
@@ -177,6 +217,8 @@ private extension ChallengeDetailViewController {
         snapshot.appendItems([Item()])
         snapshot.appendSections([.challengeIntro])
         snapshot.appendItems([Item()])
+        snapshot.appendSections([.challengeInfo])
+        snapshot.appendItems([Item()])
         dataSource?.apply(snapshot)
     }
     
@@ -192,6 +234,9 @@ private extension ChallengeDetailViewController {
                 
             case .challengeIntro:
                 return self?.challengeIntroSectionLayout()
+                
+            case .challengeInfo:
+                return self?.challengeInfoSectionLayout()
                 
             default:
                 return nil
@@ -285,7 +330,43 @@ private extension ChallengeDetailViewController {
             NSCollectionLayoutBoundarySupplementaryItem(
                 layoutSize: .init(
                     widthDimension: .absolute(view.safeAreaLayoutGuide.layoutFrame.width),
-                    heightDimension: .absolute(70)
+                    heightDimension: .absolute(65)
+                ),
+                elementKind: HomeHeaderView.identifier, alignment: .top
+            ),
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: .init(
+                    widthDimension: .absolute(view.safeAreaLayoutGuide.layoutFrame.width),
+                    heightDimension: .absolute(8)
+                ),
+                elementKind: SeparatorFooterView.identifier, alignment: .bottom
+            )
+        ]
+        return section
+    }
+    
+    func challengeInfoSectionLayout() -> NSCollectionLayoutSection {
+        let layoutSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(53)
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: .init(
+                widthDimension: layoutSize.widthDimension,
+                heightDimension: layoutSize.heightDimension
+            ),
+            subitems: [.init(layoutSize: layoutSize)]
+        )
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = .init(top: 0, leading: 24, bottom: 0, trailing: 24)
+        
+        section.boundarySupplementaryItems = [
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: .init(
+                    widthDimension: .absolute(view.safeAreaLayoutGuide.layoutFrame.width),
+                    heightDimension: .absolute(65)
                 ),
                 elementKind: HomeHeaderView.identifier, alignment: .top
             ),

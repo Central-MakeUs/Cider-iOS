@@ -46,8 +46,8 @@ final class ProgressBarView: UIView {
     
     private lazy var progressView: UIProgressView = {
         let progressView = UIProgressView()
-        progressView.setProgress(0, animated: false)
         progressView.trackTintColor = .custom.gray4
+        progressView.progress = 0
         return progressView
     }()
     
@@ -122,17 +122,14 @@ extension ProgressBarView {
             }
         }
         
-        UIView.animate(withDuration: 1) { [weak self] in
-            guard let self = self else {
-                return
-            }
+        self.percentLabel.leadingAnchor.constraint(
+            equalTo: self.leadingAnchor,
+            constant: progressXPoint
+        ).isActive = true
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.2) {
             self.progressView.setProgress(percent, animated: true)
-            self.percentLabel.leadingAnchor.constraint(
-                equalTo: self.leadingAnchor,
-                constant: progressXPoint
-            ).isActive = true
         }
-
     }
     
 }

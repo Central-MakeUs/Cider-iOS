@@ -34,7 +34,7 @@ final class ChallengeIntroCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             infoLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             infoLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            infoLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            infoLabel.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             infoLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24)
         ])
     }
