@@ -30,6 +30,7 @@ final class ChallengeIntroCell: UICollectionViewCell {
     
     
     private func configure() {
+        self.backgroundColor = .white
         addSubviews(infoLabel)
         NSLayoutConstraint.activate([
             infoLabel.leadingAnchor.constraint(equalTo: leadingAnchor),

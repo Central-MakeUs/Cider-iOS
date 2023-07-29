@@ -24,6 +24,7 @@ final class RuleCell: UICollectionViewCell {
     }
     
     private func configure() {
+        self.backgroundColor = .white
         addSubviews(failRuleView, missionRuleView)
         let width = (UIScreen.main.bounds.width-58)/2
         let height = width*0.78

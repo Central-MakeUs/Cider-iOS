@@ -414,8 +414,8 @@ private extension HomeViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func pushChallengeDetailViewController() {
-        let viewController = ChallengeDetailViewController()
+    func pushChallengeDetailViewController(_ type: ChallengeType) {
+        let viewController = ChallengeDetailViewController(challengeType: type)
         viewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(viewController, animated: true)
     }
@@ -429,13 +429,13 @@ extension HomeViewController: UICollectionViewDelegate {
         let section = Section(rawValue: indexPath.section)
         switch section {
         case .popluarChallenge:
-            pushChallengeDetailViewController()
+            pushChallengeDetailViewController(.financialLearning)
             
         case .publicChallenge:
-            pushChallengeDetailViewController()
+            pushChallengeDetailViewController(.moneyManagement)
             
         case .category:
-            pushChallengeDetailViewController()
+            pushChallengeDetailViewController(.financialTech)
             
         default:
             break

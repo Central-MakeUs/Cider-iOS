@@ -36,6 +36,7 @@ final class ChallengeInfoCell: UICollectionViewCell {
     }
     
     private func configure() {
+        self.backgroundColor = .white
         addSubviews(stackView)
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor),

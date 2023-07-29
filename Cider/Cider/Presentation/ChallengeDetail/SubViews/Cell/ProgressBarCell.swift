@@ -35,6 +35,7 @@ extension ProgressBarCell {
         averagePercent: Float,
         myPercent: Float?
     ) {
+        self.backgroundColor = .white
         if let myPercent {
             stackView.addArrangedSubviews(averageProgressView, myProgressView)
             averageProgressView.setUp(.averageProgress, percent: averagePercent)

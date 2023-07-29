@@ -63,6 +63,7 @@
 		FA42808A2A73DC0D00828F93 /* ChallengeInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280892A73DC0D00828F93 /* ChallengeInfoCell.swift */; };
 		FA42808E2A73E79C00828F93 /* RuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA42808D2A73E79C00828F93 /* RuleView.swift */; };
 		FA4280902A73F58000828F93 /* RuleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA42808F2A73F58000828F93 /* RuleCell.swift */; };
+		FA4280922A73FF3500828F93 /* MissionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280912A73FF3500828F93 /* MissionCell.swift */; };
 		FA43C4E52A681E16001BB9B4 /* ChallengeOpenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43C4E42A681E16001BB9B4 /* ChallengeOpenViewModel.swift */; };
 		FA44D3992A4C43B80037E328 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44D3982A4C43B80037E328 /* Color+Extension.swift */; };
 		FA44D39B2A4C46A30037E328 /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44D39A2A4C46A30037E328 /* CustomFont.swift */; };
@@ -190,6 +191,7 @@
 		FA4280892A73DC0D00828F93 /* ChallengeInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeInfoCell.swift; sourceTree = "<group>"; };
 		FA42808D2A73E79C00828F93 /* RuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleView.swift; sourceTree = "<group>"; };
 		FA42808F2A73F58000828F93 /* RuleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleCell.swift; sourceTree = "<group>"; };
+		FA4280912A73FF3500828F93 /* MissionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionCell.swift; sourceTree = "<group>"; };
 		FA43C4E42A681E16001BB9B4 /* ChallengeOpenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOpenViewModel.swift; sourceTree = "<group>"; };
 		FA44D3982A4C43B80037E328 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		FA44D39A2A4C46A30037E328 /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
@@ -424,6 +426,7 @@
 				FA4280852A73D4B800828F93 /* ChallengeIntroCell.swift */,
 				FA4280892A73DC0D00828F93 /* ChallengeInfoCell.swift */,
 				FA42808F2A73F58000828F93 /* RuleCell.swift */,
+				FA4280912A73FF3500828F93 /* MissionCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -840,6 +843,7 @@
 				FA2A06582A69014100AC649F /* ChallengeHomeView.swift in Sources */,
 				FA3C432A2A62F1FB009E820B /* OnboardingResponse.swift in Sources */,
 				FA6C21672A5A4DD3008A9ADD /* CiderTextFieldView.swift in Sources */,
+				FA4280922A73FF3500828F93 /* MissionCell.swift in Sources */,
 				FA6100322A59AD8D002175CE /* GradientView.swift in Sources */,
 				FA3C43232A62EA18009E820B /* OnboardingRequest.swift in Sources */,
 				FA758ACE2A5F0374003E2F07 /* ChallengeResultType.swift in Sources */,

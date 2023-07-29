@@ -21,6 +21,7 @@ class ChallengeDetailViewController: UIViewController {
         collectionView.register(SeparatorFooterView.self, forSupplementaryViewOfKind: SeparatorFooterView.identifier, withReuseIdentifier: SeparatorFooterView.identifier)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.keyboardDismissMode = .onDrag
+        collectionView.delegate = self
         return collectionView
     }()
     
@@ -33,7 +34,18 @@ class ChallengeDetailViewController: UIViewController {
     }
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
-
+    
+    private let challengeType: ChallengeType
+    
+    init(challengeType: ChallengeType) {
+        self.challengeType = challengeType
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
@@ -67,11 +79,23 @@ private extension ChallengeDetailViewController {
     }
     
     func setNavigationBar() {
-       
+        self.navigationController?.navigationBar.scrollEdgeAppearance?.shadowColor = .clear
+        self.navigationController?.navigationBar.standardAppearance.shadowColor = .clear
+        setNavigationBar(backgroundColor: challengeType.color, tintColor: .white)
+    }
+    
+    func setNavigationBar(backgroundColor: UIColor?, tintColor: UIColor) {
+        self.navigationController?.navigationBar.scrollEdgeAppearance?.backgroundColor = backgroundColor
+        self.navigationController?.navigationBar.scrollEdgeAppearance?.titleTextAttributes = [.foregroundColor: tintColor]
+        self.navigationController?.navigationBar.standardAppearance.backgroundColor = backgroundColor
+        self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [.foregroundColor: tintColor]
     }
     
     func setUpDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { [weak self] collectionView, indexPath, itemIdentifier in
+            guard let self = self else {
+                return UICollectionViewCell()
+            }
             let section = Section(rawValue: indexPath.section)
             switch section {
             case .menu:
@@ -79,7 +103,7 @@ private extension ChallengeDetailViewController {
                     return UICollectionViewCell()
                 }
                 cell.setUp(
-                    challengeType: .moneySaving,
+                    challengeType: self.challengeType,
                     profileImage: UIImage(named: "sample"),
                     mainTitle: "만보 걷기~~~~~~",
                     participant: "29 / 30명",
@@ -457,6 +481,19 @@ private extension ChallengeDetailViewController {
     
 }
 
+extension ChallengeDetailViewController: UICollectionViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(scrollView.contentOffset.y)
+        if scrollView.contentOffset.y > 145 {
+            setNavigationBar(backgroundColor: .white, tintColor: .black)
+        } else {
+            setNavigationBar(backgroundColor: challengeType.color, tintColor: .white)
+        }
+    }
+    
+}
+
 
 #if DEBUG
 import SwiftUI
@@ -467,7 +504,7 @@ struct ChallengeDetailViewController_Preview: PreviewProvider {
     
     static var previews: some View {
         ForEach(devices, id: \.self) { deviceName in
-            ChallengeDetailViewController()
+            ChallengeDetailViewController(challengeType: .financialLearning)
                 .toPreview()
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)
