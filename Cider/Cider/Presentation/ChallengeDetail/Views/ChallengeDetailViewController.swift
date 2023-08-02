@@ -56,7 +56,10 @@ class ChallengeDetailViewController: UIViewController {
         setNavigationBar()
     }
     
-
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        setNavigationBar(backgroundColor: .white, tintColor: .black)
+    }
 }
 
 private extension ChallengeDetailViewController {

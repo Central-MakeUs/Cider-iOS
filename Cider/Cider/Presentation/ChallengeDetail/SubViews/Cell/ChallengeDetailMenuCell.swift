@@ -13,8 +13,8 @@ final class ChallengeDetailMenuCell: UICollectionViewCell {
     
     private lazy var challengeIconImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.heightAnchor.constraint(equalToConstant: 107).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 102).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 170).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 170).isActive = true
         return imageView
     }()
     
@@ -151,6 +151,7 @@ extension ChallengeDetailMenuCell {
     ) {
         self.backgroundColor = challengeType.color
         profileImageView.image = profileImage
+        challengeIconImageView.image = UIImage(named: challengeType.bannerImageName)
         mainTitleLabel.text = mainTitle
         participantsLabel.text = participant
         statusLabel.text = status
