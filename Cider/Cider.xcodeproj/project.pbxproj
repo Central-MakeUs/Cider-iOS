@@ -100,6 +100,7 @@
 		FA57AF6B2A5D73F8008A5991 /* ChallengeOpenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57AF6A2A5D73F8008A5991 /* ChallengeOpenCell.swift */; };
 		FA57AF6D2A5D76EF008A5991 /* UIPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57AF6C2A5D76EF008A5991 /* UIPreview.swift */; };
 		FA57AF752A5E9DED008A5991 /* CiderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57AF742A5E9DED008A5991 /* CiderTextView.swift */; };
+		FA59116D2A7BEC3C0022611B /* HostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59116C2A7BEC3B0022611B /* HostCell.swift */; };
 		FA5B8BE12A4DCAE000CEB0F6 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B8BE02A4DCAE000CEB0F6 /* UITextField+Extension.swift */; };
 		FA6100262A57F725002175CE /* ChallengeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6100252A57F725002175CE /* ChallengeSelectionViewController.swift */; };
 		FA6100282A57FA46002175CE /* ChallengeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6100272A57FA46002175CE /* ChallengeType.swift */; };
@@ -226,6 +227,7 @@
 		FA57AF6A2A5D73F8008A5991 /* ChallengeOpenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOpenCell.swift; sourceTree = "<group>"; };
 		FA57AF6C2A5D76EF008A5991 /* UIPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPreview.swift; sourceTree = "<group>"; };
 		FA57AF742A5E9DED008A5991 /* CiderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderTextView.swift; sourceTree = "<group>"; };
+		FA59116C2A7BEC3B0022611B /* HostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostCell.swift; sourceTree = "<group>"; };
 		FA5B8BE02A4DCAE000CEB0F6 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		FA6100252A57F725002175CE /* ChallengeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeSelectionViewController.swift; sourceTree = "<group>"; };
 		FA6100272A57FA46002175CE /* ChallengeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeType.swift; sourceTree = "<group>"; };
@@ -429,6 +431,7 @@
 				FA4280892A73DC0D00828F93 /* ChallengeInfoCell.swift */,
 				FA42808F2A73F58000828F93 /* RuleCell.swift */,
 				FA4280912A73FF3500828F93 /* MissionCell.swift */,
+				FA59116C2A7BEC3B0022611B /* HostCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -935,6 +938,7 @@
 				FA4280882A73DA4B00828F93 /* ChallengeInfoView.swift in Sources */,
 				FA553EBD2A5C0D6900DAE63B /* APIKey.swift in Sources */,
 				FA42807F2A73882900828F93 /* ProgressBarView.swift in Sources */,
+				FA59116D2A7BEC3C0022611B /* HostCell.swift in Sources */,
 				FA4280652A70E9A900828F93 /* ReviewStatusBarView.swift in Sources */,
 				FA4A24B92A6FD6360078A86C /* SortingView.swift in Sources */,
 				FA61002A2A57FC14002175CE /* ChallengesView.swift in Sources */,
