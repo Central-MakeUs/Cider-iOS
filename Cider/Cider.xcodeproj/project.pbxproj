@@ -101,6 +101,7 @@
 		FA57AF6D2A5D76EF008A5991 /* UIPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57AF6C2A5D76EF008A5991 /* UIPreview.swift */; };
 		FA57AF752A5E9DED008A5991 /* CiderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57AF742A5E9DED008A5991 /* CiderTextView.swift */; };
 		FA59116D2A7BEC3C0022611B /* HostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59116C2A7BEC3B0022611B /* HostCell.swift */; };
+		FA59116F2A7BEF360022611B /* MissionPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59116E2A7BEF360022611B /* MissionPhotoCell.swift */; };
 		FA5B8BE12A4DCAE000CEB0F6 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B8BE02A4DCAE000CEB0F6 /* UITextField+Extension.swift */; };
 		FA6100262A57F725002175CE /* ChallengeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6100252A57F725002175CE /* ChallengeSelectionViewController.swift */; };
 		FA6100282A57FA46002175CE /* ChallengeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6100272A57FA46002175CE /* ChallengeType.swift */; };
@@ -228,6 +229,7 @@
 		FA57AF6C2A5D76EF008A5991 /* UIPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPreview.swift; sourceTree = "<group>"; };
 		FA57AF742A5E9DED008A5991 /* CiderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderTextView.swift; sourceTree = "<group>"; };
 		FA59116C2A7BEC3B0022611B /* HostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostCell.swift; sourceTree = "<group>"; };
+		FA59116E2A7BEF360022611B /* MissionPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionPhotoCell.swift; sourceTree = "<group>"; };
 		FA5B8BE02A4DCAE000CEB0F6 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		FA6100252A57F725002175CE /* ChallengeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeSelectionViewController.swift; sourceTree = "<group>"; };
 		FA6100272A57FA46002175CE /* ChallengeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeType.swift; sourceTree = "<group>"; };
@@ -432,6 +434,7 @@
 				FA42808F2A73F58000828F93 /* RuleCell.swift */,
 				FA4280912A73FF3500828F93 /* MissionCell.swift */,
 				FA59116C2A7BEC3B0022611B /* HostCell.swift */,
+				FA59116E2A7BEF360022611B /* MissionPhotoCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -902,6 +905,7 @@
 				FA758ACC2A5F0316003E2F07 /* MissionPhotoView.swift in Sources */,
 				FA08D99B2A6D78CE0061C567 /* FeedCell.swift in Sources */,
 				FA4280632A70E68100828F93 /* ReviewType.swift in Sources */,
+				FA59116F2A7BEF360022611B /* MissionPhotoCell.swift in Sources */,
 				FA5B8BE12A4DCAE000CEB0F6 /* UITextField+Extension.swift in Sources */,
 				FA42807B2A736F7600828F93 /* DynamicLabel.swift in Sources */,
 				FA57AF4F2A5D0EC7008A5991 /* LocalKey.swift in Sources */,
