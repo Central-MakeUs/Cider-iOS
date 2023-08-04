@@ -104,6 +104,10 @@
 		FA59116F2A7BEF360022611B /* MissionPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59116E2A7BEF360022611B /* MissionPhotoCell.swift */; };
 		FA5911722A7BF7E60022611B /* ChallengeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5911712A7BF7E60022611B /* ChallengeDetailViewModel.swift */; };
 		FA5911742A7D01520022611B /* MyMissionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5911732A7D01520022611B /* MyMissionCell.swift */; };
+		FA5911772A7D3CCC0022611B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5911762A7D3CCC0022611B /* HomeViewModel.swift */; };
+		FA5911792A7D40C10022611B /* HomeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5911782A7D40C10022611B /* HomeResponse.swift */; };
+		FA59117B2A7D40FE0022611B /* HomeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59117A2A7D40FE0022611B /* HomeRepository.swift */; };
+		FA59117D2A7D41EF0022611B /* HomeUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59117C2A7D41EE0022611B /* HomeUsecase.swift */; };
 		FA5B8BE12A4DCAE000CEB0F6 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B8BE02A4DCAE000CEB0F6 /* UITextField+Extension.swift */; };
 		FA6100262A57F725002175CE /* ChallengeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6100252A57F725002175CE /* ChallengeSelectionViewController.swift */; };
 		FA6100282A57FA46002175CE /* ChallengeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6100272A57FA46002175CE /* ChallengeType.swift */; };
@@ -234,6 +238,10 @@
 		FA59116E2A7BEF360022611B /* MissionPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionPhotoCell.swift; sourceTree = "<group>"; };
 		FA5911712A7BF7E60022611B /* ChallengeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailViewModel.swift; sourceTree = "<group>"; };
 		FA5911732A7D01520022611B /* MyMissionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMissionCell.swift; sourceTree = "<group>"; };
+		FA5911762A7D3CCC0022611B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		FA5911782A7D40C10022611B /* HomeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeResponse.swift; sourceTree = "<group>"; };
+		FA59117A2A7D40FE0022611B /* HomeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepository.swift; sourceTree = "<group>"; };
+		FA59117C2A7D41EE0022611B /* HomeUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUsecase.swift; sourceTree = "<group>"; };
 		FA5B8BE02A4DCAE000CEB0F6 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		FA6100252A57F725002175CE /* ChallengeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeSelectionViewController.swift; sourceTree = "<group>"; };
 		FA6100272A57FA46002175CE /* ChallengeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeType.swift; sourceTree = "<group>"; };
@@ -289,6 +297,7 @@
 		FA2A06552A69006B00AC649F /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				FA5911752A7D3CB80022611B /* ViewModels */,
 				FA31A9472A6A4E30004D1C3B /* Views */,
 				FA2A06562A69010A00AC649F /* SubViews */,
 			);
@@ -523,6 +532,7 @@
 				FA553EBE2A5C141B00DAE63B /* LoginUsecase.swift */,
 				FA348ED22A61180400EA3D04 /* NicknameUsecase.swift */,
 				FA3C43242A62ECBA009E820B /* OnboardingUsecase.swift */,
+				FA59117C2A7D41EE0022611B /* HomeUsecase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -629,6 +639,7 @@
 				FA348ED62A61190900EA3D04 /* RandomNicknameResponse.swift */,
 				FA348ED82A6119B600EA3D04 /* DuplicateNicknameResponse.swift */,
 				FA3C43292A62F1FB009E820B /* OnboardingResponse.swift */,
+				FA5911782A7D40C10022611B /* HomeResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -639,6 +650,7 @@
 				FA57AF5C2A5D17A0008A5991 /* LoginRepository.swift */,
 				FA348ED42A61185500EA3D04 /* NicknameRepository.swift */,
 				FA3C43272A62ED37009E820B /* OnboardingRepository.swift */,
+				FA59117A2A7D40FE0022611B /* HomeRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -691,6 +703,14 @@
 				FA5911712A7BF7E60022611B /* ChallengeDetailViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FA5911752A7D3CB80022611B /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FA5911762A7D3CCC0022611B /* HomeViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		FA758AC62A5EF191003E2F07 /* Component */ = {
@@ -876,8 +896,10 @@
 				FA316D6F2A63FE8E00C7AA88 /* WritingViewController.swift in Sources */,
 				FA39D8492A4EA829001C7E0A /* AppAppearance.swift in Sources */,
 				FA2A06542A68F31C00AC649F /* ChallengeCompleteViewController.swift in Sources */,
+				FA59117B2A7D40FE0022611B /* HomeRepository.swift in Sources */,
 				FA44D3A12A4C5D070037E328 /* UIView+Extension.swift in Sources */,
 				FA31A9462A6A4BB8004D1C3B /* CiderInfoView.swift in Sources */,
+				FA5911792A7D40C10022611B /* HomeResponse.swift in Sources */,
 				FA32B8362A6A4F0B0086497D /* HomeViewController.swift in Sources */,
 				FA57AF6D2A5D76EF008A5991 /* UIPreview.swift in Sources */,
 				FA57AF662A5D6EF5008A5991 /* ChallengeOpenViewController.swift in Sources */,
@@ -912,6 +934,7 @@
 				FA348ED72A61190900EA3D04 /* RandomNicknameResponse.swift in Sources */,
 				FA57AF4B2A5D0D72008A5991 /* CiderAPI.swift in Sources */,
 				FA57AF632A5D22A0008A5991 /* LoginError.swift in Sources */,
+				FA59117D2A7D41EF0022611B /* HomeUsecase.swift in Sources */,
 				FA4DDB8E2A4D3178002EDEAD /* ServiceAgreeViewController.swift in Sources */,
 				FA8CA60B2A46D322005A6709 /* LoginViewController.swift in Sources */,
 				FA4A24BB2A7004540078A86C /* OngoingCell.swift in Sources */,
@@ -973,6 +996,7 @@
 				FAD6E3D82A64F9B5002C8007 /* ChallengeTypeViewController.swift in Sources */,
 				FA3FC8002A6E94690022CA3A /* HomeDetailInfoCell.swift in Sources */,
 				FA348ED02A61170800EA3D04 /* NicknameViewModel.swift in Sources */,
+				FA5911772A7D3CCC0022611B /* HomeViewModel.swift in Sources */,
 				FA3AE4072A57D2970078A4DF /* GenderAndBirthdayViewModel.swift in Sources */,
 				FA4280672A70F17800828F93 /* ReviewCell.swift in Sources */,
 				FA6AE8B02A6045AB00512EE1 /* ChallengeOpenSelectionType.swift in Sources */,

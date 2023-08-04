@@ -14,6 +14,7 @@ enum CiderAPI {
     case getRandomNickname
     case getDuplicateNickname(nickname: String)
     case patchOnboarding(paramters: [String: Any])
+    case getHomeChallenge
 }
 
 extension CiderAPI: TargetType, AccessTokenAuthorizable {
@@ -32,6 +33,8 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             return "/api/member/nicknames/exists/\(nickname)"
         case .patchOnboarding:
             return "/api/member"
+        case .getHomeChallenge:
+            return "/api/challenge/home"
         }
     }
     
@@ -42,7 +45,8 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             return .post
             
         case .getRandomNickname,
-             .getDuplicateNickname:
+             .getDuplicateNickname,
+             .getHomeChallenge:
             return .get
             
         case .patchOnboarding:
