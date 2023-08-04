@@ -20,8 +20,10 @@ final class HomeViewModel: ViewModelType {
     private var cancellables: Set<AnyCancellable> = .init()
     var popularChallanges: [ChallengeResponseDto]?
     var publicChallanges: [ChallengeResponseDto]?
+    var categoryChallenges: [HomeCategoryResponseElement] = []
     var popularItems: [Item] = []
     var publicItems: [Item] = []
+    var categoryItems: [Item] = []
     var categoryType: ChallengeType = .financialTech
 
     private var isSelectedList = [false, false, false, false]
@@ -32,6 +34,11 @@ final class HomeViewModel: ViewModelType {
     
     func viewDidload() {
         getHomeChallenge()
+        getCategory(categoryType.alphabet)
+    }
+    
+    func getCategory(_ category: String) {
+        getCategoryChallenge(category)
     }
     
 }
@@ -54,6 +61,19 @@ private extension HomeViewModel {
             }
             for _ in 0..<publicChallanges.count {
                 publicItems.append(Item())
+            }
+            currentState.send(.applySnapshot(true))
+        }
+    }
+    
+    func getCategoryChallenge(_ category: String) {
+        Task {
+            let response = try await usecase.getCategory(category: category)
+            print(response)
+            categoryChallenges = response
+            categoryItems = []
+            for _ in 0..<categoryChallenges.count {
+                categoryItems.append(Item())
             }
             currentState.send(.applySnapshot(true))
         }

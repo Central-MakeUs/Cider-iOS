@@ -9,6 +9,7 @@ import Foundation
 
 protocol HomeRepository {
     func getHomeChallenge() async throws -> HomeResponse
+    func getCategory(category: String) async throws -> HomeCategoryResponse
 }
 
 
@@ -16,6 +17,10 @@ final class DefaultHomeRepository: HomeRepository {
     
     func getHomeChallenge() async throws -> HomeResponse {
         return try await CiderAPI.request(target: .getHomeChallenge, dataType: HomeResponse.self)
+    }
+    
+    func getCategory(category: String) async throws -> HomeCategoryResponse {
+        return try await CiderAPI.request(target: .getHomeCategory(category: category), dataType: HomeCategoryResponse.self)
     }
     
 }

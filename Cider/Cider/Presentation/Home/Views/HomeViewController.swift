@@ -78,6 +78,7 @@ private extension HomeViewController {
         configure()
         setUpDataSource()
         applySnapshot()
+        bind()
     }
     
     func bind() {
@@ -145,7 +146,7 @@ private extension HomeViewController {
                         date: "\(challenge.challengePeriod)주",
                         ranking: "1위",
                         title: challenge.challengeName,
-                        status: challenge.challengeStatus,
+                        status: challenge.challengeStatus.convertStatusKorean(),
                         people: "\(challenge.participateNum)명 모집중",
                         isPublic: challenge.isOfficial,
                         dDay: "D-\(challenge.recruitLeft)"
@@ -163,9 +164,9 @@ private extension HomeViewController {
                         type: .financialTech,
                         isReward: challenge.isReward,
                         date: "\(challenge.challengePeriod)주",
-                        ranking: "\(indexPath.row+1)위",
+                        ranking: nil,
                         title: challenge.challengeName,
-                        status: challenge.challengeStatus,
+                        status: challenge.challengeStatus.convertStatusKorean(),
                         people: "\(challenge.participateNum)명 모집중",
                         isPublic: challenge.isOfficial,
                         dDay: "D-\(challenge.recruitLeft)"
@@ -177,17 +178,20 @@ private extension HomeViewController {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeHomeCell.identifier, for: indexPath) as? ChallengeHomeCell else {
                     return UICollectionViewCell()
                 }
+                let challenge = self.viewModel.categoryChallenges[indexPath.row]
+                print(challenge)
                 cell.setUp(
-                    type: .moneyManagement,
-                    isReward: true,
-                    date: "1주",
+                    type: .financialTech,
+                    isReward: challenge.isReward,
+                    date: "00주",
                     ranking: nil,
-                    title: "만보걷기",
-                    status: "종료",
-                    people: "5명 모집중",
-                    isPublic: true,
-                    dDay: "D-12"
+                    title: challenge.challengeName,
+                    status: challenge.challengeStatus.convertStatusKorean(),
+                    people: "\(challenge.participateNum)명 모집중",
+                    isPublic: challenge.isOfficial,
+                    dDay: "D-\(challenge.recruitLeft)"
                 )
+                
                 return cell
                 
             case .feed:
@@ -280,7 +284,7 @@ private extension HomeViewController {
         snapshot.appendItems(viewModel.publicItems)
 
         snapshot.appendSections([.category])
-        snapshot.appendItems([Item(),Item(),Item(),Item(),Item(),Item()])
+        snapshot.appendItems(viewModel.categoryItems)
         
         snapshot.appendSections([.feed])
         snapshot.appendItems([Item(),Item(),Item(),Item(),Item(),Item()])
@@ -452,21 +456,25 @@ private extension HomeViewController {
     
     @objc func didTapFinancialTech(_ sender: Any?) {
         viewModel.categoryType = .financialTech
+        viewModel.getCategory(viewModel.categoryType.alphabet)
         reloadHeader()
     }
     
     @objc func didTapFinancialLearning(_ sender: Any?) {
         viewModel.categoryType = .financialLearning
+        viewModel.getCategory(viewModel.categoryType.alphabet)
         reloadHeader()
     }
     
     @objc func didTapMoneySaving(_ sender: Any?) {
         viewModel.categoryType = .moneySaving
+        viewModel.getCategory(viewModel.categoryType.alphabet)
         reloadHeader()
     }
     
     @objc func didTapMoneyManagement(_ sender: Any?) {
         viewModel.categoryType = .moneyManagement
+        viewModel.getCategory(viewModel.categoryType.alphabet)
         reloadHeader()
     }
     

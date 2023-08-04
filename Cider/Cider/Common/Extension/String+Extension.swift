@@ -15,4 +15,17 @@ extension String {
         return String(self[start..<end])
     }
     
+    func convertStatusKorean() -> String {
+        switch self {
+        case "RECRUITING":
+            return "모집중"
+        case "POSSIBLE":
+            return "참여가능"
+        case "IMPOSSIBLE":
+            return "종료"
+        default:
+            return ""
+        }
+    }
+    
 }

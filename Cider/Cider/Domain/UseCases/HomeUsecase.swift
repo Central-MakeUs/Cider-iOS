@@ -9,6 +9,7 @@ import Foundation
 
 protocol HomeUsecase {
     func getHomeChallenge() async throws -> HomeResponse
+    func getCategory(category: String) async throws -> HomeCategoryResponse
 }
 
 final class DefaultHomeUsecase: HomeUsecase {
@@ -21,6 +22,11 @@ final class DefaultHomeUsecase: HomeUsecase {
     
     func getHomeChallenge() async throws -> HomeResponse {
         let response = try await repository.getHomeChallenge()
+        return response
+    }
+    
+    func getCategory(category: String) async throws -> HomeCategoryResponse {
+        let response = try await repository.getCategory(category: category)
         return response
     }
     

@@ -108,6 +108,7 @@
 		FA5911792A7D40C10022611B /* HomeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5911782A7D40C10022611B /* HomeResponse.swift */; };
 		FA59117B2A7D40FE0022611B /* HomeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59117A2A7D40FE0022611B /* HomeRepository.swift */; };
 		FA59117D2A7D41EF0022611B /* HomeUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59117C2A7D41EE0022611B /* HomeUsecase.swift */; };
+		FA59117F2A7D540F0022611B /* HomeCategoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59117E2A7D540F0022611B /* HomeCategoryResponse.swift */; };
 		FA5B8BE12A4DCAE000CEB0F6 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B8BE02A4DCAE000CEB0F6 /* UITextField+Extension.swift */; };
 		FA6100262A57F725002175CE /* ChallengeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6100252A57F725002175CE /* ChallengeSelectionViewController.swift */; };
 		FA6100282A57FA46002175CE /* ChallengeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6100272A57FA46002175CE /* ChallengeType.swift */; };
@@ -242,6 +243,7 @@
 		FA5911782A7D40C10022611B /* HomeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeResponse.swift; sourceTree = "<group>"; };
 		FA59117A2A7D40FE0022611B /* HomeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepository.swift; sourceTree = "<group>"; };
 		FA59117C2A7D41EE0022611B /* HomeUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUsecase.swift; sourceTree = "<group>"; };
+		FA59117E2A7D540F0022611B /* HomeCategoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCategoryResponse.swift; sourceTree = "<group>"; };
 		FA5B8BE02A4DCAE000CEB0F6 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		FA6100252A57F725002175CE /* ChallengeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeSelectionViewController.swift; sourceTree = "<group>"; };
 		FA6100272A57FA46002175CE /* ChallengeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeType.swift; sourceTree = "<group>"; };
@@ -640,6 +642,7 @@
 				FA348ED82A6119B600EA3D04 /* DuplicateNicknameResponse.swift */,
 				FA3C43292A62F1FB009E820B /* OnboardingResponse.swift */,
 				FA5911782A7D40C10022611B /* HomeResponse.swift */,
+				FA59117E2A7D540F0022611B /* HomeCategoryResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -977,6 +980,7 @@
 				FA57AF572A5D14CC008A5991 /* LoginRequest.swift in Sources */,
 				FA57AF452A5C16EE008A5991 /* LoginViewModel.swift in Sources */,
 				FA348ED32A61180400EA3D04 /* NicknameUsecase.swift in Sources */,
+				FA59117F2A7D540F0022611B /* HomeCategoryResponse.swift in Sources */,
 				FA4DDB902A4D57D5002EDEAD /* ProcessType.swift in Sources */,
 				FA4280882A73DA4B00828F93 /* ChallengeInfoView.swift in Sources */,
 				FA553EBD2A5C0D6900DAE63B /* APIKey.swift in Sources */,
