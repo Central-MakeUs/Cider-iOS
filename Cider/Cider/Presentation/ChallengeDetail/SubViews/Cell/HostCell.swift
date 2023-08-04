@@ -61,7 +61,7 @@ final class HostCell: UICollectionViewCell {
         addSubviews(levelLabel, hostCountLabel, nicknameLabel, profileImageView)
         NSLayoutConstraint.activate([
             profileImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-            profileImageView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            profileImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             nicknameLabel.topAnchor.constraint(equalTo: profileImageView.topAnchor),
             nicknameLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 8),
             levelLabel.leadingAnchor.constraint(equalTo: nicknameLabel.leadingAnchor),

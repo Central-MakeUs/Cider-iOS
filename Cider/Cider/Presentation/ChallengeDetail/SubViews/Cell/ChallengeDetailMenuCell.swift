@@ -122,7 +122,7 @@ final class ChallengeDetailMenuCell: UICollectionViewCell {
                     statusLabel, menuStackView, infoUnderBarView, feedUnderBarView)
         NSLayoutConstraint.activate([
             challengeIconImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            challengeIconImageView.topAnchor.constraint(equalTo: topAnchor, constant: 4),
+            challengeIconImageView.topAnchor.constraint(equalTo: topAnchor, constant: -20),
             radiusView.topAnchor.constraint(equalTo: challengeIconImageView.bottomAnchor, constant: 34.76),
             radiusView.leadingAnchor.constraint(equalTo: leadingAnchor),
             radiusView.trailingAnchor.constraint(equalTo: trailingAnchor),

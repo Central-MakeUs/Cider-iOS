@@ -775,7 +775,7 @@ private extension ChallengeDetailViewController {
         )
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+        section.contentInsets = .init(top: 0, leading: 24, bottom: 0, trailing: 24)
         
         section.boundarySupplementaryItems = [
             NSCollectionLayoutBoundarySupplementaryItem(
@@ -922,6 +922,7 @@ private extension ChallengeDetailViewController {
 extension ChallengeDetailViewController: UICollectionViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollView.bounces = scrollView.contentOffset.y > 100
         if scrollView.contentOffset.y > 145 {
             setNavigationBar(backgroundColor: .white, tintColor: .black)
         } else {
