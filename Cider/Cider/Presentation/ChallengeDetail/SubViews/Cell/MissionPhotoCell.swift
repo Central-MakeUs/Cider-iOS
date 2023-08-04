@@ -9,6 +9,8 @@ import UIKit
 
 final class MissionPhotoCell: UICollectionViewCell {
     
+    static let identifier = "MissionPhotoCell"
+
     private lazy var missionImageView1: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true

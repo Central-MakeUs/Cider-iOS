@@ -9,6 +9,8 @@ import UIKit
 
 final class HostCell: UICollectionViewCell {
     
+    static let identifier = "HostCell"
+
     private lazy var levelLabel: DynamicLabel = {
         let label = DynamicLabel(horizontalPadding: 4, verticalPadding: 2)
         label.font = CustomFont.PretendardBold(size: .sm).font

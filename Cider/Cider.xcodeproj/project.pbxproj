@@ -102,6 +102,7 @@
 		FA57AF752A5E9DED008A5991 /* CiderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57AF742A5E9DED008A5991 /* CiderTextView.swift */; };
 		FA59116D2A7BEC3C0022611B /* HostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59116C2A7BEC3B0022611B /* HostCell.swift */; };
 		FA59116F2A7BEF360022611B /* MissionPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59116E2A7BEF360022611B /* MissionPhotoCell.swift */; };
+		FA5911722A7BF7E60022611B /* ChallengeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5911712A7BF7E60022611B /* ChallengeDetailViewModel.swift */; };
 		FA5B8BE12A4DCAE000CEB0F6 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B8BE02A4DCAE000CEB0F6 /* UITextField+Extension.swift */; };
 		FA6100262A57F725002175CE /* ChallengeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6100252A57F725002175CE /* ChallengeSelectionViewController.swift */; };
 		FA6100282A57FA46002175CE /* ChallengeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6100272A57FA46002175CE /* ChallengeType.swift */; };
@@ -230,6 +231,7 @@
 		FA57AF742A5E9DED008A5991 /* CiderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderTextView.swift; sourceTree = "<group>"; };
 		FA59116C2A7BEC3B0022611B /* HostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostCell.swift; sourceTree = "<group>"; };
 		FA59116E2A7BEF360022611B /* MissionPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionPhotoCell.swift; sourceTree = "<group>"; };
+		FA5911712A7BF7E60022611B /* ChallengeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailViewModel.swift; sourceTree = "<group>"; };
 		FA5B8BE02A4DCAE000CEB0F6 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		FA6100252A57F725002175CE /* ChallengeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeSelectionViewController.swift; sourceTree = "<group>"; };
 		FA6100272A57FA46002175CE /* ChallengeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeType.swift; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 		FA4280752A736BDF00828F93 /* ChallengeDetail */ = {
 			isa = PBXGroup;
 			children = (
+				FA5911702A7BF7D90022611B /* ViewModel */,
 				FA4280762A736BE700828F93 /* Views */,
 				FA4280772A736BEC00828F93 /* SubViews */,
 			);
@@ -679,6 +682,14 @@
 			path = SubViews;
 			sourceTree = "<group>";
 		};
+		FA5911702A7BF7D90022611B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FA5911712A7BF7E60022611B /* ChallengeDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		FA758AC62A5EF191003E2F07 /* Component */ = {
 			isa = PBXGroup;
 			children = (
@@ -893,6 +904,7 @@
 				FA3AE40D2A57DB140078A4DF /* CiderBottomButton.swift in Sources */,
 				FA56F9842A542FA70099EC6F /* GenderAndBirthdayViewController.swift in Sources */,
 				FA0322812A4DC2B0000993DF /* NicknameViewController.swift in Sources */,
+				FA5911722A7BF7E60022611B /* ChallengeDetailViewModel.swift in Sources */,
 				FA348ED72A61190900EA3D04 /* RandomNicknameResponse.swift in Sources */,
 				FA57AF4B2A5D0D72008A5991 /* CiderAPI.swift in Sources */,
 				FA57AF632A5D22A0008A5991 /* LoginError.swift in Sources */,

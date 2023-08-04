@@ -66,6 +66,7 @@ final class ChallengeDetailMenuCell: UICollectionViewCell {
         button.setTitle("챌린지 정보", for: .normal)
         button.setTitleColor(.custom.main, for: .normal)
         button.titleLabel?.font = CustomFont.PretendardBold(size: .lg).font
+        button.addTarget(self, action: #selector(didTapInfo), for: .touchUpInside)
         return button
     }()
     
@@ -74,10 +75,18 @@ final class ChallengeDetailMenuCell: UICollectionViewCell {
         button.setTitle("피드", for: .normal)
         button.setTitleColor(.custom.gray5, for: .normal)
         button.titleLabel?.font = CustomFont.PretendardBold(size: .lg).font
+        button.addTarget(self, action: #selector(didTapFeed), for: .touchUpInside)
         return button
     }()
     
-    private lazy var underBarView: UIView = {
+    private lazy var infoUnderBarView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .custom.main
+        view.heightAnchor.constraint(equalToConstant: 3).isActive = true
+        return view
+    }()
+    
+    private lazy var feedUnderBarView: UIView = {
         let view = UIView()
         view.backgroundColor = .custom.main
         view.heightAnchor.constraint(equalToConstant: 3).isActive = true
@@ -101,6 +110,7 @@ final class ChallengeDetailMenuCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
+        setUpMenu(.info)
     }
     
     required init?(coder: NSCoder) {
@@ -109,7 +119,7 @@ final class ChallengeDetailMenuCell: UICollectionViewCell {
     
     private func configure() {
         addSubviews(challengeIconImageView, radiusView, profileBackgorundView, profileImageView, mainTitleLabel, participantsLabel,
-                    statusLabel, menuStackView, underBarView)
+                    statusLabel, menuStackView, infoUnderBarView, feedUnderBarView)
         NSLayoutConstraint.activate([
             challengeIconImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             challengeIconImageView.topAnchor.constraint(equalTo: topAnchor, constant: 4),
@@ -131,11 +141,25 @@ final class ChallengeDetailMenuCell: UICollectionViewCell {
             menuStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             menuStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             menuStackView.heightAnchor.constraint(equalToConstant: 41),
-            underBarView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width/2),
-            underBarView.topAnchor.constraint(equalTo: menuStackView.bottomAnchor),
-            underBarView.centerXAnchor.constraint(equalTo: infoMenuButton.centerXAnchor),
-            underBarView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            infoUnderBarView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width/2),
+            infoUnderBarView.topAnchor.constraint(equalTo: menuStackView.bottomAnchor),
+            infoUnderBarView.centerXAnchor.constraint(equalTo: infoMenuButton.centerXAnchor),
+            infoUnderBarView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            feedUnderBarView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width/2),
+            feedUnderBarView.topAnchor.constraint(equalTo: menuStackView.bottomAnchor),
+            feedUnderBarView.centerXAnchor.constraint(equalTo: feedMenuButton.centerXAnchor),
+            feedUnderBarView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
+    }
+    
+    @objc func didTapInfo(_ sender: Any?) {
+        let menyType: ChallengeDetailMenuType = .info
+        NotificationCenter.default.post(name: .tapChallengeDetailMenu, object: menyType)
+    }
+    
+    @objc func didTapFeed(_ sender: Any?) {
+        let menyType: ChallengeDetailMenuType = .feed
+        NotificationCenter.default.post(name: .tapChallengeDetailMenu, object: menyType)
     }
     
 }
@@ -155,6 +179,13 @@ extension ChallengeDetailMenuCell {
         mainTitleLabel.text = mainTitle
         participantsLabel.text = participant
         statusLabel.text = status
+    }
+    
+    func setUpMenu(_ type: ChallengeDetailMenuType) {
+        infoMenuButton.setTitleColor(type == .info ? .custom.main : .custom.gray5, for: .normal)
+        feedMenuButton.setTitleColor(type == .feed ? .custom.main : .custom.gray5, for: .normal)
+        feedUnderBarView.isHidden = type == .info
+        infoUnderBarView.isHidden = type == .feed
     }
     
 }

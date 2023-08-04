@@ -6,6 +6,12 @@
 //
 
 import UIKit
+import Combine
+
+enum ChallengeDetailMenuType {
+    case info
+    case feed
+}
 
 class ChallengeDetailViewController: UIViewController {
     
@@ -13,10 +19,13 @@ class ChallengeDetailViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.register(ChallengeDetailMenuCell.self, forCellWithReuseIdentifier: ChallengeDetailMenuCell.identifier)
         collectionView.register(ProgressBarCell.self, forCellWithReuseIdentifier: ProgressBarCell.identifier)
-        collectionView.register(ProgressBarCell.self, forCellWithReuseIdentifier: ProgressBarCell.identifier)
         collectionView.register(ChallengeIntroCell.self, forCellWithReuseIdentifier: ChallengeIntroCell.identifier)
         collectionView.register(ChallengeInfoCell.self, forCellWithReuseIdentifier: ChallengeInfoCell.identifier)
         collectionView.register(RuleCell.self, forCellWithReuseIdentifier: RuleCell.identifier)
+        collectionView.register(MissionCell.self, forCellWithReuseIdentifier: MissionCell.identifier)
+        collectionView.register(MissionPhotoCell.self, forCellWithReuseIdentifier: MissionPhotoCell.identifier)
+        collectionView.register(HostCell.self, forCellWithReuseIdentifier: HostCell.identifier)
+        collectionView.register(FeedCell.self, forCellWithReuseIdentifier: FeedCell.identifier)
         collectionView.register(HomeHeaderView.self, forSupplementaryViewOfKind: HomeHeaderView.identifier, withReuseIdentifier: HomeHeaderView.identifier)
         collectionView.register(SeparatorFooterView.self, forSupplementaryViewOfKind: SeparatorFooterView.identifier, withReuseIdentifier: SeparatorFooterView.identifier)
         collectionView.showsVerticalScrollIndicator = false
@@ -25,7 +34,7 @@ class ChallengeDetailViewController: UIViewController {
         return collectionView
     }()
     
-    private enum Section: Int {
+    private enum InfoSection: Int {
         case menu = 0
         case progress = 1
         case challengeIntro = 2
@@ -33,9 +42,19 @@ class ChallengeDetailViewController: UIViewController {
         case rule = 4
     }
     
-    private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
+    private enum FeedSection: Int {
+        case menu = 0
+        case myMission = 1
+        case MissionPhoto = 2
+        case feed = 3
+    }
     
+    private var cancellables: Set<AnyCancellable> = .init()
+    private var infoDataSource: UICollectionViewDiffableDataSource<InfoSection, Item>?
+    private var feedDataSource: UICollectionViewDiffableDataSource<FeedSection, Item>?
+
     private let challengeType: ChallengeType
+    private var menuType: ChallengeDetailMenuType = .info
     
     init(challengeType: ChallengeType) {
         self.challengeType = challengeType
@@ -66,8 +85,8 @@ private extension ChallengeDetailViewController {
     
     func setUp() {
         configure()
-        setUpDataSource()
-        applySnapshot()
+        setMenu(menuType)
+        setNotificationCenter()
     }
     
     func configure() {
@@ -79,6 +98,33 @@ private extension ChallengeDetailViewController {
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+    }
+    
+    func setMenu(_ type: ChallengeDetailMenuType) {
+        switch type {
+        case .info:
+            setUpInfoDataSource()
+            applyInfoSnapshot()
+        case .feed:
+            setUpFeedDataSource()
+            applyFeedSnapshot()
+        }
+    }
+    
+    func setNotificationCenter() {
+        NotificationCenter.default.publisher(for: .tapChallengeDetailMenu)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] notification in
+                guard let self = self else {
+                    return
+                }
+                guard let menuType = notification.object as? ChallengeDetailMenuType else {
+                    return
+                }
+                self.menuType = menuType
+                self.setMenu(menuType)
+            }
+            .store(in: &cancellables)
     }
     
     func setNavigationBar() {
@@ -94,12 +140,12 @@ private extension ChallengeDetailViewController {
         self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [.foregroundColor: tintColor]
     }
     
-    func setUpDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { [weak self] collectionView, indexPath, itemIdentifier in
+    func setUpInfoDataSource() {
+        infoDataSource = UICollectionViewDiffableDataSource<InfoSection, Item>(collectionView: collectionView, cellProvider: { [weak self] collectionView, indexPath, itemIdentifier in
             guard let self = self else {
                 return UICollectionViewCell()
             }
-            let section = Section(rawValue: indexPath.section)
+            let section = InfoSection(rawValue: indexPath.section)
             switch section {
             case .menu:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeDetailMenuCell.identifier, for: indexPath) as? ChallengeDetailMenuCell else {
@@ -112,6 +158,7 @@ private extension ChallengeDetailViewController {
                     participant: "29 / 30명",
                     status: "진행중 D-6"
                 )
+                cell.setUpMenu(self.menuType)
                 return cell
                 
             case .progress:
@@ -158,12 +205,12 @@ private extension ChallengeDetailViewController {
         })
         
         
-        dataSource?.supplementaryViewProvider = { [weak self] collectionView, elementKind, indexPath in
+        infoDataSource?.supplementaryViewProvider = { [weak self] collectionView, elementKind, indexPath in
             guard let self = self else {
                 return UICollectionReusableView()
             }
             
-            let section = Section(rawValue: indexPath.section)
+            let section = InfoSection(rawValue: indexPath.section)
             switch section {
             case .progress:
                 switch elementKind {
@@ -261,6 +308,68 @@ private extension ChallengeDetailViewController {
                     
                 }
                
+            default:
+                return nil
+            }
+        }
+        
+    }
+    
+    func setUpFeedDataSource() {
+        feedDataSource = UICollectionViewDiffableDataSource<FeedSection, Item>(collectionView: collectionView, cellProvider: { [weak self] collectionView, indexPath, itemIdentifier in
+            guard let self = self else {
+                return UICollectionViewCell()
+            }
+            let section = FeedSection(rawValue: indexPath.section)
+            switch section {
+            case .menu:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeDetailMenuCell.identifier, for: indexPath) as? ChallengeDetailMenuCell else {
+                    return UICollectionViewCell()
+                }
+                cell.setUp(
+                    challengeType: self.challengeType,
+                    profileImage: UIImage(named: "sample"),
+                    mainTitle: "만보 걷기~~~~~~",
+                    participant: "29 / 30명",
+                    status: "진행중 D-6"
+                )
+                cell.setUpMenu(self.menuType)
+                return cell
+                
+            case .myMission:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeDetailMenuCell.identifier, for: indexPath) as? ChallengeDetailMenuCell else {
+                    return UICollectionViewCell()
+                }
+                cell.setUp(
+                    challengeType: self.challengeType,
+                    profileImage: UIImage(named: "sample"),
+                    mainTitle: "만보 걷기~~~~~~",
+                    participant: "29 / 30명",
+                    status: "진행중 D-6"
+                )
+                return cell
+                
+            default:
+                return UICollectionViewCell()
+            }
+        })
+        
+        
+        feedDataSource?.supplementaryViewProvider = { [weak self] collectionView, elementKind, indexPath in
+            guard let self = self else {
+                return UICollectionReusableView()
+            }
+            
+            let section = FeedSection(rawValue: indexPath.section)
+            switch section {
+            case .myMission:
+                let headerView = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: elementKind,
+                    withReuseIdentifier: HomeHeaderView.identifier,
+                    for: indexPath
+                ) as? HomeHeaderView
+                headerView?.setUp(leftTitle: "나의 인증글", rightTitle: "", isClicked: true)
+                return headerView ?? UICollectionReusableView()
                 
             default:
                 return nil
@@ -269,8 +378,8 @@ private extension ChallengeDetailViewController {
         
     }
     
-    func applySnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+    func applyInfoSnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<InfoSection, Item>()
         snapshot.appendSections([.menu])
         snapshot.appendItems([Item()])
         snapshot.appendSections([.progress])
@@ -281,30 +390,58 @@ private extension ChallengeDetailViewController {
         snapshot.appendItems([Item()])
         snapshot.appendSections([.rule])
         snapshot.appendItems([Item()])
-        dataSource?.apply(snapshot)
+        infoDataSource?.apply(snapshot)
+    }
+    
+    func applyFeedSnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<FeedSection, Item>()
+        snapshot.appendSections([.menu])
+        snapshot.appendItems([Item()])
+        snapshot.appendSections([.myMission])
+        snapshot.appendItems([Item()])
+        feedDataSource?.apply(snapshot)
     }
     
     func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { [weak self] (sectionNumber, _) -> NSCollectionLayoutSection? in
-            let section = Section(rawValue: sectionNumber)
-            switch section {
-            case .menu:
-                return self?.menuSectionLayout()
-                
-            case .progress:
-                return self?.progressSectionLayout()
-                
-            case .challengeIntro:
-                return self?.challengeIntroSectionLayout()
-                
-            case .challengeInfo:
-                return self?.challengeInfoSectionLayout()
-                
-            case .rule:
-                return self?.ruleSectionLayout()
-                
-            default:
+            guard let self = self else {
                 return nil
+            }
+            switch self.menuType {
+            case .info:
+                let section = InfoSection(rawValue: sectionNumber)
+                switch section {
+                case .menu:
+                    return self.menuSectionLayout()
+                    
+                case .progress:
+                    return self.progressSectionLayout()
+                    
+                case .challengeIntro:
+                    return self.challengeIntroSectionLayout()
+                    
+                case .challengeInfo:
+                    return self.challengeInfoSectionLayout()
+                    
+                case .rule:
+                    return self.ruleSectionLayout()
+                    
+                default:
+                    return nil
+                }
+                
+            case .feed:
+                let section = FeedSection(rawValue: sectionNumber)
+                switch section {
+                case .menu:
+                    return self.menuSectionLayout()
+                    
+                case .myMission:
+                    return self.myMissionSectionLayout()
+                    
+                default:
+                    return nil
+                }
             }
         }
     }
@@ -482,12 +619,40 @@ private extension ChallengeDetailViewController {
         return section
     }
     
+    func myMissionSectionLayout() -> NSCollectionLayoutSection {
+        let layoutSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(100),
+            heightDimension: .absolute(100)
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: .init(
+                widthDimension: layoutSize.widthDimension,
+                heightDimension: layoutSize.heightDimension
+            ),
+            subitems: [.init(layoutSize: layoutSize)]
+        )
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = .init(top: 0, leading: 24, bottom: 0, trailing: 24)
+        
+        section.boundarySupplementaryItems = [
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: .init(
+                    widthDimension: .absolute(view.safeAreaLayoutGuide.layoutFrame.width),
+                    heightDimension: .absolute(65)
+                ),
+                elementKind: HomeHeaderView.identifier, alignment: .top
+            )
+        ]
+        return section
+    }
+    
 }
 
 extension ChallengeDetailViewController: UICollectionViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView.contentOffset.y)
         if scrollView.contentOffset.y > 145 {
             setNavigationBar(backgroundColor: .white, tintColor: .black)
         } else {

@@ -9,6 +9,8 @@ import UIKit
 
 final class MissionCell: UICollectionViewCell {
     
+    static let identifier = "MissionCell"
+
     private lazy var missionInfoLabel: DynamicLabel = {
         let label = DynamicLabel(horizontalPadding: 0, verticalPadding: 8)
         label.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
