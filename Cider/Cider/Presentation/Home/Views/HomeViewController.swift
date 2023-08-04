@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 final class HomeViewController: UIViewController {
     
@@ -45,7 +46,9 @@ final class HomeViewController: UIViewController {
     }
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
+    
     private let viewModel: HomeViewModel
+    private var cancellables = Set<AnyCancellable>()
     
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
@@ -77,6 +80,20 @@ private extension HomeViewController {
         applySnapshot()
     }
     
+    func bind() {
+        viewModel.state.receive(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                switch state {
+                case .applySnapshot(let isSuccess):
+                    guard isSuccess else {
+                        return
+                    }
+                    self?.applySnapshot()
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
     func configure() {
         view.backgroundColor = .white
         view.addSubviews(collectionView, arrowTopButton)
@@ -98,6 +115,9 @@ private extension HomeViewController {
     
     func setUpDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { [weak self] collectionView, indexPath, itemIdentifier in
+            guard let self = self else {
+                return UICollectionViewCell()
+            }
             let section = Section(rawValue: indexPath.section)
             switch section {
             case .banner:
@@ -111,34 +131,39 @@ private extension HomeViewController {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeHomeCell.identifier, for: indexPath) as? ChallengeHomeCell else {
                     return UICollectionViewCell()
                 }
-                cell.setUp(
-                    type: .financialTech,
-                    isReward: true,
-                    date: "1주",
-                    ranking: "1위",
-                    title: "만보걷기",
-                    status: "종료",
-                    people: "5명 모집중",
-                    isPublic: true,
-                    dDay: "D-12"
-                )
+                if let challenge = self.viewModel.popularChallanges?[indexPath.row] {
+                    cell.setUp(
+                        type: .financialTech,
+                        isReward: challenge.isReward,
+                        date: "\(challenge.challengePeriod)주",
+                        ranking: "1위",
+                        title: challenge.challengeName,
+                        status: challenge.challengeStatus,
+                        people: "\(challenge.participateNum)명 모집중",
+                        isPublic: challenge.isOfficial,
+                        dDay: "D-\(challenge.recruitLeft)"
+                    )
+                }
+                
                 return cell
                 
             case .publicChallenge:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeHomeCell.identifier, for: indexPath) as? ChallengeHomeCell else {
                     return UICollectionViewCell()
                 }
-                cell.setUp(
-                    type: .moneySaving,
-                    isReward: true,
-                    date: "1주",
-                    ranking: nil,
-                    title: "만보걷기",
-                    status: "종료",
-                    people: "5명 모집중",
-                    isPublic: true,
-                    dDay: "D-12"
-                )
+                if let challenge = self.viewModel.publicChallanges?[indexPath.row] {
+                    cell.setUp(
+                        type: .financialTech,
+                        isReward: challenge.isReward,
+                        date: "\(challenge.challengePeriod)주",
+                        ranking: "\(indexPath.row+1)위",
+                        title: challenge.challengeName,
+                        status: challenge.challengeStatus,
+                        people: "\(challenge.participateNum)명 모집중",
+                        isPublic: challenge.isOfficial,
+                        dDay: "D-\(challenge.recruitLeft)"
+                    )
+                }
                 return cell
                 
             case .category:
@@ -236,14 +261,19 @@ private extension HomeViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections([.banner])
         snapshot.appendItems([Item(),Item(),Item(),Item(),Item(),Item()])
+        
         snapshot.appendSections([.popluarChallenge])
-        snapshot.appendItems([Item(),Item(),Item(),Item(),Item(),Item()])
+        snapshot.appendItems(viewModel.popularItems)
+        
         snapshot.appendSections([.publicChallenge])
-        snapshot.appendItems([Item(),Item(),Item(),Item(),Item(),Item()])
+        snapshot.appendItems(viewModel.publicItems)
+
         snapshot.appendSections([.category])
         snapshot.appendItems([Item(),Item(),Item(),Item(),Item(),Item()])
+        
         snapshot.appendSections([.feed])
         snapshot.appendItems([Item(),Item(),Item(),Item(),Item(),Item()])
+        
         dataSource?.apply(snapshot)
     }
     
