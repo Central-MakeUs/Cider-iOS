@@ -851,19 +851,19 @@ private extension ChallengeDetailViewController {
         )
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+        section.contentInsets = .init(top: 0, leading: 0, bottom: 40, trailing: 0)
         
         section.boundarySupplementaryItems = [
             NSCollectionLayoutBoundarySupplementaryItem(
                 layoutSize: .init(
-                    widthDimension: .absolute(view.safeAreaLayoutGuide.layoutFrame.width),
+                    widthDimension: .fractionalWidth(1),
                     heightDimension: .absolute(65)
                 ),
                 elementKind: HomeHeaderView.identifier, alignment: .top
             ),
             NSCollectionLayoutBoundarySupplementaryItem(
                 layoutSize: .init(
-                    widthDimension: .absolute(view.safeAreaLayoutGuide.layoutFrame.width),
+                    widthDimension: .fractionalWidth(1),
                     heightDimension: .absolute(8)
                 ),
                 elementKind: SeparatorFooterView.identifier, alignment: .bottom
