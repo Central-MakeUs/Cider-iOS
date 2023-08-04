@@ -53,6 +53,17 @@
 		FA4280652A70E9A900828F93 /* ReviewStatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280642A70E9A900828F93 /* ReviewStatusBarView.swift */; };
 		FA4280672A70F17800828F93 /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280662A70F17800828F93 /* ReviewCell.swift */; };
 		FA4280692A721C7900828F93 /* ClosedChallengeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280682A721C7900828F93 /* ClosedChallengeCell.swift */; };
+		FA4280792A736C5900828F93 /* ChallengeDetailMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280782A736C5800828F93 /* ChallengeDetailMenuCell.swift */; };
+		FA42807B2A736F7600828F93 /* DynamicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA42807A2A736F7600828F93 /* DynamicLabel.swift */; };
+		FA42807D2A737C3600828F93 /* ChallengeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA42807C2A737C3600828F93 /* ChallengeDetailViewController.swift */; };
+		FA42807F2A73882900828F93 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA42807E2A73882900828F93 /* ProgressBarView.swift */; };
+		FA4280842A73ADF900828F93 /* ProgressBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280832A73ADF900828F93 /* ProgressBarCell.swift */; };
+		FA4280862A73D4B800828F93 /* ChallengeIntroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280852A73D4B800828F93 /* ChallengeIntroCell.swift */; };
+		FA4280882A73DA4B00828F93 /* ChallengeInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280872A73DA4B00828F93 /* ChallengeInfoView.swift */; };
+		FA42808A2A73DC0D00828F93 /* ChallengeInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280892A73DC0D00828F93 /* ChallengeInfoCell.swift */; };
+		FA42808E2A73E79C00828F93 /* RuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA42808D2A73E79C00828F93 /* RuleView.swift */; };
+		FA4280902A73F58000828F93 /* RuleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA42808F2A73F58000828F93 /* RuleCell.swift */; };
+		FA4280922A73FF3500828F93 /* MissionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280912A73FF3500828F93 /* MissionCell.swift */; };
 		FA43C4E52A681E16001BB9B4 /* ChallengeOpenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA43C4E42A681E16001BB9B4 /* ChallengeOpenViewModel.swift */; };
 		FA44D3992A4C43B80037E328 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44D3982A4C43B80037E328 /* Color+Extension.swift */; };
 		FA44D39B2A4C46A30037E328 /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA44D39A2A4C46A30037E328 /* CustomFont.swift */; };
@@ -89,6 +100,10 @@
 		FA57AF6B2A5D73F8008A5991 /* ChallengeOpenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57AF6A2A5D73F8008A5991 /* ChallengeOpenCell.swift */; };
 		FA57AF6D2A5D76EF008A5991 /* UIPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57AF6C2A5D76EF008A5991 /* UIPreview.swift */; };
 		FA57AF752A5E9DED008A5991 /* CiderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57AF742A5E9DED008A5991 /* CiderTextView.swift */; };
+		FA59116D2A7BEC3C0022611B /* HostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59116C2A7BEC3B0022611B /* HostCell.swift */; };
+		FA59116F2A7BEF360022611B /* MissionPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59116E2A7BEF360022611B /* MissionPhotoCell.swift */; };
+		FA5911722A7BF7E60022611B /* ChallengeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5911712A7BF7E60022611B /* ChallengeDetailViewModel.swift */; };
+		FA5911742A7D01520022611B /* MyMissionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5911732A7D01520022611B /* MyMissionCell.swift */; };
 		FA5B8BE12A4DCAE000CEB0F6 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B8BE02A4DCAE000CEB0F6 /* UITextField+Extension.swift */; };
 		FA6100262A57F725002175CE /* ChallengeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6100252A57F725002175CE /* ChallengeSelectionViewController.swift */; };
 		FA6100282A57FA46002175CE /* ChallengeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6100272A57FA46002175CE /* ChallengeType.swift */; };
@@ -103,6 +118,7 @@
 		FA6C21672A5A4DD3008A9ADD /* CiderTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C21662A5A4DD3008A9ADD /* CiderTextFieldView.swift */; };
 		FA6C21692A5A4E21008A9ADD /* CiderEnabledStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C21682A5A4E21008A9ADD /* CiderEnabledStyle.swift */; };
 		FA6C216B2A5A78C4008A9ADD /* RandomNicknameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C216A2A5A78C4008A9ADD /* RandomNicknameView.swift */; };
+		FA726CCE2A7933F100A9309D /* MissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA726CCD2A7933F100A9309D /* MissionView.swift */; };
 		FA758AC82A5EF418003E2F07 /* StarTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA758AC72A5EF418003E2F07 /* StarTitleLabel.swift */; };
 		FA758ACA2A5EF528003E2F07 /* ChallengeOpenSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA758AC92A5EF528003E2F07 /* ChallengeOpenSelectionView.swift */; };
 		FA758ACC2A5F0316003E2F07 /* MissionPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA758ACB2A5F0316003E2F07 /* MissionPhotoView.swift */; };
@@ -170,6 +186,17 @@
 		FA4280642A70E9A900828F93 /* ReviewStatusBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStatusBarView.swift; sourceTree = "<group>"; };
 		FA4280662A70F17800828F93 /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
 		FA4280682A721C7900828F93 /* ClosedChallengeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedChallengeCell.swift; sourceTree = "<group>"; };
+		FA4280782A736C5800828F93 /* ChallengeDetailMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailMenuCell.swift; sourceTree = "<group>"; };
+		FA42807A2A736F7600828F93 /* DynamicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLabel.swift; sourceTree = "<group>"; };
+		FA42807C2A737C3600828F93 /* ChallengeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailViewController.swift; sourceTree = "<group>"; };
+		FA42807E2A73882900828F93 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		FA4280832A73ADF900828F93 /* ProgressBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarCell.swift; sourceTree = "<group>"; };
+		FA4280852A73D4B800828F93 /* ChallengeIntroCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeIntroCell.swift; sourceTree = "<group>"; };
+		FA4280872A73DA4B00828F93 /* ChallengeInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeInfoView.swift; sourceTree = "<group>"; };
+		FA4280892A73DC0D00828F93 /* ChallengeInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeInfoCell.swift; sourceTree = "<group>"; };
+		FA42808D2A73E79C00828F93 /* RuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleView.swift; sourceTree = "<group>"; };
+		FA42808F2A73F58000828F93 /* RuleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleCell.swift; sourceTree = "<group>"; };
+		FA4280912A73FF3500828F93 /* MissionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionCell.swift; sourceTree = "<group>"; };
 		FA43C4E42A681E16001BB9B4 /* ChallengeOpenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOpenViewModel.swift; sourceTree = "<group>"; };
 		FA44D3982A4C43B80037E328 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		FA44D39A2A4C46A30037E328 /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
@@ -203,6 +230,10 @@
 		FA57AF6A2A5D73F8008A5991 /* ChallengeOpenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOpenCell.swift; sourceTree = "<group>"; };
 		FA57AF6C2A5D76EF008A5991 /* UIPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPreview.swift; sourceTree = "<group>"; };
 		FA57AF742A5E9DED008A5991 /* CiderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderTextView.swift; sourceTree = "<group>"; };
+		FA59116C2A7BEC3B0022611B /* HostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostCell.swift; sourceTree = "<group>"; };
+		FA59116E2A7BEF360022611B /* MissionPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionPhotoCell.swift; sourceTree = "<group>"; };
+		FA5911712A7BF7E60022611B /* ChallengeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailViewModel.swift; sourceTree = "<group>"; };
+		FA5911732A7D01520022611B /* MyMissionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMissionCell.swift; sourceTree = "<group>"; };
 		FA5B8BE02A4DCAE000CEB0F6 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		FA6100252A57F725002175CE /* ChallengeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeSelectionViewController.swift; sourceTree = "<group>"; };
 		FA6100272A57FA46002175CE /* ChallengeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeType.swift; sourceTree = "<group>"; };
@@ -217,6 +248,7 @@
 		FA6C21662A5A4DD3008A9ADD /* CiderTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderTextFieldView.swift; sourceTree = "<group>"; };
 		FA6C21682A5A4E21008A9ADD /* CiderEnabledStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderEnabledStyle.swift; sourceTree = "<group>"; };
 		FA6C216A2A5A78C4008A9ADD /* RandomNicknameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNicknameView.swift; sourceTree = "<group>"; };
+		FA726CCD2A7933F100A9309D /* MissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionView.swift; sourceTree = "<group>"; };
 		FA758AC72A5EF418003E2F07 /* StarTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarTitleLabel.swift; sourceTree = "<group>"; };
 		FA758AC92A5EF528003E2F07 /* ChallengeOpenSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOpenSelectionView.swift; sourceTree = "<group>"; };
 		FA758ACB2A5F0316003E2F07 /* MissionPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionPhotoView.swift; sourceTree = "<group>"; };
@@ -370,6 +402,60 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		FA4280752A736BDF00828F93 /* ChallengeDetail */ = {
+			isa = PBXGroup;
+			children = (
+				FA5911702A7BF7D90022611B /* ViewModel */,
+				FA4280762A736BE700828F93 /* Views */,
+				FA4280772A736BEC00828F93 /* SubViews */,
+			);
+			path = ChallengeDetail;
+			sourceTree = "<group>";
+		};
+		FA4280762A736BE700828F93 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA42807C2A737C3600828F93 /* ChallengeDetailViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FA4280772A736BEC00828F93 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				FA42808C2A73E77B00828F93 /* View */,
+				FA4280822A73ADDF00828F93 /* Cell */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		FA4280822A73ADDF00828F93 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FA4280782A736C5800828F93 /* ChallengeDetailMenuCell.swift */,
+				FA4280832A73ADF900828F93 /* ProgressBarCell.swift */,
+				FA4280852A73D4B800828F93 /* ChallengeIntroCell.swift */,
+				FA4280892A73DC0D00828F93 /* ChallengeInfoCell.swift */,
+				FA42808F2A73F58000828F93 /* RuleCell.swift */,
+				FA4280912A73FF3500828F93 /* MissionCell.swift */,
+				FA59116C2A7BEC3B0022611B /* HostCell.swift */,
+				FA59116E2A7BEF360022611B /* MissionPhotoCell.swift */,
+				FA5911732A7D01520022611B /* MyMissionCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		FA42808C2A73E77B00828F93 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FA42807E2A73882900828F93 /* ProgressBarView.swift */,
+				FA4280872A73DA4B00828F93 /* ChallengeInfoView.swift */,
+				FA42808D2A73E79C00828F93 /* RuleView.swift */,
+				FA726CCD2A7933F100A9309D /* MissionView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		FA43C4E32A681E08001BB9B4 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,6 +468,7 @@
 		FA44D38D2A4C3CB10037E328 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				FA4280752A736BDF00828F93 /* ChallengeDetail */,
 				FA2A06552A69006B00AC649F /* Home */,
 				FA316D6D2A63FE5B00C7AA88 /* Writing */,
 				FA316D6A2A63BA8B00C7AA88 /* Tabbar */,
@@ -598,6 +685,14 @@
 			path = SubViews;
 			sourceTree = "<group>";
 		};
+		FA5911702A7BF7D90022611B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FA5911712A7BF7E60022611B /* ChallengeDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		FA758AC62A5EF191003E2F07 /* Component */ = {
 			isa = PBXGroup;
 			children = (
@@ -608,6 +703,7 @@
 				FA6C21682A5A4E21008A9ADD /* CiderEnabledStyle.swift */,
 				FA57AF742A5E9DED008A5991 /* CiderTextView.swift */,
 				FA316D682A63A18700C7AA88 /* MainTitleLabel.swift */,
+				FA42807A2A736F7600828F93 /* DynamicLabel.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -760,6 +856,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA42808E2A73E79C00828F93 /* RuleView.swift in Sources */,
 				FA61002C2A5816E5002175CE /* KeywordsView.swift in Sources */,
 				FA57AF5D2A5D17A0008A5991 /* LoginRepository.swift in Sources */,
 				FA6C216B2A5A78C4008A9ADD /* RandomNicknameView.swift in Sources */,
@@ -769,6 +866,7 @@
 				FA2A06582A69014100AC649F /* ChallengeHomeView.swift in Sources */,
 				FA3C432A2A62F1FB009E820B /* OnboardingResponse.swift in Sources */,
 				FA6C21672A5A4DD3008A9ADD /* CiderTextFieldView.swift in Sources */,
+				FA4280922A73FF3500828F93 /* MissionCell.swift in Sources */,
 				FA6100322A59AD8D002175CE /* GradientView.swift in Sources */,
 				FA3C43232A62EA18009E820B /* OnboardingRequest.swift in Sources */,
 				FA758ACE2A5F0374003E2F07 /* ChallengeResultType.swift in Sources */,
@@ -787,6 +885,7 @@
 				FA44D39D2A4C52DA0037E328 /* UIViewController+Extension.swift in Sources */,
 				FA316D6C2A63BAB500C7AA88 /* TabBarViewController.swift in Sources */,
 				FA3C43252A62ECBA009E820B /* OnboardingUsecase.swift in Sources */,
+				FA4280792A736C5900828F93 /* ChallengeDetailMenuCell.swift in Sources */,
 				FA758AC82A5EF418003E2F07 /* StarTitleLabel.swift in Sources */,
 				FAD6E3D62A64F2F5002C8007 /* WritingType.swift in Sources */,
 				FA32B83A2A6A6C2D0086497D /* HomeHeaderView.swift in Sources */,
@@ -798,15 +897,18 @@
 				FA2A06502A68DF5B00AC649F /* PrecautionViewModel.swift in Sources */,
 				FA57AF752A5E9DED008A5991 /* CiderTextView.swift in Sources */,
 				FA61002E2A58180E002175CE /* CiderSelectionStyle.swift in Sources */,
+				FA42807D2A737C3600828F93 /* ChallengeDetailViewController.swift in Sources */,
 				FA316D672A63A15100C7AA88 /* OnboardingCompleteViewController.swift in Sources */,
 				FA3C432E2A62FA0E009E820B /* Date+Extension.swift in Sources */,
 				FA44D39F2A4C5CE30037E328 /* UIStackView+Extension.swift in Sources */,
 				FA348ED52A61185500EA3D04 /* NicknameRepository.swift in Sources */,
 				FA348ED92A6119B600EA3D04 /* DuplicateNicknameResponse.swift in Sources */,
+				FA5911742A7D01520022611B /* MyMissionCell.swift in Sources */,
 				FA316D692A63A18700C7AA88 /* MainTitleLabel.swift in Sources */,
 				FA3AE40D2A57DB140078A4DF /* CiderBottomButton.swift in Sources */,
 				FA56F9842A542FA70099EC6F /* GenderAndBirthdayViewController.swift in Sources */,
 				FA0322812A4DC2B0000993DF /* NicknameViewController.swift in Sources */,
+				FA5911722A7BF7E60022611B /* ChallengeDetailViewModel.swift in Sources */,
 				FA348ED72A61190900EA3D04 /* RandomNicknameResponse.swift in Sources */,
 				FA57AF4B2A5D0D72008A5991 /* CiderAPI.swift in Sources */,
 				FA57AF632A5D22A0008A5991 /* LoginError.swift in Sources */,
@@ -815,10 +917,13 @@
 				FA4A24BB2A7004540078A86C /* OngoingCell.swift in Sources */,
 				FA4DDB922A4D5810002EDEAD /* ServiceAgreeCellData.swift in Sources */,
 				FA4DDB952A4D5A46002EDEAD /* ServiceAgreeCell.swift in Sources */,
+				FA726CCE2A7933F100A9309D /* MissionView.swift in Sources */,
 				FA758ACC2A5F0316003E2F07 /* MissionPhotoView.swift in Sources */,
 				FA08D99B2A6D78CE0061C567 /* FeedCell.swift in Sources */,
 				FA4280632A70E68100828F93 /* ReviewType.swift in Sources */,
+				FA59116F2A7BEF360022611B /* MissionPhotoCell.swift in Sources */,
 				FA5B8BE12A4DCAE000CEB0F6 /* UITextField+Extension.swift in Sources */,
+				FA42807B2A736F7600828F93 /* DynamicLabel.swift in Sources */,
 				FA57AF4F2A5D0EC7008A5991 /* LocalKey.swift in Sources */,
 				FA2A064E2A68DCE000AC649F /* PrecautionViewController.swift in Sources */,
 				FA57AF602A5D1851008A5991 /* Encodable+Extension.swift in Sources */,
@@ -826,12 +931,14 @@
 				FA553EBF2A5C141B00DAE63B /* LoginUsecase.swift in Sources */,
 				FA4DF29A2A6C191C007F3035 /* CategoryView.swift in Sources */,
 				FA6100282A57FA46002175CE /* ChallengeType.swift in Sources */,
+				FA4280902A73F58000828F93 /* RuleCell.swift in Sources */,
 				FA31A9442A6A33BE004D1C3B /* ChallengeHomeCell.swift in Sources */,
 				FA4DDB972A4D66CB002EDEAD /* ServiceAgreeDetailCell.swift in Sources */,
 				FAB9A73F2A4C8DAB00757A80 /* ProcessView.swift in Sources */,
 				FA2A06522A68F19700AC649F /* ReviewInfoView.swift in Sources */,
 				FA2A064C2A68DC0F00AC649F /* PrecautionView.swift in Sources */,
 				FA6C21692A5A4E21008A9ADD /* CiderEnabledStyle.swift in Sources */,
+				FA4280862A73D4B800828F93 /* ChallengeIntroCell.swift in Sources */,
 				FA8CA6072A46D322005A6709 /* AppDelegate.swift in Sources */,
 				FA4280692A721C7900828F93 /* ClosedChallengeCell.swift in Sources */,
 				FA44D39B2A4C46A30037E328 /* CustomFont.swift in Sources */,
@@ -848,14 +955,19 @@
 				FA57AF452A5C16EE008A5991 /* LoginViewModel.swift in Sources */,
 				FA348ED32A61180400EA3D04 /* NicknameUsecase.swift in Sources */,
 				FA4DDB902A4D57D5002EDEAD /* ProcessType.swift in Sources */,
+				FA4280882A73DA4B00828F93 /* ChallengeInfoView.swift in Sources */,
 				FA553EBD2A5C0D6900DAE63B /* APIKey.swift in Sources */,
+				FA42807F2A73882900828F93 /* ProgressBarView.swift in Sources */,
+				FA59116D2A7BEC3C0022611B /* HostCell.swift in Sources */,
 				FA4280652A70E9A900828F93 /* ReviewStatusBarView.swift in Sources */,
 				FA4A24B92A6FD6360078A86C /* SortingView.swift in Sources */,
 				FA61002A2A57FC14002175CE /* ChallengesView.swift in Sources */,
 				FA3C43282A62ED37009E820B /* OnboardingRepository.swift in Sources */,
 				FA3FC7FC2A6E93B70022CA3A /* SortingHeaderView.swift in Sources */,
 				FA4A24BD2A7012B90078A86C /* MyChallengeViewController.swift in Sources */,
+				FA42808A2A73DC0D00828F93 /* ChallengeInfoCell.swift in Sources */,
 				FA6100302A590431002175CE /* ChallengeSelectionViewModel.swift in Sources */,
+				FA4280842A73ADF900828F93 /* ProgressBarCell.swift in Sources */,
 				FA44D3992A4C43B80037E328 /* Color+Extension.swift in Sources */,
 				FAD6E3D42A64F2A6002C8007 /* WritingView.swift in Sources */,
 				FAD6E3D82A64F9B5002C8007 /* ChallengeTypeViewController.swift in Sources */,

@@ -107,4 +107,17 @@ extension ChallengeType {
         }
     }
     
+    var bannerImageName: String {
+        switch self {
+        case .financialTech:
+            return "financialTechBanner"
+        case .moneySaving:
+            return "moneySavingBanner"
+        case .moneyManagement:
+            return "moneyManagementBanner"
+        case .financialLearning:
+            return "financialLearningBanner"
+        }
+    }
+    
 }

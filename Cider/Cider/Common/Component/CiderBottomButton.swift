@@ -35,4 +35,8 @@ final class CiderBottomButton: UIButton {
         backgroundColor = style == .enabled ? UIColor.custom.main :  UIColor.custom.gray4
         isEnabled = style == .enabled ? true : false
     }
+    
+    func setFont(_ font: UIFont?) {
+        titleLabel?.font = font
+    }
 }
