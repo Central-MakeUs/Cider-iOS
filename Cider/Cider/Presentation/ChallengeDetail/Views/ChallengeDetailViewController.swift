@@ -26,7 +26,9 @@ class ChallengeDetailViewController: UIViewController {
         collectionView.register(MissionPhotoCell.self, forCellWithReuseIdentifier: MissionPhotoCell.identifier)
         collectionView.register(HostCell.self, forCellWithReuseIdentifier: HostCell.identifier)
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: FeedCell.identifier)
+        collectionView.register(MyMissionCell.self, forCellWithReuseIdentifier: MyMissionCell.identifier)
         collectionView.register(HomeHeaderView.self, forSupplementaryViewOfKind: HomeHeaderView.identifier, withReuseIdentifier: HomeHeaderView.identifier)
+        collectionView.register(SortingHeaderView.self, forSupplementaryViewOfKind: SortingHeaderView.identifier, withReuseIdentifier: SortingHeaderView.identifier)
         collectionView.register(SeparatorFooterView.self, forSupplementaryViewOfKind: SeparatorFooterView.identifier, withReuseIdentifier: SeparatorFooterView.identifier)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.keyboardDismissMode = .onDrag
@@ -40,6 +42,8 @@ class ChallengeDetailViewController: UIViewController {
         case challengeIntro = 2
         case challengeInfo = 3
         case rule = 4
+        case mission = 5
+        case host = 6
     }
     
     private enum FeedSection: Int {
@@ -199,6 +203,29 @@ private extension ChallengeDetailViewController {
                 cell.setUp(failText: "30회 미만 인증")
                 return cell
                 
+            case .mission:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MissionCell.identifier, for: indexPath) as? MissionCell else {
+                    return UICollectionViewCell()
+                }
+                cell.setUp(
+                   mission: "하루 한번 아침에 일어나서 물이 담긴 컵사진 인증\n하루 한번 아침에 일어나서 물이 담긴 컵사진 인증",
+                   successImage: UIImage(named: "sample"),
+                   failImage: UIImage(named: "sample")
+                )
+                return cell
+                
+            case .host:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HostCell.identifier, for: indexPath) as? HostCell else {
+                    return UICollectionViewCell()
+                }
+                cell.setUp(
+                    nickname: "Sun",
+                    levelInfo: "LV5 능숙한 챌린저",
+                    hostCountInfo: "0번째 챌린지",
+                    profileImage: UIImage(named: "sample")
+                )
+                return cell
+                
             case .none:
                 return UICollectionViewCell()
             }
@@ -307,6 +334,52 @@ private extension ChallengeDetailViewController {
                     return nil
                     
                 }
+                
+            case .mission:
+                switch elementKind {
+                case HomeHeaderView.identifier:
+                    let headerView = collectionView.dequeueReusableSupplementaryView(
+                        ofKind: elementKind,
+                        withReuseIdentifier: HomeHeaderView.identifier,
+                        for: indexPath
+                    ) as? HomeHeaderView
+                    headerView?.setUp(leftTitle: "인증 미션", rightTitle: "", isClicked: false)
+                    return headerView ?? UICollectionReusableView()
+                    
+                case SeparatorFooterView.identifier:
+                    let headerView = collectionView.dequeueReusableSupplementaryView(
+                        ofKind: elementKind,
+                        withReuseIdentifier: SeparatorFooterView.identifier,
+                        for: indexPath
+                    ) as? SeparatorFooterView
+                    return headerView ?? UICollectionReusableView()
+                    
+                default:
+                    return nil
+                }
+                
+            case .host:
+                switch elementKind {
+                case HomeHeaderView.identifier:
+                    let headerView = collectionView.dequeueReusableSupplementaryView(
+                        ofKind: elementKind,
+                        withReuseIdentifier: HomeHeaderView.identifier,
+                        for: indexPath
+                    ) as? HomeHeaderView
+                    headerView?.setUp(leftTitle: "챌린지 호스트", rightTitle: "", isClicked: false)
+                    return headerView ?? UICollectionReusableView()
+                    
+                case SeparatorFooterView.identifier:
+                    let headerView = collectionView.dequeueReusableSupplementaryView(
+                        ofKind: elementKind,
+                        withReuseIdentifier: SeparatorFooterView.identifier,
+                        for: indexPath
+                    ) as? SeparatorFooterView
+                    return headerView ?? UICollectionReusableView()
+                    
+                default:
+                    return nil
+                }
                
             default:
                 return nil
@@ -337,20 +410,47 @@ private extension ChallengeDetailViewController {
                 return cell
                 
             case .myMission:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeDetailMenuCell.identifier, for: indexPath) as? ChallengeDetailMenuCell else {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyMissionCell.identifier, for: indexPath) as? MyMissionCell else {
+                    return UICollectionViewCell()
+                }
+                cell.setUp(count: "24")
+                return cell
+                
+            case .MissionPhoto:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MissionPhotoCell.identifier, for: indexPath) as? MissionPhotoCell else {
                     return UICollectionViewCell()
                 }
                 cell.setUp(
-                    challengeType: self.challengeType,
-                    profileImage: UIImage(named: "sample"),
-                    mainTitle: "만보 걷기~~~~~~",
-                    participant: "29 / 30명",
-                    status: "진행중 D-6"
+                    photos: [
+                   UIImage(named: "sample"),
+                   UIImage(named: "sample"),
+                   UIImage(named: "sample"),
+                   UIImage(named: "sample"),
+                   UIImage(named: "sample"),
+                   UIImage(named: "sample")
+                ])
+                return cell
+                
+            case .feed:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCell.identifier, for: indexPath) as? FeedCell else {
+                    return UICollectionViewCell()
+                }
+                cell.setUp(
+                    nickname: "화이팅",
+                    level: "LV 1",
+                    date: "23.05.15 15:45",
+                    mainTitle: "오늘 챌린지 인증하는데",
+                    subTitle: "챌린지 하면 할수록 너무 힘들구 어쩌고 저쩌고 근데 할 수 있다 챌린지 하면 할수록 챌린지 하면 할수록\n챌린지 하면 할수록 너무 힘들구 어쩌고 저쩌고 근데 할 수 있다\n챌린지 하면 할수록 너무 힘들구 어쩌고 저쩌고 근데 할 수 있다",
+                    challengeType: .financialTech,
+                    challengeTitle: "하루에 만보 걷기 챌린지 하루를 열심히 살아보아요!!!",
+                    people: "231",
+                    heart: "1111"
                 )
                 return cell
                 
-            default:
+            case .none:
                 return UICollectionViewCell()
+            
             }
         })
         
@@ -362,15 +462,36 @@ private extension ChallengeDetailViewController {
             
             let section = FeedSection(rawValue: indexPath.section)
             switch section {
-            case .myMission:
+            case .MissionPhoto:
+                switch elementKind {
+                case HomeHeaderView.identifier:
+                    let headerView = collectionView.dequeueReusableSupplementaryView(
+                        ofKind: elementKind,
+                        withReuseIdentifier: HomeHeaderView.identifier,
+                        for: indexPath
+                    ) as? HomeHeaderView
+                    headerView?.setUp(leftTitle: "활동 한눈에 보기", rightTitle: "", isClicked: false)
+                    return headerView ?? UICollectionReusableView()
+                    
+                case SeparatorFooterView.identifier:
+                    let headerView = collectionView.dequeueReusableSupplementaryView(
+                        ofKind: elementKind,
+                        withReuseIdentifier: SeparatorFooterView.identifier,
+                        for: indexPath
+                    ) as? SeparatorFooterView
+                    return headerView ?? UICollectionReusableView()
+                    
+                default:
+                    return nil
+                }
+            case .feed:
                 let headerView = collectionView.dequeueReusableSupplementaryView(
                     ofKind: elementKind,
-                    withReuseIdentifier: HomeHeaderView.identifier,
+                    withReuseIdentifier: SortingHeaderView.identifier,
                     for: indexPath
-                ) as? HomeHeaderView
-                headerView?.setUp(leftTitle: "나의 인증글", rightTitle: "", isClicked: true)
-                return headerView ?? UICollectionReusableView()
-                
+                ) as? SortingHeaderView
+                return headerView
+               
             default:
                 return nil
             }
@@ -390,6 +511,10 @@ private extension ChallengeDetailViewController {
         snapshot.appendItems([Item()])
         snapshot.appendSections([.rule])
         snapshot.appendItems([Item()])
+        snapshot.appendSections([.mission])
+        snapshot.appendItems([Item()])
+        snapshot.appendSections([.host])
+        snapshot.appendItems([Item()])
         infoDataSource?.apply(snapshot)
     }
     
@@ -399,6 +524,10 @@ private extension ChallengeDetailViewController {
         snapshot.appendItems([Item()])
         snapshot.appendSections([.myMission])
         snapshot.appendItems([Item()])
+        snapshot.appendSections([.MissionPhoto])
+        snapshot.appendItems([Item()])
+        snapshot.appendSections([.feed])
+        snapshot.appendItems([Item(), Item(), Item(), Item()])
         feedDataSource?.apply(snapshot)
     }
     
@@ -426,6 +555,12 @@ private extension ChallengeDetailViewController {
                 case .rule:
                     return self.ruleSectionLayout()
                     
+                case .mission:
+                    return self.missionSectionLayout()
+                    
+                case .host:
+                    return self.hostSectionLayout()
+                    
                 default:
                     return nil
                 }
@@ -438,6 +573,12 @@ private extension ChallengeDetailViewController {
                     
                 case .myMission:
                     return self.myMissionSectionLayout()
+                    
+                case .MissionPhoto:
+                    return self.missionPhotoSectionLayout()
+                
+                case .feed:
+                    return self.feedSectionLayout()
                     
                 default:
                     return nil
@@ -619,10 +760,10 @@ private extension ChallengeDetailViewController {
         return section
     }
     
-    func myMissionSectionLayout() -> NSCollectionLayoutSection {
+    func missionSectionLayout() -> NSCollectionLayoutSection {
         let layoutSize = NSCollectionLayoutSize(
-            widthDimension: .absolute(100),
-            heightDimension: .absolute(100)
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(492)
         )
         
         let group = NSCollectionLayoutGroup.horizontal(
@@ -634,7 +775,7 @@ private extension ChallengeDetailViewController {
         )
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = .init(top: 0, leading: 24, bottom: 0, trailing: 24)
+        section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
         
         section.boundarySupplementaryItems = [
             NSCollectionLayoutBoundarySupplementaryItem(
@@ -643,6 +784,134 @@ private extension ChallengeDetailViewController {
                     heightDimension: .absolute(65)
                 ),
                 elementKind: HomeHeaderView.identifier, alignment: .top
+            ),
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: .init(
+                    widthDimension: .absolute(view.safeAreaLayoutGuide.layoutFrame.width),
+                    heightDimension: .absolute(8)
+                ),
+                elementKind: SeparatorFooterView.identifier, alignment: .bottom
+            )
+        ]
+        return section
+    }
+    
+    func hostSectionLayout() -> NSCollectionLayoutSection {
+        let layoutSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(77)
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: .init(
+                widthDimension: layoutSize.widthDimension,
+                heightDimension: layoutSize.heightDimension
+            ),
+            subitems: [.init(layoutSize: layoutSize)]
+        )
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+        
+        section.boundarySupplementaryItems = [
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: .init(
+                    widthDimension: .absolute(view.safeAreaLayoutGuide.layoutFrame.width),
+                    heightDimension: .absolute(65)
+                ),
+                elementKind: HomeHeaderView.identifier, alignment: .top
+            ),
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: .init(
+                    widthDimension: .absolute(view.safeAreaLayoutGuide.layoutFrame.width),
+                    heightDimension: .absolute(8)
+                ),
+                elementKind: SeparatorFooterView.identifier, alignment: .bottom
+            )
+        ]
+        return section
+    }
+    
+    func myMissionSectionLayout() -> NSCollectionLayoutSection {
+        let layoutSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .absolute(56)
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: .init(
+                widthDimension: layoutSize.widthDimension,
+                heightDimension: layoutSize.heightDimension
+            ),
+            subitems: [.init(layoutSize: layoutSize)]
+        )
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+        return section
+    }
+    
+    func missionPhotoSectionLayout() -> NSCollectionLayoutSection {
+        let layoutSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .absolute(232)
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: .init(
+                widthDimension: layoutSize.widthDimension,
+                heightDimension: layoutSize.heightDimension
+            ),
+            subitems: [.init(layoutSize: layoutSize)]
+        )
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+        
+        section.boundarySupplementaryItems = [
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: .init(
+                    widthDimension: .absolute(view.safeAreaLayoutGuide.layoutFrame.width),
+                    heightDimension: .absolute(65)
+                ),
+                elementKind: HomeHeaderView.identifier, alignment: .top
+            ),
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: .init(
+                    widthDimension: .absolute(view.safeAreaLayoutGuide.layoutFrame.width),
+                    heightDimension: .absolute(8)
+                ),
+                elementKind: SeparatorFooterView.identifier, alignment: .bottom
+            )
+        ]
+        return section
+    }
+    
+    func feedSectionLayout() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(149+UIScreen.main.bounds.width+41+41-16-16)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(149+UIScreen.main.bounds.width+41+41-16-16)
+        )
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize,
+                                                     subitems: [item])
+        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 24)
+        
+        section.boundarySupplementaryItems = [
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: .init(
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .absolute(49)
+                ),
+                elementKind: SortingHeaderView.identifier, alignment: .top
             )
         ]
         return section

@@ -103,6 +103,7 @@
 		FA59116D2A7BEC3C0022611B /* HostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59116C2A7BEC3B0022611B /* HostCell.swift */; };
 		FA59116F2A7BEF360022611B /* MissionPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59116E2A7BEF360022611B /* MissionPhotoCell.swift */; };
 		FA5911722A7BF7E60022611B /* ChallengeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5911712A7BF7E60022611B /* ChallengeDetailViewModel.swift */; };
+		FA5911742A7D01520022611B /* MyMissionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5911732A7D01520022611B /* MyMissionCell.swift */; };
 		FA5B8BE12A4DCAE000CEB0F6 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B8BE02A4DCAE000CEB0F6 /* UITextField+Extension.swift */; };
 		FA6100262A57F725002175CE /* ChallengeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6100252A57F725002175CE /* ChallengeSelectionViewController.swift */; };
 		FA6100282A57FA46002175CE /* ChallengeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6100272A57FA46002175CE /* ChallengeType.swift */; };
@@ -232,6 +233,7 @@
 		FA59116C2A7BEC3B0022611B /* HostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostCell.swift; sourceTree = "<group>"; };
 		FA59116E2A7BEF360022611B /* MissionPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionPhotoCell.swift; sourceTree = "<group>"; };
 		FA5911712A7BF7E60022611B /* ChallengeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailViewModel.swift; sourceTree = "<group>"; };
+		FA5911732A7D01520022611B /* MyMissionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMissionCell.swift; sourceTree = "<group>"; };
 		FA5B8BE02A4DCAE000CEB0F6 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		FA6100252A57F725002175CE /* ChallengeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeSelectionViewController.swift; sourceTree = "<group>"; };
 		FA6100272A57FA46002175CE /* ChallengeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeType.swift; sourceTree = "<group>"; };
@@ -438,6 +440,7 @@
 				FA4280912A73FF3500828F93 /* MissionCell.swift */,
 				FA59116C2A7BEC3B0022611B /* HostCell.swift */,
 				FA59116E2A7BEF360022611B /* MissionPhotoCell.swift */,
+				FA5911732A7D01520022611B /* MyMissionCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -900,6 +903,7 @@
 				FA44D39F2A4C5CE30037E328 /* UIStackView+Extension.swift in Sources */,
 				FA348ED52A61185500EA3D04 /* NicknameRepository.swift in Sources */,
 				FA348ED92A6119B600EA3D04 /* DuplicateNicknameResponse.swift in Sources */,
+				FA5911742A7D01520022611B /* MyMissionCell.swift in Sources */,
 				FA316D692A63A18700C7AA88 /* MainTitleLabel.swift in Sources */,
 				FA3AE40D2A57DB140078A4DF /* CiderBottomButton.swift in Sources */,
 				FA56F9842A542FA70099EC6F /* GenderAndBirthdayViewController.swift in Sources */,

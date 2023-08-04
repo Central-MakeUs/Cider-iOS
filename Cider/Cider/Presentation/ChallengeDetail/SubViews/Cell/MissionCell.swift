@@ -11,15 +11,20 @@ final class MissionCell: UICollectionViewCell {
     
     static let identifier = "MissionCell"
 
-    private lazy var missionInfoLabel: DynamicLabel = {
-        let label = DynamicLabel(horizontalPadding: 0, verticalPadding: 8)
-        label.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
+    private lazy var missionInfoLabel: UILabel = {
+        let label = UILabel()
         label.font = CustomFont.PretendardRegular(size: .base).font
         label.textColor = .custom.text
         label.numberOfLines = 0
-        label.layer.cornerRadius = 8
         label.textAlignment = .center
         return label
+    }()
+    
+    private lazy var missionBackgroundView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 8
+        view.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
+        return view
     }()
     
     private let successView = MissionView(type: .success)
@@ -35,11 +40,14 @@ final class MissionCell: UICollectionViewCell {
     }
     
     private func configure() {
-        addSubviews(missionInfoLabel, successView, failView)
+        addSubviews(missionBackgroundView, missionInfoLabel, successView, failView)
         NSLayoutConstraint.activate([
-            missionInfoLabel.topAnchor.constraint(equalTo: topAnchor),
-            missionInfoLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            missionInfoLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            missionBackgroundView.heightAnchor.constraint(equalToConstant: 52),
+            missionInfoLabel.centerYAnchor.constraint(equalTo: missionBackgroundView.centerYAnchor),
+            missionInfoLabel.centerXAnchor.constraint(equalTo: missionBackgroundView.centerXAnchor),
+            missionBackgroundView.topAnchor.constraint(equalTo: topAnchor),
+            missionBackgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            missionBackgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
             successView.topAnchor.constraint(equalTo: missionInfoLabel.bottomAnchor, constant: 16),
             successView.centerXAnchor.constraint(equalTo: centerXAnchor),
             failView.topAnchor.constraint(equalTo: successView.bottomAnchor, constant: 8),
