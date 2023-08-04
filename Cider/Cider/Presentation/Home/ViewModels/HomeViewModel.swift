@@ -22,6 +22,7 @@ final class HomeViewModel: ViewModelType {
     var publicChallanges: [ChallengeResponseDto]?
     var popularItems: [Item] = []
     var publicItems: [Item] = []
+    var categoryType: ChallengeType = .financialTech
 
     private var isSelectedList = [false, false, false, false]
     

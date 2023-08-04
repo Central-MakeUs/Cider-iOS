@@ -37,22 +37,22 @@ class CategoryHeaderView: UICollectionReusableView {
         return stackView
     }()
     
-    private lazy var financialTechView: CategoryView = {
+    lazy var financialTechView: CategoryView = {
         let view = CategoryView(type: .financialTech, style: .selected)
         return view
     }()
     
-    private lazy var moneyManagementView: CategoryView = {
+    lazy var moneyManagementView: CategoryView = {
         let view = CategoryView(type: .moneyManagement, style: .selected)
         return view
     }()
     
-    private lazy var financialLearningView: CategoryView = {
+    lazy var financialLearningView: CategoryView = {
         let view = CategoryView(type: .financialLearning, style: .selected)
         return view
     }()
     
-    private lazy var moneySavingView: CategoryView = {
+    lazy var moneySavingView: CategoryView = {
         let view = CategoryView(type: .moneySaving, style: .selected)
         return view
     }()
@@ -143,7 +143,7 @@ struct CategoryHeaderView_Preview: PreviewProvider {
         
         UIViewPreview {
             let view = CategoryHeaderView()
-            view.setUp(leftTitle: "카테고리", rightTitle: "전체 챌린지 보기", selectedType: .financialTech)
+            view.setUp(leftTitle: "카테고리", rightTitle: "전체 챌린지 보기", selectedType: .financialLearning)
             return view
         }
         .previewLayout(.fixed(width: 150, height: 192))

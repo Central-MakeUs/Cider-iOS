@@ -107,6 +107,13 @@ private extension HomeViewController {
         ])
     }
     
+    func reloadHeader() {
+        guard var snapshot = dataSource?.snapshot() else {
+            return
+        }
+        dataSource?.applySnapshotUsingReloadData(snapshot)
+    }
+    
     func setNavigationBar() {
         let leftView = HomeNavigationView()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftView)
@@ -238,8 +245,12 @@ private extension HomeViewController {
                     withReuseIdentifier: CategoryHeaderView.identifier,
                     for: indexPath
                 ) as? CategoryHeaderView
-                headerView?.setUp(leftTitle: "카테고리", rightTitle: "전체 챌린지 보기", selectedType: .financialTech)
+                headerView?.setUp(leftTitle: "카테고리", rightTitle: "전체 챌린지 보기", selectedType: self.viewModel.categoryType)
                 headerView?.addActionRightTitle(self, action: #selector(self.didTapAllChallenge))
+                headerView?.financialLearningView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTapFinancialLearning)))
+                headerView?.financialTechView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTapFinancialTech)))
+                headerView?.moneySavingView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTapMoneySaving)))
+                headerView?.moneyManagementView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTapMoneyManagement)))
                 return headerView ?? UICollectionReusableView()
                 
             case .feed:
@@ -437,6 +448,26 @@ private extension HomeViewController {
     
     @objc func didTapMyChallenge(_ sender: Any?) {
         pushMyChallengeViewController()
+    }
+    
+    @objc func didTapFinancialTech(_ sender: Any?) {
+        viewModel.categoryType = .financialTech
+        reloadHeader()
+    }
+    
+    @objc func didTapFinancialLearning(_ sender: Any?) {
+        viewModel.categoryType = .financialLearning
+        reloadHeader()
+    }
+    
+    @objc func didTapMoneySaving(_ sender: Any?) {
+        viewModel.categoryType = .moneySaving
+        reloadHeader()
+    }
+    
+    @objc func didTapMoneyManagement(_ sender: Any?) {
+        viewModel.categoryType = .moneyManagement
+        reloadHeader()
     }
     
 }
