@@ -36,6 +36,33 @@ class ChallengeDetailViewController: UIViewController {
         return collectionView
     }()
     
+    private lazy var bottomView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.addShadow(location: .top, opacity: 0.2)
+        return view
+    }()
+    
+    private lazy var bottomButton: CiderBottomButton = {
+        let button = CiderBottomButton(style: .enabled, title: "챌린지 기다리기 D-5")
+        button.setFont(CustomFont.PretendardBold(size: .xl).font)
+        return button
+    }()
+    
+    private lazy var heartButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "filled_like_24")?.withTintColor(.custom.main ?? .white), for: .normal)
+        return button
+    }()
+    
+    private lazy var heartCountLabel: UILabel = {
+        let label = UILabel()
+        label.text = "2366"
+        label.font = CustomFont.PretendardBold(size: .xs).font
+        label.textColor = .custom.main
+        return label
+    }()
+    
     private enum InfoSection: Int {
         case menu = 0
         case progress = 1
@@ -95,12 +122,25 @@ private extension ChallengeDetailViewController {
     
     func configure() {
         view.backgroundColor = .white
-        view.addSubviews(collectionView)
+        view.addSubviews(collectionView, bottomView, bottomButton, heartButton, heartCountLabel)
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            bottomView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            bottomView.heightAnchor.constraint(equalToConstant: 56),
+            bottomButton.centerYAnchor.constraint(equalTo: bottomView.centerYAnchor),
+            bottomButton.leadingAnchor.constraint(equalTo: heartButton.trailingAnchor, constant: 16),
+            bottomButton.widthAnchor.constraint(equalToConstant: 262),
+            heartButton.heightAnchor.constraint(equalToConstant: 24),
+            heartButton.widthAnchor.constraint(equalToConstant: 24),
+            heartButton.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 10),
+            heartButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UIScreen.main.bounds.width*0.1),
+            heartCountLabel.centerXAnchor.constraint(equalTo: heartButton.centerXAnchor),
+            heartCountLabel.topAnchor.constraint(equalTo: heartButton.bottomAnchor)
         ])
     }
     

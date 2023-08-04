@@ -128,7 +128,7 @@ extension ProgressBarView {
         ).isActive = true
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.2) {
-            self.progressView.setProgress(percent, animated: true)
+            self.progressView.setProgress(percent, animated: false)
         }
     }
     
