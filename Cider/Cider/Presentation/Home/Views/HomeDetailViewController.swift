@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 final class HomeDetailViewController: UIViewController {
     
@@ -35,8 +36,13 @@ final class HomeDetailViewController: UIViewController {
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
-    init(homeDetailType: HomeDetailType) {
+    private let viewModel: HomeDetailViewModel
+    private var cancellables = Set<AnyCancellable>()
+    
+    
+    init(homeDetailType: HomeDetailType, viewModel: HomeDetailViewModel) {
         self.homeDetailType = homeDetailType
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -47,6 +53,7 @@ final class HomeDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
+        viewModel.viewDidload(type: homeDetailType, filter: "latest")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +69,21 @@ private extension HomeDetailViewController {
         configure()
         setUpDataSource()
         applySnapshot()
+        bind()
+    }
+    
+    func bind() {
+        viewModel.state.receive(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                switch state {
+                case .applySnapshot(let isSuccess):
+                    guard isSuccess else {
+                        return
+                    }
+                    self?.applySnapshot()
+                }
+            }
+            .store(in: &cancellables)
     }
     
     func configure() {
@@ -142,7 +164,7 @@ private extension HomeDetailViewController {
         snapshot.appendSections([.homeDetailInfo])
         snapshot.appendItems([Item()])
         snapshot.appendSections([.challenge])
-        snapshot.appendItems([Item(),Item(),Item(),Item(),Item(),Item()])
+        snapshot.appendItems(viewModel.items)
         dataSource?.apply(snapshot)
     }
     

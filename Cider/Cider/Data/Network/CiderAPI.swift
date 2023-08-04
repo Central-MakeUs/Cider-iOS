@@ -16,6 +16,10 @@ enum CiderAPI {
     case patchOnboarding(paramters: [String: Any])
     case getHomeChallenge
     case getHomeCategory(category: String)
+    case getPopularChallenge(filter: String)
+    case getAllChallenge(filter: String)
+    case getPublicChallenge(filter: String)
+
 }
 
 extension CiderAPI: TargetType, AccessTokenAuthorizable {
@@ -38,6 +42,13 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             return "/api/challenge/home"
         case .getHomeCategory(let category):
             return "/api/challenge/home/\(category)"
+        case .getPopularChallenge(let filter):
+            return "/api/challenge/popular/\(filter)"
+        case .getAllChallenge(let filter):
+            return "/api/challenge/\(filter)"
+        case .getPublicChallenge(let filter):
+            return "/api/challenge/official/\(filter)"
+
 
         }
     }
@@ -51,7 +62,10 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
         case .getRandomNickname,
              .getDuplicateNickname,
              .getHomeChallenge,
-             .getHomeCategory:
+             .getHomeCategory,
+             .getPopularChallenge,
+             .getAllChallenge,
+             .getPublicChallenge:
             return .get
             
         case .patchOnboarding:

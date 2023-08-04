@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct HomeCategoryResponseElement: Codable {
+struct ChallengeElement: Codable {
     let challengeId: Int
     let challengeName, challengeStatus: String
     let participateNum, recruitLeft: Int
@@ -15,5 +15,5 @@ struct HomeCategoryResponseElement: Codable {
     let isOfficial, isReward, isLike: Bool
 }
 
-typealias HomeCategoryResponse = [HomeCategoryResponseElement]
+typealias ChallengeResponse = [ChallengeElement]
 

@@ -20,13 +20,11 @@ final class HomeViewModel: ViewModelType {
     private var cancellables: Set<AnyCancellable> = .init()
     var popularChallanges: [ChallengeResponseDto]?
     var publicChallanges: [ChallengeResponseDto]?
-    var categoryChallenges: [HomeCategoryResponseElement] = []
+    var categoryChallenges: [ChallengeElement] = []
     var popularItems: [Item] = []
     var publicItems: [Item] = []
     var categoryItems: [Item] = []
     var categoryType: ChallengeType = .financialTech
-
-    private var isSelectedList = [false, false, false, false]
     
     init(usecase: HomeUsecase) {
         self.usecase = usecase
