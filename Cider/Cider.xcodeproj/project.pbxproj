@@ -88,6 +88,7 @@
 		FA553EBF2A5C141B00DAE63B /* LoginUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA553EBE2A5C141B00DAE63B /* LoginUsecase.swift */; };
 		FA56F9842A542FA70099EC6F /* GenderAndBirthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56F9832A542FA70099EC6F /* GenderAndBirthdayViewController.swift */; };
 		FA57003B2A82849200CFECBC /* SortingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57003A2A82849200CFECBC /* SortingType.swift */; };
+		FA57003D2A8286FB00CFECBC /* SortingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57003C2A8286FB00CFECBC /* SortingViewController.swift */; };
 		FA57AF452A5C16EE008A5991 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57AF442A5C16EE008A5991 /* LoginViewModel.swift */; };
 		FA57AF482A5C5116008A5991 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = FA57AF472A5C5116008A5991 /* Moya */; };
 		FA57AF4B2A5D0D72008A5991 /* CiderAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57AF4A2A5D0D72008A5991 /* CiderAPI.swift */; };
@@ -229,6 +230,7 @@
 		FA553EBE2A5C141B00DAE63B /* LoginUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsecase.swift; sourceTree = "<group>"; };
 		FA56F9832A542FA70099EC6F /* GenderAndBirthdayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderAndBirthdayViewController.swift; sourceTree = "<group>"; };
 		FA57003A2A82849200CFECBC /* SortingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingType.swift; sourceTree = "<group>"; };
+		FA57003C2A8286FB00CFECBC /* SortingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingViewController.swift; sourceTree = "<group>"; };
 		FA57AF442A5C16EE008A5991 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		FA57AF4A2A5D0D72008A5991 /* CiderAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderAPI.swift; sourceTree = "<group>"; };
 		FA57AF4C2A5D0E2A008A5991 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 				FA32B8352A6A4F0B0086497D /* HomeViewController.swift */,
 				FA3FC7F92A6E92C60022CA3A /* HomeDetailViewController.swift */,
 				FA4A24BC2A7012B90078A86C /* MyChallengeViewController.swift */,
+				FA57003C2A8286FB00CFECBC /* SortingViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -949,6 +952,7 @@
 				FA44D39F2A4C5CE30037E328 /* UIStackView+Extension.swift in Sources */,
 				FA348ED52A61185500EA3D04 /* NicknameRepository.swift in Sources */,
 				FA5911832A7D5F350022611B /* HomeDetailUsecase.swift in Sources */,
+				FA57003D2A8286FB00CFECBC /* SortingViewController.swift in Sources */,
 				FA348ED92A6119B600EA3D04 /* DuplicateNicknameResponse.swift in Sources */,
 				FA5911742A7D01520022611B /* MyMissionCell.swift in Sources */,
 				FA316D692A63A18700C7AA88 /* MainTitleLabel.swift in Sources */,

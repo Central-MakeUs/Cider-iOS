@@ -143,15 +143,21 @@ private extension HomeDetailViewController {
             }
         })
         
-        dataSource?.supplementaryViewProvider = { collectionView, elementKind, indexPath in
+        dataSource?.supplementaryViewProvider = { [weak self] collectionView, elementKind, indexPath in
+            guard let self = self else {
+                return nil
+            }
             let section = Section(rawValue: indexPath.section)
             switch section {
             case .challenge:
-                let headerView = collectionView.dequeueReusableSupplementaryView(
+                guard let headerView = collectionView.dequeueReusableSupplementaryView(
                     ofKind: elementKind,
                     withReuseIdentifier: SortingHeaderView.identifier,
                     for: indexPath
-                ) as? SortingHeaderView
+                ) as? SortingHeaderView else {
+                    return nil
+                }
+                headerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTapSorting)))
                 return headerView
 
             default:
@@ -246,7 +252,6 @@ private extension HomeDetailViewController {
         ]
         return section
     }
-        
     
 }
 
@@ -254,6 +259,24 @@ private extension HomeDetailViewController {
     
     @objc func didTapArrowTop(_ sender: Any?) {
         collectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    
+    @objc func didTapSorting(_ sender: Any?) {
+        presentSortingViewController()
+    }
+    
+    func presentSortingViewController() {
+        let viewController = SortingViewController()
+        if let sheet = viewController.sheetPresentationController {
+            let identifier = UISheetPresentationController.Detent.Identifier("customMedium")
+            let customDetent = UISheetPresentationController.Detent.custom(identifier: identifier) { context in
+                return 200-34
+            }
+            sheet.detents = [customDetent]
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            sheet.prefersGrabberVisible = true
+        }
+        self.present(viewController, animated: true)
     }
     
 }
