@@ -201,7 +201,7 @@ private extension HomeViewController {
                 cell.setUp(
                     nickname: feed.simpleMemberResponseDto.memberName,
                     level: feed.simpleMemberResponseDto.memberLevelName,
-                    date: feed.createdDate,
+                    date: feed.createdDate.formatYYYYMMDDHHMMDot(),
                     mainTitle: feed.certifyName,
                     subTitle: feed.certifyContent,
                     challengeType: feed.simpleChallengeResponseDto.challengeBranch.convertChallengeType(),
