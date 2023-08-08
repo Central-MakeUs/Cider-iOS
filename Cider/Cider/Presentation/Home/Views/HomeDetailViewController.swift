@@ -123,16 +123,17 @@ private extension HomeDetailViewController {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeHomeCell.identifier, for: indexPath) as? ChallengeHomeCell else {
                     return UICollectionViewCell()
                 }
+                let challenge = self.viewModel.challenges[indexPath.row]
                 cell.setUp(
-                    type: .financialTech,
-                    isReward: true,
-                    date: "1주",
-                    ranking: self.homeDetailType == .popularChallenge ? "1위" : nil,
-                    title: "만보걷기",
-                    status: "종료",
-                    people: "5명 모집중",
-                    isPublic: true,
-                    dDay: "D-12"
+                    type: challenge.interestField.convertChallengeType(),
+                    isReward: challenge.isReward,
+                    date: "\(challenge.challengePeriod)주",
+                    ranking: self.homeDetailType == .popularChallenge ? "\(indexPath.row+1)위" : nil,
+                    title: challenge.challengeName,
+                    status: challenge.challengeStatus.convertStatusKorean(),
+                    people: "\(challenge.participateNum)명 모집중",
+                    isPublic: challenge.isOfficial,
+                    dDay: "D-\(challenge.recruitLeft)"
                 )
                 return cell
                 

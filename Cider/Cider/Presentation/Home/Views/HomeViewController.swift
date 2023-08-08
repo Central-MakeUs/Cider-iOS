@@ -144,7 +144,7 @@ private extension HomeViewController {
                         type: challenge.interestField.convertChallengeType(),
                         isReward: challenge.isReward,
                         date: "\(challenge.challengePeriod)주",
-                        ranking: "1위",
+                        ranking: "\(indexPath.row+1)위",
                         title: challenge.challengeName,
                         status: challenge.challengeStatus.convertStatusKorean(),
                         people: "\(challenge.participateNum)명 모집중",
@@ -182,7 +182,7 @@ private extension HomeViewController {
                 cell.setUp(
                     type: challenge.interestField.convertChallengeType(),
                     isReward: challenge.isReward,
-                    date: "00주",
+                    date: "\(challenge.challengePeriod)주",
                     ranking: nil,
                     title: challenge.challengeName,
                     status: challenge.challengeStatus.convertStatusKorean(),

@@ -20,7 +20,7 @@ final class HomeViewModel: ViewModelType {
     private var cancellables: Set<AnyCancellable> = .init()
     var popularChallanges: [ChallengeResponseDto]?
     var publicChallanges: [ChallengeResponseDto]?
-    var categoryChallenges: [ChallengeElement] = []
+    var categoryChallenges: [ChallengeResponseDto] = []
     var feeds: FeedResponse = []
     var popularItems: [Item] = []
     var publicItems: [Item] = []

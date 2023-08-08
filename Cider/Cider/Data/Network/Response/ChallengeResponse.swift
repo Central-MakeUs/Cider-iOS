@@ -7,13 +7,5 @@
 
 import Foundation
 
-struct ChallengeElement: Codable {
-    let challengeId: Int
-    let challengeName, challengeStatus: String
-    let participateNum, recruitLeft: Int
-    let interestField: String
-    let isOfficial, isReward, isLike: Bool
-}
-
-typealias ChallengeResponse = [ChallengeElement]
+typealias ChallengeResponse = [ChallengeResponseDto]
 

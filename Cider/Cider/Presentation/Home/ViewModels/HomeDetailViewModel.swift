@@ -18,7 +18,7 @@ final class HomeDetailViewModel: ViewModelType {
     var state: AnyPublisher<ViewModelState, Never> { currentState.compactMap { $0 }.eraseToAnyPublisher() }
     var currentState: CurrentValueSubject<ViewModelState?, Never> = .init(nil)
     private var cancellables: Set<AnyCancellable> = .init()
-    var challenges: [ChallengeElement] = []
+    var challenges: [ChallengeResponseDto] = []
     var items: [Item] = []
    
     init(usecase: HomeDetailUsecase) {
