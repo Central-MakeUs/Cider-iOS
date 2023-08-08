@@ -207,7 +207,9 @@ private extension HomeViewController {
                     challengeType: .financialTech,
                     challengeTitle: feed.simpleChallengeResponseDto.challengeName,
                     people: String(feed.simpleChallengeResponseDto.participateNum),
-                    heart: String(feed.certifyLike)
+                    heart: String(feed.certifyLike),
+                    profileImageURL: feed.simpleMemberResponseDto.profilePath,
+                    feedImageURL: feed.certifyImageUrl
                 )
                 return cell
                 

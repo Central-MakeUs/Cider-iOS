@@ -11,11 +11,9 @@ final class FeedCell: UICollectionViewCell {
     
     static let identifier = "FeedCell"
     
-    // TODO: 프로필 default 이미지 제거하기
     private lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "sample")
         imageView.layer.cornerRadius = 18
         imageView.contentMode = .scaleAspectFill
         return imageView
@@ -221,7 +219,9 @@ extension FeedCell {
         challengeType: ChallengeType,
         challengeTitle: String,
         people: String,
-        heart: String
+        heart: String,
+        profileImageURL: String,
+        feedImageURL: String
     ) {
         nicknameLabel.text = nickname
         levelLabel.text = level
@@ -233,6 +233,8 @@ extension FeedCell {
         challengeTitleLabel.text = challengeTitle
         peopleLabel.text = people + "명"
         heartLabel.text = heart
+        profileImageView.load(url: profileImageURL)
+        feedImageView.load(url: feedImageURL)
     }
     
     func addMoreButtonAction(_ target: Any?, action: Selector) {
@@ -264,7 +266,9 @@ struct FeedCell_Preview: PreviewProvider {
                 challengeType: .financialTech,
                 challengeTitle: "하루에 만보 걷기 챌린지 하루를 열심히 살아보아요!!!",
                 people: "231",
-                heart: "1111"
+                heart: "1111",
+                profileImageURL: "https://cider-bucket.s3.ap-northeast-2.amazonaws.com/profileExample/bear.png",
+                feedImageURL: "https://cider-bucket.s3.ap-northeast-2.amazonaws.com/profileExample/bear.png"
             )
             return view
         }

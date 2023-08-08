@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FA0322812A4DC2B0000993DF /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0322802A4DC2B0000993DF /* NicknameViewController.swift */; };
 		FA08D99B2A6D78CE0061C567 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA08D99A2A6D78CE0061C567 /* FeedCell.swift */; };
+		FA251AD02A82177900E432C1 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA251ACF2A82177900E432C1 /* UIImageView+Extension.swift */; };
 		FA2A064C2A68DC0F00AC649F /* PrecautionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A064B2A68DC0F00AC649F /* PrecautionView.swift */; };
 		FA2A064E2A68DCE000AC649F /* PrecautionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A064D2A68DCE000AC649F /* PrecautionViewController.swift */; };
 		FA2A06502A68DF5B00AC649F /* PrecautionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A064F2A68DF5B00AC649F /* PrecautionViewModel.swift */; };
@@ -151,6 +152,7 @@
 /* Begin PBXFileReference section */
 		FA0322802A4DC2B0000993DF /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
 		FA08D99A2A6D78CE0061C567 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		FA251ACF2A82177900E432C1 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		FA2A064B2A68DC0F00AC649F /* PrecautionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecautionView.swift; sourceTree = "<group>"; };
 		FA2A064D2A68DCE000AC649F /* PrecautionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecautionViewController.swift; sourceTree = "<group>"; };
 		FA2A064F2A68DF5B00AC649F /* PrecautionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecautionViewModel.swift; sourceTree = "<group>"; };
@@ -605,6 +607,7 @@
 				FA3C432D2A62FA0E009E820B /* Date+Extension.swift */,
 				FA3C432F2A6300DF009E820B /* String+Extension.swift */,
 				FA2F052E2A683E9E00E2CCF2 /* Notification.Name+Extension.swift */,
+				FA251ACF2A82177900E432C1 /* UIImageView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -898,6 +901,7 @@
 				FA57AF4D2A5D0E2A008A5991 /* Keychain.swift in Sources */,
 				FABF17532A70D8910073C13B /* SeparatorFooterView.swift in Sources */,
 				FA3AE4092A57D3D70078A4DF /* ViewModelType.swift in Sources */,
+				FA251AD02A82177900E432C1 /* UIImageView+Extension.swift in Sources */,
 				FA2A06582A69014100AC649F /* ChallengeHomeView.swift in Sources */,
 				FA3C432A2A62F1FB009E820B /* OnboardingResponse.swift in Sources */,
 				FA6C21672A5A4DD3008A9ADD /* CiderTextFieldView.swift in Sources */,
