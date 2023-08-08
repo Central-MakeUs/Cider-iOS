@@ -46,6 +46,7 @@ final class DefaultLoginUsecase: LoginUsecase {
               let accessToken = response.accessToken else {
             return false
         }
+        print(accessToken)
         Keychain.saveToken(data: accessToken)
         return true
     }
