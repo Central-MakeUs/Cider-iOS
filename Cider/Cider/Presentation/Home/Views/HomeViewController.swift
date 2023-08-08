@@ -141,7 +141,7 @@ private extension HomeViewController {
                 }
                 if let challenge = self.viewModel.popularChallanges?[indexPath.row] {
                     cell.setUp(
-                        type: .financialTech,
+                        type: challenge.interestField.convertChallengeType(),
                         isReward: challenge.isReward,
                         date: "\(challenge.challengePeriod)주",
                         ranking: "1위",
@@ -161,7 +161,7 @@ private extension HomeViewController {
                 }
                 if let challenge = self.viewModel.publicChallanges?[indexPath.row] {
                     cell.setUp(
-                        type: .financialTech,
+                        type: challenge.interestField.convertChallengeType(),
                         isReward: challenge.isReward,
                         date: "\(challenge.challengePeriod)주",
                         ranking: nil,
@@ -180,7 +180,7 @@ private extension HomeViewController {
                 }
                 let challenge = self.viewModel.categoryChallenges[indexPath.row]
                 cell.setUp(
-                    type: .financialTech,
+                    type: challenge.interestField.convertChallengeType(),
                     isReward: challenge.isReward,
                     date: "00주",
                     ranking: nil,
@@ -204,7 +204,7 @@ private extension HomeViewController {
                     date: feed.createdDate,
                     mainTitle: feed.certifyName,
                     subTitle: feed.certifyContent,
-                    challengeType: .financialTech,
+                    challengeType: feed.simpleChallengeResponseDto.challengeBranch.convertChallengeType(),
                     challengeTitle: feed.simpleChallengeResponseDto.challengeName,
                     people: String(feed.simpleChallengeResponseDto.participateNum),
                     heart: String(feed.certifyLike),

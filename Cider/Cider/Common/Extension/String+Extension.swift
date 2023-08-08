@@ -28,4 +28,19 @@ extension String {
         }
     }
     
+    func convertChallengeType() -> ChallengeType {
+        switch self {
+        case "TECHNOLOGY":
+            return .financialTech
+        case "SAVING":
+            return .moneySaving
+        case "LEARNING":
+            return .financialLearning
+        case "MONEY":
+            return .moneyManagement
+        default:
+            return .financialTech
+        }
+    }
+    
 }
