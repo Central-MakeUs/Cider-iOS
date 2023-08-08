@@ -484,7 +484,9 @@ private extension ChallengeDetailViewController {
                     challengeType: .financialTech,
                     challengeTitle: "하루에 만보 걷기 챌린지 하루를 열심히 살아보아요!!!",
                     people: "231",
-                    heart: "1111"
+                    heart: "1111",
+                    profileImageURL: "https://cider-bucket.s3.ap-northeast-2.amazonaws.com/profileExample/bear.png",
+                    feedImageURL: "https://cider-bucket.s3.ap-northeast-2.amazonaws.com/profileExample/bear.png"
                 )
                 return cell
                 

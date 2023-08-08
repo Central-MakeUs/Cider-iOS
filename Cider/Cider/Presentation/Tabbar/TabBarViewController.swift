@@ -15,7 +15,15 @@ final class TabBarViewController: UITabBarController {
     }
     
     private func setTabBarViewController() {
-        let homeChallengeViewController = UINavigationController(rootViewController: HomeViewController())
+        let homeChallengeViewController = UINavigationController(
+            rootViewController: HomeViewController(
+                viewModel: HomeViewModel(
+                    usecase: DefaultHomeUsecase(
+                        repository: DefaultHomeRepository()
+                    )
+                )
+            )
+        )
         let dummyViewController = UIViewController()
         let mypageViewController = UINavigationController(rootViewController: UIViewController())
         

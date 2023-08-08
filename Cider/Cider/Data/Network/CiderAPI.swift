@@ -14,6 +14,13 @@ enum CiderAPI {
     case getRandomNickname
     case getDuplicateNickname(nickname: String)
     case patchOnboarding(paramters: [String: Any])
+    case getHomeChallenge
+    case getHomeCategory(category: String)
+    case getPopularChallenge(filter: String)
+    case getAllChallenge(filter: String)
+    case getPublicChallenge(filter: String)
+    case getHomeFeed
+
 }
 
 extension CiderAPI: TargetType, AccessTokenAuthorizable {
@@ -32,6 +39,19 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             return "/api/member/nicknames/exists/\(nickname)"
         case .patchOnboarding:
             return "/api/member"
+        case .getHomeChallenge:
+            return "/api/challenge/home"
+        case .getHomeCategory(let category):
+            return "/api/challenge/home/\(category)"
+        case .getPopularChallenge(let filter):
+            return "/api/challenge/popular/\(filter)"
+        case .getAllChallenge(let filter):
+            return "/api/challenge/\(filter)"
+        case .getPublicChallenge(let filter):
+            return "/api/challenge/official/\(filter)"
+        case .getHomeFeed:
+            return "/api/certify/home"
+
         }
     }
     
@@ -42,7 +62,13 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             return .post
             
         case .getRandomNickname,
-             .getDuplicateNickname:
+             .getDuplicateNickname,
+             .getHomeChallenge,
+             .getHomeCategory,
+             .getPopularChallenge,
+             .getAllChallenge,
+             .getPublicChallenge,
+             .getHomeFeed:
             return .get
             
         case .patchOnboarding:

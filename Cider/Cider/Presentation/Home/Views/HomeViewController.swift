@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 final class HomeViewController: UIViewController {
     
@@ -46,9 +47,22 @@ final class HomeViewController: UIViewController {
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
+    private let viewModel: HomeViewModel
+    private var cancellables = Set<AnyCancellable>()
+    
+    init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
+        viewModel.viewDidload()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,6 +78,21 @@ private extension HomeViewController {
         configure()
         setUpDataSource()
         applySnapshot()
+        bind()
+    }
+    
+    func bind() {
+        viewModel.state.receive(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                switch state {
+                case .applySnapshot(let isSuccess):
+                    guard isSuccess else {
+                        return
+                    }
+                    self?.applySnapshot()
+                }
+            }
+            .store(in: &cancellables)
     }
     
     func configure() {
@@ -79,6 +108,13 @@ private extension HomeViewController {
         ])
     }
     
+    func reloadHeader() {
+        guard var snapshot = dataSource?.snapshot() else {
+            return
+        }
+        dataSource?.applySnapshotUsingReloadData(snapshot)
+    }
+    
     func setNavigationBar() {
         let leftView = HomeNavigationView()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftView)
@@ -87,6 +123,9 @@ private extension HomeViewController {
     
     func setUpDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { [weak self] collectionView, indexPath, itemIdentifier in
+            guard let self = self else {
+                return UICollectionViewCell()
+            }
             let section = Section(rawValue: indexPath.section)
             switch section {
             case .banner:
@@ -100,67 +139,77 @@ private extension HomeViewController {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeHomeCell.identifier, for: indexPath) as? ChallengeHomeCell else {
                     return UICollectionViewCell()
                 }
-                cell.setUp(
-                    type: .financialTech,
-                    isReward: true,
-                    date: "1주",
-                    ranking: "1위",
-                    title: "만보걷기",
-                    status: "종료",
-                    people: "5명 모집중",
-                    isPublic: true,
-                    dDay: "D-12"
-                )
+                if let challenge = self.viewModel.popularChallanges?[indexPath.row] {
+                    cell.setUp(
+                        type: challenge.interestField.convertChallengeType(),
+                        isReward: challenge.isReward,
+                        date: "\(challenge.challengePeriod)주",
+                        ranking: "\(indexPath.row+1)위",
+                        title: challenge.challengeName,
+                        status: challenge.challengeStatus.convertStatusKorean(),
+                        people: "\(challenge.participateNum)명 모집중",
+                        isPublic: challenge.isOfficial,
+                        dDay: "D-\(challenge.recruitLeft)"
+                    )
+                }
+                
                 return cell
                 
             case .publicChallenge:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeHomeCell.identifier, for: indexPath) as? ChallengeHomeCell else {
                     return UICollectionViewCell()
                 }
-                cell.setUp(
-                    type: .moneySaving,
-                    isReward: true,
-                    date: "1주",
-                    ranking: nil,
-                    title: "만보걷기",
-                    status: "종료",
-                    people: "5명 모집중",
-                    isPublic: true,
-                    dDay: "D-12"
-                )
+                if let challenge = self.viewModel.publicChallanges?[indexPath.row] {
+                    cell.setUp(
+                        type: challenge.interestField.convertChallengeType(),
+                        isReward: challenge.isReward,
+                        date: "\(challenge.challengePeriod)주",
+                        ranking: nil,
+                        title: challenge.challengeName,
+                        status: challenge.challengeStatus.convertStatusKorean(),
+                        people: "\(challenge.participateNum)명 모집중",
+                        isPublic: challenge.isOfficial,
+                        dDay: "D-\(challenge.recruitLeft)"
+                    )
+                }
                 return cell
                 
             case .category:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeHomeCell.identifier, for: indexPath) as? ChallengeHomeCell else {
                     return UICollectionViewCell()
                 }
+                let challenge = self.viewModel.categoryChallenges[indexPath.row]
                 cell.setUp(
-                    type: .moneyManagement,
-                    isReward: true,
-                    date: "1주",
+                    type: challenge.interestField.convertChallengeType(),
+                    isReward: challenge.isReward,
+                    date: "\(challenge.challengePeriod)주",
                     ranking: nil,
-                    title: "만보걷기",
-                    status: "종료",
-                    people: "5명 모집중",
-                    isPublic: true,
-                    dDay: "D-12"
+                    title: challenge.challengeName,
+                    status: challenge.challengeStatus.convertStatusKorean(),
+                    people: "\(challenge.participateNum)명 모집중",
+                    isPublic: challenge.isOfficial,
+                    dDay: "D-\(challenge.recruitLeft)"
                 )
+                
                 return cell
                 
             case .feed:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCell.identifier, for: indexPath) as? FeedCell else {
                     return UICollectionViewCell()
                 }
+                let feed = self.viewModel.feeds[indexPath.row]
                 cell.setUp(
-                    nickname: "화이팅",
-                    level: "LV 1",
-                    date: "23.05.15 15:45",
-                    mainTitle: "오늘 챌린지 인증하는데",
-                    subTitle: "챌린지 하면 할수록 너무 힘들구 어쩌고 저쩌고 근데 할 수 있다 챌린지 하면 할수록 챌린지 하면 할수록\n챌린지 하면 할수록 너무 힘들구 어쩌고 저쩌고 근데 할 수 있다\n챌린지 하면 할수록 너무 힘들구 어쩌고 저쩌고 근데 할 수 있다",
-                    challengeType: .financialTech,
-                    challengeTitle: "하루에 만보 걷기 챌린지 하루를 열심히 살아보아요!!!",
-                    people: "231",
-                    heart: "1111"
+                    nickname: feed.simpleMemberResponseDto.memberName,
+                    level: feed.simpleMemberResponseDto.memberLevelName,
+                    date: feed.createdDate.formatYYYYMMDDHHMMDot(),
+                    mainTitle: feed.certifyName,
+                    subTitle: feed.certifyContent,
+                    challengeType: feed.simpleChallengeResponseDto.challengeBranch.convertChallengeType(),
+                    challengeTitle: feed.simpleChallengeResponseDto.challengeName,
+                    people: String(feed.simpleChallengeResponseDto.participateNum),
+                    heart: String(feed.certifyLike),
+                    profileImageURL: feed.simpleMemberResponseDto.profilePath,
+                    feedImageURL: feed.certifyImageUrl
                 )
                 return cell
                 
@@ -202,8 +251,12 @@ private extension HomeViewController {
                     withReuseIdentifier: CategoryHeaderView.identifier,
                     for: indexPath
                 ) as? CategoryHeaderView
-                headerView?.setUp(leftTitle: "카테고리", rightTitle: "전체 챌린지 보기", selectedType: .financialTech)
+                headerView?.setUp(leftTitle: "카테고리", rightTitle: "전체 챌린지 보기", selectedType: self.viewModel.categoryType)
                 headerView?.addActionRightTitle(self, action: #selector(self.didTapAllChallenge))
+                headerView?.financialLearningView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTapFinancialLearning)))
+                headerView?.financialTechView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTapFinancialTech)))
+                headerView?.moneySavingView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTapMoneySaving)))
+                headerView?.moneyManagementView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTapMoneyManagement)))
                 return headerView ?? UICollectionReusableView()
                 
             case .feed:
@@ -225,14 +278,19 @@ private extension HomeViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections([.banner])
         snapshot.appendItems([Item(),Item(),Item(),Item(),Item(),Item()])
+        
         snapshot.appendSections([.popluarChallenge])
-        snapshot.appendItems([Item(),Item(),Item(),Item(),Item(),Item()])
+        snapshot.appendItems(viewModel.popularItems)
+        
         snapshot.appendSections([.publicChallenge])
-        snapshot.appendItems([Item(),Item(),Item(),Item(),Item(),Item()])
+        snapshot.appendItems(viewModel.publicItems)
+
         snapshot.appendSections([.category])
-        snapshot.appendItems([Item(),Item(),Item(),Item(),Item(),Item()])
+        snapshot.appendItems(viewModel.categoryItems)
+        
         snapshot.appendSections([.feed])
-        snapshot.appendItems([Item(),Item(),Item(),Item(),Item(),Item()])
+        snapshot.appendItems(viewModel.feedItems)
+        
         dataSource?.apply(snapshot)
     }
     
@@ -398,12 +456,43 @@ private extension HomeViewController {
         pushMyChallengeViewController()
     }
     
+    @objc func didTapFinancialTech(_ sender: Any?) {
+        viewModel.categoryType = .financialTech
+        viewModel.getCategory(viewModel.categoryType.alphabet)
+        reloadHeader()
+    }
+    
+    @objc func didTapFinancialLearning(_ sender: Any?) {
+        viewModel.categoryType = .financialLearning
+        viewModel.getCategory(viewModel.categoryType.alphabet)
+        reloadHeader()
+    }
+    
+    @objc func didTapMoneySaving(_ sender: Any?) {
+        viewModel.categoryType = .moneySaving
+        viewModel.getCategory(viewModel.categoryType.alphabet)
+        reloadHeader()
+    }
+    
+    @objc func didTapMoneyManagement(_ sender: Any?) {
+        viewModel.categoryType = .moneyManagement
+        viewModel.getCategory(viewModel.categoryType.alphabet)
+        reloadHeader()
+    }
+    
 }
 
 private extension HomeViewController {
     
     func pushHomeDetailViewController(_ type: HomeDetailType) {
-        let viewController = HomeDetailViewController(homeDetailType: type)
+        let viewController = HomeDetailViewController(
+            homeDetailType: type,
+            viewModel: HomeDetailViewModel(
+                usecase: DefaultHomeDetailUsecase(
+                    repository: DefaultHomeDetailRepository()
+                )
+            )
+        )
         viewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(viewController, animated: true)
     }

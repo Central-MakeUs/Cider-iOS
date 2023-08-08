@@ -26,14 +26,14 @@ final class DefaultLoginUsecase: LoginUsecase {
         UserDefaults.standard.write(key: .userIdentifier, value: token)
         Keychain.saveToken(data: token)
         print(token)
-//        let request = LoginRequest(socialType: "KAKAO", clientType: "IOS")
-//        let response = try await loginRepository.signInKakao(parameters: request)
-//        print(response)
-//        guard response.status == nil,
-//              let accessToken = response.accessToken else {
-//            return false
-//        }
-//        Keychain.saveToken(data: accessToken)
+        let request = LoginRequest(socialType: "KAKAO", clientType: "IOS")
+        let response = try await loginRepository.signInKakao(parameters: request)
+        print(response)
+        guard response.status == nil,
+              let accessToken = response.accessToken else {
+            return false
+        }
+        Keychain.saveToken(data: accessToken)
         return true
     }
     

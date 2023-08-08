@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 final class HomeDetailViewController: UIViewController {
     
@@ -35,8 +36,13 @@ final class HomeDetailViewController: UIViewController {
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
-    init(homeDetailType: HomeDetailType) {
+    private let viewModel: HomeDetailViewModel
+    private var cancellables = Set<AnyCancellable>()
+    
+    
+    init(homeDetailType: HomeDetailType, viewModel: HomeDetailViewModel) {
         self.homeDetailType = homeDetailType
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -47,6 +53,7 @@ final class HomeDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
+        viewModel.viewDidload(type: homeDetailType, filter: "latest")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +69,21 @@ private extension HomeDetailViewController {
         configure()
         setUpDataSource()
         applySnapshot()
+        bind()
+    }
+    
+    func bind() {
+        viewModel.state.receive(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                switch state {
+                case .applySnapshot(let isSuccess):
+                    guard isSuccess else {
+                        return
+                    }
+                    self?.applySnapshot()
+                }
+            }
+            .store(in: &cancellables)
     }
     
     func configure() {
@@ -101,16 +123,17 @@ private extension HomeDetailViewController {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeHomeCell.identifier, for: indexPath) as? ChallengeHomeCell else {
                     return UICollectionViewCell()
                 }
+                let challenge = self.viewModel.challenges[indexPath.row]
                 cell.setUp(
-                    type: .financialTech,
-                    isReward: true,
-                    date: "1주",
-                    ranking: self.homeDetailType == .popularChallenge ? "1위" : nil,
-                    title: "만보걷기",
-                    status: "종료",
-                    people: "5명 모집중",
-                    isPublic: true,
-                    dDay: "D-12"
+                    type: challenge.interestField.convertChallengeType(),
+                    isReward: challenge.isReward,
+                    date: "\(challenge.challengePeriod)주",
+                    ranking: self.homeDetailType == .popularChallenge ? "\(indexPath.row+1)위" : nil,
+                    title: challenge.challengeName,
+                    status: challenge.challengeStatus.convertStatusKorean(),
+                    people: "\(challenge.participateNum)명 모집중",
+                    isPublic: challenge.isOfficial,
+                    dDay: "D-\(challenge.recruitLeft)"
                 )
                 return cell
                 
@@ -142,7 +165,7 @@ private extension HomeDetailViewController {
         snapshot.appendSections([.homeDetailInfo])
         snapshot.appendItems([Item()])
         snapshot.appendSections([.challenge])
-        snapshot.appendItems([Item(),Item(),Item(),Item(),Item(),Item()])
+        snapshot.appendItems(viewModel.items)
         dataSource?.apply(snapshot)
     }
     
