@@ -43,11 +43,12 @@ private extension HomeDetailViewModel {
     func getPopularChallenges(filter: String) {
         Task {
             let response = try await usecase.getPopularChallenge(filter: filter)
-            print(response)
             items = []
+            challenges = response
             for _ in 0..<challenges.count {
                 items.append(Item())
             }
+            print(items)
             currentState.send(.applySnapshot(true))
         }
     }
@@ -55,7 +56,7 @@ private extension HomeDetailViewModel {
     func getPubicChallenges(filter: String) {
         Task {
             let response = try await usecase.getPublicChallenge(filter: filter)
-            print(response)
+            challenges = response
             items = []
             for _ in 0..<challenges.count {
                 items.append(Item())
@@ -67,7 +68,7 @@ private extension HomeDetailViewModel {
     func getAllChallenges(filter: String) {
         Task {
             let response = try await usecase.getAllChallenge(filter: filter)
-            print(response)
+            challenges = response
             items = []
             for _ in 0..<challenges.count {
                 items.append(Item())

@@ -179,7 +179,6 @@ private extension HomeViewController {
                     return UICollectionViewCell()
                 }
                 let challenge = self.viewModel.categoryChallenges[indexPath.row]
-                print(challenge)
                 cell.setUp(
                     type: .financialTech,
                     isReward: challenge.isReward,

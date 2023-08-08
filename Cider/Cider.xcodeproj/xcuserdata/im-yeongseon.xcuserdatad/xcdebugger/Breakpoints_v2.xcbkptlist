@@ -39,32 +39,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4A16A0BA-448C-446E-859E-F7B60206B2EC"
+            uuid = "D6471D13-9720-40E2-85DF-070656F96062"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Cider/Presentation/Home/Views/HomeViewController.swift"
+            filePath = "Cider/Presentation/Home/ViewModels/HomeDetailViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
-            landmarkName = "setUpDataSource()"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "viewDidload(type:filter:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D990ACA2-51C8-449A-B709-93406BA2314F"
+            uuid = "AD6B1B1A-7EB8-47EE-9DE1-107FE4377DCB"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Cider/Presentation/Home/Views/HomeViewController.swift"
+            filePath = "Cider/Presentation/Home/ViewModels/HomeDetailViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "bind()"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "getPopularChallenges(filter:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
