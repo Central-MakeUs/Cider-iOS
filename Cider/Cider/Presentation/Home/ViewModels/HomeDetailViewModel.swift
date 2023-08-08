@@ -48,7 +48,6 @@ private extension HomeDetailViewModel {
             for _ in 0..<challenges.count {
                 items.append(Item())
             }
-            print(items)
             currentState.send(.applySnapshot(true))
         }
     }

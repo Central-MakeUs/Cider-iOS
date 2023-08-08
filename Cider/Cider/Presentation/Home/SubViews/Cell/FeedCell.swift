@@ -70,12 +70,11 @@ final class FeedCell: UICollectionViewCell {
         return label
     }()
     
-    // TODO: 피드 default 이미지 제거하기
     private lazy var feedImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "sample")
         imageView.layer.cornerRadius = 4
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
