@@ -21,9 +21,11 @@ final class HomeViewModel: ViewModelType {
     var popularChallanges: [ChallengeResponseDto]?
     var publicChallanges: [ChallengeResponseDto]?
     var categoryChallenges: [ChallengeElement] = []
+    var feeds: FeedResponse = []
     var popularItems: [Item] = []
     var publicItems: [Item] = []
     var categoryItems: [Item] = []
+    var feedItems: [Item] = []
     var categoryType: ChallengeType = .financialTech
     
     init(usecase: HomeUsecase) {
@@ -33,6 +35,7 @@ final class HomeViewModel: ViewModelType {
     func viewDidload() {
         getHomeChallenge()
         getCategory(categoryType.alphabet)
+        getHomeFeed()
     }
     
     func getCategory(_ category: String) {
@@ -72,6 +75,19 @@ private extension HomeViewModel {
             categoryItems = []
             for _ in 0..<categoryChallenges.count {
                 categoryItems.append(Item())
+            }
+            currentState.send(.applySnapshot(true))
+        }
+    }
+    
+    func getHomeFeed() {
+        Task {
+            let response = try await usecase.getHomeFeed()
+            print(response)
+            feeds = response
+            feedItems = []
+            for _ in 0..<feeds.count {
+                feedItems.append(Item())
             }
             currentState.send(.applySnapshot(true))
         }

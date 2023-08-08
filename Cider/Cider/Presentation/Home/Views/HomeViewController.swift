@@ -197,16 +197,17 @@ private extension HomeViewController {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCell.identifier, for: indexPath) as? FeedCell else {
                     return UICollectionViewCell()
                 }
+                let feed = self.viewModel.feeds[indexPath.row]
                 cell.setUp(
-                    nickname: "화이팅",
-                    level: "LV 1",
-                    date: "23.05.15 15:45",
-                    mainTitle: "오늘 챌린지 인증하는데",
-                    subTitle: "챌린지 하면 할수록 너무 힘들구 어쩌고 저쩌고 근데 할 수 있다 챌린지 하면 할수록 챌린지 하면 할수록\n챌린지 하면 할수록 너무 힘들구 어쩌고 저쩌고 근데 할 수 있다\n챌린지 하면 할수록 너무 힘들구 어쩌고 저쩌고 근데 할 수 있다",
+                    nickname: feed.simpleMemberResponseDto.memberName,
+                    level: feed.simpleMemberResponseDto.memberLevelName,
+                    date: feed.createdDate,
+                    mainTitle: feed.certifyName,
+                    subTitle: feed.certifyContent,
                     challengeType: .financialTech,
-                    challengeTitle: "하루에 만보 걷기 챌린지 하루를 열심히 살아보아요!!!",
-                    people: "231",
-                    heart: "1111"
+                    challengeTitle: feed.simpleChallengeResponseDto.challengeName,
+                    people: String(feed.simpleChallengeResponseDto.participateNum),
+                    heart: String(feed.certifyLike)
                 )
                 return cell
                 
@@ -286,7 +287,7 @@ private extension HomeViewController {
         snapshot.appendItems(viewModel.categoryItems)
         
         snapshot.appendSections([.feed])
-        snapshot.appendItems([Item(),Item(),Item(),Item(),Item(),Item()])
+        snapshot.appendItems(viewModel.feedItems)
         
         dataSource?.apply(snapshot)
     }
