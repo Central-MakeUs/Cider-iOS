@@ -56,4 +56,15 @@ enum HomeDetailType {
             return "전체 챌린지"
         }
     }
+    
+    var iconName: String {
+        switch self {
+        case .popularChallenge:
+            return "graph"
+        case .publicChallenge:
+            return "card"
+        case .allChallenge:
+            return ""
+        }
+    }
 }

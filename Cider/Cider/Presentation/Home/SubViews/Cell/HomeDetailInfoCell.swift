@@ -19,6 +19,11 @@ final class HomeDetailInfoCell: UICollectionViewCell {
         return label
     }()
     
+    private lazy var iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        return imageView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -29,9 +34,13 @@ final class HomeDetailInfoCell: UICollectionViewCell {
     }
     
     private func configure() {
-        addSubviews(mainTitleLabel)
+        addSubviews(mainTitleLabel, iconImageView)
         NSLayoutConstraint.activate([
             mainTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
+            iconImageView.heightAnchor.constraint(equalToConstant: 140),
+            iconImageView.widthAnchor.constraint(equalToConstant: 140),
+            iconImageView.centerYAnchor.constraint(equalTo: mainTitleLabel.centerYAnchor),
+            iconImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -7)
         ])
     }
     
@@ -44,6 +53,7 @@ extension HomeDetailInfoCell {
         mainTitleLabel.text = type.mainTitle
         mainTitleLabel.setTextWithLineHeight(lineHeight: 33.6)
         mainTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: type == .popularChallenge ? 24 : 35).isActive = true
+        iconImageView.image = UIImage(named: type.iconName)
     }
     
 }
