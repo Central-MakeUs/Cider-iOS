@@ -53,7 +53,7 @@ final class HomeDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-        viewModel.viewDidload(type: homeDetailType, filter: "latest")
+        viewModel.viewDidload()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,6 +70,7 @@ private extension HomeDetailViewController {
         setUpDataSource()
         applySnapshot()
         bind()
+        setNotificationCenter()
     }
     
     func bind() {
@@ -97,6 +98,22 @@ private extension HomeDetailViewController {
             arrowTopButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
             arrowTopButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24)
         ])
+    }
+    
+    func setNotificationCenter() {
+        NotificationCenter.default.publisher(for: .tapSorting)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] notification in
+                guard let self = self else {
+                    return
+                }
+                guard let sortingType = notification.object as? SortingType else {
+                    return
+                }
+                self.viewModel.sortingType = sortingType
+                self.reloadHeader()
+            }
+            .store(in: &cancellables)
     }
     
     func setNavigationBar() {
@@ -145,7 +162,7 @@ private extension HomeDetailViewController {
         
         dataSource?.supplementaryViewProvider = { [weak self] collectionView, elementKind, indexPath in
             guard let self = self else {
-                return nil
+                return UICollectionReusableView()
             }
             let section = Section(rawValue: indexPath.section)
             switch section {
@@ -155,9 +172,10 @@ private extension HomeDetailViewController {
                     withReuseIdentifier: SortingHeaderView.identifier,
                     for: indexPath
                 ) as? SortingHeaderView else {
-                    return nil
+                    return UICollectionReusableView()
                 }
                 headerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTapSorting)))
+                headerView.setUp(text: self.viewModel.sortingType.korean)
                 return headerView
 
             default:
@@ -173,6 +191,13 @@ private extension HomeDetailViewController {
         snapshot.appendSections([.challenge])
         snapshot.appendItems(viewModel.items)
         dataSource?.apply(snapshot)
+    }
+    
+    func reloadHeader() {
+        guard let snapshot = dataSource?.snapshot() else {
+            return
+        }
+        dataSource?.applySnapshotUsingReloadData(snapshot)
     }
     
     func createLayout() -> UICollectionViewCompositionalLayout {

@@ -109,7 +109,7 @@ private extension HomeViewController {
     }
     
     func reloadHeader() {
-        guard var snapshot = dataSource?.snapshot() else {
+        guard let snapshot = dataSource?.snapshot() else {
             return
         }
         dataSource?.applySnapshotUsingReloadData(snapshot)
@@ -490,7 +490,8 @@ private extension HomeViewController {
             viewModel: HomeDetailViewModel(
                 usecase: DefaultHomeDetailUsecase(
                     repository: DefaultHomeDetailRepository()
-                )
+                ),
+                homeDetailType: type
             )
         )
         viewController.hidesBottomBarWhenPushed = true

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 final class SortingViewController: UIViewController {
 
@@ -14,6 +15,7 @@ final class SortingViewController: UIViewController {
         button.setTitle("최신순", for: .normal)
         button.titleLabel?.font = CustomFont.PretendardBold(size: .base).font
         button.setTitleColor(.custom.text, for: .normal)
+        button.addTarget(self, action: #selector(didTapLatest), for: .touchUpInside)
         return button
     }()
     
@@ -22,6 +24,7 @@ final class SortingViewController: UIViewController {
         button.setTitle("참여순", for: .normal)
         button.titleLabel?.font = CustomFont.PretendardBold(size: .base).font
         button.setTitleColor(.custom.text, for: .normal)
+        button.addTarget(self, action: #selector(didTapParticipate), for: .touchUpInside)
         return button
     }()
     
@@ -30,6 +33,7 @@ final class SortingViewController: UIViewController {
         button.setTitle("인기순", for: .normal)
         button.titleLabel?.font = CustomFont.PretendardBold(size: .base).font
         button.setTitleColor(.custom.text, for: .normal)
+        button.addTarget(self, action: #selector(didTapLike), for: .touchUpInside)
         return button
     }()
     
@@ -56,26 +60,51 @@ final class SortingViewController: UIViewController {
         NSLayoutConstraint.activate([
             separtorView1.heightAnchor.constraint(equalToConstant: 2),
             separtorView2.heightAnchor.constraint(equalToConstant: 2),
-            latestButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
-            latestButton.heightAnchor.constraint(equalToConstant: 18),
-            participateButton.heightAnchor.constraint(equalToConstant: 18),
-            likeButton.heightAnchor.constraint(equalToConstant: 18),
+            latestButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
+            latestButton.heightAnchor.constraint(equalToConstant: 48),
+            participateButton.heightAnchor.constraint(equalToConstant: 48),
+            likeButton.heightAnchor.constraint(equalToConstant: 48),
             latestButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             latestButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             separtorView1.leadingAnchor.constraint(equalTo: latestButton.leadingAnchor),
             separtorView1.trailingAnchor.constraint(equalTo: latestButton.trailingAnchor),
-            separtorView1.topAnchor.constraint(equalTo: latestButton.bottomAnchor, constant: 13),
-            participateButton.topAnchor.constraint(equalTo: separtorView1.bottomAnchor, constant: 15),
+            separtorView1.topAnchor.constraint(equalTo: latestButton.bottomAnchor),
+            participateButton.topAnchor.constraint(equalTo: separtorView1.bottomAnchor),
             participateButton.leadingAnchor.constraint(equalTo: latestButton.leadingAnchor),
             participateButton.trailingAnchor.constraint(equalTo: latestButton.trailingAnchor),
             separtorView2.leadingAnchor.constraint(equalTo: latestButton.leadingAnchor),
             separtorView2.trailingAnchor.constraint(equalTo: latestButton.trailingAnchor),
-            separtorView2.topAnchor.constraint(equalTo: participateButton.bottomAnchor, constant: 13),
+            separtorView2.topAnchor.constraint(equalTo: participateButton.bottomAnchor),
             likeButton.leadingAnchor.constraint(equalTo: latestButton.leadingAnchor),
             likeButton.trailingAnchor.constraint(equalTo: latestButton.trailingAnchor),
-            likeButton.topAnchor.constraint(equalTo: separtorView2.bottomAnchor, constant: 15)
+            likeButton.topAnchor.constraint(equalTo: separtorView2.bottomAnchor)
         ])
     }
+    
+    private func postNotificationCenter(_ type: SortingType) {
+        NotificationCenter.default.post(
+            name: .tapSorting,
+            object: type
+        )
+    }
 
+}
 
+private extension SortingViewController {
+    
+    @objc func didTapLatest(_ sender: Any?) {
+        postNotificationCenter(.latest)
+        dismiss(animated: true)
+    }
+    
+    @objc func didTapLike(_ sender: Any?) {
+        postNotificationCenter(.like)
+        dismiss(animated: true)
+    }
+    
+    @objc func didTapParticipate(_ sender: Any?) {
+        postNotificationCenter(.participate)
+        dismiss(animated: true)
+    }
+    
 }

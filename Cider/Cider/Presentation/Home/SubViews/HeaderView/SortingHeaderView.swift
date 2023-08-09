@@ -31,3 +31,11 @@ class SortingHeaderView: UICollectionReusableView {
         ])
     }
 }
+
+extension SortingHeaderView {
+    
+    func setUp(text: String) {
+        sortingView.setUp(text: text)
+    }
+    
+}
