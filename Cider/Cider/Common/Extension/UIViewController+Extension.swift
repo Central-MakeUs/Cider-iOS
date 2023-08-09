@@ -34,6 +34,15 @@ extension UIViewController {
 
 extension UIViewController {
     
+    func setNavigationBar(backgroundColor: UIColor?, tintColor: UIColor) {
+        self.navigationController?.navigationBar.scrollEdgeAppearance?.backgroundColor = backgroundColor
+        self.navigationController?.navigationBar.scrollEdgeAppearance?.titleTextAttributes = [.foregroundColor: tintColor]
+        self.navigationController?.navigationBar.standardAppearance.backgroundColor = backgroundColor
+        self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [.foregroundColor: tintColor]
+        self.navigationItem.backBarButtonItem?.tintColor = tintColor
+        self.navigationController?.navigationBar.tintColor = tintColor == .white ? .white : .custom.icon
+    }
+    
     func hideKeyboard() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
             action: #selector(UIViewController.dismissKeyboard))

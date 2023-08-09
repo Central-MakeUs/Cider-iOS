@@ -177,13 +177,6 @@ private extension ChallengeDetailViewController {
         setNavigationBar(backgroundColor: challengeType.color, tintColor: .white)
     }
     
-    func setNavigationBar(backgroundColor: UIColor?, tintColor: UIColor) {
-        self.navigationController?.navigationBar.scrollEdgeAppearance?.backgroundColor = backgroundColor
-        self.navigationController?.navigationBar.scrollEdgeAppearance?.titleTextAttributes = [.foregroundColor: tintColor]
-        self.navigationController?.navigationBar.standardAppearance.backgroundColor = backgroundColor
-        self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [.foregroundColor: tintColor]
-    }
-    
     func setUpInfoDataSource() {
         infoDataSource = UICollectionViewDiffableDataSource<InfoSection, Item>(collectionView: collectionView, cellProvider: { [weak self] collectionView, indexPath, itemIdentifier in
             guard let self = self else {

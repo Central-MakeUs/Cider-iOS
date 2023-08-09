@@ -12,6 +12,8 @@ final class HomeDetailViewController: UIViewController {
     
     private let homeDetailType: HomeDetailType
     
+    private let infoHeight = UIScreen.main.bounds.width*0.516
+    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.register(HomeDetailInfoCell.self, forCellWithReuseIdentifier: HomeDetailInfoCell.identifier)
@@ -19,6 +21,7 @@ final class HomeDetailViewController: UIViewController {
         collectionView.register(SortingHeaderView.self, forSupplementaryViewOfKind: SortingHeaderView.identifier, withReuseIdentifier: SortingHeaderView.identifier)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.keyboardDismissMode = .onDrag
+        collectionView.delegate = self
         return collectionView
     }()
     
@@ -71,6 +74,7 @@ private extension HomeDetailViewController {
         applySnapshot()
         bind()
         setNotificationCenter()
+        setNavigationBar()
     }
     
     func bind() {
@@ -85,6 +89,14 @@ private extension HomeDetailViewController {
                 }
             }
             .store(in: &cancellables)
+    }
+    
+    func setNavigationBar() {
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationItem.title = homeDetailType.navigationBarTitle
+        self.navigationController?.navigationBar.scrollEdgeAppearance?.shadowColor = .clear
+        self.navigationController?.navigationBar.standardAppearance.shadowColor = .clear
+        setNavigationBar(backgroundColor: homeDetailType.mainColor, tintColor: .white)
     }
     
     func configure() {
@@ -114,11 +126,6 @@ private extension HomeDetailViewController {
                 self.reloadHeader()
             }
             .store(in: &cancellables)
-    }
-    
-    func setNavigationBar() {
-        self.navigationController?.navigationBar.topItem?.title = ""
-        self.navigationItem.title = homeDetailType.navigationBarTitle
     }
     
     func setUpDataSource() {
@@ -217,7 +224,7 @@ private extension HomeDetailViewController {
     func infoSectionLayout() -> NSCollectionLayoutSection {
         let layoutSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(homeDetailType == .allChallenge ? 0 : 1),
-            heightDimension: .fractionalWidth(homeDetailType == .allChallenge ? 0 : 0.72)
+            heightDimension: .absolute(homeDetailType == .allChallenge ? 0 : infoHeight)
         )
         
         let group = NSCollectionLayoutGroup.horizontal(
@@ -302,6 +309,19 @@ private extension HomeDetailViewController {
             sheet.prefersGrabberVisible = true
         }
         self.present(viewController, animated: true)
+    }
+    
+}
+
+extension HomeDetailViewController: UICollectionViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollView.bounces = scrollView.contentOffset.y > 100
+        if scrollView.contentOffset.y > infoHeight {
+            setNavigationBar(backgroundColor: .white, tintColor: .black)
+        } else {
+            setNavigationBar(backgroundColor: homeDetailType.mainColor, tintColor: .white)
+        }
     }
     
 }
