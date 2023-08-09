@@ -11,13 +11,6 @@ final class HomeDetailInfoCell: UICollectionViewCell {
     
     static let identifier = "HomeDetailInfoCell"
     
-    private lazy var subTitleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = CustomFont.PretendardBold(size: .base).font
-        return label
-    }()
-    
     private lazy var mainTitleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -36,12 +29,9 @@ final class HomeDetailInfoCell: UICollectionViewCell {
     }
     
     private func configure() {
-        addSubviews(subTitleLabel, mainTitleLabel)
+        addSubviews(mainTitleLabel)
         NSLayoutConstraint.activate([
-            subTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 24),
-            subTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            mainTitleLabel.topAnchor.constraint(equalTo: subTitleLabel.bottomAnchor, constant: 16),
-            mainTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            mainTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
         ])
     }
     
@@ -53,7 +43,7 @@ extension HomeDetailInfoCell {
         backgroundColor = type.mainColor
         mainTitleLabel.text = type.mainTitle
         mainTitleLabel.setTextWithLineHeight(lineHeight: 33.6)
-        subTitleLabel.text = type.subTitle
+        mainTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: type == .popularChallenge ? 24 : 35).isActive = true
     }
     
 }

@@ -12,5 +12,6 @@ extension Notification.Name {
     static let didChangedCiderTextField = Notification.Name("didChangedCiderTextField")
     static let didChangedUnit = Notification.Name("didChangedUnit")
     static let tapChallengeDetailMenu = Notification.Name("tapChallengeDetailMenu")
-
+    static let tapSorting = Notification.Name("tapSorting")
+    
 }

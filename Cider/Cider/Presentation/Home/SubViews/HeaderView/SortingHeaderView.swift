@@ -31,3 +31,15 @@ class SortingHeaderView: UICollectionReusableView {
         ])
     }
 }
+
+extension SortingHeaderView {
+    
+    func setUp(text: String) {
+        sortingView.setUp(text: text)
+    }
+    
+    func setSoringViewGesture(_ target: Any?, action: Selector) {
+        sortingView.addGestureRecognizer(UITapGestureRecognizer(target: target, action: action))
+    }
+    
+}

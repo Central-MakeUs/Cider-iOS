@@ -94,6 +94,19 @@ extension ChallengeType {
         }
     }
     
+    var iconImageName: String {
+        switch self {
+        case .financialTech:
+            return "home"
+        case .moneySaving:
+            return "pig"
+        case .moneyManagement:
+            return "graph"
+        case .financialLearning:
+            return "card"
+        }
+    }
+    
     var infoMessage: String {
         switch self {
         case .financialTech:

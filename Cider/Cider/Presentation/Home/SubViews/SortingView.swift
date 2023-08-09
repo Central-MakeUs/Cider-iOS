@@ -46,3 +46,11 @@ final class SortingView: UIView {
     }
     
 }
+
+extension SortingView {
+    
+    func setUp(text: String) {
+        sortingLabel.text = text
+    }
+    
+}

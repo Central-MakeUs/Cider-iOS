@@ -14,6 +14,11 @@ final class ChallengeHomeView: UIView {
         return imageView
     }()
     
+    private lazy var iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        return imageView
+    }()
+    
     private lazy var statusView: UIView = {
         let view = UIView()
         view.backgroundColor = .custom.gray6
@@ -62,7 +67,7 @@ final class ChallengeHomeView: UIView {
     private func configure() {
         clipsToBounds = true
         layer.cornerRadius = 4
-        addSubviews(backgroundImageView, statusView, rewardLabel, typeLabel, dateLabel, statusLabel, heartButton)
+        addSubviews(backgroundImageView, statusView, rewardLabel, typeLabel, dateLabel, statusLabel, heartButton, iconImageView)
         NSLayoutConstraint.activate([
             backgroundImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             backgroundImageView.topAnchor.constraint(equalTo: topAnchor),
@@ -81,7 +86,11 @@ final class ChallengeHomeView: UIView {
             dateLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             dateLabel.leadingAnchor.constraint(equalTo: typeLabel.trailingAnchor, constant: 4),
             rewardLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            rewardLabel.bottomAnchor.constraint(equalTo: typeLabel.topAnchor, constant: -6)
+            rewardLabel.bottomAnchor.constraint(equalTo: typeLabel.topAnchor, constant: -6),
+            iconImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            iconImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            iconImageView.heightAnchor.constraint(equalToConstant: 104),
+            iconImageView.widthAnchor.constraint(equalToConstant: 104)
         ])
     }
     
@@ -97,6 +106,7 @@ final class ChallengeHomeView: UIView {
         rewardLabel.setUp(title: "리워드")
         typeLabel.setUp(title: type.koreanName)
         dateLabel.setUp(title: date)
+        iconImageView.image = UIImage(named: type.iconImageName)
     }
     
     func setClosedChallenge(_ type: ChallengeResultType) {

@@ -12,6 +12,8 @@ final class HomeDetailViewController: UIViewController {
     
     private let homeDetailType: HomeDetailType
     
+    private let infoHeight = UIScreen.main.bounds.width*0.516
+    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.register(HomeDetailInfoCell.self, forCellWithReuseIdentifier: HomeDetailInfoCell.identifier)
@@ -19,6 +21,7 @@ final class HomeDetailViewController: UIViewController {
         collectionView.register(SortingHeaderView.self, forSupplementaryViewOfKind: SortingHeaderView.identifier, withReuseIdentifier: SortingHeaderView.identifier)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.keyboardDismissMode = .onDrag
+        collectionView.delegate = self
         return collectionView
     }()
     
@@ -53,7 +56,7 @@ final class HomeDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-        viewModel.viewDidload(type: homeDetailType, filter: "latest")
+        viewModel.viewDidload()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,6 +73,8 @@ private extension HomeDetailViewController {
         setUpDataSource()
         applySnapshot()
         bind()
+        setNotificationCenter()
+        setNavigationBar()
     }
     
     func bind() {
@@ -86,6 +91,14 @@ private extension HomeDetailViewController {
             .store(in: &cancellables)
     }
     
+    func setNavigationBar() {
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationItem.title = homeDetailType.navigationBarTitle
+        self.navigationController?.navigationBar.scrollEdgeAppearance?.shadowColor = .clear
+        self.navigationController?.navigationBar.standardAppearance.shadowColor = .clear
+        setNavigationBar(backgroundColor: homeDetailType.mainColor, tintColor: .white)
+    }
+    
     func configure() {
         view.backgroundColor = .white
         view.addSubviews(collectionView, arrowTopButton)
@@ -99,9 +112,20 @@ private extension HomeDetailViewController {
         ])
     }
     
-    func setNavigationBar() {
-        self.navigationController?.navigationBar.topItem?.title = ""
-        self.navigationItem.title = homeDetailType.navigationBarTitle
+    func setNotificationCenter() {
+        NotificationCenter.default.publisher(for: .tapSorting)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] notification in
+                guard let self = self else {
+                    return
+                }
+                guard let sortingType = notification.object as? SortingType else {
+                    return
+                }
+                self.viewModel.sortingType = sortingType
+                self.reloadHeader()
+            }
+            .store(in: &cancellables)
     }
     
     func setUpDataSource() {
@@ -143,15 +167,22 @@ private extension HomeDetailViewController {
             }
         })
         
-        dataSource?.supplementaryViewProvider = { collectionView, elementKind, indexPath in
+        dataSource?.supplementaryViewProvider = { [weak self] collectionView, elementKind, indexPath in
+            guard let self = self else {
+                return UICollectionReusableView()
+            }
             let section = Section(rawValue: indexPath.section)
             switch section {
             case .challenge:
-                let headerView = collectionView.dequeueReusableSupplementaryView(
+                guard let headerView = collectionView.dequeueReusableSupplementaryView(
                     ofKind: elementKind,
                     withReuseIdentifier: SortingHeaderView.identifier,
                     for: indexPath
-                ) as? SortingHeaderView
+                ) as? SortingHeaderView else {
+                    return UICollectionReusableView()
+                }
+                headerView.setSoringViewGesture(self, action: #selector(self.didTapSorting))
+                headerView.setUp(text: self.viewModel.sortingType.korean)
                 return headerView
 
             default:
@@ -167,6 +198,13 @@ private extension HomeDetailViewController {
         snapshot.appendSections([.challenge])
         snapshot.appendItems(viewModel.items)
         dataSource?.apply(snapshot)
+    }
+    
+    func reloadHeader() {
+        guard let snapshot = dataSource?.snapshot() else {
+            return
+        }
+        dataSource?.applySnapshotUsingReloadData(snapshot)
     }
     
     func createLayout() -> UICollectionViewCompositionalLayout {
@@ -186,7 +224,7 @@ private extension HomeDetailViewController {
     func infoSectionLayout() -> NSCollectionLayoutSection {
         let layoutSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(homeDetailType == .allChallenge ? 0 : 1),
-            heightDimension: .fractionalWidth(homeDetailType == .allChallenge ? 0 : 0.72)
+            heightDimension: .absolute(homeDetailType == .allChallenge ? 0 : infoHeight)
         )
         
         let group = NSCollectionLayoutGroup.horizontal(
@@ -246,7 +284,6 @@ private extension HomeDetailViewController {
         ]
         return section
     }
-        
     
 }
 
@@ -254,6 +291,37 @@ private extension HomeDetailViewController {
     
     @objc func didTapArrowTop(_ sender: Any?) {
         collectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    
+    @objc func didTapSorting(_ sender: Any?) {
+        presentSortingViewController()
+    }
+    
+    func presentSortingViewController() {
+        let viewController = SortingViewController()
+        if let sheet = viewController.sheetPresentationController {
+            let identifier = UISheetPresentationController.Detent.Identifier("customMedium")
+            let customDetent = UISheetPresentationController.Detent.custom(identifier: identifier) { context in
+                return 200-34
+            }
+            sheet.detents = [customDetent]
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            sheet.prefersGrabberVisible = true
+        }
+        self.present(viewController, animated: true)
+    }
+    
+}
+
+extension HomeDetailViewController: UICollectionViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollView.bounces = scrollView.contentOffset.y > 100
+        if scrollView.contentOffset.y > infoHeight {
+            setNavigationBar(backgroundColor: .white, tintColor: .black)
+        } else {
+            setNavigationBar(backgroundColor: homeDetailType.mainColor, tintColor: .white)
+        }
     }
     
 }

@@ -15,34 +15,46 @@ final class HomeDetailViewModel: ViewModelType {
     }
     
     private var usecase: HomeDetailUsecase
+    private var homeDetailType: HomeDetailType
+    private var cancellables: Set<AnyCancellable> = .init()
+    
     var state: AnyPublisher<ViewModelState, Never> { currentState.compactMap { $0 }.eraseToAnyPublisher() }
     var currentState: CurrentValueSubject<ViewModelState?, Never> = .init(nil)
-    private var cancellables: Set<AnyCancellable> = .init()
     var challenges: [ChallengeResponseDto] = []
     var items: [Item] = []
-   
-    init(usecase: HomeDetailUsecase) {
-        self.usecase = usecase
+    var sortingType: SortingType = .latest {
+        didSet {
+            loadData()
+        }
     }
     
-    func viewDidload(type: HomeDetailType, filter: String) {
-        switch type {
-        case .popularChallenge:
-            getPopularChallenges(filter: filter)
-        case .publicChallenge:
-            getPubicChallenges(filter: filter)
-        case .allChallenge:
-            getAllChallenges(filter: filter)
-        }
+    init(usecase: HomeDetailUsecase, homeDetailType: HomeDetailType) {
+        self.usecase = usecase
+        self.homeDetailType = homeDetailType
+    }
+    
+    func viewDidload() {
+        loadData()
     }
    
 }
 
 private extension HomeDetailViewModel {
     
-    func getPopularChallenges(filter: String) {
+    func loadData() {
+        switch homeDetailType {
+        case .popularChallenge:
+            getPopularChallenges()
+        case .publicChallenge:
+            getPubicChallenges()
+        case .allChallenge:
+            getAllChallenges()
+        }
+    }
+    
+    func getPopularChallenges() {
         Task {
-            let response = try await usecase.getPopularChallenge(filter: filter)
+            let response = try await usecase.getPopularChallenge(filter: sortingType.english)
             items = []
             challenges = response
             for _ in 0..<challenges.count {
@@ -52,9 +64,9 @@ private extension HomeDetailViewModel {
         }
     }
     
-    func getPubicChallenges(filter: String) {
+    func getPubicChallenges() {
         Task {
-            let response = try await usecase.getPublicChallenge(filter: filter)
+            let response = try await usecase.getPublicChallenge(filter: sortingType.english)
             challenges = response
             items = []
             for _ in 0..<challenges.count {
@@ -64,9 +76,9 @@ private extension HomeDetailViewModel {
         }
     }
     
-    func getAllChallenges(filter: String) {
+    func getAllChallenges() {
         Task {
-            let response = try await usecase.getAllChallenge(filter: filter)
+            let response = try await usecase.getAllChallenge(filter: sortingType.english)
             challenges = response
             items = []
             for _ in 0..<challenges.count {
