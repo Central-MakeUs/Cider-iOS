@@ -89,6 +89,8 @@
 		FA56F9842A542FA70099EC6F /* GenderAndBirthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA56F9832A542FA70099EC6F /* GenderAndBirthdayViewController.swift */; };
 		FA57003B2A82849200CFECBC /* SortingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57003A2A82849200CFECBC /* SortingType.swift */; };
 		FA57003D2A8286FB00CFECBC /* SortingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57003C2A8286FB00CFECBC /* SortingViewController.swift */; };
+		FA57003F2A836EB000CFECBC /* ChallengeLikeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57003E2A836EB000CFECBC /* ChallengeLikeRequest.swift */; };
+		FA5700412A836F3A00CFECBC /* ChallengeLikeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5700402A836F3A00CFECBC /* ChallengeLikeResponse.swift */; };
 		FA57AF452A5C16EE008A5991 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57AF442A5C16EE008A5991 /* LoginViewModel.swift */; };
 		FA57AF482A5C5116008A5991 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = FA57AF472A5C5116008A5991 /* Moya */; };
 		FA57AF4B2A5D0D72008A5991 /* CiderAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57AF4A2A5D0D72008A5991 /* CiderAPI.swift */; };
@@ -231,6 +233,8 @@
 		FA56F9832A542FA70099EC6F /* GenderAndBirthdayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderAndBirthdayViewController.swift; sourceTree = "<group>"; };
 		FA57003A2A82849200CFECBC /* SortingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingType.swift; sourceTree = "<group>"; };
 		FA57003C2A8286FB00CFECBC /* SortingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingViewController.swift; sourceTree = "<group>"; };
+		FA57003E2A836EB000CFECBC /* ChallengeLikeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeLikeRequest.swift; sourceTree = "<group>"; };
+		FA5700402A836F3A00CFECBC /* ChallengeLikeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeLikeResponse.swift; sourceTree = "<group>"; };
 		FA57AF442A5C16EE008A5991 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		FA57AF4A2A5D0D72008A5991 /* CiderAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderAPI.swift; sourceTree = "<group>"; };
 		FA57AF4C2A5D0E2A008A5991 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
@@ -648,6 +652,7 @@
 			children = (
 				FA57AF562A5D14CC008A5991 /* LoginRequest.swift */,
 				FA3C43222A62EA18009E820B /* OnboardingRequest.swift */,
+				FA57003E2A836EB000CFECBC /* ChallengeLikeRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -662,6 +667,7 @@
 				FA5911782A7D40C10022611B /* HomeResponse.swift */,
 				FA59117E2A7D540F0022611B /* ChallengeResponse.swift */,
 				FA70AF962A82123D003A2395 /* FeedResponse.swift */,
+				FA5700402A836F3A00CFECBC /* ChallengeLikeResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -924,6 +930,7 @@
 				FA2A06542A68F31C00AC649F /* ChallengeCompleteViewController.swift in Sources */,
 				FA59117B2A7D40FE0022611B /* HomeRepository.swift in Sources */,
 				FA44D3A12A4C5D070037E328 /* UIView+Extension.swift in Sources */,
+				FA57003F2A836EB000CFECBC /* ChallengeLikeRequest.swift in Sources */,
 				FA31A9462A6A4BB8004D1C3B /* CiderInfoView.swift in Sources */,
 				FA5911792A7D40C10022611B /* HomeResponse.swift in Sources */,
 				FA32B8362A6A4F0B0086497D /* HomeViewController.swift in Sources */,
@@ -1019,6 +1026,7 @@
 				FA3C43282A62ED37009E820B /* OnboardingRepository.swift in Sources */,
 				FA3FC7FC2A6E93B70022CA3A /* SortingHeaderView.swift in Sources */,
 				FA4A24BD2A7012B90078A86C /* MyChallengeViewController.swift in Sources */,
+				FA5700412A836F3A00CFECBC /* ChallengeLikeResponse.swift in Sources */,
 				FA70AF972A82123D003A2395 /* FeedResponse.swift in Sources */,
 				FA42808A2A73DC0D00828F93 /* ChallengeInfoCell.swift in Sources */,
 				FA6100302A590431002175CE /* ChallengeSelectionViewModel.swift in Sources */,

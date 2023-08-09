@@ -20,7 +20,8 @@ enum CiderAPI {
     case getAllChallenge(filter: String)
     case getPublicChallenge(filter: String)
     case getHomeFeed
-
+    case postLikeChallenge(challengeId: Int)
+    case deleteLikeChallenge(challengeId: String)
 }
 
 extension CiderAPI: TargetType, AccessTokenAuthorizable {
@@ -51,6 +52,10 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             return "/api/challenge/official/\(filter)"
         case .getHomeFeed:
             return "/api/certify/home"
+        case .postLikeChallenge:
+            return "/api/challenge/like"
+        case .deleteLikeChallenge(let challengeId):
+            return "/api/challenge/like/\(challengeId)"
 
         }
     }
@@ -58,7 +63,8 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
     var method: Moya.Method {
         switch self {
         case .signInApple,
-             .signInKakao:
+             .signInKakao,
+             .postLikeChallenge:
             return .post
             
         case .getRandomNickname,
@@ -73,6 +79,9 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             
         case .patchOnboarding:
             return .patch
+            
+        case .deleteLikeChallenge:
+            return .delete
         }
     }
     
