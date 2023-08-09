@@ -38,4 +38,8 @@ extension SortingHeaderView {
         sortingView.setUp(text: text)
     }
     
+    func setSoringViewGesture(_ target: Any?, action: Selector) {
+        sortingView.addGestureRecognizer(UITapGestureRecognizer(target: target, action: action))
+    }
+    
 }

@@ -30,7 +30,7 @@ enum SortingType {
         case .participate:
             return "참여순"
         case .like:
-            return "좋아요순"
+            return "인기순"
         }
     }
     

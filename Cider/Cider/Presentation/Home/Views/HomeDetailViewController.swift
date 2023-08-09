@@ -174,7 +174,7 @@ private extension HomeDetailViewController {
                 ) as? SortingHeaderView else {
                     return UICollectionReusableView()
                 }
-                headerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTapSorting)))
+                headerView.setSoringViewGesture(self, action: #selector(self.didTapSorting))
                 headerView.setUp(text: self.viewModel.sortingType.korean)
                 return headerView
 
