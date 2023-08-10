@@ -27,7 +27,7 @@ final class CertifyViewController: UIViewController {
     private lazy var imagePickerController: UIImagePickerController = {
         let controller = UIImagePickerController()
         controller.delegate = self
-        controller.sourceType = .photoLibrary
+        controller.sourceType = .camera
         controller.allowsEditing = true
         return controller
     }()
@@ -109,6 +109,7 @@ private extension CertifyViewController {
                 return UICollectionViewCell()
             }
             cell.challengeSelectionView.setTextFieltText("만보 걷기")
+            cell.addTapGestureCameraView(self, action: #selector(self.didTapCameraView))
            
 //            cell.challengeTitleTextFieldView.textPublisher()
 //                .receive(on: DispatchQueue.main)
@@ -158,7 +159,7 @@ private extension CertifyViewController {
         
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .estimated(700)
+            heightDimension: .estimated(600)
         )
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                        subitems: [item])

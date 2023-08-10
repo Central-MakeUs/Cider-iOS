@@ -19,6 +19,14 @@ final class CertifyCell: UICollectionViewCell {
         return label
     }()
     
+    private lazy var photoSubTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "최소 1개 이상의 사진을 첨부해주세요"
+        label.font = CustomFont.PretendardBold(size: .base).font
+        label.textColor = .custom.icon
+        return label
+    }()
+    
     private let certifyPhotoLabel = StarTitleLabel(
         title: "인증 사진 *"
     )
@@ -105,7 +113,7 @@ final class CertifyCell: UICollectionViewCell {
     
     private func configure() {
         addSubviews(challengeNameLabel, challengeSelectionView, certifyPhotoLabel, backView, caemeraStackView, imageView,
-                    titleLabel, titleTextFieldView, contentLabel, contentTextView)
+                    titleLabel, titleTextFieldView, contentLabel, contentTextView, photoSubTitleLabel)
         NSLayoutConstraint.activate([
             challengeNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 24),
             challengeNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
@@ -114,6 +122,8 @@ final class CertifyCell: UICollectionViewCell {
             challengeSelectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
             certifyPhotoLabel.topAnchor.constraint(equalTo: challengeSelectionView.bottomAnchor, constant: 24),
             certifyPhotoLabel.leadingAnchor.constraint(equalTo: challengeNameLabel.leadingAnchor),
+            photoSubTitleLabel.centerYAnchor.constraint(equalTo: certifyPhotoLabel.centerYAnchor),
+            photoSubTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
             backView.topAnchor.constraint(equalTo: certifyPhotoLabel.bottomAnchor, constant: 16),
             backView.leadingAnchor.constraint(equalTo: challengeNameLabel.leadingAnchor),
             imageView.topAnchor.constraint(equalTo: certifyPhotoLabel.bottomAnchor, constant: 8),
@@ -130,7 +140,9 @@ final class CertifyCell: UICollectionViewCell {
             contentLabel.topAnchor.constraint(equalTo: titleTextFieldView.bottomAnchor, constant: 24),
             contentTextView.topAnchor.constraint(equalTo: contentLabel.bottomAnchor, constant: 8),
             contentTextView.leadingAnchor.constraint(equalTo: challengeSelectionView.leadingAnchor),
-            contentTextView.trailingAnchor.constraint(equalTo: challengeSelectionView.trailingAnchor)
+            contentTextView.trailingAnchor.constraint(equalTo: challengeSelectionView.trailingAnchor),
+            contentTextView.heightAnchor.constraint(equalToConstant: 171),
+            contentTextView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
         ])
     }
     
