@@ -96,7 +96,10 @@ private extension HomeDetailViewController {
         self.navigationItem.title = homeDetailType.navigationBarTitle
         self.navigationController?.navigationBar.scrollEdgeAppearance?.shadowColor = .clear
         self.navigationController?.navigationBar.standardAppearance.shadowColor = .clear
-        setNavigationBar(backgroundColor: homeDetailType.mainColor, tintColor: .white)
+        setNavigationBar(
+            backgroundColor: homeDetailType == .allChallenge ? .white : homeDetailType.mainColor,
+            tintColor: homeDetailType == .allChallenge ? .black : .white
+        )
     }
     
     func configure() {
@@ -157,7 +160,8 @@ private extension HomeDetailViewController {
                     status: challenge.challengeStatus.convertStatusKorean(),
                     people: "\(challenge.participateNum)명 모집중",
                     isPublic: challenge.isOfficial,
-                    dDay: "D-\(challenge.recruitLeft)"
+                    dDay: "D-\(challenge.recruitLeft)",
+                    isLike: challenge.isLike
                 )
                 return cell
                 
@@ -197,7 +201,7 @@ private extension HomeDetailViewController {
         snapshot.appendItems([Item()])
         snapshot.appendSections([.challenge])
         snapshot.appendItems(viewModel.items)
-        dataSource?.apply(snapshot)
+        dataSource?.apply(snapshot, animatingDifferences: false)
     }
     
     func reloadHeader() {
@@ -317,10 +321,18 @@ extension HomeDetailViewController: UICollectionViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         scrollView.bounces = scrollView.contentOffset.y > 100
-        if scrollView.contentOffset.y > infoHeight {
-            setNavigationBar(backgroundColor: .white, tintColor: .black)
-        } else {
-            setNavigationBar(backgroundColor: homeDetailType.mainColor, tintColor: .white)
+        switch homeDetailType {
+        case .publicChallenge,
+             .popularChallenge:
+            if scrollView.contentOffset.y > infoHeight {
+                setNavigationBar(backgroundColor: .white, tintColor: .black)
+            } else {
+                setNavigationBar(backgroundColor: homeDetailType.mainColor, tintColor: .white)
+            }
+            
+        case .allChallenge:
+            break
+            
         }
     }
     

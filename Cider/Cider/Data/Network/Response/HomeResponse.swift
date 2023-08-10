@@ -19,5 +19,6 @@ struct ChallengeResponseDto: Codable {
     let participateNum, recruitLeft: Int
     let interestField: String
     let challengePeriod: Int
-    let isOfficial, isReward, isLike: Bool
+    let isOfficial, isReward: Bool
+    var isLike: Bool
 }

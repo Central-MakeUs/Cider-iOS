@@ -111,7 +111,7 @@ extension ClosedChallengeCell {
         peopleLabel.text = people
         publicLabel.isHidden = !isPublic
         publicImageView.isHidden = !isPublic
-        challengeHomeView.setUp(type: type, status: status, isReward: isReward, date: date)
+        challengeHomeView.setUp(type: type, status: status, isReward: isReward, date: date, isLike: true)
     }
 }
 

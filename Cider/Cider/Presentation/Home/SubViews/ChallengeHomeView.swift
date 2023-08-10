@@ -98,7 +98,8 @@ final class ChallengeHomeView: UIView {
         type: ChallengeType,
         status: String,
         isReward: Bool,
-        date: String
+        date: String,
+        isLike: Bool
     ) {
         backgroundImageView.image = UIImage(named: type.backgroundImageName)
         statusLabel.text = status
@@ -107,12 +108,18 @@ final class ChallengeHomeView: UIView {
         typeLabel.setUp(title: type.koreanName)
         dateLabel.setUp(title: date)
         iconImageView.image = UIImage(named: type.iconImageName)
+        heartButton.setImage(UIImage(named: isLike ? "color_like_24" : "line_like_24")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        heartButton.tintColor = isLike ? .custom.main : .white
     }
     
     func setClosedChallenge(_ type: ChallengeResultType) {
         statusView.backgroundColor = type == .success ? .custom.main : .custom.gray6
         statusLabel.text = type == .success ? "성공" : "실패"
         heartButton.setImage(UIImage(named: "filled_trash_24"), for: .normal)
+    }
+    
+    func addActionHeart(_ target: Any?, action: Selector) {
+        heartButton.addTarget(target, action: action, for: .touchUpInside)
     }
     
 }
@@ -173,7 +180,7 @@ struct ChallengeHomeView_Preview: PreviewProvider {
         
         UIViewPreview {
             let view = ChallengeHomeView()
-            view.setUp(type: .financialTech, status: "모집중", isReward: true, date: "10주")
+            view.setUp(type: .financialTech, status: "모집중", isReward: true, date: "10주", isLike: true)
             return view
         }
         .previewLayout(.fixed(width: 150, height: 192))

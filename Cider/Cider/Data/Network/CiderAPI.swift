@@ -20,7 +20,10 @@ enum CiderAPI {
     case getAllChallenge(filter: String)
     case getPublicChallenge(filter: String)
     case getHomeFeed
-
+    case postLikeChallenge(parameters: [String: Any])
+    case deleteLikeChallenge(challengeId: String)
+    case postLikeFeed(parameters: [String: Any])
+    case deleteLikeFeed(certifyId: String)
 }
 
 extension CiderAPI: TargetType, AccessTokenAuthorizable {
@@ -51,6 +54,14 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             return "/api/challenge/official/\(filter)"
         case .getHomeFeed:
             return "/api/certify/home"
+        case .postLikeChallenge:
+            return "/api/challenge/like"
+        case .deleteLikeChallenge(let challengeId):
+            return "/api/challenge/like/\(challengeId)"
+        case .postLikeFeed:
+            return "/api/certify/like"
+        case .deleteLikeFeed(let certifyId):
+            return "/api/certify/like/\(certifyId)"
 
         }
     }
@@ -58,7 +69,9 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
     var method: Moya.Method {
         switch self {
         case .signInApple,
-             .signInKakao:
+             .signInKakao,
+             .postLikeChallenge,
+             .postLikeFeed:
             return .post
             
         case .getRandomNickname,
@@ -73,6 +86,10 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             
         case .patchOnboarding:
             return .patch
+            
+        case .deleteLikeChallenge,
+             .deleteLikeFeed:
+            return .delete
         }
     }
     
@@ -80,7 +97,9 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
         switch self {
         case .signInApple(let parameters),
              .signInKakao(let parameters),
-             .patchOnboarding(let parameters):
+             .patchOnboarding(let parameters),
+             .postLikeChallenge(let parameters),
+             .postLikeFeed(let parameters):
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         default:
             return .requestPlain
