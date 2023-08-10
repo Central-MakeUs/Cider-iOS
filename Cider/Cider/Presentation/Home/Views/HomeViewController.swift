@@ -123,7 +123,6 @@ private extension HomeViewController {
         self.navigationController?.navigationBar.standardAppearance.backgroundColor = .white
         self.navigationController?.navigationBar.scrollEdgeAppearance?.shadowColor = .custom.gray2
         self.navigationController?.navigationBar.standardAppearance.shadowColor = .custom.gray2
-        
     }
     
     func setUpDataSource() {

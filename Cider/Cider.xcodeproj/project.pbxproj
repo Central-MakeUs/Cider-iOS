@@ -20,6 +20,8 @@
 		FA3139FA2A84B33A006DBE69 /* FeedLikeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3139F92A84B33A006DBE69 /* FeedLikeRequest.swift */; };
 		FA3139FD2A84BBEB006DBE69 /* CertifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3139FC2A84BBEB006DBE69 /* CertifyViewController.swift */; };
 		FA3139FF2A84E811006DBE69 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3139FE2A84E811006DBE69 /* Section.swift */; };
+		FA313A032A84F03F006DBE69 /* CertifyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA313A022A84F03F006DBE69 /* CertifyCell.swift */; };
+		FA313A052A84F9F0006DBE69 /* ChallengeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA313A042A84F9F0006DBE69 /* ChallengeSelectionView.swift */; };
 		FA316D672A63A15100C7AA88 /* OnboardingCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D662A63A15100C7AA88 /* OnboardingCompleteViewController.swift */; };
 		FA316D692A63A18700C7AA88 /* MainTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D682A63A18700C7AA88 /* MainTitleLabel.swift */; };
 		FA316D6C2A63BAB500C7AA88 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D6B2A63BAB500C7AA88 /* TabBarViewController.swift */; };
@@ -170,6 +172,8 @@
 		FA3139F92A84B33A006DBE69 /* FeedLikeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLikeRequest.swift; sourceTree = "<group>"; };
 		FA3139FC2A84BBEB006DBE69 /* CertifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifyViewController.swift; sourceTree = "<group>"; };
 		FA3139FE2A84E811006DBE69 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		FA313A022A84F03F006DBE69 /* CertifyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifyCell.swift; sourceTree = "<group>"; };
+		FA313A042A84F9F0006DBE69 /* ChallengeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeSelectionView.swift; sourceTree = "<group>"; };
 		FA316D662A63A15100C7AA88 /* OnboardingCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompleteViewController.swift; sourceTree = "<group>"; };
 		FA316D682A63A18700C7AA88 /* MainTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTitleLabel.swift; sourceTree = "<group>"; };
 		FA316D6B2A63BAB500C7AA88 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -350,6 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				FA313A002A84EE1F006DBE69 /* Views */,
+				FA313A012A84F029006DBE69 /* SubViews */,
 			);
 			path = Certify;
 			sourceTree = "<group>";
@@ -360,6 +365,15 @@
 				FA3139FC2A84BBEB006DBE69 /* CertifyViewController.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		FA313A012A84F029006DBE69 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				FA313A022A84F03F006DBE69 /* CertifyCell.swift */,
+				FA313A042A84F9F0006DBE69 /* ChallengeSelectionView.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 		FA316D6A2A63BA8B00C7AA88 /* Tabbar */ = {
@@ -964,6 +978,7 @@
 				FA57AF662A5D6EF5008A5991 /* ChallengeOpenViewController.swift in Sources */,
 				FA6AE8B22A6047CB00512EE1 /* UITextView+Extension.swift in Sources */,
 				FA44D39D2A4C52DA0037E328 /* UIViewController+Extension.swift in Sources */,
+				FA313A032A84F03F006DBE69 /* CertifyCell.swift in Sources */,
 				FA316D6C2A63BAB500C7AA88 /* TabBarViewController.swift in Sources */,
 				FA57003B2A82849200CFECBC /* SortingType.swift in Sources */,
 				FA3C43252A62ECBA009E820B /* OnboardingUsecase.swift in Sources */,
@@ -1009,6 +1024,7 @@
 				FA4280632A70E68100828F93 /* ReviewType.swift in Sources */,
 				FA59116F2A7BEF360022611B /* MissionPhotoCell.swift in Sources */,
 				FA5B8BE12A4DCAE000CEB0F6 /* UITextField+Extension.swift in Sources */,
+				FA313A052A84F9F0006DBE69 /* ChallengeSelectionView.swift in Sources */,
 				FA42807B2A736F7600828F93 /* DynamicLabel.swift in Sources */,
 				FA57AF4F2A5D0EC7008A5991 /* LocalKey.swift in Sources */,
 				FA2A064E2A68DCE000AC649F /* PrecautionViewController.swift in Sources */,

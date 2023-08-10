@@ -12,7 +12,7 @@ final class CertifyViewController: UIViewController {
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
-        collectionView.register(ChallengeOpenCell.self, forCellWithReuseIdentifier: ChallengeOpenCell.identifier)
+        collectionView.register(CertifyCell.self, forCellWithReuseIdentifier: CertifyCell.identifier)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.keyboardDismissMode = .onDrag
         return collectionView
@@ -82,9 +82,9 @@ private extension CertifyViewController {
         view.backgroundColor = .white
         view.addSubviews(collectionView, bottomButton)
         NSLayoutConstraint.activate([
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: bottomButton.topAnchor),
             bottomButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             bottomButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
@@ -96,6 +96,7 @@ private extension CertifyViewController {
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = "인증하기"
         setNavigationBar(backgroundColor: .white, tintColor: .black)
+        setNavigationLineColor(.clear)
     }
     
     func setUpDataSource() {
@@ -104,38 +105,38 @@ private extension CertifyViewController {
                 return UICollectionViewCell()
             }
             
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeOpenCell.identifier, for: indexPath) as? ChallengeOpenCell else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CertifyCell.identifier, for: indexPath) as? CertifyCell else {
                 return UICollectionViewCell()
             }
-            cell.missionFailView.setCameraImage(UIImage())
+            cell.challengeSelectionView.setTextFieltText("만보 걷기")
            
-            cell.challengeTitleTextFieldView.textPublisher()
-                .receive(on: DispatchQueue.main)
-                .sink { [weak self] name in
-                    self?.viewModel.changeChallengeName(name)
-                }
-                .store(in: &self.cancellables)
-            
-            cell.missionTextFieldView.textPublisher()
-                .receive(on: DispatchQueue.main)
-                .sink { [weak self] missionInfo in
-                    self?.viewModel.changeMissionInfo(missionInfo)
-                }
-                .store(in: &self.cancellables)
-            
-            cell.challengeIntroductionTextView.textPublisher()
-                .receive(on: DispatchQueue.main)
-                .sink { [weak self] challengeInfo  in
-                    self?.viewModel.changeChallengeInfo(challengeInfo)
-                }
-                .store(in: &self.cancellables)
-            
-            cell.memberView.unitPublisher()
-                .receive(on: DispatchQueue.main)
-                .sink { [weak self] recruitPeriod in
-                    self?.viewModel.changeRecruitPeriod(recruitPeriod)
-                }
-                .store(in: &self.cancellables)
+//            cell.challengeTitleTextFieldView.textPublisher()
+//                .receive(on: DispatchQueue.main)
+//                .sink { [weak self] name in
+//                    self?.viewModel.changeChallengeName(name)
+//                }
+//                .store(in: &self.cancellables)
+//
+//            cell.missionTextFieldView.textPublisher()
+//                .receive(on: DispatchQueue.main)
+//                .sink { [weak self] missionInfo in
+//                    self?.viewModel.changeMissionInfo(missionInfo)
+//                }
+//                .store(in: &self.cancellables)
+//
+//            cell.challengeIntroductionTextView.textPublisher()
+//                .receive(on: DispatchQueue.main)
+//                .sink { [weak self] challengeInfo  in
+//                    self?.viewModel.changeChallengeInfo(challengeInfo)
+//                }
+//                .store(in: &self.cancellables)
+//
+//            cell.memberView.unitPublisher()
+//                .receive(on: DispatchQueue.main)
+//                .sink { [weak self] recruitPeriod in
+//                    self?.viewModel.changeRecruitPeriod(recruitPeriod)
+//                }
+//                .store(in: &self.cancellables)
             
             return cell
         })
@@ -157,7 +158,7 @@ private extension CertifyViewController {
         
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .estimated(1207)
+            heightDimension: .estimated(700)
         )
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                        subitems: [item])
