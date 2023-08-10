@@ -60,9 +60,9 @@ enum HomeDetailType {
     var iconName: String {
         switch self {
         case .popularChallenge:
-            return "graph"
+            return "graph_contents"
         case .publicChallenge:
-            return "card"
+            return "card_contents"
         case .allChallenge:
             return ""
         }

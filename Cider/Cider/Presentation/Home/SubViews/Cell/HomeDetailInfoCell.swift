@@ -52,7 +52,7 @@ extension HomeDetailInfoCell {
         backgroundColor = type.mainColor
         mainTitleLabel.text = type.mainTitle
         mainTitleLabel.setTextWithLineHeight(lineHeight: 33.6)
-        mainTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: type == .popularChallenge ? 24 : 35).isActive = true
+        mainTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: type == .popularChallenge ? 24 : 40).isActive = true
         iconImageView.image = UIImage(named: type.iconName)
     }
     

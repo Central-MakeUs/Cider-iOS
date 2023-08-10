@@ -97,13 +97,13 @@ extension ChallengeType {
     var iconImageName: String {
         switch self {
         case .financialTech:
-            return "home"
+            return "home_contents"
         case .moneySaving:
-            return "pig"
+            return "pig_contents"
         case .moneyManagement:
-            return "graph"
+            return "graph_contents"
         case .financialLearning:
-            return "card"
+            return "card_contents"
         }
     }
     

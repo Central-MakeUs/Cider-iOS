@@ -96,7 +96,10 @@ private extension HomeDetailViewController {
         self.navigationItem.title = homeDetailType.navigationBarTitle
         self.navigationController?.navigationBar.scrollEdgeAppearance?.shadowColor = .clear
         self.navigationController?.navigationBar.standardAppearance.shadowColor = .clear
-        setNavigationBar(backgroundColor: homeDetailType.mainColor, tintColor: .white)
+        setNavigationBar(
+            backgroundColor: homeDetailType == .allChallenge ? .white : homeDetailType.mainColor,
+            tintColor: homeDetailType == .allChallenge ? .black : .white
+        )
     }
     
     func configure() {
@@ -318,10 +321,18 @@ extension HomeDetailViewController: UICollectionViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         scrollView.bounces = scrollView.contentOffset.y > 100
-        if scrollView.contentOffset.y > infoHeight {
-            setNavigationBar(backgroundColor: .white, tintColor: .black)
-        } else {
-            setNavigationBar(backgroundColor: homeDetailType.mainColor, tintColor: .white)
+        switch homeDetailType {
+        case .publicChallenge,
+             .popularChallenge:
+            if scrollView.contentOffset.y > infoHeight {
+                setNavigationBar(backgroundColor: .white, tintColor: .black)
+            } else {
+                setNavigationBar(backgroundColor: homeDetailType.mainColor, tintColor: .white)
+            }
+            
+        case .allChallenge:
+            break
+            
         }
     }
     
