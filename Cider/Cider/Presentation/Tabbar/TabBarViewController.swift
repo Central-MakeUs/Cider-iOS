@@ -25,7 +25,7 @@ final class TabBarViewController: UITabBarController {
             )
         )
         let dummyViewController = UIViewController()
-        let mypageViewController = UINavigationController(rootViewController: UIViewController())
+        let mypageViewController = UINavigationController(rootViewController: MypageViewController())
         
         homeChallengeViewController.view.backgroundColor = .white
         mypageViewController.view.backgroundColor = .white
