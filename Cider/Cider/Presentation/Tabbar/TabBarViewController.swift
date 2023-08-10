@@ -53,7 +53,7 @@ final class TabBarViewController: UITabBarController {
         if let sheet = viewController.sheetPresentationController {
             let identifier = UISheetPresentationController.Detent.Identifier("customMedium")
             let customDetent = UISheetPresentationController.Detent.custom(identifier: identifier) { context in
-                return 258
+                return 200-10
             }
             sheet.detents = [customDetent]
             sheet.prefersScrollingExpandsWhenScrolledToEdge = false

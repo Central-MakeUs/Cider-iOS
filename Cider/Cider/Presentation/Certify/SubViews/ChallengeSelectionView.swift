@@ -1,27 +1,15 @@
 //
-//  challengeSelectionView.swift
+//  ChallengeSelectionView.swift
 //  Cider
 //
-//  Created by 임영선 on 2023/07/12.
+//  Created by 임영선 on 2023/08/10.
 //
 
 import UIKit
 import Combine
 
-final class ChallengeOpenSelectionView: UIView {
-    
-    private let type: ChallengeOpenSelectionType
-    
-    private lazy var mainTitleLabel = StarTitleLabel(title: type.mainTitle)
-    
-    private lazy var subTitleLabel: UILabel = {
-        let label = UILabel()
-        label.text = type.subTitle
-        label.font = CustomFont.PretendardBold(size: .base).font
-        label.textColor = .custom.icon
-        return label
-    }()
-    
+final class ChallengeSelectionView: UIView {
+   
     private lazy var paddingView = {
         let view = UIView()
         view.isUserInteractionEnabled = false
@@ -30,7 +18,7 @@ final class ChallengeOpenSelectionView: UIView {
     
     private lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: type.iconName)
+        imageView.image = UIImage(named: "line_arrow-down_24")
         imageView.heightAnchor.constraint(equalToConstant: 24).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 24).isActive = true
         return imageView
@@ -39,7 +27,6 @@ final class ChallengeOpenSelectionView: UIView {
     private lazy var textField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = .white
-        textField.text = String(type.defaultUnit) + type.unitString
         textField.font = CustomFont.PretendardRegular(size: .base).font
         textField.heightAnchor.constraint(equalToConstant: 44).isActive = true
         textField.addLeftPadding(12)
@@ -60,11 +47,12 @@ final class ChallengeOpenSelectionView: UIView {
         return pickerView
     }()
     
-    private lazy var selectedPickerViewData = type.defaultUnit
+    // TODO: 더미데이터 삭제
+    var selectedPickerViewData = ""
+    var challengeList: [String] = ["만보 걷기", "챌린지 어쩌고 하기"]
     
-    init(type: ChallengeOpenSelectionType) {
-        self.type = type
-        super.init(frame: .zero)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setUp()
     }
     
@@ -90,7 +78,7 @@ final class ChallengeOpenSelectionView: UIView {
     
 }
 
-private extension ChallengeOpenSelectionView {
+private extension ChallengeSelectionView {
     
     func setUp() {
         configure()
@@ -98,16 +86,12 @@ private extension ChallengeOpenSelectionView {
     }
     
     func configure() {
-        addSubviews(mainTitleLabel, subTitleLabel, textField, paddingView)
+        addSubviews(textField, paddingView)
         paddingView.addSubviews(iconImageView)
         
         NSLayoutConstraint.activate([
-            self.heightAnchor.constraint(equalToConstant: 77),
-            mainTitleLabel.topAnchor.constraint(equalTo: topAnchor),
-            mainTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            subTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            subTitleLabel.topAnchor.constraint(equalTo: topAnchor),
-            textField.topAnchor.constraint(equalTo: mainTitleLabel.bottomAnchor, constant: 8),
+            self.heightAnchor.constraint(equalToConstant: 44),
+            textField.topAnchor.constraint(equalTo: topAnchor),
             textField.leadingAnchor.constraint(equalTo: leadingAnchor),
             textField.trailingAnchor.constraint(equalTo: trailingAnchor),
             paddingView.widthAnchor.constraint(equalToConstant: 12+24),
@@ -130,7 +114,7 @@ private extension ChallengeOpenSelectionView {
     
     @objc func didTapDone(_ sender: UIBarButtonItem) {
         textField.resignFirstResponder()
-        textField.text = String(selectedPickerViewData) + type.unitString
+        textField.text = String(selectedPickerViewData)
         NotificationCenter.default.post(name: .didChangedUnit, object: selectedPickerViewData)
     }
     
@@ -140,22 +124,22 @@ private extension ChallengeOpenSelectionView {
     
 }
 
-extension ChallengeOpenSelectionView: UIPickerViewDelegate, UIPickerViewDataSource {
+extension ChallengeSelectionView: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return type.unitList.count
+        return challengeList.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return String(type.unitList[row]) + type.unitString
+        return challengeList[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedPickerViewData = type.unitList[row]
+        selectedPickerViewData = challengeList[row]
     }
     
 }

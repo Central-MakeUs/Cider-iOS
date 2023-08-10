@@ -15,12 +15,6 @@ final class WritingViewController: UIViewController {
         return view
     }()
     
-    private lazy var feedView: WritingView = {
-        let view = WritingView(type: .feed)
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapFeed)))
-        return view
-    }()
-    
     private lazy var challengeOpenView: WritingView = {
         let view = WritingView(type: .challengeOpen)
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapChallengeOpen)))
@@ -50,12 +44,12 @@ private extension WritingViewController {
     func configure() {
         view.backgroundColor = .white
         view.addSubviews(stackView)
-        stackView.addArrangedSubviews(authenticationView, feedView, challengeOpenView)
+        stackView.addArrangedSubviews(authenticationView, challengeOpenView)
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 56),
-            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -56)
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -66)
         ])
     }
     
@@ -73,16 +67,26 @@ private extension WritingViewController {
         }
     }
     
+    func pushCertifyViewController() {
+        guard let tabBarController = self.presentingViewController as? UITabBarController else {
+            return
+        }
+        guard let navigationController = tabBarController.selectedViewController as? UINavigationController else {
+            return
+        }
+        self.dismiss(animated: true) {
+            let viewController = CertifyViewController(viewModel: ChallengeOpenViewModel())
+            viewController.hidesBottomBarWhenPushed = true
+            navigationController.pushViewController(viewController, animated: true)
+        }
+    }
+    
 }
 
 private extension WritingViewController {
     
     @objc func didTapAuthentication(_ sender: Any?) {
-        print("didTapAuthentication")
-    }
-    
-    @objc func didTapFeed(_ sender: Any?) {
-        print("didTapFeed")
+        pushCertifyViewController()
     }
     
     @objc func didTapChallengeOpen(_ sender: Any?) {

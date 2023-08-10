@@ -43,11 +43,17 @@ extension UIViewController {
         self.navigationController?.navigationBar.tintColor = tintColor == .white ? .white : .custom.icon
     }
     
+    func setNavigationLineColor(_ color: UIColor?) {
+        self.navigationController?.navigationBar.scrollEdgeAppearance?.shadowColor = color
+        self.navigationController?.navigationBar.standardAppearance.shadowColor = color
+    }
+    
     func hideKeyboard() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
             action: #selector(UIViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }

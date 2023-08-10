@@ -26,7 +26,7 @@ enum WritingType {
     var mainTitle: String {
         switch self {
         case .authentication:
-            return "챌린지 인증"
+            return "챌린지 인증하기"
         case .feed:
             return "챌린지 자유글"
         case .challengeOpen:
