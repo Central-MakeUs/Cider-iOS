@@ -1,14 +1,14 @@
 //
-//  ChallengeOpenViewController.swift
+//  CertifyViewController.swift
 //  Cider
 //
-//  Created by 임영선 on 2023/07/11.
+//  Created by 임영선 on 2023/08/10.
 //
 
 import UIKit
 import Combine
 
-final class ChallengeOpenViewController: UIViewController {
+final class CertifyViewController: UIViewController {
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
@@ -19,7 +19,7 @@ final class ChallengeOpenViewController: UIViewController {
     }()
     
     private lazy var bottomButton: CiderBottomButton = {
-        let button = CiderBottomButton(style: .disabled, title: "챌린지 개설 신청하기")
+        let button = CiderBottomButton(style: .disabled, title: "인증 완료하기")
         button.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
         return button
     }()
@@ -31,29 +31,19 @@ final class ChallengeOpenViewController: UIViewController {
         controller.allowsEditing = true
         return controller
     }()
-    
+
     private let viewModel: ChallengeOpenViewModel
     private var cancellables = Set<AnyCancellable>()
-    
-    private let challengeType: ChallengeType
-    
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     
-    private var failImage = UIImage()
-    private var successImage = UIImage()
-    private var missionType: ChallengeResultType?
-    
-    init(challengeType: ChallengeType, viewModel: ChallengeOpenViewModel) {
-        self.challengeType = challengeType
+    init(viewModel: ChallengeOpenViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        viewModel.selectChallengeType(challengeType)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,10 +54,11 @@ final class ChallengeOpenViewController: UIViewController {
         super.viewWillAppear(animated)
         setNavigationBar()
     }
-    
+
 }
 
-private extension ChallengeOpenViewController {
+
+private extension CertifyViewController {
     
     func setUp() {
         configure()
@@ -103,7 +94,8 @@ private extension ChallengeOpenViewController {
     
     func setNavigationBar() {
         self.navigationController?.navigationBar.topItem?.title = ""
-        self.navigationItem.title = "챌린지 개설"
+        self.navigationItem.title = "인증하기"
+        setNavigationBar(backgroundColor: .white, tintColor: .black)
     }
     
     func setUpDataSource() {
@@ -115,11 +107,8 @@ private extension ChallengeOpenViewController {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeOpenCell.identifier, for: indexPath) as? ChallengeOpenCell else {
                 return UICollectionViewCell()
             }
-            cell.missionSuccessView.addTapGestureCameraView(self, action: #selector(self.didTapSuccessMissionView))
-            cell.missionFailView.addTapGestureCameraView(self, action: #selector(self.didTapFailMissionView))
-            cell.missionFailView.setCameraImage(self.failImage)
-            cell.missionSuccessView.setCameraImage(self.successImage)
-            
+            cell.missionFailView.setCameraImage(UIImage())
+           
             cell.challengeTitleTextFieldView.textPublisher()
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] name in
@@ -186,39 +175,22 @@ private extension ChallengeOpenViewController {
     
 }
 
-private extension ChallengeOpenViewController {
-    
-    @objc func didTapSuccessMissionView(_ sender: Any?) {
-        missionType = .success
-        self.present(imagePickerController, animated: true)
-    }
-    
-    @objc func didTapFailMissionView(_ sender: Any?) {
-        missionType = .fail
-        self.present(imagePickerController, animated: true)
-    }
+private extension CertifyViewController {
     
     @objc func didTapNextButton(_ sender: Any?) {
         pushPrecautionViewController()
     }
     
+    @objc func didTapCameraView(_ sender: Any?) {
+        self.present(imagePickerController, animated: true)
+    }
 }
 
-extension ChallengeOpenViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension CertifyViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let missionType else {
-            return
-        }
-        
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            if missionType == .success {
-                successImage = image
-                viewModel.selectSuccessImage(image)
-            } else {
-                failImage = image
-                viewModel.selectFailImage(image)
-            }
+            // TODO: image처리 
         }
         picker.dismiss(animated: true, completion: nil)
         applySnapshot()
@@ -230,18 +202,16 @@ extension ChallengeOpenViewController: UIImagePickerControllerDelegate, UINaviga
     
 }
 
-
-
 #if DEBUG
 import SwiftUI
 
 @available(iOS 13.0, *)
-struct ChallengeOpenViewController_Preview: PreviewProvider {
+struct CertifyViewController_Preview: PreviewProvider {
     static var devices = ["iPhone 12", "iPhone SE", "iPhone 11 Pro Max"]
     
     static var previews: some View {
         ForEach(devices, id: \.self) { deviceName in
-            ChallengeOpenViewController(challengeType: .financialLearning, viewModel: ChallengeOpenViewModel())
+            CertifyViewController(viewModel: ChallengeOpenViewModel())
                 .toPreview()
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)
@@ -249,3 +219,4 @@ struct ChallengeOpenViewController_Preview: PreviewProvider {
     }
 }
 #endif
+
