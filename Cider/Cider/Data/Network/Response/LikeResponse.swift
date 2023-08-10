@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct ChallengeLikeResponse: Codable {
+struct LikeResponse: Codable {
     let message: String
 }

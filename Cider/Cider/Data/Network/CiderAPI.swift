@@ -22,6 +22,8 @@ enum CiderAPI {
     case getHomeFeed
     case postLikeChallenge(parameters: [String: Any])
     case deleteLikeChallenge(challengeId: String)
+    case postLikeFeed(parameters: [String: Any])
+    case deleteLikeFeed(certifyId: String)
 }
 
 extension CiderAPI: TargetType, AccessTokenAuthorizable {
@@ -56,6 +58,10 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             return "/api/challenge/like"
         case .deleteLikeChallenge(let challengeId):
             return "/api/challenge/like/\(challengeId)"
+        case .postLikeFeed:
+            return "/api/certify/like"
+        case .deleteLikeFeed(let certifyId):
+            return "/api/certify/like/\(certifyId)"
 
         }
     }
@@ -64,7 +70,8 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
         switch self {
         case .signInApple,
              .signInKakao,
-             .postLikeChallenge:
+             .postLikeChallenge,
+             .postLikeFeed:
             return .post
             
         case .getRandomNickname,
@@ -80,7 +87,8 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
         case .patchOnboarding:
             return .patch
             
-        case .deleteLikeChallenge:
+        case .deleteLikeChallenge,
+             .deleteLikeFeed:
             return .delete
         }
     }
@@ -90,7 +98,8 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
         case .signInApple(let parameters),
              .signInKakao(let parameters),
              .patchOnboarding(let parameters),
-             .postLikeChallenge(let parameters):
+             .postLikeChallenge(let parameters),
+             .postLikeFeed(let parameters):
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         default:
             return .requestPlain

@@ -201,7 +201,7 @@ private extension HomeDetailViewController {
         snapshot.appendItems([Item()])
         snapshot.appendSections([.challenge])
         snapshot.appendItems(viewModel.items)
-        dataSource?.apply(snapshot)
+        dataSource?.apply(snapshot, animatingDifferences: false)
     }
     
     func reloadHeader() {
