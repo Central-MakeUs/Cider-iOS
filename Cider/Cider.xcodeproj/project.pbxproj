@@ -22,6 +22,7 @@
 		FA3139FF2A84E811006DBE69 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3139FE2A84E811006DBE69 /* Section.swift */; };
 		FA313A032A84F03F006DBE69 /* CertifyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA313A022A84F03F006DBE69 /* CertifyCell.swift */; };
 		FA313A052A84F9F0006DBE69 /* ChallengeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA313A042A84F9F0006DBE69 /* ChallengeSelectionView.swift */; };
+		FA313A132A85567A006DBE69 /* LevelProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA313A122A85567A006DBE69 /* LevelProgressView.swift */; };
 		FA316D672A63A15100C7AA88 /* OnboardingCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D662A63A15100C7AA88 /* OnboardingCompleteViewController.swift */; };
 		FA316D692A63A18700C7AA88 /* MainTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D682A63A18700C7AA88 /* MainTitleLabel.swift */; };
 		FA316D6C2A63BAB500C7AA88 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D6B2A63BAB500C7AA88 /* TabBarViewController.swift */; };
@@ -174,6 +175,7 @@
 		FA3139FE2A84E811006DBE69 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		FA313A022A84F03F006DBE69 /* CertifyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifyCell.swift; sourceTree = "<group>"; };
 		FA313A042A84F9F0006DBE69 /* ChallengeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeSelectionView.swift; sourceTree = "<group>"; };
+		FA313A122A85567A006DBE69 /* LevelProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelProgressView.swift; sourceTree = "<group>"; };
 		FA316D662A63A15100C7AA88 /* OnboardingCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompleteViewController.swift; sourceTree = "<group>"; };
 		FA316D682A63A18700C7AA88 /* MainTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTitleLabel.swift; sourceTree = "<group>"; };
 		FA316D6B2A63BAB500C7AA88 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -376,6 +378,30 @@
 			path = SubViews;
 			sourceTree = "<group>";
 		};
+		FA313A112A85566D006DBE69 /* Mypage */ = {
+			isa = PBXGroup;
+			children = (
+				FA313A152A855684006DBE69 /* Views */,
+				FA313A142A85567D006DBE69 /* SubViews */,
+			);
+			path = Mypage;
+			sourceTree = "<group>";
+		};
+		FA313A142A85567D006DBE69 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				FA313A122A85567A006DBE69 /* LevelProgressView.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		FA313A152A855684006DBE69 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		FA316D6A2A63BA8B00C7AA88 /* Tabbar */ = {
 			isa = PBXGroup;
 			children = (
@@ -536,6 +562,7 @@
 		FA44D38D2A4C3CB10037E328 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				FA313A112A85566D006DBE69 /* Mypage */,
 				FA3139FB2A84BBDC006DBE69 /* Certify */,
 				FA4280752A736BDF00828F93 /* ChallengeDetail */,
 				FA2A06552A69006B00AC649F /* Home */,
@@ -1036,6 +1063,7 @@
 				FA4280902A73F58000828F93 /* RuleCell.swift in Sources */,
 				FA31A9442A6A33BE004D1C3B /* ChallengeHomeCell.swift in Sources */,
 				FA4DDB972A4D66CB002EDEAD /* ServiceAgreeDetailCell.swift in Sources */,
+				FA313A132A85567A006DBE69 /* LevelProgressView.swift in Sources */,
 				FAB9A73F2A4C8DAB00757A80 /* ProcessView.swift in Sources */,
 				FA2A06522A68F19700AC649F /* ReviewInfoView.swift in Sources */,
 				FA2A064C2A68DC0F00AC649F /* PrecautionView.swift in Sources */,
