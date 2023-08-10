@@ -10,6 +10,7 @@ import UIKit
 final class FeedCell: UICollectionViewCell {
     
     static let identifier = "FeedCell"
+    var certifyId: Int?
     
     private lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
@@ -122,10 +123,10 @@ final class FeedCell: UICollectionViewCell {
         return view
     }()
     
-    private lazy var heartImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "line_like_24")
-        return imageView
+    private lazy var heartButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "line_like_24"), for: .normal)
+        return button
     }()
     
     private lazy var heartLabel: UILabel = {
@@ -152,7 +153,7 @@ final class FeedCell: UICollectionViewCell {
     
     private func configure() {
         addSubviews(profileImageView, nicknameLabel, levelLabel, dateLabel, meatballButton,
-                    moreButton, mainTitleLabel, subTitleLabel, feedImageView, challengeTypeStackView, roundView, heartImageView, heartLabel, bottomView)
+                    moreButton, mainTitleLabel, subTitleLabel, feedImageView, challengeTypeStackView, roundView, heartButton, heartLabel, bottomView)
         NSLayoutConstraint.activate([
             profileImageView.widthAnchor.constraint(equalToConstant: 36),
             profileImageView.heightAnchor.constraint(equalToConstant: 36),
@@ -191,15 +192,15 @@ final class FeedCell: UICollectionViewCell {
             challengeTypeStackView.trailingAnchor.constraint(equalTo: roundView.trailingAnchor, constant: -12),
             challengeTypeStackView.centerYAnchor.constraint(equalTo: roundView.centerYAnchor),
             heartLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            heartLabel.centerYAnchor.constraint(equalTo: heartImageView.centerYAnchor),
-            heartImageView.widthAnchor.constraint(equalToConstant: 16),
-            heartImageView.heightAnchor.constraint(equalToConstant: 16),
-            heartImageView.topAnchor.constraint(equalTo: roundView.bottomAnchor, constant: 8.5),
-            heartImageView.trailingAnchor.constraint(equalTo: heartLabel.leadingAnchor, constant: -4),
+            heartLabel.centerYAnchor.constraint(equalTo: heartButton.centerYAnchor),
+            heartButton.widthAnchor.constraint(equalToConstant: 16),
+            heartButton.heightAnchor.constraint(equalToConstant: 16),
+            heartButton.topAnchor.constraint(equalTo: roundView.bottomAnchor, constant: 8.5),
+            heartButton.trailingAnchor.constraint(equalTo: heartLabel.leadingAnchor, constant: -4),
             bottomView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: -24),
             bottomView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 24),
             bottomView.heightAnchor.constraint(equalToConstant: 8),
-            bottomView.topAnchor.constraint(equalTo: heartImageView.bottomAnchor, constant: 16),
+            bottomView.topAnchor.constraint(equalTo: heartButton.bottomAnchor, constant: 16),
             bottomView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
@@ -220,7 +221,8 @@ extension FeedCell {
         people: String,
         heart: String,
         profileImageURL: String,
-        feedImageURL: String
+        feedImageURL: String,
+        isLike: Bool
     ) {
         nicknameLabel.text = nickname
         levelLabel.text = level
@@ -234,10 +236,15 @@ extension FeedCell {
         heartLabel.text = heart
         profileImageView.load(url: profileImageURL)
         feedImageView.load(url: feedImageURL)
+        heartButton.setImage(UIImage(named: isLike ? "color_like_24" : "line_like_24"), for: .normal)
     }
     
     func addMoreButtonAction(_ target: Any?, action: Selector) {
         moreButton.addTarget(target, action: action, for: .touchUpInside)
+    }
+    
+    func addHeartButtonAction(_ target: Any?, action: Selector) {
+        heartButton.addTarget(target, action: action, for: .touchUpInside)
     }
     
     @objc func didTapMore(_ sender: Any?) {
@@ -267,7 +274,8 @@ struct FeedCell_Preview: PreviewProvider {
                 people: "231",
                 heart: "1111",
                 profileImageURL: "https://cider-bucket.s3.ap-northeast-2.amazonaws.com/profileExample/bear.png",
-                feedImageURL: "https://cider-bucket.s3.ap-northeast-2.amazonaws.com/profileExample/bear.png"
+                feedImageURL: "https://cider-bucket.s3.ap-northeast-2.amazonaws.com/profileExample/bear.png",
+                isLike: true
             )
             return view
         }

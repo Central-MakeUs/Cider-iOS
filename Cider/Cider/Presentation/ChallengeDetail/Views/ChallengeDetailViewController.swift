@@ -479,7 +479,8 @@ private extension ChallengeDetailViewController {
                     people: "231",
                     heart: "1111",
                     profileImageURL: "https://cider-bucket.s3.ap-northeast-2.amazonaws.com/profileExample/bear.png",
-                    feedImageURL: "https://cider-bucket.s3.ap-northeast-2.amazonaws.com/profileExample/bear.png"
+                    feedImageURL: "https://cider-bucket.s3.ap-northeast-2.amazonaws.com/profileExample/bear.png",
+                    isLike: true
                 )
                 return cell
                 

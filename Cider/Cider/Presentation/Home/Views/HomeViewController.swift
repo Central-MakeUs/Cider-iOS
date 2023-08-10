@@ -158,7 +158,7 @@ private extension HomeViewController {
                         isLike: challenge.isLike
                     )
                     cell.challengeId = challenge.challengeId
-                    cell.addActionHeart(self, action: #selector(self.didTapHeart))
+                    cell.addActionHeart(self, action: #selector(self.didTapChallengeHeart))
                 }
                 
                 return cell
@@ -181,7 +181,7 @@ private extension HomeViewController {
                         isLike: challenge.isLike
                     )
                     cell.challengeId = challenge.challengeId
-                    cell.addActionHeart(self, action: #selector(self.didTapHeart))
+                    cell.addActionHeart(self, action: #selector(self.didTapChallengeHeart))
                 }
                 return cell
                 
@@ -203,7 +203,7 @@ private extension HomeViewController {
                     isLike: challenge.isLike
                 )
                 cell.challengeId = challenge.challengeId
-                cell.addActionHeart(self, action: #selector(self.didTapHeart))
+                cell.addActionHeart(self, action: #selector(self.didTapChallengeHeart))
                 return cell
                 
             case .feed:
@@ -222,8 +222,11 @@ private extension HomeViewController {
                     people: String(feed.simpleChallengeResponseDto.participateNum),
                     heart: String(feed.certifyLike),
                     profileImageURL: feed.simpleMemberResponseDto.profilePath,
-                    feedImageURL: feed.certifyImageUrl
+                    feedImageURL: feed.certifyImageUrl,
+                    isLike: feed.isLike
                 )
+                cell.certifyId = feed.certifyId
+                cell.addHeartButtonAction(self, action: #selector(self.didTapFeedHeart))
                 return cell
                 
             case .none:
@@ -493,7 +496,7 @@ private extension HomeViewController {
         reloadHeader()
     }
     
-    @objc func didTapHeart(_ sender: UIButton) {
+    @objc func didTapChallengeHeart(_ sender: UIButton) {
         let contentView = sender.superview?.superview
         var challengeId: Int?
         var isLike: Bool?
@@ -527,6 +530,23 @@ private extension HomeViewController {
             return
         }
         viewModel.likeChallenge(isLike: isLike, challengeId: challengeId)
+        reloadHeader()
+    }
+    
+    @objc func didTapFeedHeart(_ sender: UIButton) {
+        guard let cell = sender.superview as? UICollectionViewCell else {
+            return
+        }
+        guard let indexPath = collectionView.indexPath(for: cell) else {
+            return
+        }
+        viewModel.likeFeed(isLike: viewModel.feeds[indexPath.row].isLike, certifyId: viewModel.feeds[indexPath.row].certifyId)
+        if viewModel.feeds[indexPath.row].isLike {
+            viewModel.feeds[indexPath.row].certifyLike -= 1
+        } else {
+            viewModel.feeds[indexPath.row].certifyLike += 1
+        }
+        viewModel.feeds[indexPath.row].isLike.toggle()
         reloadHeader()
     }
     

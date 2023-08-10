@@ -13,6 +13,8 @@ protocol HomeRepository {
     func getHomeFeed() async throws -> FeedResponse
     func postLikeChallenge(chllangeId: Int) async throws -> LikeResponse
     func deleteLikeChallenge(chllangeId: Int) async throws -> LikeResponse
+    func postLikeFeed(certifyId: Int) async throws -> LikeResponse
+    func deleteLikeFeed(certifyId: Int) async throws -> LikeResponse
 }
 
 
@@ -37,6 +39,15 @@ final class DefaultHomeRepository: HomeRepository {
     
     func deleteLikeChallenge(chllangeId: Int) async throws -> LikeResponse {
         return try await CiderAPI.request(target: .deleteLikeChallenge(challengeId: String(chllangeId)), dataType: LikeResponse.self)
+    }
+    
+    func postLikeFeed(certifyId: Int) async throws -> LikeResponse {
+        let request = FeedLikeRequest(certifyId: certifyId)
+        return try await CiderAPI.request(target: .postLikeFeed(parameters: request.asDictionary()), dataType: LikeResponse.self)
+    }
+    
+    func deleteLikeFeed(certifyId: Int) async throws -> LikeResponse {
+        return try await CiderAPI.request(target: .deleteLikeFeed(certifyId: String(certifyId)), dataType: LikeResponse.self)
     }
     
 }

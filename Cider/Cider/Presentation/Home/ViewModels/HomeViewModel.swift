@@ -44,6 +44,10 @@ final class HomeViewModel: ViewModelType {
         isLike ? deleteLikeChallenge(challengeId: challengeId) : postLikeChallenge(challengeId: challengeId)
     }
     
+    func likeFeed(isLike: Bool, certifyId: Int) {
+        isLike ? deleteLikeFeed(certifyId: certifyId): postLikeFeed(certifyId: certifyId)
+    }
+    
 }
 
 private extension HomeViewModel {
@@ -108,6 +112,20 @@ private extension HomeViewModel {
     func postLikeChallenge(challengeId: Int) {
         Task {
             let response = try await usecase.postLikeChallenge(chllangeId: challengeId)
+            print(response)
+        }
+    }
+    
+    func deleteLikeFeed(certifyId: Int) {
+        Task {
+            let response = try await usecase.deleteLikeFeed(certifyId: certifyId)
+            print(response)
+        }
+    }
+    
+    func postLikeFeed(certifyId: Int) {
+        Task {
+            let response = try await usecase.postLikeFeed(certifyId: certifyId)
             print(response)
         }
     }
