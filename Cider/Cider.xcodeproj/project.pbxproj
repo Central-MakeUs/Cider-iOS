@@ -23,6 +23,8 @@
 		FA313A032A84F03F006DBE69 /* CertifyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA313A022A84F03F006DBE69 /* CertifyCell.swift */; };
 		FA313A052A84F9F0006DBE69 /* ChallengeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA313A042A84F9F0006DBE69 /* ChallengeSelectionView.swift */; };
 		FA313A132A85567A006DBE69 /* LevelProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA313A122A85567A006DBE69 /* LevelProgressView.swift */; };
+		FA313A172A8556CE006DBE69 /* LevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA313A162A8556CE006DBE69 /* LevelView.swift */; };
+		FA313A192A8556F6006DBE69 /* MypageInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA313A182A8556F6006DBE69 /* MypageInfoView.swift */; };
 		FA316D672A63A15100C7AA88 /* OnboardingCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D662A63A15100C7AA88 /* OnboardingCompleteViewController.swift */; };
 		FA316D692A63A18700C7AA88 /* MainTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D682A63A18700C7AA88 /* MainTitleLabel.swift */; };
 		FA316D6C2A63BAB500C7AA88 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D6B2A63BAB500C7AA88 /* TabBarViewController.swift */; };
@@ -176,6 +178,8 @@
 		FA313A022A84F03F006DBE69 /* CertifyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifyCell.swift; sourceTree = "<group>"; };
 		FA313A042A84F9F0006DBE69 /* ChallengeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeSelectionView.swift; sourceTree = "<group>"; };
 		FA313A122A85567A006DBE69 /* LevelProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelProgressView.swift; sourceTree = "<group>"; };
+		FA313A162A8556CE006DBE69 /* LevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelView.swift; sourceTree = "<group>"; };
+		FA313A182A8556F6006DBE69 /* MypageInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageInfoView.swift; sourceTree = "<group>"; };
 		FA316D662A63A15100C7AA88 /* OnboardingCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCompleteViewController.swift; sourceTree = "<group>"; };
 		FA316D682A63A18700C7AA88 /* MainTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTitleLabel.swift; sourceTree = "<group>"; };
 		FA316D6B2A63BAB500C7AA88 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -391,6 +395,8 @@
 			isa = PBXGroup;
 			children = (
 				FA313A122A85567A006DBE69 /* LevelProgressView.swift */,
+				FA313A162A8556CE006DBE69 /* LevelView.swift */,
+				FA313A182A8556F6006DBE69 /* MypageInfoView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -1037,6 +1043,7 @@
 				FA5911722A7BF7E60022611B /* ChallengeDetailViewModel.swift in Sources */,
 				FA348ED72A61190900EA3D04 /* RandomNicknameResponse.swift in Sources */,
 				FA57AF4B2A5D0D72008A5991 /* CiderAPI.swift in Sources */,
+				FA313A172A8556CE006DBE69 /* LevelView.swift in Sources */,
 				FA57AF632A5D22A0008A5991 /* LoginError.swift in Sources */,
 				FA59117D2A7D41EF0022611B /* HomeUsecase.swift in Sources */,
 				FA4DDB8E2A4D3178002EDEAD /* ServiceAgreeViewController.swift in Sources */,
@@ -1053,6 +1060,7 @@
 				FA5B8BE12A4DCAE000CEB0F6 /* UITextField+Extension.swift in Sources */,
 				FA313A052A84F9F0006DBE69 /* ChallengeSelectionView.swift in Sources */,
 				FA42807B2A736F7600828F93 /* DynamicLabel.swift in Sources */,
+				FA313A192A8556F6006DBE69 /* MypageInfoView.swift in Sources */,
 				FA57AF4F2A5D0EC7008A5991 /* LocalKey.swift in Sources */,
 				FA2A064E2A68DCE000AC649F /* PrecautionViewController.swift in Sources */,
 				FA57AF602A5D1851008A5991 /* Encodable+Extension.swift in Sources */,
