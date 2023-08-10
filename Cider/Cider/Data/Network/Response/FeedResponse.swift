@@ -15,7 +15,7 @@ struct FeedResponseElement: Codable {
     let certifyName, certifyContent: String
     let certifyImageUrl: String
     let certifyLike: Int
-    let isLike: Bool
+    var isLike: Bool
 }
 
 struct SimpleChallengeResponseDto: Codable {

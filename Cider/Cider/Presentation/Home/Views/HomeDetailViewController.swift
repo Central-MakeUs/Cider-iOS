@@ -157,7 +157,8 @@ private extension HomeDetailViewController {
                     status: challenge.challengeStatus.convertStatusKorean(),
                     people: "\(challenge.participateNum)명 모집중",
                     isPublic: challenge.isOfficial,
-                    dDay: "D-\(challenge.recruitLeft)"
+                    dDay: "D-\(challenge.recruitLeft)",
+                    isLike: challenge.isLike
                 )
                 return cell
                 

@@ -154,8 +154,11 @@ private extension HomeViewController {
                         status: challenge.challengeStatus.convertStatusKorean(),
                         people: "\(challenge.participateNum)명 모집중",
                         isPublic: challenge.isOfficial,
-                        dDay: "D-\(challenge.recruitLeft)"
+                        dDay: "D-\(challenge.recruitLeft)",
+                        isLike: challenge.isLike
                     )
+                    cell.challengeId = challenge.challengeId
+                    cell.addActionHeart(self, action: #selector(self.didTapHeart))
                 }
                 
                 return cell
@@ -174,8 +177,11 @@ private extension HomeViewController {
                         status: challenge.challengeStatus.convertStatusKorean(),
                         people: "\(challenge.participateNum)명 모집중",
                         isPublic: challenge.isOfficial,
-                        dDay: "D-\(challenge.recruitLeft)"
+                        dDay: "D-\(challenge.recruitLeft)",
+                        isLike: challenge.isLike
                     )
+                    cell.challengeId = challenge.challengeId
+                    cell.addActionHeart(self, action: #selector(self.didTapHeart))
                 }
                 return cell
                 
@@ -193,9 +199,11 @@ private extension HomeViewController {
                     status: challenge.challengeStatus.convertStatusKorean(),
                     people: "\(challenge.participateNum)명 모집중",
                     isPublic: challenge.isOfficial,
-                    dDay: "D-\(challenge.recruitLeft)"
+                    dDay: "D-\(challenge.recruitLeft)",
+                    isLike: challenge.isLike
                 )
-                
+                cell.challengeId = challenge.challengeId
+                cell.addActionHeart(self, action: #selector(self.didTapHeart))
                 return cell
                 
             case .feed:
@@ -482,6 +490,43 @@ private extension HomeViewController {
     @objc func didTapMoneyManagement(_ sender: Any?) {
         viewModel.categoryType = .moneyManagement
         viewModel.getCategory(viewModel.categoryType.alphabet)
+        reloadHeader()
+    }
+    
+    @objc func didTapHeart(_ sender: UIButton) {
+        let contentView = sender.superview?.superview
+        var challengeId: Int?
+        var isLike: Bool?
+        
+        guard let cell = contentView?.superview as? UICollectionViewCell else {
+            return
+        }
+        
+        guard let indexPath = collectionView.indexPath(for: cell) else {
+            return
+        }
+        let section = Section(rawValue: indexPath.section)
+        switch section {
+        case .publicChallenge:
+            challengeId = viewModel.publicChallanges?[indexPath.row].challengeId
+            isLike = viewModel.publicChallanges?[indexPath.row].isLike
+            viewModel.publicChallanges?[indexPath.row].isLike.toggle()
+        case .popluarChallenge:
+            challengeId = viewModel.popularChallanges?[indexPath.row].challengeId
+            isLike = viewModel.popularChallanges?[indexPath.row].isLike
+            viewModel.popularChallanges?[indexPath.row].isLike.toggle()
+        case .category:
+            challengeId = viewModel.categoryChallenges[indexPath.row].challengeId
+            isLike = viewModel.categoryChallenges[indexPath.row].isLike
+            viewModel.categoryChallenges[indexPath.row].isLike.toggle()
+        default:
+            break
+        }
+        guard let challengeId,
+              let isLike else {
+            return
+        }
+        viewModel.likeChallenge(isLike: isLike, challengeId: challengeId)
         reloadHeader()
     }
     

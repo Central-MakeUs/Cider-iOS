@@ -11,6 +11,8 @@ protocol HomeUsecase {
     func getHomeChallenge() async throws -> HomeResponse
     func getCategory(category: String) async throws -> ChallengeResponse
     func getHomeFeed() async throws -> FeedResponse
+    func postLikeChallenge(chllangeId: Int) async throws -> ChallengeLikeResponse
+    func deleteLikeChallenge(chllangeId: Int) async throws -> ChallengeLikeResponse
 }
 
 final class DefaultHomeUsecase: HomeUsecase {
@@ -33,6 +35,16 @@ final class DefaultHomeUsecase: HomeUsecase {
     
     func getHomeFeed() async throws -> FeedResponse {
         let response = try await repository.getHomeFeed()
+        return response
+    }
+    
+    func postLikeChallenge(chllangeId: Int) async throws -> ChallengeLikeResponse {
+        let response = try await repository.postLikeChallenge(chllangeId: chllangeId)
+        return response
+    }
+    
+    func deleteLikeChallenge(chllangeId: Int) async throws -> ChallengeLikeResponse {
+        let response = try await repository.deleteLikeChallenge(chllangeId: chllangeId)
         return response
     }
     

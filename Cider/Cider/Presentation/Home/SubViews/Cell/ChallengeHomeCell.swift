@@ -10,6 +10,7 @@ import UIKit
 final class ChallengeHomeCell: UICollectionViewCell {
     
     static let identifier = "ChallengeHomeCell"
+    var challengeId: Int?
 
     private lazy var rankingLabel: UILabel = {
         let label = UILabel()
@@ -107,6 +108,7 @@ private extension ChallengeHomeCell {
 }
 
 extension ChallengeHomeCell {
+    
     func setUp(
         type: ChallengeType,
         isReward: Bool,
@@ -116,7 +118,8 @@ extension ChallengeHomeCell {
         status: String,
         people: String,
         isPublic: Bool,
-        dDay: String
+        dDay: String,
+        isLike: Bool
     ) {
         rankingLabel.text = ranking
         titleLabel.text = title
@@ -125,8 +128,13 @@ extension ChallengeHomeCell {
         dDayLabel.text = dDay
         publicImageView.isHidden = !isPublic
         configure(ranking: ranking)
-        challengeHomeView.setUp(type: type, status: status, isReward: isReward, date: date)
+        challengeHomeView.setUp(type: type, status: status, isReward: isReward, date: date, isLike: isLike)
     }
+    
+    func addActionHeart(_ target: Any?, action: Selector) {
+        challengeHomeView.addActionHeart(target, action: action)
+    }
+    
 }
 
 
@@ -139,7 +147,7 @@ struct ChallengeHomeCell_Preview: PreviewProvider {
 
         UIViewPreview {
             let view = ChallengeHomeCell()
-            view.setUp(type: .financialTech, isReward: true, date: "1주", ranking: "1위", title: "만보걷기", status: "종료", people: "5명 모집중", isPublic: true, dDay: "D-12")
+            view.setUp(type: .financialTech, isReward: true, date: "1주", ranking: "1위", title: "만보걷기", status: "종료", people: "5명 모집중", isPublic: true, dDay: "D-12", isLike: true)
             return view
         }
         .previewLayout(.fixed(width: 150, height: 192))

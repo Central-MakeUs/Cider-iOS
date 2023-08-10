@@ -20,7 +20,7 @@ enum CiderAPI {
     case getAllChallenge(filter: String)
     case getPublicChallenge(filter: String)
     case getHomeFeed
-    case postLikeChallenge(challengeId: Int)
+    case postLikeChallenge(parameters: [String: Any])
     case deleteLikeChallenge(challengeId: String)
 }
 
@@ -89,7 +89,8 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
         switch self {
         case .signInApple(let parameters),
              .signInKakao(let parameters),
-             .patchOnboarding(let parameters):
+             .patchOnboarding(let parameters),
+             .postLikeChallenge(let parameters):
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         default:
             return .requestPlain
