@@ -49,7 +49,7 @@ private extension WritingViewController {
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 56),
-            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -56)
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -66)
         ])
     }
     

@@ -35,6 +35,7 @@ final class CertifyViewController: UIViewController {
     private let viewModel: ChallengeOpenViewModel
     private var cancellables = Set<AnyCancellable>()
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
+    private var certifyImage: UIImage?
     
     init(viewModel: ChallengeOpenViewModel) {
         self.viewModel = viewModel
@@ -110,7 +111,7 @@ private extension CertifyViewController {
             }
             cell.challengeSelectionView.setTextFieltText("만보 걷기")
             cell.addTapGestureCameraView(self, action: #selector(self.didTapCameraView))
-           
+            cell.setCameraImage(self.certifyImage)
 //            cell.challengeTitleTextFieldView.textPublisher()
 //                .receive(on: DispatchQueue.main)
 //                .sink { [weak self] name in
@@ -192,7 +193,7 @@ extension CertifyViewController: UIImagePickerControllerDelegate, UINavigationCo
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            // TODO: image처리 
+            certifyImage = image
         }
         picker.dismiss(animated: true, completion: nil)
         applySnapshot()
