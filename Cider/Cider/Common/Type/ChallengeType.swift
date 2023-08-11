@@ -123,13 +123,13 @@ extension ChallengeType {
     var bannerImageName: String {
         switch self {
         case .financialTech:
-            return "financialTechBanner"
+            return "home_challengedetail"
         case .moneySaving:
-            return "moneySavingBanner"
+            return "pig_challengedetail"
         case .moneyManagement:
-            return "moneyManagementBanner"
+            return "graph_challengedetail"
         case .financialLearning:
-            return "financialLearningBanner"
+            return "card_challengedetail"
         }
     }
     
