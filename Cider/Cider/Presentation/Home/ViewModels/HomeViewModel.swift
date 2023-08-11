@@ -32,7 +32,7 @@ final class HomeViewModel: ViewModelType {
         self.usecase = usecase
     }
     
-    func viewDidload() {
+    func viewWillAppear() {
         reload()
     }
     

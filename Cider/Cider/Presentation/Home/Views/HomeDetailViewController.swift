@@ -163,6 +163,8 @@ private extension HomeDetailViewController {
                     dDay: "D-\(challenge.recruitLeft)",
                     isLike: challenge.isLike
                 )
+                cell.challengeId = challenge.challengeId
+                cell.addActionHeart(self, action: #selector(self.didTapChallengeHeart))
                 return cell
                 
                 
@@ -299,6 +301,24 @@ private extension HomeDetailViewController {
     
     @objc func didTapSorting(_ sender: Any?) {
         presentSortingViewController()
+    }
+    
+    @objc func didTapChallengeHeart(_ sender: UIButton) {
+        let contentView = sender.superview?.superview
+       
+        guard let cell = contentView?.superview as? UICollectionViewCell else {
+            return
+        }
+        
+        guard let indexPath = collectionView.indexPath(for: cell) else {
+            return
+        }
+        let section = Section(rawValue: indexPath.section)
+        let challengeId = viewModel.challenges[indexPath.row].challengeId
+        let isLike = viewModel.challenges[indexPath.row].isLike
+        viewModel.challenges[indexPath.row].isLike.toggle()
+        viewModel.likeChallenge(isLike: isLike, challengeId: challengeId)
+        reloadHeader()
     }
     
     func presentSortingViewController() {
