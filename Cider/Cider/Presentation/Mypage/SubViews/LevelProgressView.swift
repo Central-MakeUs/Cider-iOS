@@ -10,7 +10,7 @@ import UIKit
 
 final class LevelProgressView: UIView {
 
-    let progressWidth = UIScreen.main.bounds.width - 48 - 8 - 53
+    let progressWidth = UIScreen.main.bounds.width - 87
 
     private lazy var progressView: UIProgressView = {
         let progressView = UIProgressView()
@@ -60,7 +60,7 @@ final class LevelProgressView: UIView {
             progressView.widthAnchor.constraint(equalToConstant: progressWidth),
             progressView.heightAnchor.constraint(equalToConstant: 6),
             levelLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            levelLabel.trailingAnchor.constraint(equalTo: progressView.leadingAnchor, constant: -8),
+            levelLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             percentLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
 
@@ -81,10 +81,10 @@ extension LevelProgressView {
                 return 0
 
             case 0.9...1:
-                return self.progressWidth*CGFloat(percent) - 37
+                return self.progressWidth*CGFloat(percent)
 
             default:
-                return self.progressWidth*CGFloat(percent) - 37/2
+                return self.progressWidth*CGFloat(percent) + 37/2
             }
         }
 
@@ -109,7 +109,7 @@ struct LevelProgressView_Preview: PreviewProvider {
 
         UIViewPreview {
             let view = LevelProgressView()
-            view.setUp(percent: 0.4, level: "Lv 5")
+            view.setUp(percent: 0.2, level: "Lv 5")
             return view
         }
         .previewLayout(.sizeThatFits)

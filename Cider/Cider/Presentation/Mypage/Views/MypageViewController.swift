@@ -12,7 +12,7 @@ final class MypageViewController: UIViewController {
     private lazy var roundView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-        view.layer.cornerRadius = 8
+        view.layer.cornerRadius = 12
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         return view
     }()
@@ -81,7 +81,7 @@ private extension MypageViewController {
             separtorView.heightAnchor.constraint(equalToConstant: 8),
             separtorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             separtorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            separtorView.topAnchor.constraint(equalTo: mypageInfoView.bottomAnchor),
+            separtorView.topAnchor.constraint(equalTo: mypageInfoView.bottomAnchor, constant: 3),
             levelView.topAnchor.constraint(equalTo: separtorView.bottomAnchor, constant: 24),
             levelView.leadingAnchor.constraint(equalTo: roundView.leadingAnchor),
             levelView.trailingAnchor.constraint(equalTo: roundView.trailingAnchor),
