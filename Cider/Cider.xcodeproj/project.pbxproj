@@ -135,6 +135,10 @@
 		FA6100302A590431002175CE /* ChallengeSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA61002F2A590431002175CE /* ChallengeSelectionViewModel.swift */; };
 		FA6100322A59AD8D002175CE /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6100312A59AD8D002175CE /* GradientView.swift */; };
 		FA6100342A59BAEA002175CE /* ServiceAgreeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6100332A59BAEA002175CE /* ServiceAgreeViewModel.swift */; };
+		FA619D592A87C928000BDDA5 /* MypageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA619D582A87C928000BDDA5 /* MypageViewModel.swift */; };
+		FA619D5B2A87C9A1000BDDA5 /* MypageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA619D5A2A87C9A1000BDDA5 /* MypageRepository.swift */; };
+		FA619D5D2A87CB3A000BDDA5 /* MypageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA619D5C2A87CB3A000BDDA5 /* MypageResponse.swift */; };
+		FA619D5F2A87CEDC000BDDA5 /* MypageUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA619D5E2A87CEDC000BDDA5 /* MypageUsecase.swift */; };
 		FA6AE8B02A6045AB00512EE1 /* ChallengeOpenSelectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AE8AF2A6045AB00512EE1 /* ChallengeOpenSelectionType.swift */; };
 		FA6AE8B22A6047CB00512EE1 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AE8B12A6047CB00512EE1 /* UITextView+Extension.swift */; };
 		FA6C21672A5A4DD3008A9ADD /* CiderTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C21662A5A4DD3008A9ADD /* CiderTextFieldView.swift */; };
@@ -288,6 +292,10 @@
 		FA61002F2A590431002175CE /* ChallengeSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeSelectionViewModel.swift; sourceTree = "<group>"; };
 		FA6100312A59AD8D002175CE /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		FA6100332A59BAEA002175CE /* ServiceAgreeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAgreeViewModel.swift; sourceTree = "<group>"; };
+		FA619D582A87C928000BDDA5 /* MypageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewModel.swift; sourceTree = "<group>"; };
+		FA619D5A2A87C9A1000BDDA5 /* MypageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageRepository.swift; sourceTree = "<group>"; };
+		FA619D5C2A87CB3A000BDDA5 /* MypageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageResponse.swift; sourceTree = "<group>"; };
+		FA619D5E2A87CEDC000BDDA5 /* MypageUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageUsecase.swift; sourceTree = "<group>"; };
 		FA6AE8AF2A6045AB00512EE1 /* ChallengeOpenSelectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOpenSelectionType.swift; sourceTree = "<group>"; };
 		FA6AE8B12A6047CB00512EE1 /* UITextView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
 		FA6C21662A5A4DD3008A9ADD /* CiderTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderTextFieldView.swift; sourceTree = "<group>"; };
@@ -387,6 +395,7 @@
 		FA313A112A85566D006DBE69 /* Mypage */ = {
 			isa = PBXGroup;
 			children = (
+				FA619D572A87C915000BDDA5 /* ViewModels */,
 				FA313A152A855684006DBE69 /* Views */,
 				FA313A142A85567D006DBE69 /* SubViews */,
 			);
@@ -630,6 +639,7 @@
 				FA3C43242A62ECBA009E820B /* OnboardingUsecase.swift */,
 				FA59117C2A7D41EE0022611B /* HomeUsecase.swift */,
 				FA5911822A7D5F350022611B /* HomeDetailUsecase.swift */,
+				FA619D5E2A87CEDC000BDDA5 /* MypageUsecase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -743,6 +753,7 @@
 				FA59117E2A7D540F0022611B /* ChallengeResponse.swift */,
 				FA70AF962A82123D003A2395 /* FeedResponse.swift */,
 				FA5700402A836F3A00CFECBC /* LikeResponse.swift */,
+				FA619D5C2A87CB3A000BDDA5 /* MypageResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -755,6 +766,7 @@
 				FA3C43272A62ED37009E820B /* OnboardingRepository.swift */,
 				FA59117A2A7D40FE0022611B /* HomeRepository.swift */,
 				FA5911842A7D5F710022611B /* HomeDetailRepository.swift */,
+				FA619D5A2A87C9A1000BDDA5 /* MypageRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -814,6 +826,14 @@
 			children = (
 				FA5911762A7D3CCC0022611B /* HomeViewModel.swift */,
 				FA5911862A7D5FF50022611B /* HomeDetailViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		FA619D572A87C915000BDDA5 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FA619D582A87C928000BDDA5 /* MypageViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1020,12 +1040,14 @@
 				FA3C43252A62ECBA009E820B /* OnboardingUsecase.swift in Sources */,
 				FA4280792A736C5900828F93 /* ChallengeDetailMenuCell.swift in Sources */,
 				FA758AC82A5EF418003E2F07 /* StarTitleLabel.swift in Sources */,
+				FA619D5D2A87CB3A000BDDA5 /* MypageResponse.swift in Sources */,
 				FAD6E3D62A64F2F5002C8007 /* WritingType.swift in Sources */,
 				FA32B83A2A6A6C2D0086497D /* HomeHeaderView.swift in Sources */,
 				FA4DF29C2A6C1F5D007F3035 /* CategoryHeaderView.swift in Sources */,
 				FA32B8382A6A67EA0086497D /* Item.swift in Sources */,
 				FA758ACA2A5EF528003E2F07 /* ChallengeOpenSelectionView.swift in Sources */,
 				FA57AF6B2A5D73F8008A5991 /* ChallengeOpenCell.swift in Sources */,
+				FA619D5F2A87CEDC000BDDA5 /* MypageUsecase.swift in Sources */,
 				FA3FC8032A6E95540022CA3A /* HomeDetailType.swift in Sources */,
 				FA2A06502A68DF5B00AC649F /* PrecautionViewModel.swift in Sources */,
 				FA57AF752A5E9DED008A5991 /* CiderTextView.swift in Sources */,
@@ -1109,6 +1131,7 @@
 				FA3C43282A62ED37009E820B /* OnboardingRepository.swift in Sources */,
 				FA3FC7FC2A6E93B70022CA3A /* SortingHeaderView.swift in Sources */,
 				FA4A24BD2A7012B90078A86C /* MyChallengeViewController.swift in Sources */,
+				FA619D5B2A87C9A1000BDDA5 /* MypageRepository.swift in Sources */,
 				FA5700412A836F3A00CFECBC /* LikeResponse.swift in Sources */,
 				FA70AF972A82123D003A2395 /* FeedResponse.swift in Sources */,
 				FA42808A2A73DC0D00828F93 /* ChallengeInfoCell.swift in Sources */,
@@ -1120,6 +1143,7 @@
 				FAD6E3D82A64F9B5002C8007 /* ChallengeTypeViewController.swift in Sources */,
 				FA3FC8002A6E94690022CA3A /* HomeDetailInfoCell.swift in Sources */,
 				FA348ED02A61170800EA3D04 /* NicknameViewModel.swift in Sources */,
+				FA619D592A87C928000BDDA5 /* MypageViewModel.swift in Sources */,
 				FA5911772A7D3CCC0022611B /* HomeViewModel.swift in Sources */,
 				FA3AE4072A57D2970078A4DF /* GenderAndBirthdayViewModel.swift in Sources */,
 				FA4280672A70F17800828F93 /* ReviewCell.swift in Sources */,
@@ -1272,8 +1296,8 @@
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "챌린지 인증을 위해 앨범 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1283,9 +1307,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = LimYoungSun.Cider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1305,8 +1332,8 @@
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "챌린지 인증을 위해 앨범 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1316,9 +1343,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = LimYoungSun.Cider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
