@@ -63,7 +63,8 @@ private extension HomeViewModel {
             let response = try await usecase.getHomeChallenge()
             popularChallanges = response.popularChallengeResponseDto
             publicChallanges = response.officialChallengeResponseDto
-            
+            popularItems = []
+            publicItems = []
             guard let popularChallanges,
                   let publicChallanges else {
                 return
