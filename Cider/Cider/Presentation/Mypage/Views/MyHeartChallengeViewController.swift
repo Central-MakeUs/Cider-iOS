@@ -88,9 +88,11 @@ private extension MyHeartChallengeViewController {
         }
         dataSource?.applySnapshotUsingReloadData(snapshot)
     }
-    
+
     func setNavigationBar() {
-       
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationItem.title = "관심 챌린지"
+        setNavigationBar(backgroundColor: .white, tintColor: .black)
     }
     
     func setUpDataSource() {
@@ -170,7 +172,7 @@ private extension MyHeartChallengeViewController {
         group.interItemSpacing = .fixed(12)
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = .init(top: 0, leading: 24, bottom: 24, trailing: 24)
+        section.contentInsets = .init(top: 12, leading: 24, bottom: 24, trailing: 24)
         section.interGroupSpacing = 0
         return section
     }

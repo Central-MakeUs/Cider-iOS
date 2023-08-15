@@ -21,11 +21,6 @@ final class MyHeartChallengeViewModel: ViewModelType {
     var currentState: CurrentValueSubject<ViewModelState?, Never> = .init(nil)
     var challenges: [ChallengeResponseDto] = []
     var items: [Item] = []
-    var sortingType: SortingType = .latest {
-        didSet {
-            loadData()
-        }
-    }
     
     init(usecase: MyHeartChallengeUsecase) {
         self.usecase = usecase
@@ -63,6 +58,7 @@ private extension MyHeartChallengeViewModel {
         Task {
             let response = try await usecase.deleteLikeChallenge(chllangeId: challengeId)
             print(response)
+            loadData()
         }
     }
     
@@ -70,6 +66,7 @@ private extension MyHeartChallengeViewModel {
         Task {
             let response = try await usecase.postLikeChallenge(chllangeId: challengeId)
             print(response)
+            loadData()
         }
     }
     
