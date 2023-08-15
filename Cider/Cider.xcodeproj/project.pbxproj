@@ -142,6 +142,7 @@
 		FA619D612A8B9CD3000BDDA5 /* MyCertifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA619D602A8B9CD3000BDDA5 /* MyCertifyViewController.swift */; };
 		FA619D642A8B9CFE000BDDA5 /* MyCertifyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA619D632A8B9CFE000BDDA5 /* MyCertifyHeaderView.swift */; };
 		FA619D662A8BA059000BDDA5 /* MyCertifyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA619D652A8BA059000BDDA5 /* MyCertifyViewModel.swift */; };
+		FA619D682A8BBD1D000BDDA5 /* MyHeartChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA619D672A8BBD1D000BDDA5 /* MyHeartChallengeViewController.swift */; };
 		FA6AE8B02A6045AB00512EE1 /* ChallengeOpenSelectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AE8AF2A6045AB00512EE1 /* ChallengeOpenSelectionType.swift */; };
 		FA6AE8B22A6047CB00512EE1 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AE8B12A6047CB00512EE1 /* UITextView+Extension.swift */; };
 		FA6C21672A5A4DD3008A9ADD /* CiderTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C21662A5A4DD3008A9ADD /* CiderTextFieldView.swift */; };
@@ -302,6 +303,7 @@
 		FA619D602A8B9CD3000BDDA5 /* MyCertifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCertifyViewController.swift; sourceTree = "<group>"; };
 		FA619D632A8B9CFE000BDDA5 /* MyCertifyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCertifyHeaderView.swift; sourceTree = "<group>"; };
 		FA619D652A8BA059000BDDA5 /* MyCertifyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCertifyViewModel.swift; sourceTree = "<group>"; };
+		FA619D672A8BBD1D000BDDA5 /* MyHeartChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHeartChallengeViewController.swift; sourceTree = "<group>"; };
 		FA6AE8AF2A6045AB00512EE1 /* ChallengeOpenSelectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOpenSelectionType.swift; sourceTree = "<group>"; };
 		FA6AE8B12A6047CB00512EE1 /* UITextView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
 		FA6C21662A5A4DD3008A9ADD /* CiderTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderTextFieldView.swift; sourceTree = "<group>"; };
@@ -424,6 +426,7 @@
 			children = (
 				FA313A1A2A855720006DBE69 /* MypageViewController.swift */,
 				FA619D602A8B9CD3000BDDA5 /* MyCertifyViewController.swift */,
+				FA619D672A8BBD1D000BDDA5 /* MyHeartChallengeViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1093,6 +1096,7 @@
 				FA4DDB8E2A4D3178002EDEAD /* ServiceAgreeViewController.swift in Sources */,
 				FA8CA60B2A46D322005A6709 /* LoginViewController.swift in Sources */,
 				FA4A24BB2A7004540078A86C /* OngoingCell.swift in Sources */,
+				FA619D682A8BBD1D000BDDA5 /* MyHeartChallengeViewController.swift in Sources */,
 				FA4DDB922A4D5810002EDEAD /* ServiceAgreeCellData.swift in Sources */,
 				FA5911872A7D5FF50022611B /* HomeDetailViewModel.swift in Sources */,
 				FA4DDB952A4D5A46002EDEAD /* ServiceAgreeCell.swift in Sources */,
