@@ -22,11 +22,11 @@ class MyHeartChallengeViewController: UIViewController {
         case challenge = 0
     }
     
-    private let viewModel: HomeViewModel
+    private let viewModel: MyHeartChallengeViewModel
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     private var cancellables = Set<AnyCancellable>()
     
-    init(viewModel: HomeViewModel) {
+    init(viewModel: MyHeartChallengeViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -38,12 +38,12 @@ class MyHeartChallengeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
+        viewModel.viewDidload()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNavigationBar()
-        viewModel.viewWillAppear()
     }
     
 }
@@ -104,22 +104,22 @@ private extension MyHeartChallengeViewController {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeHomeCell.identifier, for: indexPath) as? ChallengeHomeCell else {
                     return UICollectionViewCell()
                 }
-                if let challenge = self.viewModel.publicChallanges?[indexPath.row] {
-                    cell.setUp(
-                        type: challenge.interestField.convertChallengeType(),
-                        isReward: challenge.isReward,
-                        date: "\(challenge.challengePeriod)주",
-                        ranking: nil,
-                        title: challenge.challengeName,
-                        status: challenge.challengeStatus.convertStatusKorean(),
-                        people: "\(challenge.participateNum)명 모집중",
-                        isPublic: challenge.isOfficial,
-                        dDay: "D-\(challenge.recruitLeft)",
-                        isLike: challenge.isLike
-                    )
-                    cell.challengeId = challenge.challengeId
-                    cell.addActionHeart(self, action: #selector(self.didTapChallengeHeart))
-                }
+                let challenge = self.viewModel.challenges[indexPath.row]
+                cell.setUp(
+                    type: challenge.interestField.convertChallengeType(),
+                    isReward: challenge.isReward,
+                    date: "\(challenge.challengePeriod)주",
+                    ranking: nil,
+                    title: challenge.challengeName,
+                    status: challenge.challengeStatus.convertStatusKorean(),
+                    people: "\(challenge.participateNum)명 모집중",
+                    isPublic: challenge.isOfficial,
+                    dDay: "D-\(challenge.recruitLeft)",
+                    isLike: challenge.isLike
+                )
+                cell.challengeId = challenge.challengeId
+                cell.addActionHeart(self, action: #selector(self.didTapChallengeHeart))
+                
                 return cell
                 
             case .none:
@@ -131,7 +131,7 @@ private extension MyHeartChallengeViewController {
     func applySnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections([.challenge])
-        snapshot.appendItems(viewModel.popularItems)
+        snapshot.appendItems(viewModel.items)
         dataSource?.apply(snapshot)
     }
     
@@ -191,9 +191,10 @@ private extension MyHeartChallengeViewController {
         guard let indexPath = collectionView.indexPath(for: cell) else {
             return
         }
-        challengeId = viewModel.publicChallanges?[indexPath.row].challengeId
-        isLike = viewModel.publicChallanges?[indexPath.row].isLike
-        viewModel.publicChallanges?[indexPath.row].isLike.toggle()
+        let challenge = viewModel.challenges[indexPath.row]
+        challengeId = challenge.challengeId
+        isLike = challenge.isLike
+        viewModel.challenges[indexPath.row].isLike.toggle()
         guard let challengeId,
               let isLike else {
             return

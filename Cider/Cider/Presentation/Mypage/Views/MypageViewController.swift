@@ -136,6 +136,7 @@ private extension MypageViewController {
     
     func setTapGesture() {
         mypageInfoView.certifyCountView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapMyCertifty)))
+        mypageInfoView.heartCountView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapMyHeartChallenge)))
     }
 
 }
@@ -143,13 +144,35 @@ private extension MypageViewController {
 private extension MypageViewController {
     
     func pushMyCertifyViewController() {
-        let viewController = MyCertifyViewController(viewModel: MyCertifyViewModel(usecase: DefaultHomeUsecase(repository: DefaultHomeRepository())))
+        let viewController = MyCertifyViewController(
+            viewModel: MyCertifyViewModel(
+                usecase: DefaultHomeUsecase(
+                    repository: DefaultHomeRepository()
+                )
+            )
+        )
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func pushMyHeartChallengeViewController() {
+        let viewController = MyHeartChallengeViewController(
+            viewModel: MyHeartChallengeViewModel(
+                usecase: DefaultMyHeartChallengeUsecase(
+                    repository: DefaultMyHeartChallengeRepository()
+                )
+            )
+        )
         viewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     @objc func didTapMyCertifty(_ sender: Any?) {
         pushMyCertifyViewController()
+    }
+    
+    @objc func didTapMyHeartChallenge(_ sender: Any?) {
+        pushMyHeartChallengeViewController()
     }
     
 }
