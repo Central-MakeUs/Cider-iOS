@@ -68,7 +68,7 @@ final class MypageInfoView: UIView {
         return button
     }()
 
-    private lazy var myChallengeButton: UIButton = {
+    lazy var myChallengeButton: UIButton = {
         let button = UIButton()
         button.setTitle("내 챌린지 현황", for: .normal)
         button.titleLabel?.font = CustomFont.PretendardBold(size: .base).font

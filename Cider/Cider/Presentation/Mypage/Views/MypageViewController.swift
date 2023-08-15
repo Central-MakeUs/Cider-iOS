@@ -137,6 +137,7 @@ private extension MypageViewController {
     func setTapGesture() {
         mypageInfoView.certifyCountView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapMyCertifty)))
         mypageInfoView.heartCountView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapMyHeartChallenge)))
+        mypageInfoView.myChallengeButton.addTarget(self, action: #selector(didTapMyChallenge), for: .touchUpInside)
     }
 
 }
@@ -167,12 +168,22 @@ private extension MypageViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
+    func pushMyChallengeViewController() {
+        let viewController = MyChallengeViewController()
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
     @objc func didTapMyCertifty(_ sender: Any?) {
         pushMyCertifyViewController()
     }
     
     @objc func didTapMyHeartChallenge(_ sender: Any?) {
         pushMyHeartChallengeViewController()
+    }
+    
+    @objc func didTapMyChallenge(_ sender: Any?) {
+        pushMyChallengeViewController()
     }
     
 }
