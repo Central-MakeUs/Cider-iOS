@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import Combine
 
 final class MypageViewController: UIViewController {
+
+    private var cancellables: Set<AnyCancellable> = .init()
+    private let viewModel: MypageViewModel
 
     private lazy var roundView: UIView = {
         let view = UIView()
@@ -32,9 +36,19 @@ final class MypageViewController: UIViewController {
     private let mypageInfoView = MypageInfoView()
     private let levelView = LevelView()
 
+    init(viewModel: MypageViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
+        viewModel.viewDidLoad()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -48,7 +62,19 @@ private extension MypageViewController {
 
     func setUp() {
         configure()
-        setData()
+        bind()
+    }
+    
+    func bind() {
+        viewModel.state.receive(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                switch state {
+                case .sendData(let data):
+                    print(data)
+                    self?.setData(data)
+                }
+            }
+            .store(in: &cancellables)
     }
 
     func setNavigationBar() {
@@ -89,22 +115,22 @@ private extension MypageViewController {
         ])
     }
 
-    func setData() {
+    func setData(_ data: MypageResponse) {
         mypageInfoView.setUp(
-            profileURL: "https://cider-bucket.s3.ap-northeast-2.amazonaws.com/profile/30_6f9e33e8-9f25-4849-8abb-229e67455f9c_Cider5.jpeg",
-            nickname: "혁신적인주식호랑이",
-            levelText: "Lv 5 엘리트 챌린저",
-            particiationText: "0번째 챌린지",
-            levelCount: "Lv 1",
-            certifyCount: "5",
-            heartCount: "11"
+            profileURL: data.simpleMember.profilePath,
+            nickname: data.simpleMember.memberName,
+            levelText: data.simpleMember.memberLevelName,
+            particiationText: "\(data.simpleMember.participateChallengeNum)번째 챌린지",
+            levelCount: "Lv \(data.memberActivityInfo.myLevel)",
+            certifyCount: String(data.memberActivityInfo.myCertifyNum),
+            heartCount: String(data.memberActivityInfo.myLikeChallengeNum)
         )
         levelView.setUp(
-            percent: 0.2,
-            experience: "남은 경험치 234",
-            level: "Lv 1",
-            currentLevel: "LV 5 능숙한 챌린저",
-            nextLevel: "LV 6 대단한 챌린저"
+            percent: Float(data.memberLevelInfo.levelPercent)*0.01,
+            experience: "남은 경험치 \(data.memberLevelInfo.experienceLeft)",
+            level: "Lv \(data.memberLevelInfo.myLevel)",
+            currentLevel: "LV \(data.memberLevelInfo.currentLevel.level) \(data.memberLevelInfo.currentLevel.levelName)",
+            nextLevel: "LV \(data.memberLevelInfo.nextLevel.level) \(data.memberLevelInfo.nextLevel.levelName)"
         )
     }
 
@@ -119,7 +145,13 @@ struct MypageViewController_Preview: PreviewProvider {
 
     static var previews: some View {
         ForEach(devices, id: \.self) { deviceName in
-            MypageViewController()
+            MypageViewController(
+                viewModel: MypageViewModel(
+                    usecase: DefaultMypageUsecase(
+                        repository: DefaultMypageRepository()
+                    )
+                )
+            )
                 .toPreview()
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)

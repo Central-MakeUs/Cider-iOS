@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MypageUsecase {
-    func getMypage(filter: String) async throws -> MypageResponse
+    func getMypage() async throws -> MypageResponse
 }
 
 final class DefaultMypageUsecase: MypageUsecase {
@@ -19,7 +19,7 @@ final class DefaultMypageUsecase: MypageUsecase {
         self.repository = repository
     }
     
-    func getMypage(filter: String) async throws -> MypageResponse {
+    func getMypage() async throws -> MypageResponse {
         let response = try await repository.getMypage()
         return response
     }

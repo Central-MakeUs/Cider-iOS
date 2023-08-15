@@ -11,17 +11,34 @@ import Combine
 final class MypageViewModel: ViewModelType {
     
     enum ViewModelState {
-        case applySnapshot(_ isSuccess: Bool)
+        case sendData(_ data: MypageResponse)
     }
     
-    private var usecase: HomeUsecase
+    private var usecase: MypageUsecase
     var state: AnyPublisher<ViewModelState, Never> { currentState.compactMap { $0 }.eraseToAnyPublisher() }
     
     var currentState: CurrentValueSubject<ViewModelState?, Never> = .init(nil)
     private var cancellables: Set<AnyCancellable> = .init()
 
-    init(usecase: HomeUsecase) {
+    init(usecase: MypageUsecase) {
         self.usecase = usecase
+    }
+    
+    func viewDidLoad() {
+        getMypage()
+    }
+    
+}
+
+private extension MypageViewModel {
+    
+    func getMypage() {
+        Task {
+            do {
+                let response = try await usecase.getMypage()
+                currentState.send(.sendData(response))
+            }
+        }
     }
     
 }
