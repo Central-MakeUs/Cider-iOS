@@ -36,6 +36,10 @@ final class HomeDetailViewModel: ViewModelType {
     func viewDidload() {
         loadData()
     }
+    
+    func likeChallenge(isLike: Bool, challengeId: Int) {
+        isLike ? deleteLikeChallenge(challengeId: challengeId) : postLikeChallenge(challengeId: challengeId)
+    }
    
 }
 
@@ -85,6 +89,20 @@ private extension HomeDetailViewModel {
                 items.append(Item())
             }
             currentState.send(.applySnapshot(true))
+        }
+    }
+    
+    func deleteLikeChallenge(challengeId: Int) {
+        Task {
+            let response = try await usecase.deleteLikeChallenge(chllangeId: challengeId)
+            print(response)
+        }
+    }
+    
+    func postLikeChallenge(challengeId: Int) {
+        Task {
+            let response = try await usecase.postLikeChallenge(chllangeId: challengeId)
+            print(response)
         }
     }
     

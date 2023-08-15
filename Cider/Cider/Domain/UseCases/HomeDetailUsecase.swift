@@ -11,6 +11,8 @@ protocol HomeDetailUsecase {
     func getPopularChallenge(filter: String) async throws -> ChallengeResponse
     func getAllChallenge(filter: String) async throws -> ChallengeResponse
     func getPublicChallenge(filter: String) async throws -> ChallengeResponse
+    func postLikeChallenge(chllangeId: Int) async throws -> LikeResponse
+    func deleteLikeChallenge(chllangeId: Int) async throws -> LikeResponse
 }
 
 final class DefaultHomeDetailUsecase: HomeDetailUsecase {
@@ -33,6 +35,16 @@ final class DefaultHomeDetailUsecase: HomeDetailUsecase {
     
     func getPublicChallenge(filter: String) async throws -> ChallengeResponse {
         let response = try await repository.getPublicChallenge(filter: filter)
+        return response
+    }
+    
+    func postLikeChallenge(chllangeId: Int) async throws -> LikeResponse {
+        let response = try await repository.postLikeChallenge(chllangeId: chllangeId)
+        return response
+    }
+    
+    func deleteLikeChallenge(chllangeId: Int) async throws -> LikeResponse {
+        let response = try await repository.deleteLikeChallenge(chllangeId: chllangeId)
         return response
     }
     

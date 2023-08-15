@@ -62,12 +62,12 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-        viewModel.viewDidload()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNavigationBar()
+        viewModel.viewWillAppear()
     }
     
 }
@@ -588,13 +588,19 @@ extension HomeViewController: UICollectionViewDelegate {
         let section = Section(rawValue: indexPath.section)
         switch section {
         case .popluarChallenge:
-            pushChallengeDetailViewController(.financialLearning)
+            guard let challengeType = viewModel.popularChallanges?[indexPath.row].interestField.convertChallengeType() else {
+                return
+            }
+            pushChallengeDetailViewController(challengeType)
             
         case .publicChallenge:
-            pushChallengeDetailViewController(.moneyManagement)
+            guard let challengeType = viewModel.publicChallanges?[indexPath.row].interestField.convertChallengeType() else {
+                return
+            }
+            pushChallengeDetailViewController(challengeType)
             
         case .category:
-            pushChallengeDetailViewController(.financialTech)
+            pushChallengeDetailViewController(viewModel.categoryChallenges[indexPath.row].interestField.convertChallengeType())
             
         default:
             break

@@ -172,6 +172,7 @@ private extension ChallengeDetailViewController {
     }
     
     func setNavigationBar() {
+        self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.navigationBar.scrollEdgeAppearance?.shadowColor = .clear
         self.navigationController?.navigationBar.standardAppearance.shadowColor = .clear
         setNavigationBar(backgroundColor: challengeType.color, tintColor: .white)
