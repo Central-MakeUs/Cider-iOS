@@ -71,16 +71,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "20AD5247-792A-45CA-BFD8-1F137ED29104"
+            uuid = "C6B390BB-6BB1-4E71-B5BD-176819AE5C72"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Cider/Presentation/Mypage/Views/MypageViewController.swift"
+            filePath = "Cider/Presentation/Mypage/ViewModels/MyCertifyViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "bind()"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "getHomeFeed()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

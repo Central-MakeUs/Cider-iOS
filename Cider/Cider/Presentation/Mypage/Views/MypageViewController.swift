@@ -63,6 +63,7 @@ private extension MypageViewController {
     func setUp() {
         configure()
         bind()
+        setTapGesture()
     }
     
     func bind() {
@@ -70,7 +71,6 @@ private extension MypageViewController {
             .sink { [weak self] state in
                 switch state {
                 case .sendData(let data):
-                    print(data)
                     self?.setData(data)
                 }
             }
@@ -133,7 +133,25 @@ private extension MypageViewController {
             nextLevel: "LV \(data.memberLevelInfo.nextLevel.level) \(data.memberLevelInfo.nextLevel.levelName)"
         )
     }
+    
+    func setTapGesture() {
+        mypageInfoView.certifyCountView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapMyCertifty)))
+    }
 
+}
+
+private extension MypageViewController {
+    
+    func pushMyCertifyViewController() {
+        let viewController = MyCertifyViewController(viewModel: MyCertifyViewModel(usecase: DefaultHomeUsecase(repository: DefaultHomeRepository())))
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    @objc func didTapMyCertifty(_ sender: Any?) {
+        pushMyCertifyViewController()
+    }
+    
 }
 
 #if DEBUG

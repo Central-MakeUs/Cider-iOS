@@ -47,17 +47,17 @@ final class MypageInfoView: UIView {
         return view
     }()
 
-    private lazy var levelCountView: MypageCountView = {
+    lazy var levelCountView: MypageCountView = {
         let view = MypageCountView(type: .level)
         return view
     }()
 
-    private lazy var certifyCountView: MypageCountView = {
+    lazy var certifyCountView: MypageCountView = {
         let view = MypageCountView(type: .certify)
         return view
     }()
 
-    private lazy var heartCountView: MypageCountView = {
+    lazy var heartCountView: MypageCountView = {
         let view = MypageCountView(type: .heart)
         return view
     }()
