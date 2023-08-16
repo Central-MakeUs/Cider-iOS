@@ -106,7 +106,7 @@ final class MyLevelView: UIView {
     private let level3View = LevelUpView(level: "Lv 3", levelTitle: "능숙한 챌린저", experience: "2000 - 2999")
     private let level4View = LevelUpView(level: "Lv 4", levelTitle: "열정적인 챌린저", experience: "3000 - 3999")
     private let level5View = LevelUpView(level: "Lv 5", levelTitle: "엘리트 챌린저", experience: "4000 - 4999")
-    private let level6View = LevelUpView(level: "Lv 6", levelTitle: "엘리트 챌린저", experience: "경험치 5000 -")
+    private let level6View = LevelUpView(level: "Lv 6", levelTitle: "챌린지 마스터", experience: "경험치 5000 -")
     
     private lazy var levelStackView: UIStackView = {
         let stackView = UIStackView()

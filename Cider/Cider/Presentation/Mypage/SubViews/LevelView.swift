@@ -13,8 +13,6 @@ final class LevelView: UIView {
         let label = UILabel()
         label.font = CustomFont.PretendardBold(size: .xl2).font
         label.textColor = .custom.text
-        //TODO: 퍼센트별 분기 처리
-        label.text = "좋은 시작이에요"
         return label
     }()
 
@@ -109,6 +107,23 @@ final class LevelView: UIView {
             nextTextLabel.centerXAnchor.constraint(equalTo: nextLevelLabel.centerXAnchor)
         ])
     }
+    
+    private func getTitleMessage(_ percent: Int) -> String {
+        switch percent {
+        case 0...20:
+            return "좋은 시작이에요!"
+        case 21...40:
+            return "꾸준히 발전하고 있어요. 계속 나아가세요!"
+        case 41...60:
+            return "잘하고 있어요. 힘내세요!"
+        case 61...80:
+            return "거의 다 왔어요. 조금만 더 화이팅!"
+        case 81...100:
+            return "마지막 구간이에요. 한 걸음만 더 화이팅!"
+        default:
+            return ""
+        }
+    }
 
 }
 
@@ -125,6 +140,7 @@ extension LevelView {
         experienceLabel.text = experience
         currentLevelLabel.text = currentLevel
         nextLevelLabel.text = nextLevel
+        titleLabel.text = getTitleMessage(Int(percent*100))
     }
 
 }
@@ -140,7 +156,7 @@ struct LevelView_Preview: PreviewProvider {
         UIViewPreview {
             let view = LevelView()
             view.setUp(
-                percent: 0.2,
+                percent: 0.5,
                 experience: "남은 경험치 234",
                 level: "Lv 1",
                 currentLevel: "LV 5 능숙한 챌린저",
