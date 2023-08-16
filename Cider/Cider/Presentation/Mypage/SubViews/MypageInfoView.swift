@@ -47,17 +47,17 @@ final class MypageInfoView: UIView {
         return view
     }()
 
-    private lazy var levelCountView: MypageCountView = {
+    lazy var levelCountView: MypageCountView = {
         let view = MypageCountView(type: .level)
         return view
     }()
 
-    private lazy var certifyCountView: MypageCountView = {
+    lazy var certifyCountView: MypageCountView = {
         let view = MypageCountView(type: .certify)
         return view
     }()
 
-    private lazy var heartCountView: MypageCountView = {
+    lazy var heartCountView: MypageCountView = {
         let view = MypageCountView(type: .heart)
         return view
     }()
@@ -68,7 +68,7 @@ final class MypageInfoView: UIView {
         return button
     }()
 
-    private lazy var myChallengeButton: UIButton = {
+    lazy var myChallengeButton: UIButton = {
         let button = UIButton()
         button.setTitle("내 챌린지 현황", for: .normal)
         button.titleLabel?.font = CustomFont.PretendardBold(size: .base).font
@@ -97,7 +97,7 @@ final class MypageInfoView: UIView {
             nicknameLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 8),
             levelLabel.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor),
             levelLabel.leadingAnchor.constraint(equalTo: nicknameLabel.leadingAnchor),
-            barView.heightAnchor.constraint(equalToConstant: 10),
+            barView.heightAnchor.constraint(equalTo: levelLabel.heightAnchor),
             barView.widthAnchor.constraint(equalToConstant: 1),
             barView.centerYAnchor.constraint(equalTo: levelLabel.centerYAnchor),
             barView.leadingAnchor.constraint(equalTo: levelLabel.trailingAnchor, constant: 6),

@@ -25,6 +25,7 @@ enum CiderAPI {
     case postLikeFeed(parameters: [String: Any])
     case deleteLikeFeed(certifyId: String)
     case getMypage
+    case getMyLikeChallenge
 }
 
 extension CiderAPI: TargetType, AccessTokenAuthorizable {
@@ -65,6 +66,8 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             return "/api/certify/like/\(certifyId)"
         case .getMypage:
             return "/api/member/mypage"
+        case .getMyLikeChallenge:
+            return "/api/challenge/like"
 
         }
     }
@@ -85,7 +88,8 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
              .getAllChallenge,
              .getPublicChallenge,
              .getHomeFeed,
-             .getMypage:
+             .getMypage,
+             .getMyLikeChallenge:
             return .get
             
         case .patchOnboarding:

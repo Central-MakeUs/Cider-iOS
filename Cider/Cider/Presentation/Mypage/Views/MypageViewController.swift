@@ -63,6 +63,7 @@ private extension MypageViewController {
     func setUp() {
         configure()
         bind()
+        setTapEvent()
     }
     
     func bind() {
@@ -70,7 +71,6 @@ private extension MypageViewController {
             .sink { [weak self] state in
                 switch state {
                 case .sendData(let data):
-                    print(data)
                     self?.setData(data)
                 }
             }
@@ -133,7 +133,72 @@ private extension MypageViewController {
             nextLevel: "LV \(data.memberLevelInfo.nextLevel.level) \(data.memberLevelInfo.nextLevel.levelName)"
         )
     }
+    
+    func setTapEvent() {
+        mypageInfoView.certifyCountView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapMyCertifty)))
+        mypageInfoView.heartCountView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapMyHeartChallenge)))
+        mypageInfoView.myChallengeButton.addTarget(self, action: #selector(didTapMyChallenge), for: .touchUpInside)
+        mypageInfoView.levelCountView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapMyLevelInfo)))
+        levelView.infoButton.addTarget(self, action: #selector(didTapMyLevelInfo), for: .touchUpInside)
+    }
 
+}
+
+private extension MypageViewController {
+    
+    func pushMyCertifyViewController() {
+        let viewController = MyCertifyViewController(
+            viewModel: MyCertifyViewModel(
+                usecase: DefaultHomeUsecase(
+                    repository: DefaultHomeRepository()
+                )
+            )
+        )
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func pushMyHeartChallengeViewController() {
+        let viewController = MyHeartChallengeViewController(
+            viewModel: MyHeartChallengeViewModel(
+                usecase: DefaultMyHeartChallengeUsecase(
+                    repository: DefaultMyHeartChallengeRepository()
+                )
+            )
+        )
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func pushMyChallengeViewController() {
+        let viewController = MyChallengeViewController()
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func pushMyLevelViewController() {
+        let viewController = MyLevelViewController()
+        viewController.modalTransitionStyle = .crossDissolve
+        viewController.modalPresentationStyle = .overFullScreen
+        self.present(viewController, animated: true)
+    }
+    
+    @objc func didTapMyCertifty(_ sender: Any?) {
+        pushMyCertifyViewController()
+    }
+    
+    @objc func didTapMyHeartChallenge(_ sender: Any?) {
+        pushMyHeartChallengeViewController()
+    }
+    
+    @objc func didTapMyChallenge(_ sender: Any?) {
+        pushMyChallengeViewController()
+    }
+    
+    @objc func didTapMyLevelInfo(_ sender: Any?) {
+        pushMyLevelViewController()
+    }
+    
 }
 
 #if DEBUG

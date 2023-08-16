@@ -25,14 +25,14 @@ final class DefaultLoginUsecase: LoginUsecase {
     func kakaoLogin(token: String) async throws -> Bool {
         UserDefaults.standard.write(key: .userIdentifier, value: token)
         Keychain.saveToken(data: token)
-        print(token)
         let request = LoginRequest(socialType: "KAKAO", clientType: "IOS")
         let response = try await loginRepository.signInKakao(parameters: request)
-        print(response)
         guard response.status == nil,
               let accessToken = response.accessToken else {
             return false
         }
+        print(response)
+        print(accessToken)
         Keychain.saveToken(data: accessToken)
         return true
     }
@@ -46,6 +46,7 @@ final class DefaultLoginUsecase: LoginUsecase {
               let accessToken = response.accessToken else {
             return false
         }
+        print(response)
         print(accessToken)
         Keychain.saveToken(data: accessToken)
         return true
