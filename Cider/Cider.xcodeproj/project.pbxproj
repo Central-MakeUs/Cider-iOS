@@ -33,6 +33,7 @@
 		FA316D742A64155B00C7AA88 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA316D732A64155B00C7AA88 /* UserManager.swift */; };
 		FA31A9442A6A33BE004D1C3B /* ChallengeHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA31A9432A6A33BE004D1C3B /* ChallengeHomeCell.swift */; };
 		FA31A9462A6A4BB8004D1C3B /* CiderInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA31A9452A6A4BB8004D1C3B /* CiderInfoView.swift */; };
+		FA3281412A8C92FC00AD2FC2 /* MyLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3281402A8C92FC00AD2FC2 /* MyLevelView.swift */; };
 		FA32B8362A6A4F0B0086497D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B8352A6A4F0B0086497D /* HomeViewController.swift */; };
 		FA32B8382A6A67EA0086497D /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B8372A6A67EA0086497D /* Item.swift */; };
 		FA32B83A2A6A6C2D0086497D /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B8392A6A6C2D0086497D /* HomeHeaderView.swift */; };
@@ -200,6 +201,7 @@
 		FA316D732A64155B00C7AA88 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		FA31A9432A6A33BE004D1C3B /* ChallengeHomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeHomeCell.swift; sourceTree = "<group>"; };
 		FA31A9452A6A4BB8004D1C3B /* CiderInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderInfoView.swift; sourceTree = "<group>"; };
+		FA3281402A8C92FC00AD2FC2 /* MyLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLevelView.swift; sourceTree = "<group>"; };
 		FA32B8352A6A4F0B0086497D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		FA32B8372A6A67EA0086497D /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		FA32B8392A6A6C2D0086497D /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
@@ -423,6 +425,7 @@
 				FA313A122A85567A006DBE69 /* LevelProgressView.swift */,
 				FA313A162A8556CE006DBE69 /* LevelView.swift */,
 				FA313A182A8556F6006DBE69 /* MypageInfoView.swift */,
+				FA3281402A8C92FC00AD2FC2 /* MyLevelView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -1131,6 +1134,7 @@
 				FA4280902A73F58000828F93 /* RuleCell.swift in Sources */,
 				FA31A9442A6A33BE004D1C3B /* ChallengeHomeCell.swift in Sources */,
 				FA4DDB972A4D66CB002EDEAD /* ServiceAgreeDetailCell.swift in Sources */,
+				FA3281412A8C92FC00AD2FC2 /* MyLevelView.swift in Sources */,
 				FA313A132A85567A006DBE69 /* LevelProgressView.swift in Sources */,
 				FAB9A73F2A4C8DAB00757A80 /* ProcessView.swift in Sources */,
 				FA2A06522A68F19700AC649F /* ReviewInfoView.swift in Sources */,
