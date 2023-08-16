@@ -97,7 +97,7 @@ final class MypageInfoView: UIView {
             nicknameLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 8),
             levelLabel.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor),
             levelLabel.leadingAnchor.constraint(equalTo: nicknameLabel.leadingAnchor),
-            barView.heightAnchor.constraint(equalToConstant: 10),
+            barView.heightAnchor.constraint(equalTo: levelLabel.heightAnchor),
             barView.widthAnchor.constraint(equalToConstant: 1),
             barView.centerYAnchor.constraint(equalTo: levelLabel.centerYAnchor),
             barView.leadingAnchor.constraint(equalTo: levelLabel.trailingAnchor, constant: 6),

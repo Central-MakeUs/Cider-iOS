@@ -19,6 +19,13 @@ final class MyCertifyViewController: UIViewController {
         return collectionView
     }()
     
+    let rightBarLabel: UILabel = {
+        let label = UILabel()
+        label.font = CustomFont.PretendardBold(size: .lg).font
+        label.textColor = .custom.gray5
+        return label
+    }()
+    
     private enum Section: Int {
         case feed = 0
     }
@@ -91,7 +98,11 @@ private extension MyCertifyViewController {
     }
     
     func setNavigationBar() {
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationItem.title = "나의 인증글"
         setNavigationBar(backgroundColor: .white, tintColor: .black)
+        rightBarLabel.text = "총 11개"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBarLabel)
     }
     
     func setUpDataSource() {
@@ -142,6 +153,7 @@ private extension MyCertifyViewController {
                     withReuseIdentifier: MyCertifyHeaderView.identifier,
                     for: indexPath
                 ) as? MyCertifyHeaderView
+                headerView?.challengeSelectionView.setTextFieltText("만보 걷기")
                 return headerView
                 
             default:
@@ -186,12 +198,12 @@ private extension MyCertifyViewController {
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0)
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 24)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 24, bottom: 0, trailing: 24)
         
         section.boundarySupplementaryItems = [
             NSCollectionLayoutBoundarySupplementaryItem(
                 layoutSize: .init(
-                    widthDimension: .absolute(view.safeAreaLayoutGuide.layoutFrame.width),
+                    widthDimension: .fractionalWidth(1),
                     heightDimension: .absolute(49)
                 ),
                 elementKind: MyCertifyHeaderView.identifier, alignment: .top)

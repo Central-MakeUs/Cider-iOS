@@ -18,6 +18,13 @@ class MyHeartChallengeViewController: UIViewController {
         return collectionView
     }()
     
+    let rightBarLabel: UILabel = {
+        let label = UILabel()
+        label.font = CustomFont.PretendardBold(size: .lg).font
+        label.textColor = .custom.gray5
+        return label
+    }()
+    
     private enum Section: Int {
         case challenge = 0
     }
@@ -93,6 +100,8 @@ private extension MyHeartChallengeViewController {
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = "관심 챌린지"
         setNavigationBar(backgroundColor: .white, tintColor: .black)
+        rightBarLabel.text = "총 11개"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBarLabel)
     }
     
     func setUpDataSource() {
