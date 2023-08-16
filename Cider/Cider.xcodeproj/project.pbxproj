@@ -34,6 +34,7 @@
 		FA31A9442A6A33BE004D1C3B /* ChallengeHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA31A9432A6A33BE004D1C3B /* ChallengeHomeCell.swift */; };
 		FA31A9462A6A4BB8004D1C3B /* CiderInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA31A9452A6A4BB8004D1C3B /* CiderInfoView.swift */; };
 		FA3281412A8C92FC00AD2FC2 /* MyLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3281402A8C92FC00AD2FC2 /* MyLevelView.swift */; };
+		FA3281432A8CA40100AD2FC2 /* MyLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3281422A8CA40100AD2FC2 /* MyLevelViewController.swift */; };
 		FA32B8362A6A4F0B0086497D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B8352A6A4F0B0086497D /* HomeViewController.swift */; };
 		FA32B8382A6A67EA0086497D /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B8372A6A67EA0086497D /* Item.swift */; };
 		FA32B83A2A6A6C2D0086497D /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B8392A6A6C2D0086497D /* HomeHeaderView.swift */; };
@@ -202,6 +203,7 @@
 		FA31A9432A6A33BE004D1C3B /* ChallengeHomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeHomeCell.swift; sourceTree = "<group>"; };
 		FA31A9452A6A4BB8004D1C3B /* CiderInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderInfoView.swift; sourceTree = "<group>"; };
 		FA3281402A8C92FC00AD2FC2 /* MyLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLevelView.swift; sourceTree = "<group>"; };
+		FA3281422A8CA40100AD2FC2 /* MyLevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLevelViewController.swift; sourceTree = "<group>"; };
 		FA32B8352A6A4F0B0086497D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		FA32B8372A6A67EA0086497D /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		FA32B8392A6A6C2D0086497D /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
@@ -436,6 +438,7 @@
 				FA313A1A2A855720006DBE69 /* MypageViewController.swift */,
 				FA619D602A8B9CD3000BDDA5 /* MyCertifyViewController.swift */,
 				FA619D672A8BBD1D000BDDA5 /* MyHeartChallengeViewController.swift */,
+				FA3281422A8CA40100AD2FC2 /* MyLevelViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1144,6 +1147,7 @@
 				FA8CA6072A46D322005A6709 /* AppDelegate.swift in Sources */,
 				FA4280692A721C7900828F93 /* ClosedChallengeCell.swift in Sources */,
 				FA44D39B2A4C46A30037E328 /* CustomFont.swift in Sources */,
+				FA3281432A8CA40100AD2FC2 /* MyLevelViewController.swift in Sources */,
 				FA3C432C2A62F816009E820B /* Onboarding.swift in Sources */,
 				FA316D742A64155B00C7AA88 /* UserManager.swift in Sources */,
 				FA2F052F2A683E9E00E2CCF2 /* Notification.Name+Extension.swift in Sources */,

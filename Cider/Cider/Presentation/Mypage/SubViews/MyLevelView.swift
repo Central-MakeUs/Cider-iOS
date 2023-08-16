@@ -63,7 +63,9 @@ final class MyLevelView: UIView {
         let imageView = UIImageView()
         imageView.heightAnchor.constraint(equalToConstant: 16).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 16).isActive = true
-        imageView.image = UIImage(named: "arrowRight")
+        imageView.image = UIImage(named: "arrowRight")?.withRenderingMode(.alwaysTemplate)
+        imageView.tintColor = .custom.gray4
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -140,7 +142,7 @@ final class MyLevelView: UIView {
             mediumImageView.leadingAnchor.constraint(equalTo: dotdotImageView1.trailingAnchor, constant: 6),
             dotdotImageView2.leadingAnchor.constraint(equalTo: mediumImageView.trailingAnchor, constant: 6),
             dotdotImageView2.centerYAnchor.constraint(equalTo: smallImageView.centerYAnchor),
-            arrowRightImageView.leadingAnchor.constraint(equalTo: dotdotImageView2.trailingAnchor, constant: 2),
+            arrowRightImageView.leadingAnchor.constraint(equalTo: dotdotImageView2.trailingAnchor, constant: -4),
             arrowRightImageView.centerYAnchor.constraint(equalTo: smallImageView.centerYAnchor),
             largeImageView.centerYAnchor.constraint(equalTo: smallImageView.centerYAnchor),
             largeImageView.leadingAnchor.constraint(equalTo: arrowRightImageView.trailingAnchor, constant: 4),
@@ -214,7 +216,7 @@ final class LevelUpView: UIView {
     
     private func configure() {
         self.backgroundColor = .custom.gray1
-        self.layer.cornerRadius = 4
+        self.layer.cornerRadius = 10
         addSubviews(levelLabel, levelTitleLabel, experienceLabel, iconImageView)
         NSLayoutConstraint.activate([
             self.heightAnchor.constraint(equalToConstant: 39),

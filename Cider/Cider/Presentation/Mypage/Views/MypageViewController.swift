@@ -63,7 +63,7 @@ private extension MypageViewController {
     func setUp() {
         configure()
         bind()
-        setTapGesture()
+        setTapEvent()
     }
     
     func bind() {
@@ -134,10 +134,12 @@ private extension MypageViewController {
         )
     }
     
-    func setTapGesture() {
+    func setTapEvent() {
         mypageInfoView.certifyCountView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapMyCertifty)))
         mypageInfoView.heartCountView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapMyHeartChallenge)))
         mypageInfoView.myChallengeButton.addTarget(self, action: #selector(didTapMyChallenge), for: .touchUpInside)
+        mypageInfoView.levelCountView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapMyLevelInfo)))
+        levelView.infoButton.addTarget(self, action: #selector(didTapMyLevelInfo), for: .touchUpInside)
     }
 
 }
@@ -174,6 +176,13 @@ private extension MypageViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
+    func pushMyLevelViewController() {
+        let viewController = MyLevelViewController()
+        viewController.modalTransitionStyle = .crossDissolve
+        viewController.modalPresentationStyle = .overFullScreen
+        self.present(viewController, animated: true)
+    }
+    
     @objc func didTapMyCertifty(_ sender: Any?) {
         pushMyCertifyViewController()
     }
@@ -184,6 +193,10 @@ private extension MypageViewController {
     
     @objc func didTapMyChallenge(_ sender: Any?) {
         pushMyChallengeViewController()
+    }
+    
+    @objc func didTapMyLevelInfo(_ sender: Any?) {
+        pushMyLevelViewController()
     }
     
 }

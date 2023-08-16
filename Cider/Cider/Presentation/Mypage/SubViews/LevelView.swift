@@ -18,12 +18,12 @@ final class LevelView: UIView {
         return label
     }()
 
-    private lazy var iconImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 24).isActive = true
-        imageView.image = UIImage(named: "line_info_24")
-        return imageView
+    lazy var infoButton: UIButton = {
+        let button = UIButton()
+        button.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        button.setImage(UIImage(named: "line_info_24"), for: .normal)
+        return button
     }()
 
     private let levelProgressView = LevelProgressView()
@@ -82,13 +82,13 @@ final class LevelView: UIView {
     }
 
     private func configure() {
-        addSubviews(titleLabel, iconImageView, levelProgressView, experienceLabel,
+        addSubviews(titleLabel, infoButton, levelProgressView, experienceLabel,
                     grayView, currentTextLabel, nextTextLabel, currentLevelLabel, nextLevelLabel)
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: topAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-            iconImageView.topAnchor.constraint(equalTo: topAnchor),
-            iconImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            infoButton.topAnchor.constraint(equalTo: topAnchor),
+            infoButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
             levelProgressView.heightAnchor.constraint(equalToConstant: 21),
             levelProgressView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
             levelProgressView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
