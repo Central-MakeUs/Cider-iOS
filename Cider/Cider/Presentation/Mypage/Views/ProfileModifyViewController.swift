@@ -11,6 +11,7 @@ import Combine
 final class ProfileModifyViewController: UIViewController {
     
     private var cancellables: Set<AnyCancellable> = .init()
+    private let viewModel: ProfileModifyViewModel
 
     private lazy var profileLabel: UILabel = {
         let label = UILabel()
@@ -62,6 +63,23 @@ final class ProfileModifyViewController: UIViewController {
         let view = ModifyTextFieldView(minLength: 2, maxLength: 10)
         return view
     }()
+    
+    private lazy var bottomButton: CiderBottomButton = {
+        let button = CiderBottomButton(style: .disabled, title: "수정완료")
+        return button
+    }()
+    
+    var bottomConstraint: NSLayoutConstraint?
+    
+    init(viewModel: ProfileModifyViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,6 +98,19 @@ private extension ProfileModifyViewController {
     func setUp() {
         configure()
         setNotificationCenter()
+        hideKeyboard()
+        bind()
+    }
+    
+    func bind() {
+        viewModel.state.receive(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                switch state {
+                case .changeNextButtonState(let isEnabled):
+                    self?.bottomButton.setStyle(isEnabled ? .enabled : .disabled)
+                }
+            }
+            .store(in: &cancellables)
     }
     
     func setNavigationBar() {
@@ -90,7 +121,7 @@ private extension ProfileModifyViewController {
     
     func configure() {
         view.backgroundColor = .white
-        view.addSubviews(profileLabel, profileView, nicknameLabel, nicknameTextFieldView)
+        view.addSubviews(profileLabel, profileView, nicknameLabel, nicknameTextFieldView, bottomButton)
         NSLayoutConstraint.activate([
             profileLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
             profileLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
@@ -105,8 +136,13 @@ private extension ProfileModifyViewController {
             nicknameTextFieldView.heightAnchor.constraint(equalToConstant: 65),
             nicknameTextFieldView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             nicknameTextFieldView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            nicknameTextFieldView.topAnchor.constraint(equalTo: nicknameLabel.bottomAnchor, constant: 8)
+            nicknameTextFieldView.topAnchor.constraint(equalTo: nicknameLabel.bottomAnchor, constant: 8),
+            bottomButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            bottomButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            bottomButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
+        bottomConstraint = NSLayoutConstraint(item: bottomButton, attribute: .bottom, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0)
+        bottomConstraint?.isActive = true
     }
     
     func setNotificationCenter() {
@@ -122,6 +158,26 @@ private extension ProfileModifyViewController {
                 self.profileImageView.image = image
             }
             .store(in: &cancellables)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+}
+
+private extension ProfileModifyViewController {
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight: CGFloat
+            keyboardHeight = keyboardSize.height - self.view.safeAreaInsets.bottom
+            self.bottomConstraint?.constant = -1 * keyboardHeight - 12
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        self.bottomConstraint?.constant = 0
+        self.view.layoutIfNeeded()
     }
     
 }

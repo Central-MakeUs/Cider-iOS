@@ -185,7 +185,13 @@ private extension MypageViewController {
     }
     
     func pushProfileModifyViewController() {
-        let viewController = ProfileModifyViewController()
+        let viewController = ProfileModifyViewController(
+            viewModel: ProfileModifyViewModel(
+                useCase: DefaultNicknameUsecase(
+                    repository: DefaultNicknameRepository()
+                )
+            )
+        )
         viewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(viewController, animated: true)
     }
