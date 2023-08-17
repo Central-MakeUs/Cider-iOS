@@ -1,17 +1,16 @@
 //
-//  CiderTextField.swift
+//  ModifyTextFieldView.swift
 //  Cider
 //
-//  Created by 임영선 on 2023/07/09.
+//  Created by 임영선 on 2023/08/17.
 //
 
 import UIKit
 import Combine
 
-
-final class CiderTextFieldView: UIView {
+final class ModifyTextFieldView: UIView {
     
-    var ciderTextField = CiderTextField()
+    var modifyTextField = ModifyTextField()
     let maxLength: Int
     let minLength: Int
     
@@ -44,20 +43,19 @@ final class CiderTextFieldView: UIView {
     }
     
     private func configure() {
-        ciderTextField.addTarget(self, action: #selector(didChangeTextField), for: .editingChanged)
-        ciderTextField.setPlaceholderColor(.custom.gray4 ?? .gray)
-        ciderTextField.addActionClearButton(self, action: #selector(didTapClear))
-        ciderTextField.delegate = self
+        modifyTextField.addTarget(self, action: #selector(didChangeTextField), for: .editingChanged)
+        modifyTextField.setPlaceholderColor(.custom.gray4 ?? .gray)
+        modifyTextField.delegate = self
         
-        addSubviews(ciderTextField, countLabel, errorLabel)
+        addSubviews(modifyTextField, countLabel, errorLabel)
         NSLayoutConstraint.activate([
-            ciderTextField.topAnchor.constraint(equalTo: topAnchor),
-            ciderTextField.leadingAnchor.constraint(equalTo: leadingAnchor),
-            ciderTextField.trailingAnchor.constraint(equalTo: trailingAnchor),
-            countLabel.topAnchor.constraint(equalTo: ciderTextField.bottomAnchor, constant: 4),
-            countLabel.trailingAnchor.constraint(equalTo: ciderTextField.trailingAnchor),
+            modifyTextField.topAnchor.constraint(equalTo: topAnchor),
+            modifyTextField.leadingAnchor.constraint(equalTo: leadingAnchor),
+            modifyTextField.trailingAnchor.constraint(equalTo: trailingAnchor),
+            countLabel.topAnchor.constraint(equalTo: modifyTextField.bottomAnchor, constant: 4),
+            countLabel.trailingAnchor.constraint(equalTo: modifyTextField.trailingAnchor),
             errorLabel.topAnchor.constraint(equalTo: countLabel.topAnchor),
-            errorLabel.leadingAnchor.constraint(equalTo: ciderTextField.leadingAnchor)
+            errorLabel.leadingAnchor.constraint(equalTo: modifyTextField.leadingAnchor)
         ])
        
     }
@@ -69,16 +67,16 @@ final class CiderTextFieldView: UIView {
         countLabel.text = "\(count)/\(maxLength)"
         if count >= minLength && count <= maxLength {
             errorLabel.isHidden = true
-            ciderTextField.setStyle(.enabled)
+            modifyTextField.setStyle(.enabled)
         }
         else if count < minLength {
-            ciderTextField.setStyle(.disabled)
+            modifyTextField.setStyle(.disabled)
             errorLabel.isHidden = false
             errorLabel.textColor = .custom.error
             errorLabel.text = "최소 \(minLength)자 이상이어야 합니다"
         }
         else {
-            ciderTextField.setStyle(.plain)
+            modifyTextField.setStyle(.plain)
         }
         
         NotificationCenter.default.post(
@@ -87,18 +85,13 @@ final class CiderTextFieldView: UIView {
         )
     }
     
-    @objc private func didTapClear(_ sender: Any?) {
-        countLabel.text = "0/\(maxLength)"
-        errorLabel.isHidden = true
-    }
-    
     func setPlaceHoder(_ text: String) {
-        ciderTextField.placeholder = text
+        modifyTextField.placeholder = text
     }
     
     func setErrorMessage(message: String, isEnabled: Bool) {
         errorLabel.isHidden = false
-        ciderTextField.setStyle(isEnabled ? .enabled : .disabled)
+        modifyTextField.setStyle(isEnabled ? .enabled : .disabled)
         errorLabel.text = message
         errorLabel.textColor = isEnabled ? .custom.main : .custom.error
     }
@@ -126,7 +119,7 @@ final class CiderTextFieldView: UIView {
     
 }
 
-extension CiderTextFieldView: UITextFieldDelegate {
+extension ModifyTextFieldView: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let currentText = textField.text,
@@ -141,20 +134,13 @@ extension CiderTextFieldView: UITextFieldDelegate {
 }
 
 
-enum CiderTextFieldStyle {
-    case plain
-    case disabled
-    case enabled
-}
-
-final class CiderTextField: UITextField {
+final class ModifyTextField: UITextField {
     
-    private lazy var clearButton: UIButton = {
+    private lazy var editingButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "line_deletebox_24"), for: .normal)
+        button.setImage(UIImage(named: "line_edit_24"), for: .normal)
         button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
         button.contentMode = .scaleAspectFit
-        button.addTarget(self, action: #selector(didTapClear), for: .touchUpInside)
         return button
     }()
     
@@ -179,19 +165,11 @@ final class CiderTextField: UITextField {
             layer.borderColor = UIColor.custom.main?.cgColor
         }
     }
-    
-    func setHiddenClearButton(_ isHidden: Bool) {
-        clearButton.isHidden = isHidden
-    }
-    
-    func addActionClearButton(_ target: Any?, action: Selector) {
-        clearButton.addTarget(target, action: action, for: .touchUpInside)
-    }
-    
+  
 }
 
 
-private extension CiderTextField {
+private extension ModifyTextField {
     
     private func configure() {
         backgroundColor = .custom.gray1
@@ -203,38 +181,16 @@ private extension CiderTextField {
         layer.borderColor = UIColor.clear.cgColor
         textColor = .custom.text
         
-        paddingView.addSubviews(clearButton)
+        paddingView.addSubviews(editingButton)
         NSLayoutConstraint.activate([
             paddingView.widthAnchor.constraint(equalToConstant: 12+24),
             paddingView.heightAnchor.constraint(equalToConstant: 24),
-            clearButton.topAnchor.constraint(equalTo: paddingView.topAnchor),
-            clearButton.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
-            clearButton.bottomAnchor.constraint(equalTo: paddingView.bottomAnchor)
+            editingButton.topAnchor.constraint(equalTo: paddingView.topAnchor),
+            editingButton.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
+            editingButton.bottomAnchor.constraint(equalTo: paddingView.bottomAnchor)
         ])
         rightView = paddingView
         rightViewMode = .always
-        setHiddenClearButton(true)
-        addTarget(self, action: #selector(didChangeTextField), for: .editingChanged)
-        addTarget(self, action: #selector(didChangeTextField), for: .editingDidBegin)
-
     }
-    
-    @objc func didTapClear(_ sender: Any?) {
-        self.text = ""
-        setStyle(.plain)
-        setHiddenClearButton(true)
-        NotificationCenter.default.post(
-            name: .didChangedCiderTextField,
-            object: self.text
-        )
-    }
-    
-    @objc func didChangeTextField(_ textField: UITextField) {
-        if self.text == "" {
-            setHiddenClearButton(true)
-        } else {
-            setHiddenClearButton(false)
-        }
-    }
-    
+   
 }

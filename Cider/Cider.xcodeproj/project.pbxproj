@@ -17,6 +17,8 @@
 		FA2A06542A68F31C00AC649F /* ChallengeCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A06532A68F31C00AC649F /* ChallengeCompleteViewController.swift */; };
 		FA2A06582A69014100AC649F /* ChallengeHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A06572A69014100AC649F /* ChallengeHomeView.swift */; };
 		FA2F052F2A683E9E00E2CCF2 /* Notification.Name+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2F052E2A683E9E00E2CCF2 /* Notification.Name+Extension.swift */; };
+		FA2FE0802A8DC8E8005500D5 /* ModifyTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2FE07F2A8DC8E8005500D5 /* ModifyTextFieldView.swift */; };
+		FA2FE0822A8DCBEF005500D5 /* ProfileModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2FE0812A8DCBEF005500D5 /* ProfileModifyViewController.swift */; };
 		FA3139FA2A84B33A006DBE69 /* FeedLikeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3139F92A84B33A006DBE69 /* FeedLikeRequest.swift */; };
 		FA3139FD2A84BBEB006DBE69 /* CertifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3139FC2A84BBEB006DBE69 /* CertifyViewController.swift */; };
 		FA3139FF2A84E811006DBE69 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3139FE2A84E811006DBE69 /* Section.swift */; };
@@ -186,6 +188,8 @@
 		FA2A06532A68F31C00AC649F /* ChallengeCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCompleteViewController.swift; sourceTree = "<group>"; };
 		FA2A06572A69014100AC649F /* ChallengeHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeHomeView.swift; sourceTree = "<group>"; };
 		FA2F052E2A683E9E00E2CCF2 /* Notification.Name+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+Extension.swift"; sourceTree = "<group>"; };
+		FA2FE07F2A8DC8E8005500D5 /* ModifyTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyTextFieldView.swift; sourceTree = "<group>"; };
+		FA2FE0812A8DCBEF005500D5 /* ProfileModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModifyViewController.swift; sourceTree = "<group>"; };
 		FA3139F92A84B33A006DBE69 /* FeedLikeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLikeRequest.swift; sourceTree = "<group>"; };
 		FA3139FC2A84BBEB006DBE69 /* CertifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifyViewController.swift; sourceTree = "<group>"; };
 		FA3139FE2A84E811006DBE69 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
@@ -428,6 +432,7 @@
 				FA313A162A8556CE006DBE69 /* LevelView.swift */,
 				FA313A182A8556F6006DBE69 /* MypageInfoView.swift */,
 				FA3281402A8C92FC00AD2FC2 /* MyLevelView.swift */,
+				FA2FE07F2A8DC8E8005500D5 /* ModifyTextFieldView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -439,6 +444,7 @@
 				FA619D602A8B9CD3000BDDA5 /* MyCertifyViewController.swift */,
 				FA619D672A8BBD1D000BDDA5 /* MyHeartChallengeViewController.swift */,
 				FA3281422A8CA40100AD2FC2 /* MyLevelViewController.swift */,
+				FA2FE0812A8DCBEF005500D5 /* ProfileModifyViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1076,6 +1082,7 @@
 				FA3C43252A62ECBA009E820B /* OnboardingUsecase.swift in Sources */,
 				FA4280792A736C5900828F93 /* ChallengeDetailMenuCell.swift in Sources */,
 				FA758AC82A5EF418003E2F07 /* StarTitleLabel.swift in Sources */,
+				FA2FE0802A8DC8E8005500D5 /* ModifyTextFieldView.swift in Sources */,
 				FA619D5D2A87CB3A000BDDA5 /* MypageResponse.swift in Sources */,
 				FAD6E3D62A64F2F5002C8007 /* WritingType.swift in Sources */,
 				FA32B83A2A6A6C2D0086497D /* HomeHeaderView.swift in Sources */,
@@ -1084,6 +1091,7 @@
 				FA32B8382A6A67EA0086497D /* Item.swift in Sources */,
 				FA758ACA2A5EF528003E2F07 /* ChallengeOpenSelectionView.swift in Sources */,
 				FA57AF6B2A5D73F8008A5991 /* ChallengeOpenCell.swift in Sources */,
+				FA2FE0822A8DCBEF005500D5 /* ProfileModifyViewController.swift in Sources */,
 				FA619D5F2A87CEDC000BDDA5 /* MypageUsecase.swift in Sources */,
 				FA3FC8032A6E95540022CA3A /* HomeDetailType.swift in Sources */,
 				FA2A06502A68DF5B00AC649F /* PrecautionViewModel.swift in Sources */,

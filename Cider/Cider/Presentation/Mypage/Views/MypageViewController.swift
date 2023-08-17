@@ -140,6 +140,7 @@ private extension MypageViewController {
         mypageInfoView.myChallengeButton.addTarget(self, action: #selector(didTapMyChallenge), for: .touchUpInside)
         mypageInfoView.levelCountView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapMyLevelInfo)))
         levelView.infoButton.addTarget(self, action: #selector(didTapMyLevelInfo), for: .touchUpInside)
+        mypageInfoView.writingButton.addTarget(self, action: #selector(didTapModifyProfile), for: .touchUpInside)
     }
 
 }
@@ -183,6 +184,12 @@ private extension MypageViewController {
         self.present(viewController, animated: true)
     }
     
+    func pushProfileModifyViewController() {
+        let viewController = ProfileModifyViewController()
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
     @objc func didTapMyCertifty(_ sender: Any?) {
         pushMyCertifyViewController()
     }
@@ -197,6 +204,10 @@ private extension MypageViewController {
     
     @objc func didTapMyLevelInfo(_ sender: Any?) {
         pushMyLevelViewController()
+    }
+    
+    @objc func didTapModifyProfile(_ sender: Any?) {
+        pushProfileModifyViewController()
     }
     
 }
