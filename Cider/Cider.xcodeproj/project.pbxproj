@@ -19,6 +19,7 @@
 		FA2F052F2A683E9E00E2CCF2 /* Notification.Name+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2F052E2A683E9E00E2CCF2 /* Notification.Name+Extension.swift */; };
 		FA2FE0802A8DC8E8005500D5 /* ModifyTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2FE07F2A8DC8E8005500D5 /* ModifyTextFieldView.swift */; };
 		FA2FE0822A8DCBEF005500D5 /* ProfileModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2FE0812A8DCBEF005500D5 /* ProfileModifyViewController.swift */; };
+		FA2FE0842A8DD8A3005500D5 /* ProfileBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2FE0832A8DD8A3005500D5 /* ProfileBottomViewController.swift */; };
 		FA3139FA2A84B33A006DBE69 /* FeedLikeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3139F92A84B33A006DBE69 /* FeedLikeRequest.swift */; };
 		FA3139FD2A84BBEB006DBE69 /* CertifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3139FC2A84BBEB006DBE69 /* CertifyViewController.swift */; };
 		FA3139FF2A84E811006DBE69 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3139FE2A84E811006DBE69 /* Section.swift */; };
@@ -190,6 +191,7 @@
 		FA2F052E2A683E9E00E2CCF2 /* Notification.Name+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+Extension.swift"; sourceTree = "<group>"; };
 		FA2FE07F2A8DC8E8005500D5 /* ModifyTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyTextFieldView.swift; sourceTree = "<group>"; };
 		FA2FE0812A8DCBEF005500D5 /* ProfileModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModifyViewController.swift; sourceTree = "<group>"; };
+		FA2FE0832A8DD8A3005500D5 /* ProfileBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBottomViewController.swift; sourceTree = "<group>"; };
 		FA3139F92A84B33A006DBE69 /* FeedLikeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLikeRequest.swift; sourceTree = "<group>"; };
 		FA3139FC2A84BBEB006DBE69 /* CertifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifyViewController.swift; sourceTree = "<group>"; };
 		FA3139FE2A84E811006DBE69 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
@@ -445,6 +447,7 @@
 				FA619D672A8BBD1D000BDDA5 /* MyHeartChallengeViewController.swift */,
 				FA3281422A8CA40100AD2FC2 /* MyLevelViewController.swift */,
 				FA2FE0812A8DCBEF005500D5 /* ProfileModifyViewController.swift */,
+				FA2FE0832A8DD8A3005500D5 /* ProfileBottomViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1173,6 +1176,7 @@
 				FA4DDB902A4D57D5002EDEAD /* ProcessType.swift in Sources */,
 				FA4280882A73DA4B00828F93 /* ChallengeInfoView.swift in Sources */,
 				FA3139FD2A84BBEB006DBE69 /* CertifyViewController.swift in Sources */,
+				FA2FE0842A8DD8A3005500D5 /* ProfileBottomViewController.swift in Sources */,
 				FA553EBD2A5C0D6900DAE63B /* APIKey.swift in Sources */,
 				FA42807F2A73882900828F93 /* ProgressBarView.swift in Sources */,
 				FA59116D2A7BEC3C0022611B /* HostCell.swift in Sources */,

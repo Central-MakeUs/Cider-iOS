@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import Combine
 
 final class ProfileModifyViewController: UIViewController {
     
+    private var cancellables: Set<AnyCancellable> = .init()
+
     private lazy var profileLabel: UILabel = {
         let label = UILabel()
         label.text = "프로필"
@@ -30,6 +33,7 @@ final class ProfileModifyViewController: UIViewController {
         view.addSubviews(profileImageView, cameraImageView)
         view.heightAnchor.constraint(equalToConstant: 84).isActive = true
         view.widthAnchor.constraint(equalToConstant: 84).isActive = true
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapProfile)))
         return view
     }()
     
@@ -61,7 +65,7 @@ final class ProfileModifyViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
+        setUp()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,6 +76,11 @@ final class ProfileModifyViewController: UIViewController {
 }
 
 private extension ProfileModifyViewController {
+    
+    func setUp() {
+        configure()
+        setNotificationCenter()
+    }
     
     func setNavigationBar() {
         self.navigationController?.navigationBar.topItem?.title = ""
@@ -98,6 +107,43 @@ private extension ProfileModifyViewController {
             nicknameTextFieldView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             nicknameTextFieldView.topAnchor.constraint(equalTo: nicknameLabel.bottomAnchor, constant: 8)
         ])
+    }
+    
+    func setNotificationCenter() {
+        NotificationCenter.default.publisher(for: .selectProfileImage)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] notification in
+                guard let self = self else {
+                    return
+                }
+                guard let image = notification.object as? UIImage else {
+                    return
+                }
+                self.profileImageView.image = image
+            }
+            .store(in: &cancellables)
+    }
+    
+}
+
+private extension ProfileModifyViewController {
+    
+    func presentBottomViewController() {
+        let viewController = ProfileBottomViewController()
+        if let sheet = viewController.sheetPresentationController {
+            let identifier = UISheetPresentationController.Detent.Identifier("customMedium")
+            let customDetent = UISheetPresentationController.Detent.custom(identifier: identifier) { context in
+                return 200-34
+            }
+            sheet.detents = [customDetent]
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            sheet.prefersGrabberVisible = true
+        }
+        self.present(viewController, animated: true)
+    }
+    
+    @objc func didTapProfile(_ sender: Any?) {
+        presentBottomViewController()
     }
     
 }
