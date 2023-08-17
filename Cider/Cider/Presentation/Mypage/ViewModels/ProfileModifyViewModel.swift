@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 import Combine
 
 final class ProfileModifyViewModel: ViewModelType {
@@ -17,27 +18,24 @@ final class ProfileModifyViewModel: ViewModelType {
     var state: AnyPublisher<ViewModelState, Never> { currentState.compactMap { $0 }.eraseToAnyPublisher() }
     var currentState: CurrentValueSubject<ViewModelState?, Never> = .init(nil)
     private var cancellables: Set<AnyCancellable> = .init()
-    var useCase: NicknameUsecase
     
-    init(useCase: NicknameUsecase) {
+    var useCase: NicknameUsecase
+    var nickname: String
+    var profileImage: UIImage
+    
+    init(useCase: NicknameUsecase, nickname: String, profileImage: UIImage) {
         self.useCase = useCase
+        self.nickname = nickname
+        self.profileImage = profileImage
+    }
+    
+    func changeNickname(_ nickname: String) {
+        self.nickname = nickname
+        currentState.send(.changeNextButtonState(isEnabled: nickname.count >= 2))
+    }
+    
+    func didTapModify() {
+        
     }
   
-//    func didTapRandomNickname() {
-//        Task {
-//            let nickname = try await useCase.getRandomNickname()
-//            guard let nickname else {
-//                return
-//            }
-//            currentState.send(.changeNextButtonState(isEnabled: true))
-//        }
-//    }
-//
-//    func endEditingNickname(_ nickname: String) {
-//        Task {
-//            let (message, isEnabled) = try await useCase.isEnabledNickname(nickname: nickname)
-//            currentState.send(.changeNextButtonState(isEnabled: isEnabled))
-//        }
-//    }
-//
 }

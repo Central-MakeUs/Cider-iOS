@@ -45,7 +45,6 @@ final class ProfileModifyViewController: UIViewController {
         imageView.layer.cornerRadius = 41
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
-        imageView.image = UIImage(named: "sample")
         return imageView
     }()
     
@@ -61,6 +60,7 @@ final class ProfileModifyViewController: UIViewController {
     
     private lazy var nicknameTextFieldView: ModifyTextFieldView = {
         let view = ModifyTextFieldView(minLength: 2, maxLength: 10)
+        view.setPlaceHoder("별명을 입력해주세요")
         return view
     }()
     
@@ -100,6 +100,7 @@ private extension ProfileModifyViewController {
         setNotificationCenter()
         hideKeyboard()
         bind()
+        setData()
     }
     
     func bind() {
@@ -111,6 +112,17 @@ private extension ProfileModifyViewController {
                 }
             }
             .store(in: &cancellables)
+        nicknameTextFieldView.textPublisher()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] name in
+                self?.viewModel.changeNickname(name)
+            }
+            .store(in: &self.cancellables)
+    }
+    
+    func setData() {
+        profileImageView.image = viewModel.profileImage
+        nicknameTextFieldView.modifyTextField.text = viewModel.nickname
     }
     
     func setNavigationBar() {
