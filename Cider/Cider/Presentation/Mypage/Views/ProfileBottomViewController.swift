@@ -56,7 +56,7 @@ final class ProfileBottomViewController: UIViewController {
         return controller
     }()
     
-    private var selectedImage: UIImage?
+    private let profileImageName = ["bearProfile", "chickProfile", "fishProfile", "rabbitProfile", "pigProfile"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,7 +105,11 @@ private extension ProfileBottomViewController {
     }
     
     @objc func didTapRandom(_ sender: Any?) {
-       // self.dismiss(animated: true)
+        guard let imageName = profileImageName.randomElement() else {
+            return
+        }
+        NotificationCenter.default.post(name: .selectProfileImage, object: UIImage(named: imageName))
+        self.dismiss(animated: true)
     }
     
 }
@@ -114,9 +118,8 @@ extension ProfileBottomViewController: UIImagePickerControllerDelegate, UINaviga
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            selectedImage = image
+            NotificationCenter.default.post(name: .selectProfileImage, object: image)
         }
-        NotificationCenter.default.post(name: .selectProfileImage, object: selectedImage)
         picker.dismiss(animated: true, completion: nil)
         self.dismiss(animated: true)
     }
