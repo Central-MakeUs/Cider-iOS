@@ -19,11 +19,11 @@ final class ProfileModifyViewModel: ViewModelType {
     var currentState: CurrentValueSubject<ViewModelState?, Never> = .init(nil)
     private var cancellables: Set<AnyCancellable> = .init()
     
-    var useCase: NicknameUsecase
+    var useCase: ProfileModifyUsecase
     var nickname: String
     var profileImage: UIImage
     
-    init(useCase: NicknameUsecase, nickname: String, profileImage: UIImage) {
+    init(useCase: ProfileModifyUsecase, nickname: String, profileImage: UIImage) {
         self.useCase = useCase
         self.nickname = nickname
         self.profileImage = profileImage
@@ -35,7 +35,10 @@ final class ProfileModifyViewModel: ViewModelType {
     }
     
     func didTapModify() {
-        
+        Task {
+            let response = try await useCase.patchProfile(image: profileImage)
+            print(response)
+        }
     }
   
 }

@@ -66,6 +66,7 @@ final class ProfileModifyViewController: UIViewController {
     
     private lazy var bottomButton: CiderBottomButton = {
         let button = CiderBottomButton(style: .disabled, title: "수정완료")
+        button.addTarget(self, action: #selector(didTapModify), for: .touchUpInside)
         return button
     }()
     
@@ -190,6 +191,10 @@ private extension ProfileModifyViewController {
     @objc func keyboardWillHide(notification: NSNotification) {
         self.bottomConstraint?.constant = 0
         self.view.layoutIfNeeded()
+    }
+    
+    @objc func didTapModify(_ sender: Any?) {
+        viewModel.didTapModify()
     }
     
 }

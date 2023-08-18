@@ -186,21 +186,30 @@ private extension MypageViewController {
     
     func pushProfileModifyViewController() {
         guard let profilePath = viewModel.data?.simpleMember.profilePath,
-        let nickname = viewModel.data?.simpleMember.memberName else {
+              let nickname = viewModel.data?.simpleMember.memberName,
+              let url = URL(string: profilePath) else {
             return
         }
-        let viewController = ProfileModifyViewController(
-            viewModel: ProfileModifyViewModel(
-                useCase: DefaultNicknameUsecase(
-                    repository: DefaultNicknameRepository()
-                ),
-                nickname: nickname,
-                profileImage: profilePath.urlToImage() ?? UIImage()
-            )
-        )
-       
-        viewController.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(viewController, animated: true)
+        
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        let viewController = ProfileModifyViewController(
+                            viewModel: ProfileModifyViewModel(
+                                useCase: DefaultProfileModifyUsecase(
+                                    repository: DefaultProfileModifyRepository()
+                                ),
+                                nickname: nickname,
+                                profileImage: image
+                            )
+                        )
+                        viewController.hidesBottomBarWhenPushed = true
+                        self?.navigationController?.pushViewController(viewController, animated: true)
+                    }
+                }
+            }
+        }
     }
     
     @objc func didTapMyCertifty(_ sender: Any?) {
