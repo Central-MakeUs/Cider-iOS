@@ -101,7 +101,7 @@ private extension MyCertifyViewController {
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = "나의 인증글"
-        setNavigationBar(backgroundColor: .white, tintColor: .black)
+        setNavigationBar(backgroundColor: .white, tintColor: .black, shadowColor: .clear)
         rightBarLabel.text = "총 11개"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBarLabel)
     }

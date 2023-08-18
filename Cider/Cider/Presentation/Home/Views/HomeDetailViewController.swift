@@ -98,7 +98,8 @@ private extension HomeDetailViewController {
         self.navigationController?.navigationBar.standardAppearance.shadowColor = .clear
         setNavigationBar(
             backgroundColor: homeDetailType == .allChallenge ? .white : homeDetailType.mainColor,
-            tintColor: homeDetailType == .allChallenge ? .black : .white
+            tintColor: homeDetailType == .allChallenge ? .black : .white,
+            shadowColor: .clear
         )
     }
     
@@ -313,7 +314,6 @@ private extension HomeDetailViewController {
         guard let indexPath = collectionView.indexPath(for: cell) else {
             return
         }
-        let section = Section(rawValue: indexPath.section)
         let challengeId = viewModel.challenges[indexPath.row].challengeId
         let isLike = viewModel.challenges[indexPath.row].isLike
         viewModel.challenges[indexPath.row].isLike.toggle()
@@ -345,9 +345,9 @@ extension HomeDetailViewController: UICollectionViewDelegate {
         case .publicChallenge,
              .popularChallenge:
             if scrollView.contentOffset.y > infoHeight {
-                setNavigationBar(backgroundColor: .white, tintColor: .black)
+                setNavigationBar(backgroundColor: .white, tintColor: .black, shadowColor: .clear)
             } else {
-                setNavigationBar(backgroundColor: homeDetailType.mainColor, tintColor: .white)
+                setNavigationBar(backgroundColor: homeDetailType.mainColor, tintColor: .white, shadowColor: .clear)
             }
             
         case .allChallenge:

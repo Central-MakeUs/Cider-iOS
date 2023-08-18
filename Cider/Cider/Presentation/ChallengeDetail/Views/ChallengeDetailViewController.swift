@@ -108,7 +108,7 @@ class ChallengeDetailViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        setNavigationBar(backgroundColor: .white, tintColor: .black)
+        setNavigationBar(backgroundColor: .white, tintColor: .black, shadowColor: .clear)
     }
 }
 
@@ -173,9 +173,7 @@ private extension ChallengeDetailViewController {
     
     func setNavigationBar() {
         self.navigationController?.navigationBar.topItem?.title = ""
-        self.navigationController?.navigationBar.scrollEdgeAppearance?.shadowColor = .clear
-        self.navigationController?.navigationBar.standardAppearance.shadowColor = .clear
-        setNavigationBar(backgroundColor: challengeType.color, tintColor: .white)
+        setNavigationBar(backgroundColor: challengeType.color, tintColor: .white, shadowColor: .clear)
     }
     
     func setUpInfoDataSource() {
@@ -961,9 +959,9 @@ extension ChallengeDetailViewController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         scrollView.bounces = scrollView.contentOffset.y > 100
         if scrollView.contentOffset.y > 145 {
-            setNavigationBar(backgroundColor: .white, tintColor: .black)
+            setNavigationBar(backgroundColor: .white, tintColor: .black, shadowColor: .clear)
         } else {
-            setNavigationBar(backgroundColor: challengeType.color, tintColor: .white)
+            setNavigationBar(backgroundColor: challengeType.color, tintColor: .white, shadowColor: .clear)
         }
     }
     

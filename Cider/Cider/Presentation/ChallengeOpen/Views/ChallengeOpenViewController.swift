@@ -104,8 +104,7 @@ private extension ChallengeOpenViewController {
     func setNavigationBar() {
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = "챌린지 개설"
-        setNavigationBar(backgroundColor: .white, tintColor: .black)
-        setNavigationLineColor(.clear)
+        setNavigationBar(backgroundColor: .white, tintColor: .black, shadowColor: .clear)
     }
     
     func setUpDataSource() {

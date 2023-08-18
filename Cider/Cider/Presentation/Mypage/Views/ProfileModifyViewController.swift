@@ -135,7 +135,7 @@ private extension ProfileModifyViewController {
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = "프로필 수정"
-        setNavigationBar(backgroundColor: .white, tintColor: .black)
+        setNavigationBar(backgroundColor: .white, tintColor: .black, shadowColor: .clear)
     }
     
     func configure() {

@@ -73,7 +73,7 @@ private extension MyChallengeViewController {
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = "내 챌린지"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBarButton)
-        setNavigationBar(backgroundColor: .white, tintColor: .black)
+        setNavigationBar(backgroundColor: .white, tintColor: .black, shadowColor: .clear)
     }
     
     func setUpDataSource() {
