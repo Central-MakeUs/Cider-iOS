@@ -23,7 +23,7 @@ final class MypageViewController: UIViewController {
 
     private lazy var characterImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "Rectangle512")
+        imageView.image = UIImage(named: "mypagePig")
         return imageView
     }()
 
@@ -109,7 +109,7 @@ private extension MypageViewController {
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             settingButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             settingButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            characterImageView.heightAnchor.constraint(equalToConstant: 144),
+            characterImageView.heightAnchor.constraint(equalToConstant: 158),
             characterImageView.widthAnchor.constraint(equalToConstant: 144),
             characterImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant:67),
             characterImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
