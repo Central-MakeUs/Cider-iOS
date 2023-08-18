@@ -28,6 +28,7 @@ enum CiderAPI {
     case getMypage
     case getMyLikeChallenge
     case patchProfileImage(image: UIImage)
+    case patchProfile(parameters: [String: Any])
 }
 
 extension CiderAPI: TargetType, AccessTokenAuthorizable {
@@ -72,6 +73,8 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             return "/api/challenge/like"
         case .patchProfileImage:
             return "/api/member/profile/image"
+        case .patchProfile:
+            return "/api/member/profile"
 
         }
     }
@@ -97,7 +100,8 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             return .get
             
         case .patchOnboarding,
-             .patchProfileImage:
+             .patchProfileImage,
+             .patchProfile:
             return .patch
             
         case .deleteLikeChallenge,
@@ -112,7 +116,8 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
              .signInKakao(let parameters),
              .patchOnboarding(let parameters),
              .postLikeChallenge(let parameters),
-             .postLikeFeed(let parameters):
+             .postLikeFeed(let parameters),
+             .patchProfile(let parameters):
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
     
         case .patchProfileImage(let image):

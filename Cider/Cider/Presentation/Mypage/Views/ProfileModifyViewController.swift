@@ -110,6 +110,11 @@ private extension ProfileModifyViewController {
                 switch state {
                 case .changeNextButtonState(let isEnabled):
                     self?.bottomButton.setStyle(isEnabled ? .enabled : .disabled)
+                case .isSuccess(let isSuccess):
+                    guard isSuccess else {
+                        return
+                    }
+                    self?.navigationController?.popViewController(animated: true)
                 }
             }
             .store(in: &cancellables)

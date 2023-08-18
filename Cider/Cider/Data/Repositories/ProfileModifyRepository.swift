@@ -9,13 +9,18 @@ import Foundation
 import UIKit
 
 protocol ProfileModifyRepository {
-    func patchProfile(image: UIImage) async throws -> FileResponse
+    func patchProfile(image: UIImage) async throws -> CiderResponse
+    func patchProfile(parameters: ProfileModifyRequest) async throws -> CiderResponse
 }
 
 final class DefaultProfileModifyRepository: ProfileModifyRepository {
     
-    func patchProfile(image: UIImage) async throws -> FileResponse {
-        return try await CiderAPI.request(target: .patchProfileImage(image: image), dataType: FileResponse.self)
+    func patchProfile(image: UIImage) async throws -> CiderResponse {
+        return try await CiderAPI.request(target: .patchProfileImage(image: image), dataType: CiderResponse.self)
+    }
+    
+    func patchProfile(parameters: ProfileModifyRequest) async throws -> CiderResponse {
+        return try await CiderAPI.request(target: .patchProfile(parameters: parameters.asDictionary()), dataType: CiderResponse.self)
     }
     
 }

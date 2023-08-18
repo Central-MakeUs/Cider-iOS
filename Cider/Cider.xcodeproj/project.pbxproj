@@ -62,12 +62,13 @@
 		FA3D49312A8DEC7400024A1C /* ProfileModifyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3D49302A8DEC7400024A1C /* ProfileModifyViewModel.swift */; };
 		FA3D49362A8E6C5C00024A1C /* ProfileModifyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3D49352A8E6C5C00024A1C /* ProfileModifyRepository.swift */; };
 		FA3D49382A8E6CC700024A1C /* ProfileModifyUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3D49372A8E6CC700024A1C /* ProfileModifyUsecase.swift */; };
-		FA3D493A2A8E6EAE00024A1C /* FileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3D49392A8E6EAE00024A1C /* FileResponse.swift */; };
+		FA3D493A2A8E6EAE00024A1C /* CiderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3D49392A8E6EAE00024A1C /* CiderResponse.swift */; };
 		FA3EC10B2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3EC10A2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift */; };
 		FA3FC7FA2A6E92C60022CA3A /* HomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3FC7F92A6E92C60022CA3A /* HomeDetailViewController.swift */; };
 		FA3FC7FC2A6E93B70022CA3A /* SortingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3FC7FB2A6E93B70022CA3A /* SortingHeaderView.swift */; };
 		FA3FC8002A6E94690022CA3A /* HomeDetailInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3FC7FF2A6E94690022CA3A /* HomeDetailInfoCell.swift */; };
 		FA3FC8032A6E95540022CA3A /* HomeDetailType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3FC8022A6E95540022CA3A /* HomeDetailType.swift */; };
+		FA40E8252A8F22F900195810 /* ProfileModifyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA40E8242A8F22F900195810 /* ProfileModifyRequest.swift */; };
 		FA4280632A70E68100828F93 /* ReviewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280622A70E68100828F93 /* ReviewType.swift */; };
 		FA4280652A70E9A900828F93 /* ReviewStatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280642A70E9A900828F93 /* ReviewStatusBarView.swift */; };
 		FA4280672A70F17800828F93 /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280662A70F17800828F93 /* ReviewCell.swift */; };
@@ -238,12 +239,13 @@
 		FA3D49302A8DEC7400024A1C /* ProfileModifyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModifyViewModel.swift; sourceTree = "<group>"; };
 		FA3D49352A8E6C5C00024A1C /* ProfileModifyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModifyRepository.swift; sourceTree = "<group>"; };
 		FA3D49372A8E6CC700024A1C /* ProfileModifyUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModifyUsecase.swift; sourceTree = "<group>"; };
-		FA3D49392A8E6EAE00024A1C /* FileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileResponse.swift; sourceTree = "<group>"; };
+		FA3D49392A8E6EAE00024A1C /* CiderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderResponse.swift; sourceTree = "<group>"; };
 		FA3EC10A2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAgreeHeaderView.swift; sourceTree = "<group>"; };
 		FA3FC7F92A6E92C60022CA3A /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewController.swift; sourceTree = "<group>"; };
 		FA3FC7FB2A6E93B70022CA3A /* SortingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingHeaderView.swift; sourceTree = "<group>"; };
 		FA3FC7FF2A6E94690022CA3A /* HomeDetailInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailInfoCell.swift; sourceTree = "<group>"; };
 		FA3FC8022A6E95540022CA3A /* HomeDetailType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailType.swift; sourceTree = "<group>"; };
+		FA40E8242A8F22F900195810 /* ProfileModifyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModifyRequest.swift; sourceTree = "<group>"; };
 		FA4280622A70E68100828F93 /* ReviewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewType.swift; sourceTree = "<group>"; };
 		FA4280642A70E9A900828F93 /* ReviewStatusBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStatusBarView.swift; sourceTree = "<group>"; };
 		FA4280662A70F17800828F93 /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
@@ -780,6 +782,7 @@
 				FA3C43222A62EA18009E820B /* OnboardingRequest.swift */,
 				FA57003E2A836EB000CFECBC /* ChallengeLikeRequest.swift */,
 				FA3139F92A84B33A006DBE69 /* FeedLikeRequest.swift */,
+				FA40E8242A8F22F900195810 /* ProfileModifyRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -796,7 +799,7 @@
 				FA70AF962A82123D003A2395 /* FeedResponse.swift */,
 				FA5700402A836F3A00CFECBC /* LikeResponse.swift */,
 				FA619D5C2A87CB3A000BDDA5 /* MypageResponse.swift */,
-				FA3D49392A8E6EAE00024A1C /* FileResponse.swift */,
+				FA3D49392A8E6EAE00024A1C /* CiderResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1184,6 +1187,7 @@
 				FA32B83C2A6A79070086497D /* HomeNavigationView.swift in Sources */,
 				FA8CA6092A46D322005A6709 /* SceneDelegate.swift in Sources */,
 				FA57AF572A5D14CC008A5991 /* LoginRequest.swift in Sources */,
+				FA40E8252A8F22F900195810 /* ProfileModifyRequest.swift in Sources */,
 				FA3139FA2A84B33A006DBE69 /* FeedLikeRequest.swift in Sources */,
 				FA57AF452A5C16EE008A5991 /* LoginViewModel.swift in Sources */,
 				FA348ED32A61180400EA3D04 /* NicknameUsecase.swift in Sources */,
@@ -1205,7 +1209,7 @@
 				FA619D5B2A87C9A1000BDDA5 /* MypageRepository.swift in Sources */,
 				FA5700412A836F3A00CFECBC /* LikeResponse.swift in Sources */,
 				FA70AF972A82123D003A2395 /* FeedResponse.swift in Sources */,
-				FA3D493A2A8E6EAE00024A1C /* FileResponse.swift in Sources */,
+				FA3D493A2A8E6EAE00024A1C /* CiderResponse.swift in Sources */,
 				FA42808A2A73DC0D00828F93 /* ChallengeInfoCell.swift in Sources */,
 				FA6100302A590431002175CE /* ChallengeSelectionViewModel.swift in Sources */,
 				FA4280842A73ADF900828F93 /* ProgressBarCell.swift in Sources */,

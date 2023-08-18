@@ -13,6 +13,7 @@ final class ProfileModifyViewModel: ViewModelType {
     
     enum ViewModelState {
         case changeNextButtonState(isEnabled: Bool)
+        case isSuccess(_ isSuccess: Bool)
     }
     
     var state: AnyPublisher<ViewModelState, Never> { currentState.compactMap { $0 }.eraseToAnyPublisher() }
@@ -36,8 +37,11 @@ final class ProfileModifyViewModel: ViewModelType {
     
     func didTapModify() {
         Task {
-            let response = try await useCase.patchProfile(image: profileImage)
-            print(response)
+            let responseProfileImage = try await useCase.patchProfile(image: profileImage)
+            print(responseProfileImage)
+            let responseProfile = try await useCase.patchProfile(parameters: ProfileModifyRequest(memberName: nickname))
+            print(responseProfile)
+            currentState.send(.isSuccess(true))
         }
     }
   

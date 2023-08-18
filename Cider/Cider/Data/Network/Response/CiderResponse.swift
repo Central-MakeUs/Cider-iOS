@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FileResponse: Codable {
+struct CiderResponse: Codable {
     let status: Int?
     let error: String?
     let message: String?
