@@ -63,6 +63,7 @@
 		FA3D49362A8E6C5C00024A1C /* ProfileModifyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3D49352A8E6C5C00024A1C /* ProfileModifyRepository.swift */; };
 		FA3D49382A8E6CC700024A1C /* ProfileModifyUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3D49372A8E6CC700024A1C /* ProfileModifyUsecase.swift */; };
 		FA3D493A2A8E6EAE00024A1C /* CiderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3D49392A8E6EAE00024A1C /* CiderResponse.swift */; };
+		FA3DA3582A8F524F00AF147B /* ReportPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3DA3572A8F524F00AF147B /* ReportPopupViewController.swift */; };
 		FA3EC10B2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3EC10A2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift */; };
 		FA3FC7FA2A6E92C60022CA3A /* HomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3FC7F92A6E92C60022CA3A /* HomeDetailViewController.swift */; };
 		FA3FC7FC2A6E93B70022CA3A /* SortingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3FC7FB2A6E93B70022CA3A /* SortingHeaderView.swift */; };
@@ -245,6 +246,7 @@
 		FA3D49352A8E6C5C00024A1C /* ProfileModifyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModifyRepository.swift; sourceTree = "<group>"; };
 		FA3D49372A8E6CC700024A1C /* ProfileModifyUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModifyUsecase.swift; sourceTree = "<group>"; };
 		FA3D49392A8E6EAE00024A1C /* CiderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderResponse.swift; sourceTree = "<group>"; };
+		FA3DA3572A8F524F00AF147B /* ReportPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPopupViewController.swift; sourceTree = "<group>"; };
 		FA3EC10A2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAgreeHeaderView.swift; sourceTree = "<group>"; };
 		FA3FC7F92A6E92C60022CA3A /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewController.swift; sourceTree = "<group>"; };
 		FA3FC7FB2A6E93B70022CA3A /* SortingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingHeaderView.swift; sourceTree = "<group>"; };
@@ -582,6 +584,7 @@
 			children = (
 				FA40E8282A8F384F00195810 /* ReportViewController.swift */,
 				FA40E82D2A8F41BC00195810 /* ReportReasonViewController.swift */,
+				FA3DA3572A8F524F00AF147B /* ReportPopupViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1215,6 +1218,7 @@
 				FA4280902A73F58000828F93 /* RuleCell.swift in Sources */,
 				FA31A9442A6A33BE004D1C3B /* ChallengeHomeCell.swift in Sources */,
 				FA4DDB972A4D66CB002EDEAD /* ServiceAgreeDetailCell.swift in Sources */,
+				FA3DA3582A8F524F00AF147B /* ReportPopupViewController.swift in Sources */,
 				FA3281412A8C92FC00AD2FC2 /* MyLevelView.swift in Sources */,
 				FA313A132A85567A006DBE69 /* LevelProgressView.swift in Sources */,
 				FAB9A73F2A4C8DAB00757A80 /* ProcessView.swift in Sources */,

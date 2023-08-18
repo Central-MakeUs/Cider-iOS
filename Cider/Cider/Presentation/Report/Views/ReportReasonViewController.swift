@@ -28,6 +28,7 @@ final class ReportReasonViewController: UIViewController {
         button.titleLabel?.font = CustomFont.PretendardBold(size: .lg).font
         button.setTitleColor(.custom.gray5, for: .normal)
         button.isEnabled = false
+        button.addTarget(self, action: #selector(didTapSelect), for: .touchUpInside)
         return button
     }()
     
@@ -104,10 +105,8 @@ final class ReportReasonViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
+        setUp()
     }
-    
-
 
 }
 
@@ -150,6 +149,13 @@ private extension ReportReasonViewController {
         }
     }
     
+    func presentReportPopupViewController(_ reportType: ReportType) {
+        let viewController = ReportPopupViewController(reportType: reportType)
+        viewController.modalTransitionStyle = .crossDissolve
+        viewController.modalPresentationStyle = .overFullScreen
+        self.present(viewController, animated: true)
+    }
+    
 }
 
 private extension ReportReasonViewController {
@@ -163,7 +169,7 @@ private extension ReportReasonViewController {
     }
     
     @objc func didTapSelect(_ sender: Any?) {
-        
+        presentReportPopupViewController(reportType)
     }
     
 }

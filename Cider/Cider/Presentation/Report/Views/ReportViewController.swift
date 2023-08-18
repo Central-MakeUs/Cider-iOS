@@ -116,11 +116,11 @@ private extension ReportViewController {
     }
     
     @objc func didTapUserBlock(_ sender: Any?) {
-        
+        presentReportPopupViewController(.userBlock)
     }
     
     @objc func didTapPostBlock(_ sender: Any?) {
-        
+        presentReportPopupViewController(.postBlock)
     }
     
     func presentReportReasonViewController(_ reportType: ReportType) {
@@ -137,6 +137,13 @@ private extension ReportViewController {
             sheet.prefersScrollingExpandsWhenScrolledToEdge = false
             sheet.prefersGrabberVisible = true
         }
+        self.present(viewController, animated: true)
+    }
+    
+    func presentReportPopupViewController(_ reportType: ReportType) {
+        let viewController = ReportPopupViewController(reportType: reportType)
+        viewController.modalTransitionStyle = .crossDissolve
+        viewController.modalPresentationStyle = .overFullScreen
         self.present(viewController, animated: true)
     }
     
