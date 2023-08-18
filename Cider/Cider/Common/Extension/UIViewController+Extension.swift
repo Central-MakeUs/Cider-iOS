@@ -34,18 +34,15 @@ extension UIViewController {
 
 extension UIViewController {
     
-    func setNavigationBar(backgroundColor: UIColor?, tintColor: UIColor) {
+    func setNavigationBar(backgroundColor: UIColor?, tintColor: UIColor, shadowColor: UIColor?) {
         self.navigationController?.navigationBar.scrollEdgeAppearance?.backgroundColor = backgroundColor
         self.navigationController?.navigationBar.scrollEdgeAppearance?.titleTextAttributes = [.foregroundColor: tintColor]
         self.navigationController?.navigationBar.standardAppearance.backgroundColor = backgroundColor
         self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [.foregroundColor: tintColor]
         self.navigationItem.backBarButtonItem?.tintColor = tintColor
         self.navigationController?.navigationBar.tintColor = tintColor == .white ? .white : .custom.icon
-    }
-    
-    func setNavigationLineColor(_ color: UIColor?) {
-        self.navigationController?.navigationBar.scrollEdgeAppearance?.shadowColor = color
-        self.navigationController?.navigationBar.standardAppearance.shadowColor = color
+        self.navigationController?.navigationBar.scrollEdgeAppearance?.shadowColor = shadowColor
+        self.navigationController?.navigationBar.standardAppearance.shadowColor = shadowColor
     }
     
     func hideKeyboard() {

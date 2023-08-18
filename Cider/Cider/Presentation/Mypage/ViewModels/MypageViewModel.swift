@@ -19,6 +19,7 @@ final class MypageViewModel: ViewModelType {
     
     var currentState: CurrentValueSubject<ViewModelState?, Never> = .init(nil)
     private var cancellables: Set<AnyCancellable> = .init()
+    var data: MypageResponse?
 
     init(usecase: MypageUsecase) {
         self.usecase = usecase
@@ -36,6 +37,7 @@ private extension MypageViewModel {
         Task {
             do {
                 let response = try await usecase.getMypage()
+                data = response
                 currentState.send(.sendData(response))
             }
         }

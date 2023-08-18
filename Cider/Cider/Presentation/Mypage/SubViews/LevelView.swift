@@ -80,6 +80,7 @@ final class LevelView: UIView {
     }
 
     private func configure() {
+        let levelTextConstraint = UIScreen.main.bounds.width*0.13
         addSubviews(titleLabel, infoButton, levelProgressView, experienceLabel,
                     grayView, currentTextLabel, nextTextLabel, currentLevelLabel, nextLevelLabel)
         NSLayoutConstraint.activate([
@@ -97,11 +98,11 @@ final class LevelView: UIView {
             grayView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
             grayView.heightAnchor.constraint(equalToConstant: 71),
             grayView.topAnchor.constraint(equalTo: experienceLabel.bottomAnchor, constant: 8),
-            currentLevelLabel.leadingAnchor.constraint(equalTo: grayView.leadingAnchor, constant: 33),
+            currentLevelLabel.leadingAnchor.constraint(equalTo: grayView.leadingAnchor, constant: levelTextConstraint),
             currentLevelLabel.bottomAnchor.constraint(equalTo: grayView.bottomAnchor, constant: -18),
             currentTextLabel.topAnchor.constraint(equalTo: grayView.topAnchor, constant: 18),
             currentTextLabel.centerXAnchor.constraint(equalTo: currentLevelLabel.centerXAnchor),
-            nextLevelLabel.trailingAnchor.constraint(equalTo: grayView.trailingAnchor, constant: -33),
+            nextLevelLabel.trailingAnchor.constraint(equalTo: grayView.trailingAnchor, constant: -levelTextConstraint),
             nextLevelLabel.bottomAnchor.constraint(equalTo: grayView.bottomAnchor, constant: -18),
             nextTextLabel.topAnchor.constraint(equalTo: grayView.topAnchor, constant: 18),
             nextTextLabel.centerXAnchor.constraint(equalTo: nextLevelLabel.centerXAnchor)
@@ -165,7 +166,7 @@ struct LevelView_Preview: PreviewProvider {
             return view
         }
         .previewLayout(.sizeThatFits)
-        .padding(50)
+        .padding(24)
     }
 }
 #endif

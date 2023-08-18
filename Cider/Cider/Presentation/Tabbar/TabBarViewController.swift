@@ -14,6 +14,10 @@ final class TabBarViewController: UITabBarController {
         setTabBarViewController()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     private func setTabBarViewController() {
         let homeChallengeViewController = UINavigationController(
             rootViewController: HomeViewController(
@@ -26,7 +30,6 @@ final class TabBarViewController: UITabBarController {
         )
         let dummyViewController = UIViewController()
         
-        
         let mypageViewController = UINavigationController(
             rootViewController: MypageViewController(
                 viewModel: MypageViewModel(
@@ -34,7 +37,8 @@ final class TabBarViewController: UITabBarController {
                         repository: DefaultMypageRepository()
                     )
                 )
-            ))
+            )
+        )
         
         homeChallengeViewController.view.backgroundColor = .white
         mypageViewController.view.backgroundColor = .white

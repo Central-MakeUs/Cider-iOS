@@ -119,10 +119,7 @@ private extension HomeViewController {
         let leftView = HomeNavigationView()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftView)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBarButton)
-        self.navigationController?.navigationBar.scrollEdgeAppearance?.backgroundColor = .white
-        self.navigationController?.navigationBar.standardAppearance.backgroundColor = .white
-        self.navigationController?.navigationBar.scrollEdgeAppearance?.shadowColor = .custom.gray2
-        self.navigationController?.navigationBar.standardAppearance.shadowColor = .custom.gray2
+        setNavigationBar(backgroundColor: .white, tintColor: .black, shadowColor: .clear)
     }
     
     func setUpDataSource() {

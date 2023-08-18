@@ -7,6 +7,7 @@
 
 import Foundation
 import Moya
+import UIKit
 
 enum CiderAPI {
     case signInApple(paramters: [String: Any])
@@ -26,6 +27,8 @@ enum CiderAPI {
     case deleteLikeFeed(certifyId: String)
     case getMypage
     case getMyLikeChallenge
+    case patchProfileImage(image: UIImage)
+    case patchProfile(parameters: [String: Any])
 }
 
 extension CiderAPI: TargetType, AccessTokenAuthorizable {
@@ -68,6 +71,10 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             return "/api/member/mypage"
         case .getMyLikeChallenge:
             return "/api/challenge/like"
+        case .patchProfileImage:
+            return "/api/member/profile/image"
+        case .patchProfile:
+            return "/api/member/profile"
 
         }
     }
@@ -92,7 +99,9 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
              .getMyLikeChallenge:
             return .get
             
-        case .patchOnboarding:
+        case .patchOnboarding,
+             .patchProfileImage,
+             .patchProfile:
             return .patch
             
         case .deleteLikeChallenge,
@@ -107,8 +116,16 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
              .signInKakao(let parameters),
              .patchOnboarding(let parameters),
              .postLikeChallenge(let parameters),
-             .postLikeFeed(let parameters):
+             .postLikeFeed(let parameters),
+             .patchProfile(let parameters):
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+    
+        case .patchProfileImage(let image):
+            let data = image.jpegData(compressionQuality: 0.1)!
+            let imageData = MultipartFormBodyPart(provider: .data(data), name: "profileImage", fileName: "image.jpeg", mimeType: "image/jpeg")
+            let multipartData: MultipartFormData = [imageData]
+            return .uploadMultipartFormData(multipartData)
+            
         default:
             return .requestPlain
         }

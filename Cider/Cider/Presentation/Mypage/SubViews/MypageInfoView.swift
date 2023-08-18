@@ -62,7 +62,7 @@ final class MypageInfoView: UIView {
         return view
     }()
 
-    private lazy var writingButton: UIButton = {
+    lazy var writingButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "line_edit_24"), for: .normal)
         return button
