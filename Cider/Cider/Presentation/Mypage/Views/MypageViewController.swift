@@ -49,6 +49,7 @@ final class MypageViewController: UIViewController {
         )
         button.heightAnchor.constraint(equalToConstant: 24).isActive = true
         button.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        button.addTarget(self, action: #selector(didTapSetting), for: .touchUpInside)
         return button
     }()
 
@@ -228,6 +229,12 @@ private extension MypageViewController {
         }
     }
     
+    func pushSettingViewController() {
+        let viewController = SettingViewController()
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
     @objc func didTapMyCertifty(_ sender: Any?) {
         pushMyCertifyViewController()
     }
@@ -246,6 +253,10 @@ private extension MypageViewController {
     
     @objc func didTapModifyProfile(_ sender: Any?) {
         pushProfileModifyViewController()
+    }
+    
+    @objc func didTapSetting(_ sender: Any?) {
+        pushSettingViewController()
     }
     
 }
