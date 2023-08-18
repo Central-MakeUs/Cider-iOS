@@ -98,6 +98,7 @@ private extension MyCertifyViewController {
     }
     
     func setNavigationBar() {
+        self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = "나의 인증글"
         setNavigationBar(backgroundColor: .white, tintColor: .black)

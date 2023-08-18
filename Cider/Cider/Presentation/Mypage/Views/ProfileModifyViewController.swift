@@ -65,7 +65,7 @@ final class ProfileModifyViewController: UIViewController {
     }()
     
     private lazy var bottomButton: CiderBottomButton = {
-        let button = CiderBottomButton(style: .disabled, title: "수정완료")
+        let button = CiderBottomButton(style: .enabled, title: "수정완료")
         button.addTarget(self, action: #selector(didTapModify), for: .touchUpInside)
         return button
     }()
@@ -132,6 +132,7 @@ private extension ProfileModifyViewController {
     }
     
     func setNavigationBar() {
+        self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = "프로필 수정"
         setNavigationBar(backgroundColor: .white, tintColor: .black)
@@ -174,6 +175,7 @@ private extension ProfileModifyViewController {
                     return
                 }
                 self.profileImageView.image = image
+                self.viewModel.profileImage = image
             }
             .store(in: &cancellables)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)

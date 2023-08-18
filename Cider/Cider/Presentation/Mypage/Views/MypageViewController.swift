@@ -32,6 +32,25 @@ final class MypageViewController: UIViewController {
         view.backgroundColor = .custom.gray2
         return view
     }()
+    
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "마이페이지"
+        label.font = CustomFont.PretendardBold(size: .xl3).font
+        label.textColor = .white
+        return label
+    }()
+    
+    private lazy var settingButton: UIButton = {
+        let button = UIButton()
+        button.setImage(
+            UIImage(named: "line_setting_24")?.withRenderingMode(.alwaysOriginal).withTintColor(.white),
+            for: .normal
+        )
+        button.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        return button
+    }()
 
     private let mypageInfoView = MypageInfoView()
     private let levelView = LevelView()
@@ -48,12 +67,12 @@ final class MypageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-        viewModel.viewDidLoad()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNavigationBar()
+        viewModel.viewDidLoad()
     }
 
 }
@@ -78,23 +97,20 @@ private extension MypageViewController {
     }
 
     func setNavigationBar() {
-        self.navigationController?.navigationBar.topItem?.title = ""
-        self.navigationItem.title = "마이페이지"
-        self.navigationController?.navigationBar.scrollEdgeAppearance?.shadowColor = .clear
-        self.navigationController?.navigationBar.standardAppearance.shadowColor = .clear
-        setNavigationBar(
-            backgroundColor: .custom.main,
-            tintColor: .white
-        )
+        self.navigationController?.navigationBar.isHidden = true
     }
 
     func configure() {
         view.backgroundColor = .custom.main
-        view.addSubviews(roundView, characterImageView, separtorView, mypageInfoView, levelView)
+        view.addSubviews(roundView, characterImageView, separtorView, mypageInfoView, levelView, titleLabel, settingButton)
         NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            settingButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            settingButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             characterImageView.heightAnchor.constraint(equalToConstant: 144),
             characterImageView.widthAnchor.constraint(equalToConstant: 144),
-            characterImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 23),
+            characterImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant:67),
             characterImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             roundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             roundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),

@@ -97,6 +97,7 @@ private extension MyHeartChallengeViewController {
     }
 
     func setNavigationBar() {
+        self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = "관심 챌린지"
         setNavigationBar(backgroundColor: .white, tintColor: .black)
