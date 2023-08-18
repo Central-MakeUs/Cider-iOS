@@ -49,6 +49,7 @@ class SettingViewController: UIViewController {
         button.setTitle("회원 탈퇴", for: .normal)
         button.titleLabel?.font = CustomFont.PretendardRegular(size: .lg).font
         button.setTitleColor(.custom.icon, for: .normal)
+        button.addTarget(self, action: #selector(didTapRedraw), for: .touchUpInside)
         return button
     }()
     
@@ -132,6 +133,13 @@ private extension SettingViewController {
         self.present(viewController, animated: true)
     }
     
+    func presentPopupController() {
+        let viewController = RedrawPopupViewController()
+        viewController.modalPresentationStyle = .overFullScreen
+        viewController.modalTransitionStyle = .crossDissolve
+        self.present(viewController, animated: true)
+    }
+    
     @objc func didTapLogout() {
         UserManager.shared.updateLoginState(false)
         Keychain.deleteToken()
@@ -144,6 +152,10 @@ private extension SettingViewController {
     
     @objc func didTapPrivacy() {
        presentWebViewController("https://github.com/dudtjs1021ej")
+    }
+    
+    @objc func didTapRedraw() {
+        presentPopupController()
     }
     
 }

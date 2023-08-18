@@ -43,6 +43,7 @@
 		FA32B83A2A6A6C2D0086497D /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B8392A6A6C2D0086497D /* HomeHeaderView.swift */; };
 		FA32B83C2A6A79070086497D /* HomeNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B83B2A6A79070086497D /* HomeNavigationView.swift */; };
 		FA32B83E2A6A848C0086497D /* BannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B83D2A6A848C0086497D /* BannerCell.swift */; };
+		FA33300D2A8F858B001012C4 /* RedrawPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA33300C2A8F858B001012C4 /* RedrawPopupViewController.swift */; };
 		FA348ED02A61170800EA3D04 /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ECF2A61170800EA3D04 /* NicknameViewModel.swift */; };
 		FA348ED32A61180400EA3D04 /* NicknameUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ED22A61180400EA3D04 /* NicknameUsecase.swift */; };
 		FA348ED52A61185500EA3D04 /* NicknameRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ED42A61185500EA3D04 /* NicknameRepository.swift */; };
@@ -230,6 +231,7 @@
 		FA32B8392A6A6C2D0086497D /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		FA32B83B2A6A79070086497D /* HomeNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationView.swift; sourceTree = "<group>"; };
 		FA32B83D2A6A848C0086497D /* BannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCell.swift; sourceTree = "<group>"; };
+		FA33300C2A8F858B001012C4 /* RedrawPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedrawPopupViewController.swift; sourceTree = "<group>"; };
 		FA348ECF2A61170800EA3D04 /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
 		FA348ED22A61180400EA3D04 /* NicknameUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameUsecase.swift; sourceTree = "<group>"; };
 		FA348ED42A61185500EA3D04 /* NicknameRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameRepository.swift; sourceTree = "<group>"; };
@@ -567,6 +569,7 @@
 			children = (
 				FA3DA35B2A8F5E5100AF147B /* SettingViewController.swift */,
 				FA8C25992A8F8312005E89D6 /* WebViewController.swift */,
+				FA33300C2A8F858B001012C4 /* RedrawPopupViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1212,6 +1215,7 @@
 				FA57003D2A8286FB00CFECBC /* SortingViewController.swift in Sources */,
 				FA348ED92A6119B600EA3D04 /* DuplicateNicknameResponse.swift in Sources */,
 				FA5911742A7D01520022611B /* MyMissionCell.swift in Sources */,
+				FA33300D2A8F858B001012C4 /* RedrawPopupViewController.swift in Sources */,
 				FA316D692A63A18700C7AA88 /* MainTitleLabel.swift in Sources */,
 				FA40E82C2A8F3EBE00195810 /* ReportReasonView.swift in Sources */,
 				FA3AE40D2A57DB140078A4DF /* CiderBottomButton.swift in Sources */,
