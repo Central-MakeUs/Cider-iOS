@@ -124,6 +124,7 @@ private extension LoginViewController {
     }
     
     func presentTabBarViewController() {
+        UserManager.shared.updateLoginState(true)
         let viewController = TabBarViewController()
         viewController.modalPresentationStyle = .fullScreen
         self.present(viewController, animated: true)

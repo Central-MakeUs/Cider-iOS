@@ -23,11 +23,13 @@ class SettingViewController: UIViewController {
     
     private lazy var agreementView: SettingView = {
         let view = SettingView(title: "이용 약관", rightTitle: "", isHiddenArrowRight: false)
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapAgreement)))
         return view
     }()
     
     private lazy var privacyView: SettingView = {
         let view = SettingView(title: "개인정보 처리 방침", rightTitle: "", isHiddenArrowRight: false)
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapPrivacy)))
         return view
     }()
     
@@ -125,10 +127,23 @@ private extension SettingViewController {
         self.present(viewController, animated: true)
     }
     
+    func presentWebViewController(_ url: String) {
+        let viewController = WebViewController(url: url)
+        self.present(viewController, animated: true)
+    }
+    
     @objc func didTapLogout() {
         UserManager.shared.updateLoginState(false)
         Keychain.deleteToken()
         presentLoginViewController()
+    }
+    
+    @objc func didTapAgreement() {
+        presentWebViewController("https://github.com/dudtjs1021ej")
+    }
+    
+    @objc func didTapPrivacy() {
+       presentWebViewController("https://github.com/dudtjs1021ej")
     }
     
 }
