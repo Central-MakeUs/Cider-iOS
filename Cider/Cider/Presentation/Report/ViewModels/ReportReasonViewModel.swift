@@ -23,6 +23,7 @@ final class ReportReasonViewModel: ViewModelType {
         for i in 0..<isSelectedReason.count {
             isSelectedReason[i] = i==index ? true : false
         }
+        currentState.send(.isEnabledNext((isSelectedReason.filter{ $0 == true }.count) == 1))
     }
     
 }

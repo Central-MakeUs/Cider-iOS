@@ -6,16 +6,19 @@
 //
 
 import UIKit
+import Combine
 
 final class ReportReasonViewController: UIViewController {
     
     private let viewModel: ReportReasonViewModel
+    private let reportType: ReportType
+    private var cancellables: Set<AnyCancellable> = .init()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = CustomFont.PretendardBold(size: .lg).font
         label.textColor = .black
-        label.text = "작성자 신고 사유 선택"
+        label.text = reportType.title
         return label
     }()
     
@@ -89,8 +92,9 @@ final class ReportReasonViewController: UIViewController {
         return stackView
     }()
     
-    init(viewModel: ReportReasonViewModel) {
+    init(viewModel: ReportReasonViewModel, reportType: ReportType) {
         self.viewModel = viewModel
+        self.reportType = reportType
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -111,6 +115,18 @@ private extension ReportReasonViewController {
     
     func setUp() {
         configure()
+        bind()
+    }
+    
+    func bind() {
+        viewModel.state.receive(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                switch state {
+                case .isEnabledNext(let isEnabled):
+                    self?.selectButton.isEnabled = isEnabled
+                }
+            }
+            .store(in: &cancellables)
     }
     
     func configure() {
@@ -144,6 +160,10 @@ private extension ReportReasonViewController {
         }
         setStyle(tag)
         viewModel.selectReason(tag)
+    }
+    
+    @objc func didTapSelect(_ sender: Any?) {
+        
     }
     
 }

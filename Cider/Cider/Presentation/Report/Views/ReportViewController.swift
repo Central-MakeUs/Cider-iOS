@@ -108,23 +108,26 @@ final class ReportViewController: UIViewController {
 private extension ReportViewController {
     
     @objc func didTapUserReport(_ sender: Any?) {
-        presentReportReasonViewController()
+        presentReportReasonViewController(.userReport)
     }
     
     @objc func didTapPostReport(_ sender: Any?) {
-        presentReportReasonViewController()
+        presentReportReasonViewController(.postReport)
     }
     
     @objc func didTapUserBlock(_ sender: Any?) {
-        presentReportReasonViewController()
+        
     }
     
     @objc func didTapPostBlock(_ sender: Any?) {
-        presentReportReasonViewController()
+        
     }
     
-    func presentReportReasonViewController() {
-        let viewController = ReportReasonViewController(viewModel: ReportReasonViewModel())
+    func presentReportReasonViewController(_ reportType: ReportType) {
+        let viewController = ReportReasonViewController(
+            viewModel: ReportReasonViewModel(),
+            reportType: reportType
+        )
         if let sheet = viewController.sheetPresentationController {
             let identifier = UISheetPresentationController.Detent.Identifier("customMedium")
             let customDetent = UISheetPresentationController.Detent.custom(identifier: identifier) { context in
