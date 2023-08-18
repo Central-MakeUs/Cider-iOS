@@ -175,16 +175,6 @@ private extension LoginViewController {
         }
     }
     
-    func appleLogin() {
-        let request = ASAuthorizationAppleIDProvider().createRequest()
-        request.requestedScopes = [.fullName, .email]
-        
-        let controller = ASAuthorizationController(authorizationRequests: [request])
-        controller.delegate = self
-        controller.presentationContextProvider = self as? ASAuthorizationControllerPresentationContextProviding
-        controller.performRequests()
-    }
-    
     func writeKakaoUserDefaults() {
         UserApi.shared.me() { user, error in
             guard let email = user?.kakaoAccount?.email else {
@@ -195,6 +185,15 @@ private extension LoginViewController {
         }
     }
     
+    func appleLogin() {
+        let request = ASAuthorizationAppleIDProvider().createRequest()
+        request.requestedScopes = [.fullName, .email]
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        controller.delegate = self
+        controller.presentationContextProvider = self as? ASAuthorizationControllerPresentationContextProviding
+        controller.performRequests()
+    }
+    
 }
 
 extension LoginViewController: ASAuthorizationControllerDelegate {
@@ -203,14 +202,16 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
             
             guard let identityToken = credential.identityToken,
-                  let token = String(data: identityToken, encoding: .utf8),
-                  let email = credential.email else {
+                  let token = String(data: identityToken, encoding: .utf8) else {
                 return
             }
-            print(token)
             viewModel.appleLogin(token: token)
-            UserDefaults.standard.write(key: .email, value: email)
-            UserDefaults.standard.write(key: .loginType, value: "애플")
+            
+            if let email = credential.email {
+                UserDefaults.standard.write(key: .email, value: email)
+                UserDefaults.standard.write(key: .loginType, value: "애플")
+            }
+           
         }
     }
     

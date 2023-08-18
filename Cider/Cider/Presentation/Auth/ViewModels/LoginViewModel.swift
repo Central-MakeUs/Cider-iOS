@@ -26,6 +26,7 @@ final class LoginViewModel: ViewModelType {
     func kakaoLogin(token: String) {
         Task {
             let response = try await useCase.kakaoLogin(token: token)
+            print(response)
             guard let response,
             let isNewUser = response.isNewMember else {
                 return
@@ -37,6 +38,7 @@ final class LoginViewModel: ViewModelType {
     func appleLogin(token: String) {
         Task {
             let response = try await useCase.appleLogin(token: token)
+            print(response)
             guard let response,
             let isNewUser = response.isNewMember else {
                 return
