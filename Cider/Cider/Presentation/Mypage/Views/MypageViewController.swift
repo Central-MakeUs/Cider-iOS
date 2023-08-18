@@ -182,7 +182,7 @@ private extension MypageViewController {
                 usecase: DefaultMyHeartChallengeUsecase(
                     repository: DefaultMyHeartChallengeRepository()
                 )
-            )
+            ), count: viewModel.data?.memberActivityInfo.myLikeChallengeNum ?? 0
         )
         viewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(viewController, animated: true)

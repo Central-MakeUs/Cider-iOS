@@ -33,8 +33,9 @@ class MyHeartChallengeViewController: UIViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     private var cancellables = Set<AnyCancellable>()
     
-    init(viewModel: MyHeartChallengeViewModel) {
+    init(viewModel: MyHeartChallengeViewModel, count: Int) {
         self.viewModel = viewModel
+        rightBarLabel.text = "총 \(count)개"
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -67,12 +68,16 @@ private extension MyHeartChallengeViewController {
     func bind() {
         viewModel.state.receive(on: DispatchQueue.main)
             .sink { [weak self] state in
+                guard let self = self else {
+                    return
+                }
                 switch state {
                 case .applySnapshot(let isSuccess):
                     guard isSuccess else {
                         return
                     }
-                    self?.applySnapshot()
+                    self.applySnapshot()
+                    self.setTotalCount()
                 }
             }
             .store(in: &cancellables)
@@ -101,7 +106,11 @@ private extension MyHeartChallengeViewController {
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = "관심 챌린지"
         setNavigationBar(backgroundColor: .white, tintColor: .black, shadowColor: .clear)
-        rightBarLabel.text = "총 11개"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBarLabel)
+    }
+    
+    func setTotalCount() {
+        rightBarLabel.text = "총 \(viewModel.challenges.count)개"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBarLabel)
     }
     
