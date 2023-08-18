@@ -15,7 +15,9 @@ class SettingViewController: UIViewController {
     }()
     
     private lazy var accountDetailView: AccountDetailView = {
-        let view = AccountDetailView(title: "애플", account: "ss@naver.com")
+        let title = UserDefaults.standard.read(key: .loginType) as? String ?? ""
+        let email = UserDefaults.standard.read(key: .email) as? String ?? ""
+        let view = AccountDetailView(title: title, account: email)
         return view
     }()
     
@@ -36,6 +38,7 @@ class SettingViewController: UIViewController {
     
     private lazy var logoutView: SettingView = {
         let view = SettingView(title: "로그아웃", rightTitle: "", isHiddenArrowRight: false)
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapLogout)))
         return view
     }()
     
@@ -104,6 +107,28 @@ private extension SettingViewController {
             withdrawButton.topAnchor.constraint(equalTo: logoutView.bottomAnchor, constant: 8),
             withdrawButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24)
         ])
+    }
+
+}
+
+private extension SettingViewController {
+    
+    func presentLoginViewController() {
+        let viewController = LoginViewController(
+            viewModel: LoginViewModel(
+                useCase: DefaultLoginUsecase(
+                    loginRepository: DefaultLoginRepository()
+                )
+            )
+        )
+        viewController.modalPresentationStyle = .fullScreen
+        self.present(viewController, animated: true)
+    }
+    
+    @objc func didTapLogout() {
+        UserManager.shared.updateLoginState(false)
+        Keychain.deleteToken()
+        presentLoginViewController()
     }
     
 }

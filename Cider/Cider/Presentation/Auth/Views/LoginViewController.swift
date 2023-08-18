@@ -109,11 +109,11 @@ private extension LoginViewController {
         viewModel.state.receive(on: DispatchQueue.main)
             .sink { [weak self] state in
                 switch state {
-                case .login(let isSuccess):
+                case .login(let isSuccess, let isNewUser):
                     guard isSuccess else {
                         return
                     }
-                    self?.pushServiceAgreeViewController()
+                    isNewUser ? self?.pushServiceAgreeViewController() : self?.presentTabBarViewController()
                 }
             }.store(in: &cancellables)
     }
@@ -121,6 +121,12 @@ private extension LoginViewController {
     func pushServiceAgreeViewController() {
         let viewController = ServiceAgreeViewController(viewModel: ServiceAgreeViewModel())
         self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func presentTabBarViewController() {
+        let viewController = TabBarViewController()
+        viewController.modalPresentationStyle = .fullScreen
+        self.present(viewController, animated: true)
     }
     
 }
@@ -150,6 +156,7 @@ private extension LoginViewController {
                     }
                     print("accessToken = \(accessToken)")
                     self?.viewModel.kakaoLogin(token: accessToken)
+                    self?.writeKakaoUserDefaults()
                 }
             }
         } else {
@@ -162,6 +169,7 @@ private extension LoginViewController {
                     }
                     print(accessToken)
                     self?.viewModel.kakaoLogin(token: accessToken)
+                    self?.writeKakaoUserDefaults()
                 }
             }
         }
@@ -177,6 +185,16 @@ private extension LoginViewController {
         controller.performRequests()
     }
     
+    func writeKakaoUserDefaults() {
+        UserApi.shared.me() { user, error in
+            guard let email = user?.kakaoAccount?.email else {
+                return
+            }
+            UserDefaults.standard.write(key: .loginType, value: "카카오")
+            UserDefaults.standard.write(key: .email, value: email)
+        }
+    }
+    
 }
 
 extension LoginViewController: ASAuthorizationControllerDelegate {
@@ -185,11 +203,14 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
             
             guard let identityToken = credential.identityToken,
-                  let token = String(data: identityToken, encoding: .utf8) else {
+                  let token = String(data: identityToken, encoding: .utf8),
+                  let email = credential.email else {
                 return
             }
             print(token)
             viewModel.appleLogin(token: token)
+            UserDefaults.standard.write(key: .email, value: email)
+            UserDefaults.standard.write(key: .loginType, value: "애플")
         }
     }
     

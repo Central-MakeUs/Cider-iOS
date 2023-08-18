@@ -9,8 +9,8 @@ import Foundation
 import Combine
 
 protocol LoginUsecase {
-    func kakaoLogin(token: String) async throws -> Bool
-    func appleLogin(token: String) async throws -> Bool
+    func kakaoLogin(token: String) async throws -> LoginResponse?
+    func appleLogin(token: String) async throws -> LoginResponse?
 }
 
 
@@ -22,34 +22,28 @@ final class DefaultLoginUsecase: LoginUsecase {
         self.loginRepository = loginRepository
     }
     
-    func kakaoLogin(token: String) async throws -> Bool {
+    func kakaoLogin(token: String) async throws -> LoginResponse? {
         UserDefaults.standard.write(key: .userIdentifier, value: token)
         Keychain.saveToken(data: token)
         let request = LoginRequest(socialType: "KAKAO", clientType: "IOS")
         let response = try await loginRepository.signInKakao(parameters: request)
-        guard response.status == nil,
-              let accessToken = response.accessToken else {
-            return false
+        guard let accessToken = response.accessToken else {
+            return nil
         }
-        print(response)
-        print(accessToken)
         Keychain.saveToken(data: accessToken)
-        return true
+        return response
     }
     
-    func appleLogin(token: String) async throws -> Bool {
+    func appleLogin(token: String) async throws -> LoginResponse? {
         UserDefaults.standard.write(key: .userIdentifier, value: token)
         Keychain.saveToken(data: token)
         let request = LoginRequest(socialType: "APPLE", clientType: "IOS")
         let response = try await loginRepository.signInKakao(parameters: request)
-        guard response.status == nil,
-              let accessToken = response.accessToken else {
-            return false
+        guard let accessToken = response.accessToken else {
+            return nil
         }
-        print(response)
-        print(accessToken)
         Keychain.saveToken(data: accessToken)
-        return true
+        return response
     }
     
 }
