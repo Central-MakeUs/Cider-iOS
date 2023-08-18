@@ -41,7 +41,7 @@ final class FeedCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var meatballButton: UIButton = {
+    lazy var meatballButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "line_more(meatball)_24"), for: .normal)
         return button
