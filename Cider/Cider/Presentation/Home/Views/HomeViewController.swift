@@ -223,6 +223,7 @@ private extension HomeViewController {
                 )
                 cell.certifyId = feed.certifyId
                 cell.addHeartButtonAction(self, action: #selector(self.didTapFeedHeart))
+                cell.meatballButton.addTarget(self, action: #selector(self.didTapFeedMeatball), for: .touchUpInside)
                 return cell
                 
             case .none:
@@ -546,6 +547,17 @@ private extension HomeViewController {
         reloadHeader()
     }
     
+    @objc func didTapFeedMeatball(_ sender: UIButton) {
+        guard let cell = sender.superview as? UICollectionViewCell else {
+            return
+        }
+        guard let indexPath = collectionView.indexPath(for: cell) else {
+            return
+        }
+        let feed = viewModel.feeds[indexPath.row]
+        pushReportViewContoller()
+    }
+    
 }
 
 private extension HomeViewController {
@@ -574,6 +586,20 @@ private extension HomeViewController {
         let viewController = ChallengeDetailViewController(challengeType: type)
         viewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func pushReportViewContoller() {
+        let viewController = ReportViewController()
+        if let sheet = viewController.sheetPresentationController {
+            let identifier = UISheetPresentationController.Detent.Identifier("customMedium")
+            let customDetent = UISheetPresentationController.Detent.custom(identifier: identifier) { context in
+                return 248-34
+            }
+            sheet.detents = [customDetent]
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            sheet.prefersGrabberVisible = true
+        }
+        self.present(viewController, animated: true)
     }
     
 }

@@ -69,6 +69,7 @@
 		FA3FC8002A6E94690022CA3A /* HomeDetailInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3FC7FF2A6E94690022CA3A /* HomeDetailInfoCell.swift */; };
 		FA3FC8032A6E95540022CA3A /* HomeDetailType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3FC8022A6E95540022CA3A /* HomeDetailType.swift */; };
 		FA40E8252A8F22F900195810 /* ProfileModifyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA40E8242A8F22F900195810 /* ProfileModifyRequest.swift */; };
+		FA40E8292A8F384F00195810 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA40E8282A8F384F00195810 /* ReportViewController.swift */; };
 		FA4280632A70E68100828F93 /* ReviewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280622A70E68100828F93 /* ReviewType.swift */; };
 		FA4280652A70E9A900828F93 /* ReviewStatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280642A70E9A900828F93 /* ReviewStatusBarView.swift */; };
 		FA4280672A70F17800828F93 /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280662A70F17800828F93 /* ReviewCell.swift */; };
@@ -246,6 +247,7 @@
 		FA3FC7FF2A6E94690022CA3A /* HomeDetailInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailInfoCell.swift; sourceTree = "<group>"; };
 		FA3FC8022A6E95540022CA3A /* HomeDetailType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailType.swift; sourceTree = "<group>"; };
 		FA40E8242A8F22F900195810 /* ProfileModifyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModifyRequest.swift; sourceTree = "<group>"; };
+		FA40E8282A8F384F00195810 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		FA4280622A70E68100828F93 /* ReviewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewType.swift; sourceTree = "<group>"; };
 		FA4280642A70E9A900828F93 /* ReviewStatusBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStatusBarView.swift; sourceTree = "<group>"; };
 		FA4280662A70F17800828F93 /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
@@ -556,6 +558,22 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		FA40E8262A8F37D900195810 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				FA40E8272A8F384100195810 /* Views */,
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
+		FA40E8272A8F384100195810 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA40E8282A8F384F00195810 /* ReportViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		FA4280752A736BDF00828F93 /* ChallengeDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -622,6 +640,7 @@
 		FA44D38D2A4C3CB10037E328 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				FA40E8262A8F37D900195810 /* Report */,
 				FA313A112A85566D006DBE69 /* Mypage */,
 				FA3139FB2A84BBDC006DBE69 /* Certify */,
 				FA4280752A736BDF00828F93 /* ChallengeDetail */,
@@ -1134,6 +1153,7 @@
 				FA57AF4B2A5D0D72008A5991 /* CiderAPI.swift in Sources */,
 				FA313A172A8556CE006DBE69 /* LevelView.swift in Sources */,
 				FA57AF632A5D22A0008A5991 /* LoginError.swift in Sources */,
+				FA40E8292A8F384F00195810 /* ReportViewController.swift in Sources */,
 				FA59117D2A7D41EF0022611B /* HomeUsecase.swift in Sources */,
 				FA4DDB8E2A4D3178002EDEAD /* ServiceAgreeViewController.swift in Sources */,
 				FA8CA60B2A46D322005A6709 /* LoginViewController.swift in Sources */,
