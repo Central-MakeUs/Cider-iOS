@@ -47,19 +47,19 @@ final class ReportViewController: UIViewController {
     
     private lazy var separtorView1: UIView = {
         let view = UIView()
-        view.backgroundColor = .custom.gray2
+        view.backgroundColor = .custom.underBar
         return view
     }()
     
     private lazy var separtorView2: UIView = {
         let view = UIView()
-        view.backgroundColor = .custom.gray2
+        view.backgroundColor = .custom.underBar
         return view
     }()
     
     private lazy var separtorView3: UIView = {
         let view = UIView()
-        view.backgroundColor = .custom.gray2
+        view.backgroundColor = .custom.underBar
         return view
     }()
     
@@ -108,19 +108,33 @@ final class ReportViewController: UIViewController {
 private extension ReportViewController {
     
     @objc func didTapUserReport(_ sender: Any?) {
-        
+        presentReportReasonViewController()
     }
     
     @objc func didTapPostReport(_ sender: Any?) {
-       
+        presentReportReasonViewController()
     }
     
     @objc func didTapUserBlock(_ sender: Any?) {
-        
+        presentReportReasonViewController()
     }
     
     @objc func didTapPostBlock(_ sender: Any?) {
-        
+        presentReportReasonViewController()
+    }
+    
+    func presentReportReasonViewController() {
+        let viewController = ReportReasonViewController()
+        if let sheet = viewController.sheetPresentationController {
+            let identifier = UISheetPresentationController.Detent.Identifier("customMedium")
+            let customDetent = UISheetPresentationController.Detent.custom(identifier: identifier) { context in
+                return 424-34
+            }
+            sheet.detents = [customDetent]
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            sheet.prefersGrabberVisible = true
+        }
+        self.present(viewController, animated: true)
     }
     
 }

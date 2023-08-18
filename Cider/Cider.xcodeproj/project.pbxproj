@@ -70,6 +70,8 @@
 		FA3FC8032A6E95540022CA3A /* HomeDetailType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3FC8022A6E95540022CA3A /* HomeDetailType.swift */; };
 		FA40E8252A8F22F900195810 /* ProfileModifyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA40E8242A8F22F900195810 /* ProfileModifyRequest.swift */; };
 		FA40E8292A8F384F00195810 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA40E8282A8F384F00195810 /* ReportViewController.swift */; };
+		FA40E82C2A8F3EBE00195810 /* ReportReasonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA40E82B2A8F3EBE00195810 /* ReportReasonView.swift */; };
+		FA40E82E2A8F41BC00195810 /* ReportReasonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA40E82D2A8F41BC00195810 /* ReportReasonViewController.swift */; };
 		FA4280632A70E68100828F93 /* ReviewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280622A70E68100828F93 /* ReviewType.swift */; };
 		FA4280652A70E9A900828F93 /* ReviewStatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280642A70E9A900828F93 /* ReviewStatusBarView.swift */; };
 		FA4280672A70F17800828F93 /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280662A70F17800828F93 /* ReviewCell.swift */; };
@@ -248,6 +250,8 @@
 		FA3FC8022A6E95540022CA3A /* HomeDetailType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailType.swift; sourceTree = "<group>"; };
 		FA40E8242A8F22F900195810 /* ProfileModifyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModifyRequest.swift; sourceTree = "<group>"; };
 		FA40E8282A8F384F00195810 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		FA40E82B2A8F3EBE00195810 /* ReportReasonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportReasonView.swift; sourceTree = "<group>"; };
+		FA40E82D2A8F41BC00195810 /* ReportReasonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportReasonViewController.swift; sourceTree = "<group>"; };
 		FA4280622A70E68100828F93 /* ReviewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewType.swift; sourceTree = "<group>"; };
 		FA4280642A70E9A900828F93 /* ReviewStatusBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStatusBarView.swift; sourceTree = "<group>"; };
 		FA4280662A70F17800828F93 /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
@@ -561,6 +565,7 @@
 		FA40E8262A8F37D900195810 /* Report */ = {
 			isa = PBXGroup;
 			children = (
+				FA40E82A2A8F3EA200195810 /* SubViews */,
 				FA40E8272A8F384100195810 /* Views */,
 			);
 			path = Report;
@@ -570,8 +575,17 @@
 			isa = PBXGroup;
 			children = (
 				FA40E8282A8F384F00195810 /* ReportViewController.swift */,
+				FA40E82D2A8F41BC00195810 /* ReportReasonViewController.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		FA40E82A2A8F3EA200195810 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				FA40E82B2A8F3EBE00195810 /* ReportReasonView.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 		FA4280752A736BDF00828F93 /* ChallengeDetail */ = {
@@ -1131,6 +1145,7 @@
 				FA57AF6B2A5D73F8008A5991 /* ChallengeOpenCell.swift in Sources */,
 				FA2FE0822A8DCBEF005500D5 /* ProfileModifyViewController.swift in Sources */,
 				FA619D5F2A87CEDC000BDDA5 /* MypageUsecase.swift in Sources */,
+				FA40E82E2A8F41BC00195810 /* ReportReasonViewController.swift in Sources */,
 				FA3FC8032A6E95540022CA3A /* HomeDetailType.swift in Sources */,
 				FA2A06502A68DF5B00AC649F /* PrecautionViewModel.swift in Sources */,
 				FA57AF752A5E9DED008A5991 /* CiderTextView.swift in Sources */,
@@ -1145,6 +1160,7 @@
 				FA348ED92A6119B600EA3D04 /* DuplicateNicknameResponse.swift in Sources */,
 				FA5911742A7D01520022611B /* MyMissionCell.swift in Sources */,
 				FA316D692A63A18700C7AA88 /* MainTitleLabel.swift in Sources */,
+				FA40E82C2A8F3EBE00195810 /* ReportReasonView.swift in Sources */,
 				FA3AE40D2A57DB140078A4DF /* CiderBottomButton.swift in Sources */,
 				FA56F9842A542FA70099EC6F /* GenderAndBirthdayViewController.swift in Sources */,
 				FA0322812A4DC2B0000993DF /* NicknameViewController.swift in Sources */,
