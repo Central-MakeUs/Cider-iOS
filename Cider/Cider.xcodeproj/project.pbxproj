@@ -43,6 +43,7 @@
 		FA32B83A2A6A6C2D0086497D /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B8392A6A6C2D0086497D /* HomeHeaderView.swift */; };
 		FA32B83C2A6A79070086497D /* HomeNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B83B2A6A79070086497D /* HomeNavigationView.swift */; };
 		FA32B83E2A6A848C0086497D /* BannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B83D2A6A848C0086497D /* BannerCell.swift */; };
+		FA33300D2A8F858B001012C4 /* RedrawPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA33300C2A8F858B001012C4 /* RedrawPopupViewController.swift */; };
 		FA348ED02A61170800EA3D04 /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ECF2A61170800EA3D04 /* NicknameViewModel.swift */; };
 		FA348ED32A61180400EA3D04 /* NicknameUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ED22A61180400EA3D04 /* NicknameUsecase.swift */; };
 		FA348ED52A61185500EA3D04 /* NicknameRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ED42A61185500EA3D04 /* NicknameRepository.swift */; };
@@ -64,6 +65,8 @@
 		FA3D49382A8E6CC700024A1C /* ProfileModifyUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3D49372A8E6CC700024A1C /* ProfileModifyUsecase.swift */; };
 		FA3D493A2A8E6EAE00024A1C /* CiderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3D49392A8E6EAE00024A1C /* CiderResponse.swift */; };
 		FA3DA3582A8F524F00AF147B /* ReportPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3DA3572A8F524F00AF147B /* ReportPopupViewController.swift */; };
+		FA3DA35C2A8F5E5100AF147B /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3DA35B2A8F5E5100AF147B /* SettingViewController.swift */; };
+		FA3DA35F2A8F5F8D00AF147B /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3DA35E2A8F5F8D00AF147B /* SettingView.swift */; };
 		FA3EC10B2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3EC10A2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift */; };
 		FA3FC7FA2A6E92C60022CA3A /* HomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3FC7F92A6E92C60022CA3A /* HomeDetailViewController.swift */; };
 		FA3FC7FC2A6E93B70022CA3A /* SortingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3FC7FB2A6E93B70022CA3A /* SortingHeaderView.swift */; };
@@ -173,6 +176,8 @@
 		FA758ACA2A5EF528003E2F07 /* ChallengeOpenSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA758AC92A5EF528003E2F07 /* ChallengeOpenSelectionView.swift */; };
 		FA758ACC2A5F0316003E2F07 /* MissionPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA758ACB2A5F0316003E2F07 /* MissionPhotoView.swift */; };
 		FA758ACE2A5F0374003E2F07 /* ChallengeResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA758ACD2A5F0374003E2F07 /* ChallengeResultType.swift */; };
+		FA8C25982A8F67F0005E89D6 /* AccountDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8C25972A8F67F0005E89D6 /* AccountDetailView.swift */; };
+		FA8C259A2A8F8312005E89D6 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8C25992A8F8312005E89D6 /* WebViewController.swift */; };
 		FA8CA6072A46D322005A6709 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8CA6062A46D322005A6709 /* AppDelegate.swift */; };
 		FA8CA6092A46D322005A6709 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8CA6082A46D322005A6709 /* SceneDelegate.swift */; };
 		FA8CA60B2A46D322005A6709 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8CA60A2A46D322005A6709 /* LoginViewController.swift */; };
@@ -226,6 +231,7 @@
 		FA32B8392A6A6C2D0086497D /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		FA32B83B2A6A79070086497D /* HomeNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationView.swift; sourceTree = "<group>"; };
 		FA32B83D2A6A848C0086497D /* BannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCell.swift; sourceTree = "<group>"; };
+		FA33300C2A8F858B001012C4 /* RedrawPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedrawPopupViewController.swift; sourceTree = "<group>"; };
 		FA348ECF2A61170800EA3D04 /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
 		FA348ED22A61180400EA3D04 /* NicknameUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameUsecase.swift; sourceTree = "<group>"; };
 		FA348ED42A61185500EA3D04 /* NicknameRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameRepository.swift; sourceTree = "<group>"; };
@@ -247,6 +253,8 @@
 		FA3D49372A8E6CC700024A1C /* ProfileModifyUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModifyUsecase.swift; sourceTree = "<group>"; };
 		FA3D49392A8E6EAE00024A1C /* CiderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderResponse.swift; sourceTree = "<group>"; };
 		FA3DA3572A8F524F00AF147B /* ReportPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPopupViewController.swift; sourceTree = "<group>"; };
+		FA3DA35B2A8F5E5100AF147B /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		FA3DA35E2A8F5F8D00AF147B /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		FA3EC10A2A4DA488008AA4E3 /* ServiceAgreeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAgreeHeaderView.swift; sourceTree = "<group>"; };
 		FA3FC7F92A6E92C60022CA3A /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewController.swift; sourceTree = "<group>"; };
 		FA3FC7FB2A6E93B70022CA3A /* SortingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingHeaderView.swift; sourceTree = "<group>"; };
@@ -353,6 +361,8 @@
 		FA758AC92A5EF528003E2F07 /* ChallengeOpenSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOpenSelectionView.swift; sourceTree = "<group>"; };
 		FA758ACB2A5F0316003E2F07 /* MissionPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionPhotoView.swift; sourceTree = "<group>"; };
 		FA758ACD2A5F0374003E2F07 /* ChallengeResultType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeResultType.swift; sourceTree = "<group>"; };
+		FA8C25972A8F67F0005E89D6 /* AccountDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailView.swift; sourceTree = "<group>"; };
+		FA8C25992A8F8312005E89D6 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		FA8CA6032A46D322005A6709 /* Cider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA8CA6062A46D322005A6709 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA8CA6082A46D322005A6709 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -545,6 +555,34 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		FA3DA3592A8F5E3E00AF147B /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				FA3DA35D2A8F5EB400AF147B /* SubViews */,
+				FA3DA35A2A8F5E4400AF147B /* Views */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		FA3DA35A2A8F5E4400AF147B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA3DA35B2A8F5E5100AF147B /* SettingViewController.swift */,
+				FA8C25992A8F8312005E89D6 /* WebViewController.swift */,
+				FA33300C2A8F858B001012C4 /* RedrawPopupViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FA3DA35D2A8F5EB400AF147B /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				FA3DA35E2A8F5F8D00AF147B /* SettingView.swift */,
+				FA8C25972A8F67F0005E89D6 /* AccountDetailView.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
 		FA3FC7FD2A6E93BB0022CA3A /* HeaderView */ = {
 			isa = PBXGroup;
 			children = (
@@ -671,6 +709,7 @@
 		FA44D38D2A4C3CB10037E328 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				FA3DA3592A8F5E3E00AF147B /* Setting */,
 				FA40E8262A8F37D900195810 /* Report */,
 				FA313A112A85566D006DBE69 /* Mypage */,
 				FA3139FB2A84BBDC006DBE69 /* Certify */,
@@ -1176,6 +1215,7 @@
 				FA57003D2A8286FB00CFECBC /* SortingViewController.swift in Sources */,
 				FA348ED92A6119B600EA3D04 /* DuplicateNicknameResponse.swift in Sources */,
 				FA5911742A7D01520022611B /* MyMissionCell.swift in Sources */,
+				FA33300D2A8F858B001012C4 /* RedrawPopupViewController.swift in Sources */,
 				FA316D692A63A18700C7AA88 /* MainTitleLabel.swift in Sources */,
 				FA40E82C2A8F3EBE00195810 /* ReportReasonView.swift in Sources */,
 				FA3AE40D2A57DB140078A4DF /* CiderBottomButton.swift in Sources */,
@@ -1198,9 +1238,11 @@
 				FA726CCE2A7933F100A9309D /* MissionView.swift in Sources */,
 				FA758ACC2A5F0316003E2F07 /* MissionPhotoView.swift in Sources */,
 				FA08D99B2A6D78CE0061C567 /* FeedCell.swift in Sources */,
+				FA8C259A2A8F8312005E89D6 /* WebViewController.swift in Sources */,
 				FA4280632A70E68100828F93 /* ReviewType.swift in Sources */,
 				FA59116F2A7BEF360022611B /* MissionPhotoCell.swift in Sources */,
 				FA5B8BE12A4DCAE000CEB0F6 /* UITextField+Extension.swift in Sources */,
+				FA3DA35C2A8F5E5100AF147B /* SettingViewController.swift in Sources */,
 				FA313A052A84F9F0006DBE69 /* ChallengeSelectionView.swift in Sources */,
 				FA42807B2A736F7600828F93 /* DynamicLabel.swift in Sources */,
 				FA313A192A8556F6006DBE69 /* MypageInfoView.swift in Sources */,
@@ -1268,6 +1310,7 @@
 				FA42808A2A73DC0D00828F93 /* ChallengeInfoCell.swift in Sources */,
 				FA6100302A590431002175CE /* ChallengeSelectionViewModel.swift in Sources */,
 				FA4280842A73ADF900828F93 /* ProgressBarCell.swift in Sources */,
+				FA8C25982A8F67F0005E89D6 /* AccountDetailView.swift in Sources */,
 				FA44D3992A4C43B80037E328 /* Color+Extension.swift in Sources */,
 				FAD6E3D42A64F2A6002C8007 /* WritingView.swift in Sources */,
 				FA40E8312A8F473100195810 /* ReportReasonViewModel.swift in Sources */,
@@ -1276,6 +1319,7 @@
 				FA3FC8002A6E94690022CA3A /* HomeDetailInfoCell.swift in Sources */,
 				FA348ED02A61170800EA3D04 /* NicknameViewModel.swift in Sources */,
 				FA619D592A87C928000BDDA5 /* MypageViewModel.swift in Sources */,
+				FA3DA35F2A8F5F8D00AF147B /* SettingView.swift in Sources */,
 				FA5911772A7D3CCC0022611B /* HomeViewModel.swift in Sources */,
 				FA3AE4072A57D2970078A4DF /* GenderAndBirthdayViewModel.swift in Sources */,
 				FA4280672A70F17800828F93 /* ReviewCell.swift in Sources */,

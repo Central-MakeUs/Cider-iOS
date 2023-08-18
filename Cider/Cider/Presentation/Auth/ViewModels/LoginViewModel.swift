@@ -11,7 +11,7 @@ import Combine
 final class LoginViewModel: ViewModelType {
     
     enum ViewModelState {
-        case login(_ isSuccess: Bool)
+        case login(isSuccess: Bool, isNewUser: Bool)
     }
     
     var useCase: LoginUsecase
@@ -25,15 +25,25 @@ final class LoginViewModel: ViewModelType {
     
     func kakaoLogin(token: String) {
         Task {
-            let isSuccess = try await useCase.kakaoLogin(token: token)
-            currentState.send(.login(isSuccess))
+            let response = try await useCase.kakaoLogin(token: token)
+            print(response)
+            guard let response,
+            let isNewUser = response.isNewMember else {
+                return
+            }
+            currentState.send(.login(isSuccess: response.status==nil, isNewUser: isNewUser))
         }
     }
     
     func appleLogin(token: String) {
         Task {
-            let isSuccess = try await useCase.appleLogin(token: token)
-            currentState.send(.login(isSuccess))
+            let response = try await useCase.appleLogin(token: token)
+            print(response)
+            guard let response,
+            let isNewUser = response.isNewMember else {
+                return
+            }
+            currentState.send(.login(isSuccess: response.status==nil, isNewUser: isNewUser))
         }
     }
     

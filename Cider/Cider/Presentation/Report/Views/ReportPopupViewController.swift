@@ -32,6 +32,7 @@ final class ReportPopupViewController: UIViewController {
         label.font = CustomFont.PretendardRegular(size: .base).font
         label.textColor = .custom.text
         label.text = reportType.popUpSubTitle
+        label.setTextWithLineHeight(lineHeight: 18.2)
         label.numberOfLines = 0
         label.textAlignment = .center
         return label

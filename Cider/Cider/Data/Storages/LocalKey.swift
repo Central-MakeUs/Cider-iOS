@@ -10,6 +10,8 @@ import Foundation
 public enum LocalKey: String {
     case userIdentifier
     case isLogin
+    case loginType
+    case email
 }
 
 public protocol LocalStorageService: AnyObject {
