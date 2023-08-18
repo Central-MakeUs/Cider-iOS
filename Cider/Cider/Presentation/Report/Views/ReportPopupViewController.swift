@@ -44,6 +44,7 @@ final class ReportPopupViewController: UIViewController {
         button.backgroundColor = .custom.main
         button.titleLabel?.font = CustomFont.PretendardBold(size: .lg).font
         button.layer.cornerRadius = 4
+        button.addTarget(self, action: #selector(didTapBottom), for: .touchUpInside)
         return button
     }()
     
@@ -90,6 +91,11 @@ private extension ReportPopupViewController {
     }
     
     @objc func dismissAllViewController(_ sender: Any?) {
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func didTapBottom(_ sender: Any?) {
+        self.view.window?.rootViewController?.showToast(message: reportType.toastMessage)
         self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     

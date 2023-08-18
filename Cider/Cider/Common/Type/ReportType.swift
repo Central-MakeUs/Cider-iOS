@@ -13,6 +13,19 @@ enum ReportType {
     case userBlock
     case postBlock
     
+    var toastMessage: String {
+        switch self {
+        case .userReport:
+            return "작성자 신고가 완료되었습니다"
+        case .postReport:
+            return "게시글 신고가 완료되었습니다"
+        case .userBlock:
+            return "작성자 차단이 완료되었습니다"
+        case .postBlock:
+            return "게시글 차단이 완료되었습니다"
+        }
+    }
+    
     var title: String {
         switch self {
         case .userReport:
