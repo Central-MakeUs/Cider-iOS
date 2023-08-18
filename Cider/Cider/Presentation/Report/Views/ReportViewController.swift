@@ -124,7 +124,7 @@ private extension ReportViewController {
     }
     
     func presentReportReasonViewController() {
-        let viewController = ReportReasonViewController()
+        let viewController = ReportReasonViewController(viewModel: ReportReasonViewModel())
         if let sheet = viewController.sheetPresentationController {
             let identifier = UISheetPresentationController.Detent.Identifier("customMedium")
             let customDetent = UISheetPresentationController.Detent.custom(identifier: identifier) { context in

@@ -72,6 +72,7 @@
 		FA40E8292A8F384F00195810 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA40E8282A8F384F00195810 /* ReportViewController.swift */; };
 		FA40E82C2A8F3EBE00195810 /* ReportReasonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA40E82B2A8F3EBE00195810 /* ReportReasonView.swift */; };
 		FA40E82E2A8F41BC00195810 /* ReportReasonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA40E82D2A8F41BC00195810 /* ReportReasonViewController.swift */; };
+		FA40E8312A8F473100195810 /* ReportReasonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA40E8302A8F473100195810 /* ReportReasonViewModel.swift */; };
 		FA4280632A70E68100828F93 /* ReviewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280622A70E68100828F93 /* ReviewType.swift */; };
 		FA4280652A70E9A900828F93 /* ReviewStatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280642A70E9A900828F93 /* ReviewStatusBarView.swift */; };
 		FA4280672A70F17800828F93 /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4280662A70F17800828F93 /* ReviewCell.swift */; };
@@ -252,6 +253,7 @@
 		FA40E8282A8F384F00195810 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		FA40E82B2A8F3EBE00195810 /* ReportReasonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportReasonView.swift; sourceTree = "<group>"; };
 		FA40E82D2A8F41BC00195810 /* ReportReasonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportReasonViewController.swift; sourceTree = "<group>"; };
+		FA40E8302A8F473100195810 /* ReportReasonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportReasonViewModel.swift; sourceTree = "<group>"; };
 		FA4280622A70E68100828F93 /* ReviewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewType.swift; sourceTree = "<group>"; };
 		FA4280642A70E9A900828F93 /* ReviewStatusBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStatusBarView.swift; sourceTree = "<group>"; };
 		FA4280662A70F17800828F93 /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
@@ -565,6 +567,7 @@
 		FA40E8262A8F37D900195810 /* Report */ = {
 			isa = PBXGroup;
 			children = (
+				FA40E82F2A8F472400195810 /* ViewModels */,
 				FA40E82A2A8F3EA200195810 /* SubViews */,
 				FA40E8272A8F384100195810 /* Views */,
 			);
@@ -586,6 +589,14 @@
 				FA40E82B2A8F3EBE00195810 /* ReportReasonView.swift */,
 			);
 			path = SubViews;
+			sourceTree = "<group>";
+		};
+		FA40E82F2A8F472400195810 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FA40E8302A8F473100195810 /* ReportReasonViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		FA4280752A736BDF00828F93 /* ChallengeDetail */ = {
@@ -1251,6 +1262,7 @@
 				FA4280842A73ADF900828F93 /* ProgressBarCell.swift in Sources */,
 				FA44D3992A4C43B80037E328 /* Color+Extension.swift in Sources */,
 				FAD6E3D42A64F2A6002C8007 /* WritingView.swift in Sources */,
+				FA40E8312A8F473100195810 /* ReportReasonViewModel.swift in Sources */,
 				FA313A1B2A855720006DBE69 /* MypageViewController.swift in Sources */,
 				FAD6E3D82A64F9B5002C8007 /* ChallengeTypeViewController.swift in Sources */,
 				FA3FC8002A6E94690022CA3A /* HomeDetailInfoCell.swift in Sources */,
