@@ -51,6 +51,7 @@ private extension ChallengeTypeViewController {
     }
     
     func setNavigationBar() {
+        self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = "챌린지 개설"
         setNavigationBar(backgroundColor: .white, tintColor: .black, shadowColor: .clear)

@@ -31,7 +31,7 @@ final class ChallengeEmptyCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var challengeOpenButton: UIButton = {
+    lazy var challengeOpenButton: UIButton = {
         let button = UIButton()
         button.heightAnchor.constraint(equalToConstant: 44).isActive = true
         button.widthAnchor.constraint(equalToConstant: 123).isActive = true

@@ -187,6 +187,7 @@ private extension HomeViewController {
                     guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeEmptyCell.identifier, for: indexPath) as? ChallengeEmptyCell else {
                         return UICollectionViewCell()
                     }
+                    cell.challengeOpenButton.addTarget(self, action: #selector(self.didTapChallengeOpen), for: .touchUpInside)
                     return cell
                 }
                 
@@ -215,6 +216,7 @@ private extension HomeViewController {
                     guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeEmptyCell.identifier, for: indexPath) as? ChallengeEmptyCell else {
                         return UICollectionViewCell()
                     }
+                    cell.challengeOpenButton.addTarget(self, action: #selector(self.didTapChallengeOpen), for: .touchUpInside)
                     return cell
                     
                 }
@@ -640,6 +642,10 @@ private extension HomeViewController {
         pushReportViewContoller()
     }
     
+    @objc func didTapChallengeOpen(_ sender: Any?) {
+        pushChallengeTypeViewController()
+    }
+    
 }
 
 private extension HomeViewController {
@@ -682,6 +688,12 @@ private extension HomeViewController {
             sheet.prefersGrabberVisible = true
         }
         self.present(viewController, animated: true)
+    }
+    
+    func pushChallengeTypeViewController() {
+        let viewController = ChallengeTypeViewController()
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
 }
