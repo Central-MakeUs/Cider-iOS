@@ -32,5 +32,6 @@ extension UIColor {
         static let btnBlue = UIColor(named: "btnBlue")
         static let secondary = UIColor(named: "secondary")
         static let underBar = UIColor(named: "underBar")
+        static let emptySub = UIColor(named: "emptySub")
     }
 }

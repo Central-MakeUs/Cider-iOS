@@ -15,6 +15,7 @@ final class HomeViewController: UIViewController {
         collectionView.register(ChallengeHomeCell.self, forCellWithReuseIdentifier: ChallengeHomeCell.identifier)
         collectionView.register(BannerCell.self, forCellWithReuseIdentifier: BannerCell.identifier)
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: FeedCell.identifier)
+        collectionView.register(ChallengeEmptyCell.self, forCellWithReuseIdentifier: ChallengeEmptyCell.identifier)
         collectionView.register(HomeHeaderView.self, forSupplementaryViewOfKind: HomeHeaderView.identifier, withReuseIdentifier: HomeHeaderView.identifier)
         collectionView.register(CategoryHeaderView.self, forSupplementaryViewOfKind: CategoryHeaderView.identifier, withReuseIdentifier: CategoryHeaderView.identifier)
         collectionView.showsVerticalScrollIndicator = false
@@ -140,7 +141,7 @@ private extension HomeViewController {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeHomeCell.identifier, for: indexPath) as? ChallengeHomeCell else {
                     return UICollectionViewCell()
                 }
-                if let challenge = self.viewModel.popularChallanges?[indexPath.row] {
+                let challenge = self.viewModel.popularChallanges[indexPath.row]
                     cell.setUp(
                         type: challenge.interestField.convertChallengeType(),
                         isReward: challenge.isReward,
@@ -155,15 +156,46 @@ private extension HomeViewController {
                     )
                     cell.challengeId = challenge.challengeId
                     cell.addActionHeart(self, action: #selector(self.didTapChallengeHeart))
-                }
+                
                 
                 return cell
                 
             case .publicChallenge:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeHomeCell.identifier, for: indexPath) as? ChallengeHomeCell else {
-                    return UICollectionViewCell()
+                print("self.viewModel.publicChallanges.count \(self.viewModel.publicChallanges.count)")
+                if self.viewModel.publicChallanges.count > 0 {
+                    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeHomeCell.identifier, for: indexPath) as? ChallengeHomeCell else {
+                        return UICollectionViewCell()
+                    }
+                    let challenge = self.viewModel.publicChallanges[indexPath.row]
+                        cell.setUp(
+                            type: challenge.interestField.convertChallengeType(),
+                            isReward: challenge.isReward,
+                            date: "\(challenge.challengePeriod)주",
+                            ranking: nil,
+                            title: challenge.challengeName,
+                            status: challenge.challengeStatus.convertStatusKorean(),
+                            people: "\(challenge.participateNum)명 모집중",
+                            isPublic: challenge.isOfficial,
+                            dDay: "D-\(challenge.recruitLeft)",
+                            isLike: challenge.isLike
+                        )
+                        cell.challengeId = challenge.challengeId
+                        cell.addActionHeart(self, action: #selector(self.didTapChallengeHeart))
+                    
+                    return cell
+                } else {
+                    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeEmptyCell.identifier, for: indexPath) as? ChallengeEmptyCell else {
+                        return UICollectionViewCell()
+                    }
+                    return cell
                 }
-                if let challenge = self.viewModel.publicChallanges?[indexPath.row] {
+                
+            case .category:
+                if self.viewModel.categoryChallenges.count > 0 {
+                    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeHomeCell.identifier, for: indexPath) as? ChallengeHomeCell else {
+                        return UICollectionViewCell()
+                    }
+                    let challenge = self.viewModel.categoryChallenges[indexPath.row]
                     cell.setUp(
                         type: challenge.interestField.convertChallengeType(),
                         isReward: challenge.isReward,
@@ -178,29 +210,14 @@ private extension HomeViewController {
                     )
                     cell.challengeId = challenge.challengeId
                     cell.addActionHeart(self, action: #selector(self.didTapChallengeHeart))
+                    return cell
+                } else {
+                    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeEmptyCell.identifier, for: indexPath) as? ChallengeEmptyCell else {
+                        return UICollectionViewCell()
+                    }
+                    return cell
+                    
                 }
-                return cell
-                
-            case .category:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeHomeCell.identifier, for: indexPath) as? ChallengeHomeCell else {
-                    return UICollectionViewCell()
-                }
-                let challenge = self.viewModel.categoryChallenges[indexPath.row]
-                cell.setUp(
-                    type: challenge.interestField.convertChallengeType(),
-                    isReward: challenge.isReward,
-                    date: "\(challenge.challengePeriod)주",
-                    ranking: nil,
-                    title: challenge.challengeName,
-                    status: challenge.challengeStatus.convertStatusKorean(),
-                    people: "\(challenge.participateNum)명 모집중",
-                    isPublic: challenge.isOfficial,
-                    dDay: "D-\(challenge.recruitLeft)",
-                    isLike: challenge.isLike
-                )
-                cell.challengeId = challenge.challengeId
-                cell.addActionHeart(self, action: #selector(self.didTapChallengeHeart))
-                return cell
                 
             case .feed:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCell.identifier, for: indexPath) as? FeedCell else {
@@ -297,7 +314,7 @@ private extension HomeViewController {
         
         snapshot.appendSections([.publicChallenge])
         snapshot.appendItems(viewModel.publicItems)
-
+        
         snapshot.appendSections([.category])
         snapshot.appendItems(viewModel.categoryItems)
         
@@ -309,22 +326,25 @@ private extension HomeViewController {
     
     func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { [weak self] (sectionNumber, _) -> NSCollectionLayoutSection? in
+            guard let self = self else {
+                return nil
+            }
             let section = Section(rawValue: sectionNumber)
             switch section {
             case .banner:
-                return self?.bannerSectionLayout()
+                return self.bannerSectionLayout()
                 
             case .publicChallenge:
-                return self?.challengeSectionLayout()
+                return self.viewModel.publicChallanges.count > 0 ? self.challengeSectionLayout() : self.homeChallengeEmptyLayout()
                 
             case .popluarChallenge:
-                return self?.challengeSectionLayout()
+                return self.challengeSectionLayout()
                 
             case .category:
-                return self?.categorySectionLayout()
+                return self.viewModel.categoryChallenges.count > 0 ? self.categorySectionLayout() : self.categoryChallengeEmptyLayout()
                 
             case .feed:
-                return self?.feedSectionLayout()
+                return self.feedSectionLayout()
                 
             default:
                 return nil
@@ -445,6 +465,68 @@ private extension HomeViewController {
         return section
     }
     
+    func homeChallengeEmptyLayout() -> NSCollectionLayoutSection {
+        let height = UIScreen.main.bounds.width*0.513
+        let layoutSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .absolute(height)
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: .init(
+                widthDimension: layoutSize.widthDimension,
+                heightDimension: layoutSize.heightDimension
+            ),
+            subitems: [.init(layoutSize: layoutSize)]
+        )
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+        
+        section.interGroupSpacing = 0
+        section.boundarySupplementaryItems = [
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: .init(
+                    widthDimension: .absolute(view.safeAreaLayoutGuide.layoutFrame.width),
+                    heightDimension: .absolute(49)
+                ),
+                elementKind: HomeHeaderView.identifier, alignment: .top)
+        ]
+        
+        return section
+    }
+    
+    func categoryChallengeEmptyLayout() -> NSCollectionLayoutSection {
+        let height = UIScreen.main.bounds.width*0.513
+        let layoutSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .absolute(height)
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: .init(
+                widthDimension: layoutSize.widthDimension,
+                heightDimension: layoutSize.heightDimension
+            ),
+            subitems: [.init(layoutSize: layoutSize)]
+        )
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+        
+        section.interGroupSpacing = 0
+      
+        section.boundarySupplementaryItems = [
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: .init(
+                    widthDimension: .absolute(view.safeAreaLayoutGuide.layoutFrame.width),
+                    heightDimension: .absolute(182)
+                ),
+                elementKind: CategoryHeaderView.identifier, alignment: .top)
+        ]
+        return section
+    }
+    
 }
 
 private extension HomeViewController {
@@ -508,13 +590,13 @@ private extension HomeViewController {
         let section = Section(rawValue: indexPath.section)
         switch section {
         case .publicChallenge:
-            challengeId = viewModel.publicChallanges?[indexPath.row].challengeId
-            isLike = viewModel.publicChallanges?[indexPath.row].isLike
-            viewModel.publicChallanges?[indexPath.row].isLike.toggle()
+            challengeId = viewModel.publicChallanges[indexPath.row].challengeId
+            isLike = viewModel.publicChallanges[indexPath.row].isLike
+            viewModel.publicChallanges[indexPath.row].isLike.toggle()
         case .popluarChallenge:
-            challengeId = viewModel.popularChallanges?[indexPath.row].challengeId
-            isLike = viewModel.popularChallanges?[indexPath.row].isLike
-            viewModel.popularChallanges?[indexPath.row].isLike.toggle()
+            challengeId = viewModel.popularChallanges[indexPath.row].challengeId
+            isLike = viewModel.popularChallanges[indexPath.row].isLike
+            viewModel.popularChallanges[indexPath.row].isLike.toggle()
         case .category:
             challengeId = viewModel.categoryChallenges[indexPath.row].challengeId
             isLike = viewModel.categoryChallenges[indexPath.row].isLike
@@ -611,20 +693,23 @@ extension HomeViewController: UICollectionViewDelegate {
         let section = Section(rawValue: indexPath.section)
         switch section {
         case .popluarChallenge:
-            guard let challengeType = viewModel.popularChallanges?[indexPath.row].interestField.convertChallengeType() else {
-                return
+            if viewModel.popularChallanges.count > 0 {
+                let challengeType = viewModel.popularChallanges[indexPath.row].interestField.convertChallengeType()
+                pushChallengeDetailViewController(challengeType)
             }
-            pushChallengeDetailViewController(challengeType)
-            
+           
         case .publicChallenge:
-            guard let challengeType = viewModel.publicChallanges?[indexPath.row].interestField.convertChallengeType() else {
-                return
+            if viewModel.publicChallanges.count > 0 {
+                let challengeType = viewModel.publicChallanges[indexPath.row].interestField.convertChallengeType()
+                pushChallengeDetailViewController(challengeType)
             }
-            pushChallengeDetailViewController(challengeType)
             
         case .category:
-            pushChallengeDetailViewController(viewModel.categoryChallenges[indexPath.row].interestField.convertChallengeType())
-            
+            if viewModel.categoryChallenges.count > 0 {
+                pushChallengeDetailViewController(viewModel.categoryChallenges[indexPath.row].interestField.convertChallengeType())
+                
+            }
+           
         default:
             break
         }
