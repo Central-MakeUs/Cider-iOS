@@ -45,6 +45,7 @@
 		FA32B83E2A6A848C0086497D /* BannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B83D2A6A848C0086497D /* BannerCell.swift */; };
 		FA33300D2A8F858B001012C4 /* RedrawPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA33300C2A8F858B001012C4 /* RedrawPopupViewController.swift */; };
 		FA33300F2A8F9190001012C4 /* ChallengeEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA33300E2A8F9190001012C4 /* ChallengeEmptyCell.swift */; };
+		FA3330112A922D9D001012C4 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3330102A922D9D001012C4 /* EmptyStateView.swift */; };
 		FA348ED02A61170800EA3D04 /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ECF2A61170800EA3D04 /* NicknameViewModel.swift */; };
 		FA348ED32A61180400EA3D04 /* NicknameUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ED22A61180400EA3D04 /* NicknameUsecase.swift */; };
 		FA348ED52A61185500EA3D04 /* NicknameRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ED42A61185500EA3D04 /* NicknameRepository.swift */; };
@@ -234,6 +235,7 @@
 		FA32B83D2A6A848C0086497D /* BannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCell.swift; sourceTree = "<group>"; };
 		FA33300C2A8F858B001012C4 /* RedrawPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedrawPopupViewController.swift; sourceTree = "<group>"; };
 		FA33300E2A8F9190001012C4 /* ChallengeEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeEmptyCell.swift; sourceTree = "<group>"; };
+		FA3330102A922D9D001012C4 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		FA348ECF2A61170800EA3D04 /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
 		FA348ED22A61180400EA3D04 /* NicknameUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameUsecase.swift; sourceTree = "<group>"; };
 		FA348ED42A61185500EA3D04 /* NicknameRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameRepository.swift; sourceTree = "<group>"; };
@@ -469,6 +471,7 @@
 				FA313A182A8556F6006DBE69 /* MypageInfoView.swift */,
 				FA3281402A8C92FC00AD2FC2 /* MyLevelView.swift */,
 				FA2FE07F2A8DC8E8005500D5 /* ModifyTextFieldView.swift */,
+				FA3330102A922D9D001012C4 /* EmptyStateView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -1216,6 +1219,7 @@
 				FA44D39F2A4C5CE30037E328 /* UIStackView+Extension.swift in Sources */,
 				FA348ED52A61185500EA3D04 /* NicknameRepository.swift in Sources */,
 				FA5911832A7D5F350022611B /* HomeDetailUsecase.swift in Sources */,
+				FA3330112A922D9D001012C4 /* EmptyStateView.swift in Sources */,
 				FA57003D2A8286FB00CFECBC /* SortingViewController.swift in Sources */,
 				FA348ED92A6119B600EA3D04 /* DuplicateNicknameResponse.swift in Sources */,
 				FA5911742A7D01520022611B /* MyMissionCell.swift in Sources */,
