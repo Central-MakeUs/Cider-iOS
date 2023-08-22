@@ -51,6 +51,8 @@
 		FA348ED52A61185500EA3D04 /* NicknameRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ED42A61185500EA3D04 /* NicknameRepository.swift */; };
 		FA348ED72A61190900EA3D04 /* RandomNicknameResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ED62A61190900EA3D04 /* RandomNicknameResponse.swift */; };
 		FA348ED92A6119B600EA3D04 /* DuplicateNicknameResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA348ED82A6119B600EA3D04 /* DuplicateNicknameResponse.swift */; };
+		FA35E99D2A946E2E0069C51D /* MyCertifyEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA35E99C2A946E2E0069C51D /* MyCertifyEmptyCell.swift */; };
+		FA35E99F2A946F880069C51D /* MyHeartEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA35E99E2A946F880069C51D /* MyHeartEmptyCell.swift */; };
 		FA39D8492A4EA829001C7E0A /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39D8482A4EA829001C7E0A /* AppAppearance.swift */; };
 		FA3AE4072A57D2970078A4DF /* GenderAndBirthdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3AE4062A57D2970078A4DF /* GenderAndBirthdayViewModel.swift */; };
 		FA3AE4092A57D3D70078A4DF /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3AE4082A57D3D70078A4DF /* ViewModelType.swift */; };
@@ -241,6 +243,8 @@
 		FA348ED42A61185500EA3D04 /* NicknameRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameRepository.swift; sourceTree = "<group>"; };
 		FA348ED62A61190900EA3D04 /* RandomNicknameResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNicknameResponse.swift; sourceTree = "<group>"; };
 		FA348ED82A6119B600EA3D04 /* DuplicateNicknameResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuplicateNicknameResponse.swift; sourceTree = "<group>"; };
+		FA35E99C2A946E2E0069C51D /* MyCertifyEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCertifyEmptyCell.swift; sourceTree = "<group>"; };
+		FA35E99E2A946F880069C51D /* MyHeartEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHeartEmptyCell.swift; sourceTree = "<group>"; };
 		FA39D8482A4EA829001C7E0A /* AppAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
 		FA3AE4062A57D2970078A4DF /* GenderAndBirthdayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderAndBirthdayViewModel.swift; sourceTree = "<group>"; };
 		FA3AE4082A57D3D70078A4DF /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
@@ -465,6 +469,7 @@
 		FA313A142A85567D006DBE69 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				FA35E99B2A946D800069C51D /* Cell */,
 				FA619D622A8B9CD9000BDDA5 /* HeaderView */,
 				FA313A122A85567A006DBE69 /* LevelProgressView.swift */,
 				FA313A162A8556CE006DBE69 /* LevelView.swift */,
@@ -546,6 +551,15 @@
 				FA57003C2A8286FB00CFECBC /* SortingViewController.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		FA35E99B2A946D800069C51D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FA35E99C2A946E2E0069C51D /* MyCertifyEmptyCell.swift */,
+				FA35E99E2A946F880069C51D /* MyHeartEmptyCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		FA3AE4052A57D2850078A4DF /* ViewModels */ = {
@@ -1183,6 +1197,7 @@
 				FA44D3A12A4C5D070037E328 /* UIView+Extension.swift in Sources */,
 				FA57003F2A836EB000CFECBC /* ChallengeLikeRequest.swift in Sources */,
 				FA31A9462A6A4BB8004D1C3B /* CiderInfoView.swift in Sources */,
+				FA35E99D2A946E2E0069C51D /* MyCertifyEmptyCell.swift in Sources */,
 				FA33300F2A8F9190001012C4 /* ChallengeEmptyCell.swift in Sources */,
 				FA5911792A7D40C10022611B /* HomeResponse.swift in Sources */,
 				FA32B8362A6A4F0B0086497D /* HomeViewController.swift in Sources */,
@@ -1216,6 +1231,7 @@
 				FA42807D2A737C3600828F93 /* ChallengeDetailViewController.swift in Sources */,
 				FA316D672A63A15100C7AA88 /* OnboardingCompleteViewController.swift in Sources */,
 				FA3C432E2A62FA0E009E820B /* Date+Extension.swift in Sources */,
+				FA35E99F2A946F880069C51D /* MyHeartEmptyCell.swift in Sources */,
 				FA44D39F2A4C5CE30037E328 /* UIStackView+Extension.swift in Sources */,
 				FA348ED52A61185500EA3D04 /* NicknameRepository.swift in Sources */,
 				FA5911832A7D5F350022611B /* HomeDetailUsecase.swift in Sources */,

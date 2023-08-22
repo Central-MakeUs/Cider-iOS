@@ -54,6 +54,8 @@ final class EmptyStateView: UIView {
     private func configure() {
         addSubviews(iconImageView, mainTitleLabel, subTitleLabel)
         NSLayoutConstraint.activate([
+            self.heightAnchor.constraint(equalToConstant: 159),
+            self.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
             iconImageView.topAnchor.constraint(equalTo: topAnchor),
             iconImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             mainTitleLabel.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: 16),

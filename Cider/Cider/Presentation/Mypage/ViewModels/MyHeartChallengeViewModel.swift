@@ -50,6 +50,7 @@ private extension MyHeartChallengeViewModel {
             for _ in 0..<challenges.count {
                 items.append(Item())
             }
+            setEmptyState()
             currentState.send(.applySnapshot(true))
         }
     }
@@ -67,6 +68,12 @@ private extension MyHeartChallengeViewModel {
             let response = try await usecase.postLikeChallenge(chllangeId: challengeId)
             print(response)
             loadData()
+        }
+    }
+    
+    func setEmptyState() {
+        if challenges.count <= 0 {
+            items = [Item()]
         }
     }
     

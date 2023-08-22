@@ -13,6 +13,7 @@ final class MyCertifyViewController: UIViewController {
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: FeedCell.identifier)
+        collectionView.register(MyCertifyEmptyCell.self, forCellWithReuseIdentifier: MyCertifyEmptyCell.identifier)
         collectionView.register(MyCertifyHeaderView.self, forSupplementaryViewOfKind: MyCertifyHeaderView.identifier, withReuseIdentifier: MyCertifyHeaderView.identifier)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.keyboardDismissMode = .onDrag
@@ -114,27 +115,36 @@ private extension MyCertifyViewController {
             let section = Section(rawValue: indexPath.section)
             switch section {
             case .feed:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCell.identifier, for: indexPath) as? FeedCell else {
-                    return UICollectionViewCell()
+                if self.viewModel.feeds.count > 0 {
+                    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCell.identifier, for: indexPath) as? FeedCell else {
+                        return UICollectionViewCell()
+                    }
+                    let feed = self.viewModel.feeds[indexPath.row]
+                    cell.setUp(
+                        nickname: feed.simpleMemberResponseDto.memberName,
+                        level: feed.simpleMemberResponseDto.memberLevelName,
+                        date: feed.createdDate.formatYYYYMMDDHHMMDot(),
+                        mainTitle: feed.certifyName,
+                        subTitle: feed.certifyContent,
+                        challengeType: feed.simpleChallengeResponseDto.challengeBranch.convertChallengeType(),
+                        challengeTitle: feed.simpleChallengeResponseDto.challengeName,
+                        people: String(feed.simpleChallengeResponseDto.participateNum),
+                        heart: String(feed.certifyLike),
+                        profileImageURL: feed.simpleMemberResponseDto.profilePath,
+                        feedImageURL: feed.certifyImageUrl,
+                        isLike: feed.isLike
+                    )
+                    cell.certifyId = feed.certifyId
+                    cell.addHeartButtonAction(self, action: #selector(self.didTapFeedHeart))
+                    return cell
+                } else {
+                    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyCertifyEmptyCell.identifier, for: indexPath) as? MyCertifyEmptyCell else {
+                        return UICollectionViewCell()
+                    }
+                    cell.bottomButton.addTarget(self, action: #selector(self.didTapAllChallenge), for: .touchUpInside)
+                    return cell
                 }
-                let feed = self.viewModel.feeds[indexPath.row]
-                cell.setUp(
-                    nickname: feed.simpleMemberResponseDto.memberName,
-                    level: feed.simpleMemberResponseDto.memberLevelName,
-                    date: feed.createdDate.formatYYYYMMDDHHMMDot(),
-                    mainTitle: feed.certifyName,
-                    subTitle: feed.certifyContent,
-                    challengeType: feed.simpleChallengeResponseDto.challengeBranch.convertChallengeType(),
-                    challengeTitle: feed.simpleChallengeResponseDto.challengeName,
-                    people: String(feed.simpleChallengeResponseDto.participateNum),
-                    heart: String(feed.certifyLike),
-                    profileImageURL: feed.simpleMemberResponseDto.profilePath,
-                    feedImageURL: feed.certifyImageUrl,
-                    isLike: feed.isLike
-                )
-                cell.certifyId = feed.certifyId
-                cell.addHeartButtonAction(self, action: #selector(self.didTapFeedHeart))
-                return cell
+                
                 
             case .none:
                 return UICollectionViewCell()
@@ -172,10 +182,13 @@ private extension MyCertifyViewController {
     
     func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { [weak self] (sectionNumber, _) -> NSCollectionLayoutSection? in
+            guard let self = self else {
+                return nil
+            }
             let section = Section(rawValue: sectionNumber)
             switch section {
             case .feed:
-                return self?.feedSectionLayout()
+                return  self.viewModel.feeds.count > 0 ? self.feedSectionLayout() : self.emptyStateLayout()
                 
             default:
                 return nil
@@ -212,9 +225,51 @@ private extension MyCertifyViewController {
         return section
     }
     
+    func emptyStateLayout() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(1)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(1)
+        )
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize,
+                                                     subitems: [item])
+        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 0, trailing: 0)
+        
+        section.boundarySupplementaryItems = [
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: .init(
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .absolute(49)
+                ),
+                elementKind: MyCertifyHeaderView.identifier, alignment: .top)
+        ]
+        return section
+    }
+    
 }
 
 private extension MyCertifyViewController {
+    
+    func pushAllChallengeViewController() {
+        let viewController = HomeDetailViewController(
+            homeDetailType: .allChallenge,
+            viewModel: HomeDetailViewModel(
+                usecase: DefaultHomeDetailUsecase(
+                    repository: DefaultHomeDetailRepository()
+                ),
+                homeDetailType: .allChallenge
+            )
+        )
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
     
     @objc func didTapFeedHeart(_ sender: UIButton) {
         guard let cell = sender.superview as? UICollectionViewCell else {
@@ -231,6 +286,10 @@ private extension MyCertifyViewController {
         }
         viewModel.feeds[indexPath.row].isLike.toggle()
         reloadHeader()
+    }
+    
+    @objc func didTapAllChallenge(_ sender: Any?) {
+        pushAllChallengeViewController()
     }
     
 }
