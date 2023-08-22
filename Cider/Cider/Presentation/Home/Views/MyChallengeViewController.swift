@@ -70,6 +70,7 @@ private extension MyChallengeViewController {
     }
     
     func setNavigationBar() {
+        self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = "내 챌린지"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBarButton)

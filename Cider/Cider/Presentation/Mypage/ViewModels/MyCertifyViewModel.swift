@@ -50,6 +50,7 @@ private extension MyCertifyViewModel {
             for _ in 0..<feeds.count {
                 feedItems.append(Item())
             }
+            setEmptyState()
             currentState.send(.applySnapshot(true))
         }
     }
@@ -65,6 +66,12 @@ private extension MyCertifyViewModel {
         Task {
             let response = try await usecase.postLikeFeed(certifyId: certifyId)
             print(response)
+        }
+    }
+    
+    func setEmptyState() {
+        if feeds.count <= 0 {
+            feedItems = [Item()]
         }
     }
     

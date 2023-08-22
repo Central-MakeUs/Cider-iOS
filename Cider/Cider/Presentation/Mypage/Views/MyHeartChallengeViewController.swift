@@ -13,6 +13,7 @@ class MyHeartChallengeViewController: UIViewController {
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.register(ChallengeHomeCell.self, forCellWithReuseIdentifier: ChallengeHomeCell.identifier)
+        collectionView.register(MyHeartEmptyCell.self, forCellWithReuseIdentifier: MyHeartEmptyCell.identifier)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.keyboardDismissMode = .onDrag
         return collectionView
@@ -33,8 +34,9 @@ class MyHeartChallengeViewController: UIViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
     private var cancellables = Set<AnyCancellable>()
     
-    init(viewModel: MyHeartChallengeViewModel) {
+    init(viewModel: MyHeartChallengeViewModel, count: Int) {
         self.viewModel = viewModel
+        rightBarLabel.text = "총 \(count)개"
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -67,12 +69,16 @@ private extension MyHeartChallengeViewController {
     func bind() {
         viewModel.state.receive(on: DispatchQueue.main)
             .sink { [weak self] state in
+                guard let self = self else {
+                    return
+                }
                 switch state {
                 case .applySnapshot(let isSuccess):
                     guard isSuccess else {
                         return
                     }
-                    self?.applySnapshot()
+                    self.applySnapshot()
+                    self.setTotalCount()
                 }
             }
             .store(in: &cancellables)
@@ -101,7 +107,11 @@ private extension MyHeartChallengeViewController {
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = "관심 챌린지"
         setNavigationBar(backgroundColor: .white, tintColor: .black, shadowColor: .clear)
-        rightBarLabel.text = "총 11개"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBarLabel)
+    }
+    
+    func setTotalCount() {
+        rightBarLabel.text = "총 \(viewModel.challenges.count)개"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBarLabel)
     }
     
@@ -113,26 +123,34 @@ private extension MyHeartChallengeViewController {
             let section = Section(rawValue: indexPath.section)
             switch section {
             case .challenge:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeHomeCell.identifier, for: indexPath) as? ChallengeHomeCell else {
-                    return UICollectionViewCell()
+                if self.viewModel.challenges.count > 0 {
+                    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeHomeCell.identifier, for: indexPath) as? ChallengeHomeCell else {
+                        return UICollectionViewCell()
+                    }
+                    let challenge = self.viewModel.challenges[indexPath.row]
+                    cell.setUp(
+                        type: challenge.interestField.convertChallengeType(),
+                        isReward: challenge.isReward,
+                        date: "\(challenge.challengePeriod)주",
+                        ranking: nil,
+                        title: challenge.challengeName,
+                        status: challenge.challengeStatus.convertStatusKorean(),
+                        people: "\(challenge.participateNum)명 모집중",
+                        isPublic: challenge.isOfficial,
+                        dDay: "D-\(challenge.recruitLeft)",
+                        isLike: challenge.isLike
+                    )
+                    cell.challengeId = challenge.challengeId
+                    cell.addActionHeart(self, action: #selector(self.didTapChallengeHeart))
+                    
+                    return cell
+                } else {
+                    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyHeartEmptyCell.identifier, for: indexPath) as? MyHeartEmptyCell else {
+                        return UICollectionViewCell()
+                    }
+                    cell.bottomButton.addTarget(self, action: #selector(self.didTapChallengeOpen), for: .touchUpInside)
+                    return cell
                 }
-                let challenge = self.viewModel.challenges[indexPath.row]
-                cell.setUp(
-                    type: challenge.interestField.convertChallengeType(),
-                    isReward: challenge.isReward,
-                    date: "\(challenge.challengePeriod)주",
-                    ranking: nil,
-                    title: challenge.challengeName,
-                    status: challenge.challengeStatus.convertStatusKorean(),
-                    people: "\(challenge.participateNum)명 모집중",
-                    isPublic: challenge.isOfficial,
-                    dDay: "D-\(challenge.recruitLeft)",
-                    isLike: challenge.isLike
-                )
-                cell.challengeId = challenge.challengeId
-                cell.addActionHeart(self, action: #selector(self.didTapChallengeHeart))
-                
-                return cell
                 
             case .none:
                 return UICollectionViewCell()
@@ -148,11 +166,15 @@ private extension MyHeartChallengeViewController {
     }
     
     func createLayout() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout { [weak self] (sectionNumber, _) -> NSCollectionLayoutSection? in
+        return UICollectionViewCompositionalLayout { [weak self] (sectionNumber, _) ->
+            NSCollectionLayoutSection? in
+            guard let self = self else {
+                return nil
+            }
             let section = Section(rawValue: sectionNumber)
             switch section {
             case .challenge:
-                return self?.challengeSectionLayout()
+                return self.viewModel.challenges.count > 0 ? self.challengeSectionLayout() : self.emptyStateLayout()
                 
             default:
                 return nil
@@ -187,9 +209,34 @@ private extension MyHeartChallengeViewController {
         return section
     }
     
+    func emptyStateLayout() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(1)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(1)
+        )
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize,
+                                                     subitems: [item])
+        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        return section
+    }
+    
 }
 
 private extension MyHeartChallengeViewController {
+    
+    func pushChallengeOpenViewController() {
+        let viewController = ChallengeTypeViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
     
     @objc func didTapChallengeHeart(_ sender: UIButton) {
         let contentView = sender.superview?.superview
@@ -213,6 +260,10 @@ private extension MyHeartChallengeViewController {
         }
         viewModel.likeChallenge(isLike: isLike, challengeId: challengeId)
         reloadHeader()
+    }
+    
+    @objc func didTapChallengeOpen(_ sender: Any?) {
+        pushChallengeOpenViewController()
     }
     
 }

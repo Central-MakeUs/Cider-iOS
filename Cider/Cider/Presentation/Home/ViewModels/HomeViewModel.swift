@@ -18,13 +18,13 @@ final class HomeViewModel: ViewModelType {
     var state: AnyPublisher<ViewModelState, Never> { currentState.compactMap { $0 }.eraseToAnyPublisher() }
     var currentState: CurrentValueSubject<ViewModelState?, Never> = .init(nil)
     private var cancellables: Set<AnyCancellable> = .init()
-    var popularChallanges: [ChallengeResponseDto]?
-    var publicChallanges: [ChallengeResponseDto]?
+    var popularChallanges: [ChallengeResponseDto] = []
+    var publicChallanges: [ChallengeResponseDto] = []
     var categoryChallenges: [ChallengeResponseDto] = []
     var feeds: FeedResponse = []
     var popularItems: [Item] = []
-    var publicItems: [Item] = []
-    var categoryItems: [Item] = []
+    var publicItems: [Item] = [Item()]
+    var categoryItems: [Item] = [Item()]
     var feedItems: [Item] = []
     var categoryType: ChallengeType = .financialTech
     
@@ -61,20 +61,17 @@ private extension HomeViewModel {
     func getHomeChallenge() {
         Task {
             let response = try await usecase.getHomeChallenge()
-            popularChallanges = response.popularChallengeResponseDto
-            publicChallanges = response.officialChallengeResponseDto
+            popularChallanges = response.popularChallengeResponseDto ?? []
+            publicChallanges = response.officialChallengeResponseDto ?? []
             popularItems = []
             publicItems = []
-            guard let popularChallanges,
-                  let publicChallanges else {
-                return
-            }
             for _ in 0..<popularChallanges.count {
                 popularItems.append(Item())
             }
             for _ in 0..<publicChallanges.count {
                 publicItems.append(Item())
             }
+            setPublicEmptyState()
             currentState.send(.applySnapshot(true))
         }
     }
@@ -87,6 +84,7 @@ private extension HomeViewModel {
             for _ in 0..<categoryChallenges.count {
                 categoryItems.append(Item())
             }
+            setCategoryEmptyState()
             currentState.send(.applySnapshot(true))
         }
     }
@@ -128,6 +126,18 @@ private extension HomeViewModel {
         Task {
             let response = try await usecase.postLikeFeed(certifyId: certifyId)
             print(response)
+        }
+    }
+    
+    func setPublicEmptyState() {
+        if publicItems.count == 0 {
+            publicItems = [Item()]
+        }
+    }
+    
+    func setCategoryEmptyState() {
+        if categoryItems.count == 0 {
+            categoryItems = [Item()]
         }
     }
     

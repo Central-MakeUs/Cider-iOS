@@ -73,7 +73,7 @@ extension UIViewController {
         ])
         
         self.view.addSubview(toastLabel)
-        UIView.animate(withDuration: 0.3, delay: 0.5, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0.9, options: .curveEaseOut, animations: {
             toastLabel.alpha = 0.0
         }, completion: {(isCompleted) in
             toastLabel.removeFromSuperview()
