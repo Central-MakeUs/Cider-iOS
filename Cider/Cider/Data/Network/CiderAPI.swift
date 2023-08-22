@@ -29,6 +29,8 @@ enum CiderAPI {
     case getMyLikeChallenge
     case patchProfileImage(image: UIImage)
     case patchProfile(parameters: [String: Any])
+    case getMyParticipateChallenge
+    case getMyCerify(challengeId: Int)
 }
 
 extension CiderAPI: TargetType, AccessTokenAuthorizable {
@@ -75,7 +77,10 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             return "/api/member/profile/image"
         case .patchProfile:
             return "/api/member/profile"
-
+        case .getMyParticipateChallenge:
+            return "/api/challenge/participate"
+        case .getMyCerify(let challengeId):
+            return "/api/certify/mypage/\(challengeId)"
         }
     }
     
@@ -96,7 +101,9 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
              .getPublicChallenge,
              .getHomeFeed,
              .getMypage,
-             .getMyLikeChallenge:
+             .getMyLikeChallenge,
+             .getMyCerify,
+             .getMyParticipateChallenge:
             return .get
             
         case .patchOnboarding,
