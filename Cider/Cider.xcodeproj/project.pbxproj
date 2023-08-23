@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		FA0322812A4DC2B0000993DF /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0322802A4DC2B0000993DF /* NicknameViewController.swift */; };
 		FA08D99B2A6D78CE0061C567 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA08D99A2A6D78CE0061C567 /* FeedCell.swift */; };
+		FA2282B72A95F31D00DF4ADB /* ParticiapteChallengeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2282B62A95F31D00DF4ADB /* ParticiapteChallengeResponse.swift */; };
+		FA2282B92A95F45000DF4ADB /* MyCertifyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2282B82A95F45000DF4ADB /* MyCertifyResponse.swift */; };
+		FA2282BB2A95F5A800DF4ADB /* MyCertifyUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2282BA2A95F5A800DF4ADB /* MyCertifyUsecase.swift */; };
 		FA251AD02A82177900E432C1 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA251ACF2A82177900E432C1 /* UIImageView+Extension.swift */; };
 		FA2A064C2A68DC0F00AC649F /* PrecautionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A064B2A68DC0F00AC649F /* PrecautionView.swift */; };
 		FA2A064E2A68DCE000AC649F /* PrecautionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A064D2A68DCE000AC649F /* PrecautionViewController.swift */; };
@@ -193,6 +196,7 @@
 		FAB9A73B2A4C64CF00757A80 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */; };
 		FAB9A73F2A4C8DAB00757A80 /* ProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */; };
 		FABF17532A70D8910073C13B /* SeparatorFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABF17522A70D8910073C13B /* SeparatorFooterView.swift */; };
+		FABF6CEB2A95F21400B6A646 /* MyCertifyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABF6CEA2A95F21400B6A646 /* MyCertifyRepository.swift */; };
 		FAD6E3D42A64F2A6002C8007 /* WritingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD6E3D32A64F2A6002C8007 /* WritingView.swift */; };
 		FAD6E3D62A64F2F5002C8007 /* WritingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD6E3D52A64F2F5002C8007 /* WritingType.swift */; };
 		FAD6E3D82A64F9B5002C8007 /* ChallengeTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD6E3D72A64F9B5002C8007 /* ChallengeTypeViewController.swift */; };
@@ -201,6 +205,9 @@
 /* Begin PBXFileReference section */
 		FA0322802A4DC2B0000993DF /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
 		FA08D99A2A6D78CE0061C567 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		FA2282B62A95F31D00DF4ADB /* ParticiapteChallengeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticiapteChallengeResponse.swift; sourceTree = "<group>"; };
+		FA2282B82A95F45000DF4ADB /* MyCertifyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCertifyResponse.swift; sourceTree = "<group>"; };
+		FA2282BA2A95F5A800DF4ADB /* MyCertifyUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCertifyUsecase.swift; sourceTree = "<group>"; };
 		FA251ACF2A82177900E432C1 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		FA2A064B2A68DC0F00AC649F /* PrecautionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecautionView.swift; sourceTree = "<group>"; };
 		FA2A064D2A68DCE000AC649F /* PrecautionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecautionViewController.swift; sourceTree = "<group>"; };
@@ -384,6 +391,7 @@
 		FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessView.swift; sourceTree = "<group>"; };
 		FABF17522A70D8910073C13B /* SeparatorFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorFooterView.swift; sourceTree = "<group>"; };
+		FABF6CEA2A95F21400B6A646 /* MyCertifyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCertifyRepository.swift; sourceTree = "<group>"; };
 		FAD6E3D32A64F2A6002C8007 /* WritingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingView.swift; sourceTree = "<group>"; };
 		FAD6E3D52A64F2F5002C8007 /* WritingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingType.swift; sourceTree = "<group>"; };
 		FAD6E3D72A64F9B5002C8007 /* ChallengeTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeTypeViewController.swift; sourceTree = "<group>"; };
@@ -793,6 +801,7 @@
 				FA619D5E2A87CEDC000BDDA5 /* MypageUsecase.swift */,
 				FA619D6B2A8BC3E1000BDDA5 /* MyHeartChallengeUsecase.swift */,
 				FA3D49372A8E6CC700024A1C /* ProfileModifyUsecase.swift */,
+				FA2282BA2A95F5A800DF4ADB /* MyCertifyUsecase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -909,6 +918,8 @@
 				FA5700402A836F3A00CFECBC /* LikeResponse.swift */,
 				FA619D5C2A87CB3A000BDDA5 /* MypageResponse.swift */,
 				FA3D49392A8E6EAE00024A1C /* CiderResponse.swift */,
+				FA2282B62A95F31D00DF4ADB /* ParticiapteChallengeResponse.swift */,
+				FA2282B82A95F45000DF4ADB /* MyCertifyResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -924,6 +935,7 @@
 				FA619D5A2A87C9A1000BDDA5 /* MypageRepository.swift */,
 				FA619D6D2A8BC42B000BDDA5 /* MyHeartChallengeRepository.swift */,
 				FA3D49352A8E6C5C00024A1C /* ProfileModifyRepository.swift */,
+				FABF6CEA2A95F21400B6A646 /* MyCertifyRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1176,6 +1188,7 @@
 				FA57AF4D2A5D0E2A008A5991 /* Keychain.swift in Sources */,
 				FABF17532A70D8910073C13B /* SeparatorFooterView.swift in Sources */,
 				FA3AE4092A57D3D70078A4DF /* ViewModelType.swift in Sources */,
+				FA2282B92A95F45000DF4ADB /* MyCertifyResponse.swift in Sources */,
 				FA251AD02A82177900E432C1 /* UIImageView+Extension.swift in Sources */,
 				FA2A06582A69014100AC649F /* ChallengeHomeView.swift in Sources */,
 				FA3C432A2A62F1FB009E820B /* OnboardingResponse.swift in Sources */,
@@ -1258,6 +1271,7 @@
 				FA619D682A8BBD1D000BDDA5 /* MyHeartChallengeViewController.swift in Sources */,
 				FA4DDB922A4D5810002EDEAD /* ServiceAgreeCellData.swift in Sources */,
 				FA5911872A7D5FF50022611B /* HomeDetailViewModel.swift in Sources */,
+				FA2282B72A95F31D00DF4ADB /* ParticiapteChallengeResponse.swift in Sources */,
 				FA4DDB952A4D5A46002EDEAD /* ServiceAgreeCell.swift in Sources */,
 				FA726CCE2A7933F100A9309D /* MissionView.swift in Sources */,
 				FA758ACC2A5F0316003E2F07 /* MissionPhotoView.swift in Sources */,
@@ -1266,6 +1280,7 @@
 				FA4280632A70E68100828F93 /* ReviewType.swift in Sources */,
 				FA59116F2A7BEF360022611B /* MissionPhotoCell.swift in Sources */,
 				FA5B8BE12A4DCAE000CEB0F6 /* UITextField+Extension.swift in Sources */,
+				FABF6CEB2A95F21400B6A646 /* MyCertifyRepository.swift in Sources */,
 				FA3DA35C2A8F5E5100AF147B /* SettingViewController.swift in Sources */,
 				FA313A052A84F9F0006DBE69 /* ChallengeSelectionView.swift in Sources */,
 				FA42807B2A736F7600828F93 /* DynamicLabel.swift in Sources */,
@@ -1276,6 +1291,7 @@
 				FA619D6E2A8BC42B000BDDA5 /* MyHeartChallengeRepository.swift in Sources */,
 				FA3FC7FA2A6E92C60022CA3A /* HomeDetailViewController.swift in Sources */,
 				FA619D6C2A8BC3E1000BDDA5 /* MyHeartChallengeUsecase.swift in Sources */,
+				FA2282BB2A95F5A800DF4ADB /* MyCertifyUsecase.swift in Sources */,
 				FA553EBF2A5C141B00DAE63B /* LoginUsecase.swift in Sources */,
 				FA40E8332A8F4DAF00195810 /* ReportType.swift in Sources */,
 				FA4DF29A2A6C191C007F3035 /* CategoryView.swift in Sources */,
