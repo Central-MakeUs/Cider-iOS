@@ -75,7 +75,7 @@ private extension WritingViewController {
             return
         }
         self.dismiss(animated: true) {
-            let viewController = CertifyViewController(viewModel: ChallengeOpenViewModel())
+            let viewController = CertifyViewController(viewModel: CertifyViewModel())
             viewController.hidesBottomBarWhenPushed = true
             navigationController.pushViewController(viewController, animated: true)
         }

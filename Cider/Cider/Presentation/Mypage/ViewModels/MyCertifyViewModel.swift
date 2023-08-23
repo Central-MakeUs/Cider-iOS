@@ -19,10 +19,14 @@ final class MyCertifyViewModel: ViewModelType {
     var currentState: CurrentValueSubject<ViewModelState?, Never> = .init(nil)
     private var cancellables: Set<AnyCancellable> = .init()
     var myCertifyResponse: MyCertifyResponse?
+    var participateChallengeIds: [Int] = []
+    var participateChallengeTitles: [String] = []
     var feedItems: [Item] = []
+    var challengeTitle: String = ""
     
     init(usecase: MyCertifyUsecase) {
         self.usecase = usecase
+        setNotificationCenter()
     }
     
     func viewWillAppear() {
@@ -45,30 +49,43 @@ final class MyCertifyViewModel: ViewModelType {
 private extension MyCertifyViewModel {
     
     func reload() {
-        getHomeFeed()
+        getMyCertify()
     }
     
-    func getHomeFeed() {
+    func getMyCertify() {
         Task {
             let participateChallengeResponse = try await usecase.getMyParticipateChallenge()
             
             if participateChallengeResponse.isEmpty {
                 myCertifyResponse = nil
+                challengeTitle = ""
+                participateChallengeIds = []
+                participateChallengeTitles = []
+                setEmptyState()
+                currentState.send(.applySnapshot(true))
             } else {
-                let challengeId = participateChallengeResponse[0].challengeId
-                let myCerifyResponse = try await usecase.getMyCertify(challengeId: challengeId)
-                self.myCertifyResponse = myCerifyResponse
-                feedItems = []
-                if let myCertifyResponse {
-                    for _ in 0..<myCertifyResponse.certifyResponseDtoList.count {
-                        feedItems.append(Item())
-                    }
+                
+                for challenge in participateChallengeResponse {
+                    participateChallengeIds.append(challenge.challengeId)
+                    participateChallengeTitles.append(challenge.challengeName)
                 }
+                try await getMyCertify(challengeId: participateChallengeIds[0])
             }
-            setEmptyState()
-            currentState.send(.applySnapshot(true))
-            
         }
+    }
+    
+    func getMyCertify(challengeId: Int) async throws {
+        let myCerifyResponse = try await usecase.getMyCertify(challengeId: challengeId)
+        self.myCertifyResponse = myCerifyResponse
+        feedItems = []
+        if let myCertifyResponse {
+            for _ in 0..<myCertifyResponse.certifyResponseDtoList.count {
+                feedItems.append(Item())
+            }
+            challengeTitle = myCertifyResponse.simpleChallengeResponseDto.challengeName
+        }
+        setEmptyState()
+        currentState.send(.applySnapshot(true))
     }
     
     func deleteLikeFeed(certifyId: Int) {
@@ -93,6 +110,20 @@ private extension MyCertifyViewModel {
         if myCertifyResponse.certifyResponseDtoList.count <= 0 {
             feedItems = [Item()]
         }
+    }
+    
+    func setNotificationCenter() {
+        NotificationCenter.default.publisher(for: .selectParticipateChallenge)
+            .receive(on: DispatchQueue.main)
+            .sink { notification in
+                guard let selectedIndex = notification.object as? Int else {
+                    return
+                }
+                Task {
+                    try await self.getMyCertify(challengeId: self.participateChallengeIds[selectedIndex])
+                }
+            }
+            .store(in: &cancellables)
     }
     
 }

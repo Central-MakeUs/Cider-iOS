@@ -12,6 +12,7 @@
 		FA2282B72A95F31D00DF4ADB /* ParticiapteChallengeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2282B62A95F31D00DF4ADB /* ParticiapteChallengeResponse.swift */; };
 		FA2282B92A95F45000DF4ADB /* MyCertifyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2282B82A95F45000DF4ADB /* MyCertifyResponse.swift */; };
 		FA2282BB2A95F5A800DF4ADB /* MyCertifyUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2282BA2A95F5A800DF4ADB /* MyCertifyUsecase.swift */; };
+		FA2282BE2A963E2300DF4ADB /* CertifyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2282BD2A963E2300DF4ADB /* CertifyViewModel.swift */; };
 		FA251AD02A82177900E432C1 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA251ACF2A82177900E432C1 /* UIImageView+Extension.swift */; };
 		FA2A064C2A68DC0F00AC649F /* PrecautionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A064B2A68DC0F00AC649F /* PrecautionView.swift */; };
 		FA2A064E2A68DCE000AC649F /* PrecautionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A064D2A68DCE000AC649F /* PrecautionViewController.swift */; };
@@ -208,6 +209,7 @@
 		FA2282B62A95F31D00DF4ADB /* ParticiapteChallengeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticiapteChallengeResponse.swift; sourceTree = "<group>"; };
 		FA2282B82A95F45000DF4ADB /* MyCertifyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCertifyResponse.swift; sourceTree = "<group>"; };
 		FA2282BA2A95F5A800DF4ADB /* MyCertifyUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCertifyUsecase.swift; sourceTree = "<group>"; };
+		FA2282BD2A963E2300DF4ADB /* CertifyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifyViewModel.swift; sourceTree = "<group>"; };
 		FA251ACF2A82177900E432C1 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		FA2A064B2A68DC0F00AC649F /* PrecautionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecautionView.swift; sourceTree = "<group>"; };
 		FA2A064D2A68DCE000AC649F /* PrecautionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecautionViewController.swift; sourceTree = "<group>"; };
@@ -412,6 +414,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA2282BC2A963E1600DF4ADB /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FA2282BD2A963E2300DF4ADB /* CertifyViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		FA2A06552A69006B00AC649F /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -441,6 +451,7 @@
 		FA3139FB2A84BBDC006DBE69 /* Certify */ = {
 			isa = PBXGroup;
 			children = (
+				FA2282BC2A963E1600DF4ADB /* ViewModels */,
 				FA313A002A84EE1F006DBE69 /* Views */,
 				FA313A012A84F029006DBE69 /* SubViews */,
 			);
@@ -1184,6 +1195,7 @@
 				FA42808E2A73E79C00828F93 /* RuleView.swift in Sources */,
 				FA61002C2A5816E5002175CE /* KeywordsView.swift in Sources */,
 				FA57AF5D2A5D17A0008A5991 /* LoginRepository.swift in Sources */,
+				FA2282BE2A963E2300DF4ADB /* CertifyViewModel.swift in Sources */,
 				FA6C216B2A5A78C4008A9ADD /* RandomNicknameView.swift in Sources */,
 				FA57AF4D2A5D0E2A008A5991 /* Keychain.swift in Sources */,
 				FABF17532A70D8910073C13B /* SeparatorFooterView.swift in Sources */,

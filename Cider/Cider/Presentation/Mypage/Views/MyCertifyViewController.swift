@@ -75,6 +75,7 @@ private extension MyCertifyViewController {
                         return
                     }
                     self?.applySnapshot()
+                    self?.reloadHeader()
                 }
             }
             .store(in: &cancellables)
@@ -167,7 +168,8 @@ private extension MyCertifyViewController {
                     withReuseIdentifier: MyCertifyHeaderView.identifier,
                     for: indexPath
                 ) as? MyCertifyHeaderView
-                headerView?.challengeSelectionView.setTextFieltText("만보 걷기")
+                headerView?.challengeSelectionView.setTextFieltText(self.viewModel.challengeTitle)
+                headerView?.challengeSelectionView.challengeList = self.viewModel.participateChallengeTitles
                 return headerView
                 
             default:
