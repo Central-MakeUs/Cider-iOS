@@ -142,6 +142,12 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             let multipartData: MultipartFormData = [imageData]
             return .uploadMultipartFormData(multipartData)
             
+        case .postCertifyImage(let image, _):
+            let data = image.jpegData(compressionQuality: 0.1)!
+            let imageData = MultipartFormBodyPart(provider: .data(data), name: "certifyImages", fileName: "image.jpeg", mimeType: "image/jpeg")
+            let multipartData: MultipartFormData = [imageData]
+            return .uploadMultipartFormData(multipartData)
+            
         default:
             return .requestPlain
         }

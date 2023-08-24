@@ -65,7 +65,7 @@ final class CertifyViewModel: ViewModelType {
     }
     
     func didTapBottomButton() {
-        
+        upload()
     }
     
 }
@@ -75,11 +75,18 @@ private extension CertifyViewModel {
     
     func upload() {
         Task {
-            do {
-    
-//                let request = CertifyRequest(challengeId: <#T##Int#>, certifyName: <#T##String#>, certifyContent: <#T##String#>)
-//                let response = usecase.postCertify(parameters: <#T##CertifyRequest#>)
+            let request = CertifyRequest(
+                challengeId: challengeIds[challengeIndex],
+                certifyName: challengeName,
+                certifyContent: challengeContent
+            )
+            let certifyResponse = try await usecase.postCertify(parameters: request)
+            print(certifyResponse)
+            guard let certifyImage else {
+                return
             }
+            let certifyImageResponse = try await usecase.postCertifyImage(image: certifyImage, certifyId: certifyResponse.certifyId)
+            print(certifyImageResponse)
         }
     }
     

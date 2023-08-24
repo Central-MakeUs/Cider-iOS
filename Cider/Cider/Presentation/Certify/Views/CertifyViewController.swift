@@ -172,19 +172,12 @@ private extension CertifyViewController {
         return layout
     }
     
-    func pushPrecautionViewController() {
-        let viewController = PrecautionViewController(
-            viewModel: PrecautionViewModel()
-        )
-        self.navigationController?.pushViewController(viewController, animated: true)
-    }
-    
 }
 
 private extension CertifyViewController {
     
     @objc func didTapNextButton(_ sender: Any?) {
-        pushPrecautionViewController()
+        viewModel.didTapBottomButton()
     }
     
     @objc func didTapCameraView(_ sender: Any?) {
