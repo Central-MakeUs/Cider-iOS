@@ -139,6 +139,9 @@ extension ChallengeSelectionView: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        guard challengeList.count > 0 else {
+            return
+        }
         selectedPickerViewData = challengeList[row]
         selectedIndex = row
     }

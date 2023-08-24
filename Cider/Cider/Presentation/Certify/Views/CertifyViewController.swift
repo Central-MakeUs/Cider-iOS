@@ -48,6 +48,7 @@ final class CertifyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
+        viewModel.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,6 +74,8 @@ private extension CertifyViewController {
                 switch state {
                 case .changeNextButtonState(let isEnabled):
                     self?.bottomButton.setStyle(isEnabled ? .enabled : .disabled)
+                case .applySnapshot:
+                    self?.applySnapshot()
                 }
             }
             .store(in: &cancellables)
@@ -107,7 +110,7 @@ private extension CertifyViewController {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CertifyCell.identifier, for: indexPath) as? CertifyCell else {
                 return UICollectionViewCell()
             }
-            cell.challengeSelectionView.setTextFieltText("만보 걷기")
+            cell.challengeSelectionView.setTextFieltText(self.viewModel.challengeList.first ?? "")
             cell.addTapGestureCameraView(self, action: #selector(self.didTapCameraView))
             cell.setCameraImage(self.viewModel.certifyImage)
             cell.titleTextFieldView.textPublisher()
@@ -214,7 +217,13 @@ struct CertifyViewController_Preview: PreviewProvider {
     
     static var previews: some View {
         ForEach(devices, id: \.self) { deviceName in
-            CertifyViewController(viewModel: CertifyViewModel())
+            CertifyViewController(
+                viewModel: CertifyViewModel(
+                    usecase: DefaultCertifyUsecase(
+                        repository: DefaultCertifyRepository()
+                    )
+                )
+            )
                 .toPreview()
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)
