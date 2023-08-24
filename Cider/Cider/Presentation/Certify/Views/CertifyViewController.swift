@@ -76,6 +76,13 @@ private extension CertifyViewController {
                     self?.bottomButton.setStyle(isEnabled ? .enabled : .disabled)
                 case .applySnapshot:
                     self?.applySnapshot()
+                case .showMessage(let message):
+                    self?.showAlert(message: message)
+                case .isSuccess(let isSuccess):
+                    guard isSuccess else {
+                        return
+                    }
+                    self?.popToRootViewController()
                 }
             }
             .store(in: &cancellables)
@@ -170,6 +177,10 @@ private extension CertifyViewController {
         let section = NSCollectionLayoutSection(group: group)
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
+    }
+    
+    func popToRootViewController() {
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
 }

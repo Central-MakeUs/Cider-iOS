@@ -14,6 +14,8 @@ final class CertifyViewModel: ViewModelType {
     enum ViewModelState {
         case changeNextButtonState(_ isEnabled: Bool)
         case applySnapshot
+        case showMessage(_ message: String)
+        case isSuccess(_ isSuccess: Bool)
     }
     
     var state: AnyPublisher<ViewModelState, Never> { currentState.compactMap { $0 }.eraseToAnyPublisher() }
@@ -87,6 +89,11 @@ private extension CertifyViewModel {
             }
             let certifyImageResponse = try await usecase.postCertifyImage(image: certifyImage, certifyId: certifyResponse.certifyId)
             print(certifyImageResponse)
+            if certifyImageResponse.status == nil {
+                currentState.send(.isSuccess(true))
+            } else {
+                currentState.send(.showMessage(certifyImageResponse.error ?? ""))
+            }
         }
     }
     
