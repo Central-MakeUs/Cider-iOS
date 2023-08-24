@@ -33,6 +33,8 @@ enum CiderAPI {
     case getMyCerify(challengeId: Int)
     case postCertify(parameters: [String: Any])
     case postCertifyImage(image: UIImage, certifyId: Int)
+    case postChallenge(parameters: [String: Any])
+    case postChallengeImage(challengeId: Int, succesImage: UIImage, failImage: UIImage)
 }
 
 extension CiderAPI: TargetType, AccessTokenAuthorizable {
@@ -87,6 +89,10 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             return "/api/certify"
         case .postCertifyImage(_, let certifyId):
             return "/api/certify/images/\(certifyId)"
+        case .postChallenge:
+            return "/api/challenge"
+        case .postChallengeImage(let challengeId, _, _):
+            return "/api/challenge/images/\(challengeId)"
         }
     }
     
@@ -97,7 +103,9 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
              .postLikeChallenge,
              .postLikeFeed,
              .postCertify,
-             .postCertifyImage:
+             .postCertifyImage,
+             .postChallenge,
+             .postChallengeImage:
             return .post
             
         case .getRandomNickname,
@@ -133,7 +141,8 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
              .postLikeChallenge(let parameters),
              .postLikeFeed(let parameters),
              .patchProfile(let parameters),
-             .postCertify(let parameters):
+             .postCertify(let parameters),
+             .postChallenge(let parameters):
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
     
         case .patchProfileImage(let image):
@@ -146,6 +155,14 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             let data = image.jpegData(compressionQuality: 0.1)!
             let imageData = MultipartFormBodyPart(provider: .data(data), name: "certifyImages", fileName: "image.jpeg", mimeType: "image/jpeg")
             let multipartData: MultipartFormData = [imageData]
+            return .uploadMultipartFormData(multipartData)
+            
+        case .postChallengeImage(_, let succesImage, let failImage):
+            let successData = succesImage.jpegData(compressionQuality: 0.1)!
+            let failData = failImage.jpegData(compressionQuality: 0.1)!
+            let successImageData = MultipartFormBodyPart(provider: .data(successData), name: "successExampleImages", fileName: "image.jpeg", mimeType: "image/jpeg")
+            let failImageData = MultipartFormBodyPart(provider: .data(failData), name: "failureExampleImages", fileName: "image.jpeg", mimeType: "image/jpeg")
+            let multipartData: MultipartFormData = [successImageData, failImageData]
             return .uploadMultipartFormData(multipartData)
             
         default:
