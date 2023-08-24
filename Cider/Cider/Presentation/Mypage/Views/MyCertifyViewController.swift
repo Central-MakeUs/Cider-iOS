@@ -75,6 +75,7 @@ private extension MyCertifyViewController {
                         return
                     }
                     self?.applySnapshot()
+                    self?.reloadHeader()
                 }
             }
             .store(in: &cancellables)
@@ -115,27 +116,30 @@ private extension MyCertifyViewController {
             let section = Section(rawValue: indexPath.section)
             switch section {
             case .feed:
-                if self.viewModel.feeds.count > 0 {
+                if !self.viewModel.isCertifyEmpty() {
                     guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCell.identifier, for: indexPath) as? FeedCell else {
                         return UICollectionViewCell()
                     }
-                    let feed = self.viewModel.feeds[indexPath.row]
-                    cell.setUp(
-                        nickname: feed.simpleMemberResponseDto.memberName,
-                        level: feed.simpleMemberResponseDto.memberLevelName,
-                        date: feed.createdDate.formatYYYYMMDDHHMMDot(),
-                        mainTitle: feed.certifyName,
-                        subTitle: feed.certifyContent,
-                        challengeType: feed.simpleChallengeResponseDto.challengeBranch.convertChallengeType(),
-                        challengeTitle: feed.simpleChallengeResponseDto.challengeName,
-                        people: String(feed.simpleChallengeResponseDto.participateNum),
-                        heart: String(feed.certifyLike),
-                        profileImageURL: feed.simpleMemberResponseDto.profilePath,
-                        feedImageURL: feed.certifyImageUrl,
-                        isLike: feed.isLike
-                    )
-                    cell.certifyId = feed.certifyId
-                    cell.addHeartButtonAction(self, action: #selector(self.didTapFeedHeart))
+                    if let response = self.viewModel.myCertifyResponse {
+                        let myCeritfy = response.certifyResponseDtoList[indexPath.row]
+                        cell.setUp(
+                            nickname: response.simpleMemberResponseDto.memberName,
+                            level: response.simpleMemberResponseDto.memberLevelName,
+                            date: myCeritfy.createdDate.formatYYYYMMDDHHMMDot(),
+                            mainTitle: myCeritfy.certifyName,
+                            subTitle: myCeritfy.certifyContent,
+                            challengeType: response.simpleChallengeResponseDto.challengeBranch.convertChallengeType(),
+                            challengeTitle: response.simpleChallengeResponseDto.challengeName,
+                            people: String(response.simpleChallengeResponseDto.participateNum),
+                            heart: String(myCeritfy.certifyLike),
+                            profileImageURL: response.simpleMemberResponseDto.profilePath,
+                            feedImageURL: myCeritfy.certifyImageUrl,
+                            isLike: myCeritfy.isLike
+                        )
+                        cell.certifyId = myCeritfy.certifyId
+                        cell.addHeartButtonAction(self, action: #selector(self.didTapFeedHeart))
+                    }
+                    
                     return cell
                 } else {
                     guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyCertifyEmptyCell.identifier, for: indexPath) as? MyCertifyEmptyCell else {
@@ -164,7 +168,8 @@ private extension MyCertifyViewController {
                     withReuseIdentifier: MyCertifyHeaderView.identifier,
                     for: indexPath
                 ) as? MyCertifyHeaderView
-                headerView?.challengeSelectionView.setTextFieltText("만보 걷기")
+                headerView?.challengeSelectionView.setTextFieltText(self.viewModel.challengeTitle)
+                headerView?.challengeSelectionView.challengeList = self.viewModel.participateChallengeTitles
                 return headerView
                 
             default:
@@ -188,7 +193,7 @@ private extension MyCertifyViewController {
             let section = Section(rawValue: sectionNumber)
             switch section {
             case .feed:
-                return  self.viewModel.feeds.count > 0 ? self.feedSectionLayout() : self.emptyStateLayout()
+                return  !self.viewModel.isCertifyEmpty() ? self.feedSectionLayout() : self.emptyStateLayout()
                 
             default:
                 return nil
@@ -246,7 +251,7 @@ private extension MyCertifyViewController {
         section.boundarySupplementaryItems = [
             NSCollectionLayoutBoundarySupplementaryItem(
                 layoutSize: .init(
-                    widthDimension: .fractionalWidth(1),
+                    widthDimension: .absolute(UIScreen.main.bounds.width-48),
                     heightDimension: .absolute(49)
                 ),
                 elementKind: MyCertifyHeaderView.identifier, alignment: .top)
@@ -278,13 +283,16 @@ private extension MyCertifyViewController {
         guard let indexPath = collectionView.indexPath(for: cell) else {
             return
         }
-        viewModel.likeFeed(isLike: viewModel.feeds[indexPath.row].isLike, certifyId: viewModel.feeds[indexPath.row].certifyId)
-        if viewModel.feeds[indexPath.row].isLike {
-            viewModel.feeds[indexPath.row].certifyLike -= 1
-        } else {
-            viewModel.feeds[indexPath.row].certifyLike += 1
+        guard let response = viewModel.myCertifyResponse else {
+            return
         }
-        viewModel.feeds[indexPath.row].isLike.toggle()
+        viewModel.likeFeed(isLike: response.certifyResponseDtoList[indexPath.row].isLike, certifyId: response.certifyResponseDtoList[indexPath.row].certifyId)
+        if response.certifyResponseDtoList[indexPath.row].isLike {
+            viewModel.myCertifyResponse?.certifyResponseDtoList[indexPath.row].certifyLike -= 1
+        } else {
+            viewModel.myCertifyResponse?.certifyResponseDtoList[indexPath.row].certifyLike += 1
+        }
+        viewModel.myCertifyResponse?.certifyResponseDtoList[indexPath.row].isLike.toggle()
         reloadHeader()
     }
     

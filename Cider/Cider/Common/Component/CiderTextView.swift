@@ -10,7 +10,7 @@ import Combine
 
 final class CiderTextView: UIView {
     
-    private lazy var textView: CiderUITextView = {
+    lazy var textView: CiderUITextView = {
         let textView = CiderUITextView()
         textView.text = placeHolder
         textView.configure()

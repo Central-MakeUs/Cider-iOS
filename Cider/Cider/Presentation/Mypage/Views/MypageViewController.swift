@@ -167,8 +167,8 @@ private extension MypageViewController {
     func pushMyCertifyViewController() {
         let viewController = MyCertifyViewController(
             viewModel: MyCertifyViewModel(
-                usecase: DefaultHomeUsecase(
-                    repository: DefaultHomeRepository()
+                usecase: DefaultMyCertifyUsecase(
+                    repository: DefaultMyCertifyRepository()
                 )
             )
         )

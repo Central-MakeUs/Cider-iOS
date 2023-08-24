@@ -29,6 +29,10 @@ enum CiderAPI {
     case getMyLikeChallenge
     case patchProfileImage(image: UIImage)
     case patchProfile(parameters: [String: Any])
+    case getMyParticipateChallenge
+    case getMyCerify(challengeId: Int)
+    case postCertify(parameters: [String: Any])
+    case postCertifyImage(image: UIImage, certifyId: Int)
 }
 
 extension CiderAPI: TargetType, AccessTokenAuthorizable {
@@ -75,7 +79,14 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             return "/api/member/profile/image"
         case .patchProfile:
             return "/api/member/profile"
-
+        case .getMyParticipateChallenge:
+            return "/api/challenge/participate"
+        case .getMyCerify(let challengeId):
+            return "/api/certify/mypage/\(challengeId)"
+        case .postCertify:
+            return "/api/certify"
+        case .postCertifyImage(_, let certifyId):
+            return "/api/certify/images/\(certifyId)"
         }
     }
     
@@ -84,7 +95,9 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
         case .signInApple,
              .signInKakao,
              .postLikeChallenge,
-             .postLikeFeed:
+             .postLikeFeed,
+             .postCertify,
+             .postCertifyImage:
             return .post
             
         case .getRandomNickname,
@@ -96,7 +109,9 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
              .getPublicChallenge,
              .getHomeFeed,
              .getMypage,
-             .getMyLikeChallenge:
+             .getMyLikeChallenge,
+             .getMyCerify,
+             .getMyParticipateChallenge:
             return .get
             
         case .patchOnboarding,
@@ -117,12 +132,19 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
              .patchOnboarding(let parameters),
              .postLikeChallenge(let parameters),
              .postLikeFeed(let parameters),
-             .patchProfile(let parameters):
+             .patchProfile(let parameters),
+             .postCertify(let parameters):
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
     
         case .patchProfileImage(let image):
             let data = image.jpegData(compressionQuality: 0.1)!
             let imageData = MultipartFormBodyPart(provider: .data(data), name: "profileImage", fileName: "image.jpeg", mimeType: "image/jpeg")
+            let multipartData: MultipartFormData = [imageData]
+            return .uploadMultipartFormData(multipartData)
+            
+        case .postCertifyImage(let image, _):
+            let data = image.jpegData(compressionQuality: 0.1)!
+            let imageData = MultipartFormBodyPart(provider: .data(data), name: "certifyImages", fileName: "image.jpeg", mimeType: "image/jpeg")
             let multipartData: MultipartFormData = [imageData]
             return .uploadMultipartFormData(multipartData)
             

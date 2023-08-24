@@ -32,12 +32,11 @@ final class CertifyViewController: UIViewController {
         return controller
     }()
 
-    private let viewModel: ChallengeOpenViewModel
+    private let viewModel: CertifyViewModel
     private var cancellables = Set<AnyCancellable>()
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
-    private var certifyImage: UIImage?
     
-    init(viewModel: ChallengeOpenViewModel) {
+    init(viewModel: CertifyViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -49,6 +48,7 @@ final class CertifyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
+        viewModel.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,6 +74,15 @@ private extension CertifyViewController {
                 switch state {
                 case .changeNextButtonState(let isEnabled):
                     self?.bottomButton.setStyle(isEnabled ? .enabled : .disabled)
+                case .applySnapshot:
+                    self?.applySnapshot()
+                case .showMessage(let message):
+                    self?.showAlert(message: message)
+                case .isSuccess(let isSuccess):
+                    guard isSuccess else {
+                        return
+                    }
+                    self?.popToRootViewController()
                 }
             }
             .store(in: &cancellables)
@@ -108,37 +117,39 @@ private extension CertifyViewController {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CertifyCell.identifier, for: indexPath) as? CertifyCell else {
                 return UICollectionViewCell()
             }
-            cell.challengeSelectionView.setTextFieltText("만보 걷기")
+            cell.challengeSelectionView.setTextFieltText(self.viewModel.challengeList.first ?? "")
             cell.addTapGestureCameraView(self, action: #selector(self.didTapCameraView))
-            cell.setCameraImage(self.certifyImage)
-//            cell.challengeTitleTextFieldView.textPublisher()
-//                .receive(on: DispatchQueue.main)
-//                .sink { [weak self] name in
-//                    self?.viewModel.changeChallengeName(name)
-//                }
-//                .store(in: &self.cancellables)
-//
-//            cell.missionTextFieldView.textPublisher()
-//                .receive(on: DispatchQueue.main)
-//                .sink { [weak self] missionInfo in
-//                    self?.viewModel.changeMissionInfo(missionInfo)
-//                }
-//                .store(in: &self.cancellables)
-//
-//            cell.challengeIntroductionTextView.textPublisher()
-//                .receive(on: DispatchQueue.main)
-//                .sink { [weak self] challengeInfo  in
-//                    self?.viewModel.changeChallengeInfo(challengeInfo)
-//                }
-//                .store(in: &self.cancellables)
-//
-//            cell.memberView.unitPublisher()
-//                .receive(on: DispatchQueue.main)
-//                .sink { [weak self] recruitPeriod in
-//                    self?.viewModel.changeRecruitPeriod(recruitPeriod)
-//                }
-//                .store(in: &self.cancellables)
+            cell.setCameraImage(self.viewModel.certifyImage)
+            cell.titleTextFieldView.textPublisher()
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] title in
+                    self?.viewModel.changeChallengeName(title)
+                }
+                .store(in: &self.cancellables)
             
+            if self.viewModel.challengeName == self.viewModel.challengeNamePlaceHolder {
+                cell.titleTextFieldView.setPlaceHoder(self.viewModel.challengeNamePlaceHolder)
+            } else {
+                cell.titleTextFieldView.ciderTextField.text = self.viewModel.challengeName
+            }
+            
+
+            cell.contentTextView.textPublisher()
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] content  in
+                    self?.viewModel.changechallengeContent(content)
+                }
+                .store(in: &self.cancellables)
+            cell.contentTextView.textView.text = self.viewModel.challengeContent
+            
+            cell.challengeSelectionView.indexPublisher()
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] index  in
+                    self?.viewModel.selectChallengeIndex(index)
+                }
+                .store(in: &self.cancellables)
+            cell.challengeSelectionView.challengeList = self.viewModel.challengeList
+            cell.challengeSelectionView.selectedIndex = self.viewModel.challengeIndex
             return cell
         })
     }
@@ -168,11 +179,8 @@ private extension CertifyViewController {
         return layout
     }
     
-    func pushPrecautionViewController() {
-        let viewController = PrecautionViewController(
-            viewModel: PrecautionViewModel()
-        )
-        self.navigationController?.pushViewController(viewController, animated: true)
+    func popToRootViewController() {
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
 }
@@ -180,7 +188,7 @@ private extension CertifyViewController {
 private extension CertifyViewController {
     
     @objc func didTapNextButton(_ sender: Any?) {
-        pushPrecautionViewController()
+        viewModel.didTapBottomButton()
     }
     
     @objc func didTapCameraView(_ sender: Any?) {
@@ -192,7 +200,7 @@ extension CertifyViewController: UIImagePickerControllerDelegate, UINavigationCo
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            certifyImage = image
+            viewModel.certifyImage = image
         }
         picker.dismiss(animated: true, completion: nil)
         applySnapshot()
@@ -213,7 +221,13 @@ struct CertifyViewController_Preview: PreviewProvider {
     
     static var previews: some View {
         ForEach(devices, id: \.self) { deviceName in
-            CertifyViewController(viewModel: ChallengeOpenViewModel())
+            CertifyViewController(
+                viewModel: CertifyViewModel(
+                    usecase: DefaultCertifyUsecase(
+                        repository: DefaultCertifyRepository()
+                    )
+                )
+            )
                 .toPreview()
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)

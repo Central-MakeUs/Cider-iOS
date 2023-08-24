@@ -47,9 +47,9 @@ final class ChallengeSelectionView: UIView {
         return pickerView
     }()
     
-    // TODO: 더미데이터 삭제
     var selectedPickerViewData = ""
-    var challengeList: [String] = ["만보 걷기", "챌린지 어쩌고 하기"]
+    var challengeList: [String] = []
+    var selectedIndex = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,10 +60,10 @@ final class ChallengeSelectionView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func unitPublisher() -> AnyPublisher<Int, Never> {
+    func indexPublisher() -> AnyPublisher<Int, Never> {
         var unitPublisher: AnyPublisher<Int, Never> {
             NotificationCenter.default.publisher(
-                for: .didChangedUnit,
+                for: .selectParticipateChallenge,
                 object: nil
             )
             .compactMap { $0.object as? Int }
@@ -115,7 +115,7 @@ private extension ChallengeSelectionView {
     @objc func didTapDone(_ sender: UIBarButtonItem) {
         textField.resignFirstResponder()
         textField.text = String(selectedPickerViewData)
-        NotificationCenter.default.post(name: .didChangedUnit, object: selectedPickerViewData)
+        NotificationCenter.default.post(name: .selectParticipateChallenge, object: selectedIndex)
     }
     
     @objc func didTapCancel(_ sender: UIBarButtonItem) {
@@ -139,7 +139,11 @@ extension ChallengeSelectionView: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        guard challengeList.count > 0 else {
+            return
+        }
         selectedPickerViewData = challengeList[row]
+        selectedIndex = row
     }
     
 }
