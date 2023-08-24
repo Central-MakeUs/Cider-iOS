@@ -145,6 +145,8 @@
 		FA57AF752A5E9DED008A5991 /* CiderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57AF742A5E9DED008A5991 /* CiderTextView.swift */; };
 		FA57EC432A973AC900ED4A48 /* CertifyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57EC422A973AC900ED4A48 /* CertifyRepository.swift */; };
 		FA57EC452A973B4700ED4A48 /* CertifyUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57EC442A973B4700ED4A48 /* CertifyUsecase.swift */; };
+		FA57EC472A9749AB00ED4A48 /* ChallengeOpenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57EC462A9749AB00ED4A48 /* ChallengeOpenRequest.swift */; };
+		FA57EC492A9749C700ED4A48 /* ChallengeOpenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57EC482A9749C700ED4A48 /* ChallengeOpenResponse.swift */; };
 		FA59116D2A7BEC3C0022611B /* HostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59116C2A7BEC3B0022611B /* HostCell.swift */; };
 		FA59116F2A7BEF360022611B /* MissionPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59116E2A7BEF360022611B /* MissionPhotoCell.swift */; };
 		FA5911722A7BF7E60022611B /* ChallengeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5911712A7BF7E60022611B /* ChallengeDetailViewModel.swift */; };
@@ -343,6 +345,8 @@
 		FA57AF742A5E9DED008A5991 /* CiderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderTextView.swift; sourceTree = "<group>"; };
 		FA57EC422A973AC900ED4A48 /* CertifyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifyRepository.swift; sourceTree = "<group>"; };
 		FA57EC442A973B4700ED4A48 /* CertifyUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifyUsecase.swift; sourceTree = "<group>"; };
+		FA57EC462A9749AB00ED4A48 /* ChallengeOpenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOpenRequest.swift; sourceTree = "<group>"; };
+		FA57EC482A9749C700ED4A48 /* ChallengeOpenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOpenResponse.swift; sourceTree = "<group>"; };
 		FA59116C2A7BEC3B0022611B /* HostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostCell.swift; sourceTree = "<group>"; };
 		FA59116E2A7BEF360022611B /* MissionPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionPhotoCell.swift; sourceTree = "<group>"; };
 		FA5911712A7BF7E60022611B /* ChallengeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailViewModel.swift; sourceTree = "<group>"; };
@@ -922,6 +926,7 @@
 				FA3139F92A84B33A006DBE69 /* FeedLikeRequest.swift */,
 				FA40E8242A8F22F900195810 /* ProfileModifyRequest.swift */,
 				FA2282BF2A9654DC00DF4ADB /* CertifyRequest.swift */,
+				FA57EC462A9749AB00ED4A48 /* ChallengeOpenRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -942,6 +947,7 @@
 				FA2282B62A95F31D00DF4ADB /* ParticiapteChallengeResponse.swift */,
 				FA2282B82A95F45000DF4ADB /* MyCertifyResponse.swift */,
 				FA2282C12A9654F800DF4ADB /* CertifyResponse.swift */,
+				FA57EC482A9749C700ED4A48 /* ChallengeOpenResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1295,6 +1301,7 @@
 				FA8CA60B2A46D322005A6709 /* LoginViewController.swift in Sources */,
 				FA4A24BB2A7004540078A86C /* OngoingCell.swift in Sources */,
 				FA619D682A8BBD1D000BDDA5 /* MyHeartChallengeViewController.swift in Sources */,
+				FA57EC472A9749AB00ED4A48 /* ChallengeOpenRequest.swift in Sources */,
 				FA4DDB922A4D5810002EDEAD /* ServiceAgreeCellData.swift in Sources */,
 				FA5911872A7D5FF50022611B /* HomeDetailViewModel.swift in Sources */,
 				FA2282B72A95F31D00DF4ADB /* ParticiapteChallengeResponse.swift in Sources */,
@@ -1389,6 +1396,7 @@
 				FA619D592A87C928000BDDA5 /* MypageViewModel.swift in Sources */,
 				FA3DA35F2A8F5F8D00AF147B /* SettingView.swift in Sources */,
 				FA5911772A7D3CCC0022611B /* HomeViewModel.swift in Sources */,
+				FA57EC492A9749C700ED4A48 /* ChallengeOpenResponse.swift in Sources */,
 				FA3AE4072A57D2970078A4DF /* GenderAndBirthdayViewModel.swift in Sources */,
 				FA4280672A70F17800828F93 /* ReviewCell.swift in Sources */,
 				FA6AE8B02A6045AB00512EE1 /* ChallengeOpenSelectionType.swift in Sources */,
