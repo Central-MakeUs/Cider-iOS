@@ -102,9 +102,9 @@ final class MissionPhotoCell: UICollectionViewCell {
 
 extension MissionPhotoCell {
     
-    func setUp(photos: [UIImage?]) {
+    func setUp(photos: [String]) {
         for i in 0..<photos.count {
-            imageViews[i].image = photos[i]
+            imageViews[i].load(url: photos[i])
         }
     }
     
@@ -121,12 +121,7 @@ struct MissionPhotoCell_Preview: PreviewProvider {
             let cell = MissionPhotoCell()
             cell.setUp(
                 photos: [
-               UIImage(named: "sample"),
-               UIImage(named: "sample"),
-               UIImage(named: "sample"),
-               UIImage(named: "sample"),
-               UIImage(named: "sample"),
-               UIImage(named: "sample")
+             "sss"
             ])
             return cell
         }

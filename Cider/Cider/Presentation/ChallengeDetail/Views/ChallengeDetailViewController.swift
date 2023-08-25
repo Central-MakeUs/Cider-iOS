@@ -121,6 +121,7 @@ private extension ChallengeDetailViewController {
         configure()
         setMenu(menuType)
         setNotificationCenter()
+        bind()
     }
     
     func bind() {
@@ -209,8 +210,16 @@ private extension ChallengeDetailViewController {
                         challengeType: self.challengeType,
                         profileUrl: infoResponse.simpleMemberResponseDto.profilePath,
                         mainTitle: infoResponse.challengeName,
-                        participant: "\(infoResponse.challengeInfoResponseDto.certifyNum) / \(infoResponse.challengeInfoResponseDto.challengeCapacity)명",
+                        participant: "\(infoResponse.participateNum) / \(infoResponse.challengeCapacity)명",
                         status: infoResponse.challengeStatus.convertStatusKorean()
+                    )
+                } else {
+                    cell.setUp(
+                        challengeType: self.challengeType,
+                        profileUrl: "",
+                        mainTitle: "",
+                        participant: "0 / 0명",
+                        status: ""
                     )
                 }
                
@@ -273,8 +282,8 @@ private extension ChallengeDetailViewController {
                 if let infoResponse = self.viewModel.infoResponse {
                     cell.setUp(
                         mission: infoResponse.certifyMissionResponseDto.certifyMission,
-                        successUrl: infoResponse.certifyMissionResponseDto.successExampleImage,
-                        failUrl:infoResponse.certifyMissionResponseDto.failureExampleImage
+                        successUrl: infoResponse.certifyMissionResponseDto.successExampleImage ?? "",
+                        failUrl: infoResponse.certifyMissionResponseDto.failureExampleImage ?? ""
                     )
                 }
                 return cell
@@ -471,8 +480,16 @@ private extension ChallengeDetailViewController {
                         challengeType: self.challengeType,
                         profileUrl: infoResponse.simpleMemberResponseDto.profilePath,
                         mainTitle: infoResponse.challengeName,
-                        participant: "\(infoResponse.challengeInfoResponseDto.certifyNum) / \(infoResponse.challengeInfoResponseDto.challengeCapacity)명",
+                        participant: "\(infoResponse.participateNum) / \(infoResponse.challengeCapacity)명",
                         status: infoResponse.challengeStatus.convertStatusKorean()
+                    )
+                } else {
+                    cell.setUp(
+                        challengeType: self.challengeType,
+                        profileUrl: "",
+                        mainTitle: "",
+                        participant: "0 / 0명",
+                        status: ""
                     )
                 }
                 cell.setUpMenu(self.menuType)
@@ -482,42 +499,42 @@ private extension ChallengeDetailViewController {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyMissionCell.identifier, for: indexPath) as? MyMissionCell else {
                     return UICollectionViewCell()
                 }
-                cell.setUp(count: "24")
+                cell.setUp(count: "")
                 return cell
                 
             case .MissionPhoto:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MissionPhotoCell.identifier, for: indexPath) as? MissionPhotoCell else {
                     return UICollectionViewCell()
                 }
-                cell.setUp(
-                    photos: [
-                   UIImage(named: "sample"),
-                   UIImage(named: "sample"),
-                   UIImage(named: "sample"),
-                   UIImage(named: "sample"),
-                   UIImage(named: "sample"),
-                   UIImage(named: "sample")
-                ])
+                if let feedResponse = self.viewModel.feedResponse {
+                    cell.setUp(
+                        photos: feedResponse.certifyImageUrlList
+                    )
+                }
+                
                 return cell
                 
             case .feed:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCell.identifier, for: indexPath) as? FeedCell else {
                     return UICollectionViewCell()
                 }
-                cell.setUp(
-                    nickname: "화이팅",
-                    level: "LV 1",
-                    date: "23.05.15 15:45",
-                    mainTitle: "오늘 챌린지 인증하는데",
-                    subTitle: "챌린지 하면 할수록 너무 힘들구 어쩌고 저쩌고 근데 할 수 있다 챌린지 하면 할수록 챌린지 하면 할수록\n챌린지 하면 할수록 너무 힘들구 어쩌고 저쩌고 근데 할 수 있다\n챌린지 하면 할수록 너무 힘들구 어쩌고 저쩌고 근데 할 수 있다",
-                    challengeType: .financialTech,
-                    challengeTitle: "하루에 만보 걷기 챌린지 하루를 열심히 살아보아요!!!",
-                    people: "231",
-                    heart: "1111",
-                    profileImageURL: "https://cider-bucket.s3.ap-northeast-2.amazonaws.com/profileExample/bear.png",
-                    feedImageURL: "https://cider-bucket.s3.ap-northeast-2.amazonaws.com/profileExample/bear.png",
-                    isLike: true
-                )
+                if let feed = self.viewModel.feedResponse?.simpleCertifyResponseDtoList[indexPath.row],
+                   let infoResponse = self.viewModel.infoResponse {
+                    cell.setUp(
+                        nickname: feed.simpleMemberResponseDto.memberName,
+                        level: feed.simpleMemberResponseDto.memberLevelName,
+                        date: feed.createdDate.formatYYYYMMDDHHMMDot(),
+                        mainTitle: feed.certifyName,
+                        subTitle: feed.certifyContent,
+                        challengeType: infoResponse.challengeBranch.convertChallengeType(),
+                        challengeTitle: infoResponse.challengeName,
+                        people: String(infoResponse.participateNum),
+                        heart: String(feed.certifyLike),
+                        profileImageURL: feed.simpleMemberResponseDto.profilePath,
+                        feedImageURL: feed.certifyImageUrl,
+                        isLike: feed.isLike
+                    )
+                }
                 return cell
                 
             case .none:
@@ -525,7 +542,6 @@ private extension ChallengeDetailViewController {
             
             }
         })
-        
         
         feedDataSource?.supplementaryViewProvider = { [weak self] collectionView, elementKind, indexPath in
             guard let self = self else {
@@ -598,7 +614,7 @@ private extension ChallengeDetailViewController {
         snapshot.appendItems([Item()])
         snapshot.appendSections([.host])
         snapshot.appendItems([Item()])
-        infoDataSource?.apply(snapshot)
+        infoDataSource?.apply(snapshot, animatingDifferences: false)
     }
     
     func applyFeedSnapshot() {
@@ -610,8 +626,8 @@ private extension ChallengeDetailViewController {
         snapshot.appendSections([.MissionPhoto])
         snapshot.appendItems([Item()])
         snapshot.appendSections([.feed])
-        snapshot.appendItems([Item(), Item(), Item(), Item()])
-        feedDataSource?.apply(snapshot)
+        snapshot.appendItems(viewModel.feedItems)
+        feedDataSource?.apply(snapshot, animatingDifferences: false)
     }
     
     func createLayout() -> UICollectionViewCompositionalLayout {

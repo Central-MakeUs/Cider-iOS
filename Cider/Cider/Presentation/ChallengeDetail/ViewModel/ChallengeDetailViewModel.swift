@@ -24,6 +24,7 @@ final class ChallengeDetailViewModel: ViewModelType {
     var infoResponse: ChallengeDetailInfoResponse?
     var feedResponse: ChallengeDetailFeedResponse?
     var filter: SortingType = .latest
+    var feedItems: [Item] = []
 
     init(usecase: ChallengeDetailUsecase, challengeId: Int) {
         self.usecase = usecase
@@ -42,8 +43,13 @@ private extension ChallengeDetailViewModel {
         Task {
             do {
                 let infoResponse = try await usecase.getInfo(challengeId: challengeId)
+                print(infoResponse)
                 self.infoResponse = infoResponse
                 let feedResponse = try await usecase.getFeed(challengeId: challengeId, filter: filter.english)
+                print(feedResponse)
+                for _ in feedResponse.simpleCertifyResponseDtoList {
+                    feedItems.append(Item())
+                }
                 self.feedResponse = feedResponse
                 currentState.send(.applysnapshot)
             }

@@ -26,7 +26,8 @@ struct ChallengeDetailInfoResponse: Codable {
 
 // MARK: - CertifyMissionResponseDto
 struct CertifyMissionResponseDto: Codable {
-    let certifyMission, successExampleImage, failureExampleImage: String
+    let certifyMission: String
+    let successExampleImage, failureExampleImage: String?
 }
 
 // MARK: - ChallengeConditionResponseDto

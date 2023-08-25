@@ -21,8 +21,8 @@ protocol ChallengeDetailRepository {
 final class DefaultChallengeDetailRepository: ChallengeDetailRepository {
     
     func getInfo(challengeId: Int) async throws -> ChallengeDetailInfoResponse {
+        print(challengeId)
         return try await CiderAPI.request(target: .getChallengeDetailInfo(challengeId: challengeId), dataType: ChallengeDetailInfoResponse.self)
-        
     }
     
     func getFeed(challengeId: Int, filter: String) async throws -> ChallengeDetailFeedResponse {

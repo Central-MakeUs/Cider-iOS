@@ -323,7 +323,7 @@ private extension HomeViewController {
         snapshot.appendSections([.feed])
         snapshot.appendItems(viewModel.feedItems)
         
-        dataSource?.apply(snapshot)
+        dataSource?.apply(snapshot, animatingDifferences: false)
     }
     
     func createLayout() -> UICollectionViewCompositionalLayout {
