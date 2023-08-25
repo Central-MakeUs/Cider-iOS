@@ -146,6 +146,7 @@ private extension PrecautionViewController {
     
     @objc func didTapNextButton(_ sender: Any?) {
         viewModel.didTapNextButton()
+        pushChallengeOpenCompleteViewController()
     }
     
 }

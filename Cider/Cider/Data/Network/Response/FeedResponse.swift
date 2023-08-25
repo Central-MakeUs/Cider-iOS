@@ -28,6 +28,7 @@ struct SimpleMemberResponseDto: Codable {
     let profilePath: String
     let memberLevelName: String
     let participateChallengeNum: Int
+    let memberId: Int
 }
 
-typealias FeedResponse = [FeedResponseElement]
+typealias FeedResponse = [FeedResponseElement?]

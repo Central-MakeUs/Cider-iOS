@@ -76,6 +76,7 @@ private extension MyCertifyViewController {
                     }
                     self?.applySnapshot()
                     self?.reloadHeader()
+                    self?.setFeedCount()
                 }
             }
             .store(in: &cancellables)
@@ -104,7 +105,17 @@ private extension MyCertifyViewController {
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = "나의 인증글"
         setNavigationBar(backgroundColor: .white, tintColor: .black, shadowColor: .clear)
-        rightBarLabel.text = "총 11개"
+        rightBarLabel.text = "총 0개"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBarLabel)
+    }
+    
+    func setFeedCount() {
+        guard let response = viewModel.myCertifyResponse else {
+            rightBarLabel.text = "총 0개"
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBarLabel)
+            return
+        }
+        rightBarLabel.text = "총 \(response.certifyResponseDtoList.count)개"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBarLabel)
     }
     
@@ -136,6 +147,7 @@ private extension MyCertifyViewController {
                             feedImageURL: myCeritfy.certifyImageUrl,
                             isLike: myCeritfy.isLike
                         )
+                        cell.setHiddenMeatball()
                         cell.certifyId = myCeritfy.certifyId
                         cell.addHeartButtonAction(self, action: #selector(self.didTapFeedHeart))
                     }

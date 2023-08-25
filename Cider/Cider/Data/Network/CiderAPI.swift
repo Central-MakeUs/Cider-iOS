@@ -40,6 +40,10 @@ enum CiderAPI {
     case getChallengeDetailInfo(challengeId: Int)
     case getChallengeDetailFeed(challengeId: Int, filter: String)
     case postChallengeParticipiate(parameters: [String: Any])
+    case reportUser(parameters: [String: Any])
+    case reportFeed(parameters: [String: Any])
+    case blockUser(parameters: [String: Any])
+    case blockFeed(parameters: [String: Any])
 }
 
 extension CiderAPI: TargetType, AccessTokenAuthorizable {
@@ -108,6 +112,14 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             return "/api/challenge/detail/feed/\(challengeId)/\(filter)"
         case .postChallengeParticipiate:
             return "/api/challenge/participate"
+        case .reportUser:
+            return "/api/report/member"
+        case .reportFeed:
+            return "/api/report/feed"
+        case .blockFeed:
+            return "/api/block/feed"
+        case .blockUser:
+            return "/api/block/member"
         }
     }
     
@@ -121,7 +133,11 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
              .postCertifyImage,
              .postChallenge,
              .postChallengeImage,
-             .postChallengeParticipiate:
+             .postChallengeParticipiate,
+             .reportUser,
+             .reportFeed,
+             .blockFeed,
+             .blockUser:
             return .post
             
         case .getRandomNickname,
@@ -163,7 +179,11 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
              .patchProfile(let parameters),
              .postCertify(let parameters),
              .postChallenge(let parameters),
-             .postChallengeParticipiate(let parameters):
+             .postChallengeParticipiate(let parameters),
+             .blockUser(let parameters),
+             .blockFeed(let parameters),
+             .reportFeed(let parameters),
+             .reportUser(let parameters):
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
     
         case .patchProfileImage(let image):

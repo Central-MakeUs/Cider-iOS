@@ -214,6 +214,10 @@
 		FA9825F92A987DAA0013018D /* ChallengeDetailUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825F82A987DAA0013018D /* ChallengeDetailUsecase.swift */; };
 		FA9825FD2A98AAA50013018D /* ChallengeStatusType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825FC2A98AAA50013018D /* ChallengeStatusType.swift */; };
 		FA9825FF2A98AD690013018D /* ChallengeParticiapiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825FE2A98AD690013018D /* ChallengeParticiapiteViewController.swift */; };
+		FA9826012A98BF200013018D /* ReportRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9826002A98BF200013018D /* ReportRequest.swift */; };
+		FA9826032A98BF920013018D /* ReportRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9826022A98BF920013018D /* ReportRepository.swift */; };
+		FA9826052A98C0110013018D /* ReportUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9826042A98C0110013018D /* ReportUsecase.swift */; };
+		FA9826072A98C1040013018D /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9826062A98C1040013018D /* ReportViewModel.swift */; };
 		FAB9A73B2A4C64CF00757A80 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */; };
 		FAB9A73F2A4C8DAB00757A80 /* ProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */; };
 		FABF17532A70D8910073C13B /* SeparatorFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABF17522A70D8910073C13B /* SeparatorFooterView.swift */; };
@@ -430,6 +434,10 @@
 		FA9825F82A987DAA0013018D /* ChallengeDetailUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailUsecase.swift; sourceTree = "<group>"; };
 		FA9825FC2A98AAA50013018D /* ChallengeStatusType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeStatusType.swift; sourceTree = "<group>"; };
 		FA9825FE2A98AD690013018D /* ChallengeParticiapiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeParticiapiteViewController.swift; sourceTree = "<group>"; };
+		FA9826002A98BF200013018D /* ReportRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportRequest.swift; sourceTree = "<group>"; };
+		FA9826022A98BF920013018D /* ReportRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportRepository.swift; sourceTree = "<group>"; };
+		FA9826042A98C0110013018D /* ReportUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportUsecase.swift; sourceTree = "<group>"; };
+		FA9826062A98C1040013018D /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
 		FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessView.swift; sourceTree = "<group>"; };
 		FABF17522A70D8910073C13B /* SeparatorFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorFooterView.swift; sourceTree = "<group>"; };
@@ -720,6 +728,7 @@
 			isa = PBXGroup;
 			children = (
 				FA40E8302A8F473100195810 /* ReportReasonViewModel.swift */,
+				FA9826062A98C1040013018D /* ReportViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -860,6 +869,7 @@
 				FA9825E32A979A3E0013018D /* ChallengeOpenUsecase.swift */,
 				FA9825E92A9846E90013018D /* MyChallengeUsecase.swift */,
 				FA9825F82A987DAA0013018D /* ChallengeDetailUsecase.swift */,
+				FA9826042A98C0110013018D /* ReportUsecase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -961,6 +971,7 @@
 				FA40E8242A8F22F900195810 /* ProfileModifyRequest.swift */,
 				FA2282BF2A9654DC00DF4ADB /* CertifyRequest.swift */,
 				FA57EC462A9749AB00ED4A48 /* ChallengeOpenRequest.swift */,
+				FA9826002A98BF200013018D /* ReportRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1005,6 +1016,7 @@
 				FA9825E12A9798EA0013018D /* ChallengeOpenRepository.swift */,
 				FA9825E72A9845B40013018D /* MyChallengeRepository.swift */,
 				FA9825F62A987BAD0013018D /* ChallengeDetailRepository.swift */,
+				FA9826022A98BF920013018D /* ReportRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1336,6 +1348,7 @@
 				FA3AE40D2A57DB140078A4DF /* CiderBottomButton.swift in Sources */,
 				FA56F9842A542FA70099EC6F /* GenderAndBirthdayViewController.swift in Sources */,
 				FA0322812A4DC2B0000993DF /* NicknameViewController.swift in Sources */,
+				FA9826072A98C1040013018D /* ReportViewModel.swift in Sources */,
 				FA5911722A7BF7E60022611B /* ChallengeDetailViewModel.swift in Sources */,
 				FA9825E42A979A3E0013018D /* ChallengeOpenUsecase.swift in Sources */,
 				FA348ED72A61190900EA3D04 /* RandomNicknameResponse.swift in Sources */,
@@ -1351,6 +1364,7 @@
 				FA9825F92A987DAA0013018D /* ChallengeDetailUsecase.swift in Sources */,
 				FA619D682A8BBD1D000BDDA5 /* MyHeartChallengeViewController.swift in Sources */,
 				FA57EC472A9749AB00ED4A48 /* ChallengeOpenRequest.swift in Sources */,
+				FA9826052A98C0110013018D /* ReportUsecase.swift in Sources */,
 				FA4DDB922A4D5810002EDEAD /* ServiceAgreeCellData.swift in Sources */,
 				FA5911872A7D5FF50022611B /* HomeDetailViewModel.swift in Sources */,
 				FA2282B72A95F31D00DF4ADB /* ParticiapteChallengeResponse.swift in Sources */,
@@ -1439,12 +1453,14 @@
 				FA42808A2A73DC0D00828F93 /* ChallengeInfoCell.swift in Sources */,
 				FA6100302A590431002175CE /* ChallengeSelectionViewModel.swift in Sources */,
 				FA4280842A73ADF900828F93 /* ProgressBarCell.swift in Sources */,
+				FA9826032A98BF920013018D /* ReportRepository.swift in Sources */,
 				FA8C25982A8F67F0005E89D6 /* AccountDetailView.swift in Sources */,
 				FA44D3992A4C43B80037E328 /* Color+Extension.swift in Sources */,
 				FA9825EA2A9846E90013018D /* MyChallengeUsecase.swift in Sources */,
 				FAD6E3D42A64F2A6002C8007 /* WritingView.swift in Sources */,
 				FA40E8312A8F473100195810 /* ReportReasonViewModel.swift in Sources */,
 				FA313A1B2A855720006DBE69 /* MypageViewController.swift in Sources */,
+				FA9826012A98BF200013018D /* ReportRequest.swift in Sources */,
 				FAD6E3D82A64F9B5002C8007 /* ChallengeTypeViewController.swift in Sources */,
 				FA3FC8002A6E94690022CA3A /* HomeDetailInfoCell.swift in Sources */,
 				FA348ED02A61170800EA3D04 /* NicknameViewModel.swift in Sources */,

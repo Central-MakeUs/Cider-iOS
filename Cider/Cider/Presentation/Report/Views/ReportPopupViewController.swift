@@ -10,6 +10,7 @@ import UIKit
 final class ReportPopupViewController: UIViewController {
     
     private let reportType: ReportType
+    private let viewModel: ReportViewModel
 
     private lazy var backgroundView: UIView = {
         let view = UIView()
@@ -49,8 +50,9 @@ final class ReportPopupViewController: UIViewController {
         return button
     }()
     
-    init(reportType: ReportType) {
+    init(reportType: ReportType, viewModel: ReportViewModel) {
         self.reportType = reportType
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -96,6 +98,7 @@ private extension ReportPopupViewController {
     }
     
     @objc func didTapBottom(_ sender: Any?) {
+        viewModel.report(reportType)
         self.view.window?.rootViewController?.showToast(message: reportType.toastMessage)
         self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
