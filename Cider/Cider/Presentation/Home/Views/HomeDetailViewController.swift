@@ -335,6 +335,21 @@ private extension HomeDetailViewController {
         self.present(viewController, animated: true)
     }
     
+    func pushChallengeDetailViewController(index: Int) {
+        let challengeType = viewModel.challenges[index].interestField.convertChallengeType()
+        let challengeId = viewModel.challenges[index].challengeId
+        let viewController = ChallengeDetailViewController(
+            challengeType: challengeType,
+            viewModel: ChallengeDetailViewModel(
+                usecase: DefaultChallengeDetailUsecase(
+                    repository: DefaultChallengeDetailRepository()
+                ),
+                challengeId: challengeId
+            )
+        )
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
 }
 
 extension HomeDetailViewController: UICollectionViewDelegate {
@@ -354,6 +369,10 @@ extension HomeDetailViewController: UICollectionViewDelegate {
             break
             
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        pushChallengeDetailViewController(index: indexPath.row)
     }
     
 }
