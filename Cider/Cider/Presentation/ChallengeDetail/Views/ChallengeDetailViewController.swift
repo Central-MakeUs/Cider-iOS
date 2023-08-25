@@ -199,10 +199,11 @@ private extension ChallengeDetailViewController {
         switch status {
         case "오늘 참여 인증하기":
             bottomButton.setStyle(.enabled)
+            bottomButton.addTarget(self, action: #selector(didTapCertify), for: .touchUpInside)
             
         case "이 챌린지 참여하기":
             bottomButton.setStyle(.enabled)
-            viewModel.didTapParticipateChallenge()
+            bottomButton.addTarget(self, action: #selector(didTapParticipate), for: .touchUpInside)
             
         default:
             bottomButton.setStyle(.disabled)
@@ -1126,6 +1127,17 @@ private extension ChallengeDetailViewController {
         self.present(viewController, animated: true)
     }
     
+    func pushCertifyViewController() {
+        let viewController = CertifyViewController(
+            viewModel: CertifyViewModel(
+                usecase: DefaultCertifyUsecase(
+                    repository: DefaultCertifyRepository()
+                )
+            )
+        )
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
     @objc func didTapSorting(sender: Any?) {
         viewModel.didTapSorting()
     }
@@ -1175,6 +1187,14 @@ private extension ChallengeDetailViewController {
         }
         viewModel.infoResponse?.isLike.toggle()
         
+    }
+    
+    @objc func didTapParticipate(_ sender: Any?) {
+        viewModel.didTapParticipateChallenge()
+    }
+    
+    @objc func didTapCertify(_ sender: Any?) {
+        pushCertifyViewController()
     }
     
 }
