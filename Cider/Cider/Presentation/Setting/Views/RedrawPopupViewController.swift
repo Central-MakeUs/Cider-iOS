@@ -8,6 +8,8 @@
 import UIKit
 
 final class RedrawPopupViewController: UIViewController {
+    
+    private let viewModel: RedrawViewModel
 
     private lazy var backgroundView: UIView = {
         let view = UIView()
@@ -60,6 +62,15 @@ final class RedrawPopupViewController: UIViewController {
         return button
     }()
     
+    init(viewModel: RedrawViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
@@ -99,18 +110,29 @@ private extension RedrawPopupViewController {
     }
     
     private func presentLoginViewController() {
-        let viewContoller = LoginViewController(
+        let viewController = LoginViewController(
             viewModel: LoginViewModel(
                 useCase: DefaultLoginUsecase(
                     loginRepository: DefaultLoginRepository()
                 )
             )
         )
-        viewContoller.modalPresentationStyle = .fullScreen
-        present(viewContoller, animated: true)
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.modalPresentationStyle = .fullScreen
+        present(navigationController, animated: true)
     }
     
     @objc func didTapRedraw(_ sender: Any?) {
+        // TODO: 탈퇴 로직 풀기
+        viewModel.redraw()
+        if let loginType = UserDefaults.standard.read(key: .loginType) as? String {
+            if loginType == "카카오" {
+                UserDefaults.standard.write(key: .isRedrawKakao, value: true)
+            } else if loginType == "애플" {
+                UserDefaults.standard.write(key: .isRedrawKakao, value: true)
+            }
+        }
+        
         UserManager.shared.updateLoginState(false)
         Keychain.deleteToken()
         self.presentLoginViewController()

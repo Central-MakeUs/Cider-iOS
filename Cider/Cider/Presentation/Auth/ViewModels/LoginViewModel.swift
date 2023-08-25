@@ -12,6 +12,7 @@ final class LoginViewModel: ViewModelType {
     
     enum ViewModelState {
         case login(isSuccess: Bool, isNewUser: Bool)
+        case showEnabledLogin
     }
     
     var useCase: LoginUsecase
@@ -25,6 +26,11 @@ final class LoginViewModel: ViewModelType {
     
     func kakaoLogin(token: String) {
         Task {
+            if let isRedraw = UserDefaults.standard.read(key: .isRedrawKakao) as? Bool,
+               isRedraw == true {
+                currentState.send(.showEnabledLogin)
+                return
+            }
             let response = try await useCase.kakaoLogin(token: token)
             print(response)
             guard let response,
@@ -37,6 +43,11 @@ final class LoginViewModel: ViewModelType {
     
     func appleLogin(token: String) {
         Task {
+            if let isRedraw = UserDefaults.standard.read(key: .isRedrawApple) as? Bool,
+               isRedraw == true {
+                currentState.send(.showEnabledLogin)
+                return
+            }
             let response = try await useCase.appleLogin(token: token)
             print(response)
             guard let response,

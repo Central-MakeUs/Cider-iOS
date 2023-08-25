@@ -124,8 +124,9 @@ private extension SettingViewController {
                 )
             )
         )
-        viewController.modalPresentationStyle = .fullScreen
-        self.present(viewController, animated: true)
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.modalPresentationStyle = .fullScreen
+        self.present(navigationController, animated: true)
     }
     
     func presentWebViewController(_ url: String) {
@@ -134,7 +135,13 @@ private extension SettingViewController {
     }
     
     func presentPopupController() {
-        let viewController = RedrawPopupViewController()
+        let viewController = RedrawPopupViewController(
+            viewModel: RedrawViewModel(
+                usecase: DefaultRedrawUsecase(
+                    repository: DefaultRedrawRepository()
+                )
+            )
+        )
         viewController.modalPresentationStyle = .overFullScreen
         viewController.modalTransitionStyle = .crossDissolve
         self.present(viewController, animated: true)
@@ -147,11 +154,11 @@ private extension SettingViewController {
     }
     
     @objc func didTapAgreement() {
-        presentWebViewController("https://github.com/dudtjs1021ej")
+        presentWebViewController("https://spiced-pentagon-516.notion.site/f54a1839ae5f43b6a839eda20124675d")
     }
     
     @objc func didTapPrivacy() {
-       presentWebViewController("https://github.com/dudtjs1021ej")
+       presentWebViewController("https://spiced-pentagon-516.notion.site/ccea6cb2cb6845d597cf76118fb6615c")
     }
     
     @objc func didTapRedraw() {
