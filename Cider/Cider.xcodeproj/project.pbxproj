@@ -202,6 +202,7 @@
 		FA8CA6282A49B541005A6709 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA8CA6252A49B541005A6709 /* Pretendard-Medium.otf */; };
 		FA9825E22A9798EA0013018D /* ChallengeOpenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825E12A9798EA0013018D /* ChallengeOpenRepository.swift */; };
 		FA9825E42A979A3E0013018D /* ChallengeOpenUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825E32A979A3E0013018D /* ChallengeOpenUsecase.swift */; };
+		FA9825E62A9844450013018D /* MyChallengeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825E52A9844450013018D /* MyChallengeResponse.swift */; };
 		FAB9A73B2A4C64CF00757A80 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */; };
 		FAB9A73F2A4C8DAB00757A80 /* ProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */; };
 		FABF17532A70D8910073C13B /* SeparatorFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABF17522A70D8910073C13B /* SeparatorFooterView.swift */; };
@@ -406,6 +407,7 @@
 		FA8CA6252A49B541005A6709 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		FA9825E12A9798EA0013018D /* ChallengeOpenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOpenRepository.swift; sourceTree = "<group>"; };
 		FA9825E32A979A3E0013018D /* ChallengeOpenUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOpenUsecase.swift; sourceTree = "<group>"; };
+		FA9825E52A9844450013018D /* MyChallengeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengeResponse.swift; sourceTree = "<group>"; };
 		FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessView.swift; sourceTree = "<group>"; };
 		FABF17522A70D8910073C13B /* SeparatorFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorFooterView.swift; sourceTree = "<group>"; };
@@ -953,6 +955,7 @@
 				FA2282B82A95F45000DF4ADB /* MyCertifyResponse.swift */,
 				FA2282C12A9654F800DF4ADB /* CertifyResponse.swift */,
 				FA57EC482A9749C700ED4A48 /* ChallengeOpenResponse.swift */,
+				FA9825E52A9844450013018D /* MyChallengeResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1282,6 +1285,7 @@
 				FA61002E2A58180E002175CE /* CiderSelectionStyle.swift in Sources */,
 				FA42807D2A737C3600828F93 /* ChallengeDetailViewController.swift in Sources */,
 				FA316D672A63A15100C7AA88 /* OnboardingCompleteViewController.swift in Sources */,
+				FA9825E62A9844450013018D /* MyChallengeResponse.swift in Sources */,
 				FA3C432E2A62FA0E009E820B /* Date+Extension.swift in Sources */,
 				FA35E99F2A946F880069C51D /* MyHeartEmptyCell.swift in Sources */,
 				FA44D39F2A4C5CE30037E328 /* UIStackView+Extension.swift in Sources */,
