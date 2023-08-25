@@ -56,4 +56,17 @@ extension String {
         }
     }
     
+    func convertReviewType() -> ReviewType? {
+        switch self {
+        case "JUDGING":
+            return .reviewing
+        case "COMPLETE":
+            return .successReview
+        case "FAILURE":
+            return .failReview
+        default:
+            return nil
+        }
+    }
+    
 }

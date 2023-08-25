@@ -202,6 +202,12 @@
 		FA8CA6282A49B541005A6709 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA8CA6252A49B541005A6709 /* Pretendard-Medium.otf */; };
 		FA9825E22A9798EA0013018D /* ChallengeOpenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825E12A9798EA0013018D /* ChallengeOpenRepository.swift */; };
 		FA9825E42A979A3E0013018D /* ChallengeOpenUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825E32A979A3E0013018D /* ChallengeOpenUsecase.swift */; };
+		FA9825E62A9844450013018D /* MyChallengeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825E52A9844450013018D /* MyChallengeResponse.swift */; };
+		FA9825E82A9845B40013018D /* MyChallengeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825E72A9845B40013018D /* MyChallengeRepository.swift */; };
+		FA9825EA2A9846E90013018D /* MyChallengeUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825E92A9846E90013018D /* MyChallengeUsecase.swift */; };
+		FA9825EC2A98479C0013018D /* MyChallengeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825EB2A98479C0013018D /* MyChallengeViewModel.swift */; };
+		FA9825EE2A9849110013018D /* CiderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825ED2A9849110013018D /* CiderError.swift */; };
+		FA9825F02A985BDF0013018D /* MyChallengeEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825EF2A985BDF0013018D /* MyChallengeEmptyCell.swift */; };
 		FAB9A73B2A4C64CF00757A80 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */; };
 		FAB9A73F2A4C8DAB00757A80 /* ProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */; };
 		FABF17532A70D8910073C13B /* SeparatorFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABF17522A70D8910073C13B /* SeparatorFooterView.swift */; };
@@ -406,6 +412,12 @@
 		FA8CA6252A49B541005A6709 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		FA9825E12A9798EA0013018D /* ChallengeOpenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOpenRepository.swift; sourceTree = "<group>"; };
 		FA9825E32A979A3E0013018D /* ChallengeOpenUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOpenUsecase.swift; sourceTree = "<group>"; };
+		FA9825E52A9844450013018D /* MyChallengeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengeResponse.swift; sourceTree = "<group>"; };
+		FA9825E72A9845B40013018D /* MyChallengeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengeRepository.swift; sourceTree = "<group>"; };
+		FA9825E92A9846E90013018D /* MyChallengeUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengeUsecase.swift; sourceTree = "<group>"; };
+		FA9825EB2A98479C0013018D /* MyChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengeViewModel.swift; sourceTree = "<group>"; };
+		FA9825ED2A9849110013018D /* CiderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderError.swift; sourceTree = "<group>"; };
+		FA9825EF2A985BDF0013018D /* MyChallengeEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengeEmptyCell.swift; sourceTree = "<group>"; };
 		FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessView.swift; sourceTree = "<group>"; };
 		FABF17522A70D8910073C13B /* SeparatorFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorFooterView.swift; sourceTree = "<group>"; };
@@ -658,6 +670,7 @@
 				FA4280662A70F17800828F93 /* ReviewCell.swift */,
 				FA4280682A721C7900828F93 /* ClosedChallengeCell.swift */,
 				FA33300E2A8F9190001012C4 /* ChallengeEmptyCell.swift */,
+				FA9825EF2A985BDF0013018D /* MyChallengeEmptyCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -831,6 +844,7 @@
 				FA2282BA2A95F5A800DF4ADB /* MyCertifyUsecase.swift */,
 				FA57EC442A973B4700ED4A48 /* CertifyUsecase.swift */,
 				FA9825E32A979A3E0013018D /* ChallengeOpenUsecase.swift */,
+				FA9825E92A9846E90013018D /* MyChallengeUsecase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -953,6 +967,7 @@
 				FA2282B82A95F45000DF4ADB /* MyCertifyResponse.swift */,
 				FA2282C12A9654F800DF4ADB /* CertifyResponse.swift */,
 				FA57EC482A9749C700ED4A48 /* ChallengeOpenResponse.swift */,
+				FA9825E52A9844450013018D /* MyChallengeResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -971,6 +986,7 @@
 				FABF6CEA2A95F21400B6A646 /* MyCertifyRepository.swift */,
 				FA57EC422A973AC900ED4A48 /* CertifyRepository.swift */,
 				FA9825E12A9798EA0013018D /* ChallengeOpenRepository.swift */,
+				FA9825E72A9845B40013018D /* MyChallengeRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -979,6 +995,7 @@
 			isa = PBXGroup;
 			children = (
 				FA57AF622A5D22A0008A5991 /* LoginError.swift */,
+				FA9825ED2A9849110013018D /* CiderError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -1030,6 +1047,7 @@
 			children = (
 				FA5911762A7D3CCC0022611B /* HomeViewModel.swift */,
 				FA5911862A7D5FF50022611B /* HomeDetailViewModel.swift */,
+				FA9825EB2A98479C0013018D /* MyChallengeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1282,6 +1300,7 @@
 				FA61002E2A58180E002175CE /* CiderSelectionStyle.swift in Sources */,
 				FA42807D2A737C3600828F93 /* ChallengeDetailViewController.swift in Sources */,
 				FA316D672A63A15100C7AA88 /* OnboardingCompleteViewController.swift in Sources */,
+				FA9825E62A9844450013018D /* MyChallengeResponse.swift in Sources */,
 				FA3C432E2A62FA0E009E820B /* Date+Extension.swift in Sources */,
 				FA35E99F2A946F880069C51D /* MyHeartEmptyCell.swift in Sources */,
 				FA44D39F2A4C5CE30037E328 /* UIStackView+Extension.swift in Sources */,
@@ -1303,6 +1322,7 @@
 				FA57AF4B2A5D0D72008A5991 /* CiderAPI.swift in Sources */,
 				FA313A172A8556CE006DBE69 /* LevelView.swift in Sources */,
 				FA57AF632A5D22A0008A5991 /* LoginError.swift in Sources */,
+				FA9825EE2A9849110013018D /* CiderError.swift in Sources */,
 				FA40E8292A8F384F00195810 /* ReportViewController.swift in Sources */,
 				FA59117D2A7D41EF0022611B /* HomeUsecase.swift in Sources */,
 				FA4DDB8E2A4D3178002EDEAD /* ServiceAgreeViewController.swift in Sources */,
@@ -1342,6 +1362,7 @@
 				FA31A9442A6A33BE004D1C3B /* ChallengeHomeCell.swift in Sources */,
 				FA4DDB972A4D66CB002EDEAD /* ServiceAgreeDetailCell.swift in Sources */,
 				FA3DA3582A8F524F00AF147B /* ReportPopupViewController.swift in Sources */,
+				FA9825EC2A98479C0013018D /* MyChallengeViewModel.swift in Sources */,
 				FA3281412A8C92FC00AD2FC2 /* MyLevelView.swift in Sources */,
 				FA313A132A85567A006DBE69 /* LevelProgressView.swift in Sources */,
 				FAB9A73F2A4C8DAB00757A80 /* ProcessView.swift in Sources */,
@@ -1352,6 +1373,7 @@
 				FA3D49382A8E6CC700024A1C /* ProfileModifyUsecase.swift in Sources */,
 				FA8CA6072A46D322005A6709 /* AppDelegate.swift in Sources */,
 				FA4280692A721C7900828F93 /* ClosedChallengeCell.swift in Sources */,
+				FA9825E82A9845B40013018D /* MyChallengeRepository.swift in Sources */,
 				FA44D39B2A4C46A30037E328 /* CustomFont.swift in Sources */,
 				FA3281432A8CA40100AD2FC2 /* MyLevelViewController.swift in Sources */,
 				FA3C432C2A62F816009E820B /* Onboarding.swift in Sources */,
@@ -1374,6 +1396,7 @@
 				FA4DDB902A4D57D5002EDEAD /* ProcessType.swift in Sources */,
 				FA4280882A73DA4B00828F93 /* ChallengeInfoView.swift in Sources */,
 				FA3139FD2A84BBEB006DBE69 /* CertifyViewController.swift in Sources */,
+				FA9825F02A985BDF0013018D /* MyChallengeEmptyCell.swift in Sources */,
 				FA2FE0842A8DD8A3005500D5 /* ProfileBottomViewController.swift in Sources */,
 				FA553EBD2A5C0D6900DAE63B /* APIKey.swift in Sources */,
 				FA42807F2A73882900828F93 /* ProgressBarView.swift in Sources */,
@@ -1395,6 +1418,7 @@
 				FA4280842A73ADF900828F93 /* ProgressBarCell.swift in Sources */,
 				FA8C25982A8F67F0005E89D6 /* AccountDetailView.swift in Sources */,
 				FA44D3992A4C43B80037E328 /* Color+Extension.swift in Sources */,
+				FA9825EA2A9846E90013018D /* MyChallengeUsecase.swift in Sources */,
 				FAD6E3D42A64F2A6002C8007 /* WritingView.swift in Sources */,
 				FA40E8312A8F473100195810 /* ReportReasonViewModel.swift in Sources */,
 				FA313A1B2A855720006DBE69 /* MypageViewController.swift in Sources */,

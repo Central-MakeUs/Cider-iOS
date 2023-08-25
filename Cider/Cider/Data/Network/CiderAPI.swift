@@ -35,6 +35,8 @@ enum CiderAPI {
     case postCertifyImage(image: UIImage, certifyId: Int)
     case postChallenge(parameters: [String: Any])
     case postChallengeImage(challengeId: Int, successData: Data, failData: Data)
+    case getMyChallenge
+    case deleteChallenge(challengeId: Int)
 }
 
 extension CiderAPI: TargetType, AccessTokenAuthorizable {
@@ -93,6 +95,10 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             return "/api/challenge"
         case .postChallengeImage(let challengeId, _, _):
             return "/api/challenge/images/\(challengeId)"
+        case .getMyChallenge:
+            return "/api/challenge/my"
+        case .deleteChallenge(let challengeId):
+            return "/api/challenge/\(challengeId)"
         }
     }
     
@@ -119,7 +125,8 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
              .getMypage,
              .getMyLikeChallenge,
              .getMyCerify,
-             .getMyParticipateChallenge:
+             .getMyParticipateChallenge,
+             .getMyChallenge:
             return .get
             
         case .patchOnboarding,
@@ -128,7 +135,8 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             return .patch
             
         case .deleteLikeChallenge,
-             .deleteLikeFeed:
+             .deleteLikeFeed,
+             .deleteChallenge:
             return .delete
         }
     }

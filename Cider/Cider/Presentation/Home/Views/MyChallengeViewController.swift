@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 final class MyChallengeViewController: UIViewController {
     
@@ -14,6 +15,7 @@ final class MyChallengeViewController: UIViewController {
         collectionView.register(ClosedChallengeCell.self, forCellWithReuseIdentifier: ClosedChallengeCell.identifier)
         collectionView.register(OngoingCell.self, forCellWithReuseIdentifier: OngoingCell.identifier)
         collectionView.register(ReviewCell.self, forCellWithReuseIdentifier: ReviewCell.identifier)
+        collectionView.register(MyChallengeEmptyCell.self, forCellWithReuseIdentifier: MyChallengeEmptyCell.identifier)
         collectionView.register(HomeHeaderView.self, forSupplementaryViewOfKind: HomeHeaderView.identifier, withReuseIdentifier: HomeHeaderView.identifier)
         collectionView.register(SeparatorFooterView.self, forSupplementaryViewOfKind: SeparatorFooterView.identifier, withReuseIdentifier: SeparatorFooterView.identifier)
         collectionView.showsVerticalScrollIndicator = false
@@ -37,10 +39,22 @@ final class MyChallengeViewController: UIViewController {
     }
     
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
-
+    private let viewModel: MyChallengeViewModel
+    private var cancellables = Set<AnyCancellable>()
+    
+    init(viewModel: MyChallengeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
+        viewModel.viewDidload()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,6 +70,25 @@ private extension MyChallengeViewController {
         configure()
         setUpDataSource()
         applySnapshot()
+        bind()
+    }
+    
+    func bind() {
+        viewModel.state.receive(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                switch state {
+                case .applySnapshot(let isSuccess):
+                    guard isSuccess else {
+                        return
+                    }
+                    self?.applySnapshot()
+                    self?.reloadHeader()
+                    
+                case .sendMessage(let message):
+                    self?.showAlert(message: message)
+                }
+            }
+            .store(in: &cancellables)
     }
     
     func configure() {
@@ -73,53 +106,93 @@ private extension MyChallengeViewController {
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = "내 챌린지"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBarButton)
         setNavigationBar(backgroundColor: .white, tintColor: .black, shadowColor: .clear)
     }
     
     func setUpDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { [weak self] collectionView, indexPath, itemIdentifier in
+            guard let self = self else {
+                return UICollectionViewCell()
+            }
             let section = Section(rawValue: indexPath.section)
             switch section {
             case .onGoingChallenge:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OngoingCell.identifier, for: indexPath) as? OngoingCell else {
-                    return UICollectionViewCell()
+                if self.viewModel.ongoingChallenges.count > 0 {
+                    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OngoingCell.identifier, for: indexPath) as? OngoingCell else {
+                        return UICollectionViewCell()
+                    }
+                    let challenge = self.viewModel.ongoingChallenges[indexPath.row]
+                    cell.setUp(
+                        mainTitle: challenge.challengeName,
+                        challengeType: challenge.challengeBranch.convertChallengeType(),
+                        onGoing: "챌린지 진행 +\(challenge.ongoingDate)일",
+                        countText: "\(challenge.challengePeriod)회 중 \(challenge.certifyNum)회 달성"
+                    )
+                    return cell
+                } else {
+                    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyChallengeEmptyCell.identifier, for: indexPath) as? MyChallengeEmptyCell else {
+                        return UICollectionViewCell()
+                    }
+                    cell.setUp(title: "진행중인 챌린지가 없습니다")
+                    return cell
                 }
-                cell.setUp(
-                    mainTitle: "소비습관 고치기",
-                    challengeType: .financialLearning,
-                    onGoing: "챌린지 진행 +10일",
-                    countText: "30회 중 24회 달성"
-                )
-                return cell
+                
                 
             case .closedChallenge:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ClosedChallengeCell.identifier, for: indexPath) as? ClosedChallengeCell else {
-                    return UICollectionViewCell()
+                if self.viewModel.passedChallenges.count > 0 {
+                    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ClosedChallengeCell.identifier, for: indexPath) as? ClosedChallengeCell else {
+                        return UICollectionViewCell()
+                    }
+                    let challenge = self.viewModel.passedChallenges[indexPath.row]
+                    cell.setUp(
+                        type: challenge.challengeBranch.convertChallengeType(),
+                        isReward: challenge.isReward,
+                        date: "\(challenge.challengePeriod)주",
+                        title: challenge.challengeName,
+                        status: challenge.isSuccess,
+                        people: "\(challenge.successNum)명 챌린지 성공",
+                        isPublic: challenge.isOfficial
+                    )
+                    cell.challengeHomeView.setClosedChallenge(.fail)
+                    cell.setUp(challengeId: challenge.challengeId)
+                    cell.challengeHomeView.addActionHeart(self, action: #selector(self.didTapDeleteClosedChallenge))
+                    return cell
+                } else {
+                    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyChallengeEmptyCell.identifier, for: indexPath) as? MyChallengeEmptyCell else {
+                        return UICollectionViewCell()
+                    }
+                    cell.setUp(title: "최근 종료된 챌린지가 없습니다")
+                    return cell
                 }
-                cell.setUp(
-                    type: .financialTech,
-                    isReward: true,
-                    date: "1주",
-                    title: "만보걷기",
-                    status: "종료",
-                    people: "5명 모집중",
-                    isPublic: true
-                )
-                cell.challengeHomeView.setClosedChallenge(.fail)
-                return cell
+                
                 
             case .reviewChallenge:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewCell.identifier, for: indexPath) as? ReviewCell else {
-                    return UICollectionViewCell()
+                if self.viewModel.judgingChallenges.count > 0 {
+                    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewCell.identifier, for: indexPath) as? ReviewCell else {
+                        return UICollectionViewCell()
+                    }
+                   
+                    let challenge = self.viewModel.judgingChallenges[indexPath.row]
+                    if let reviewType = challenge.judgingStatus.convertReviewType() {
+                        cell.setUp(
+                            title: challenge.challengeName,
+                            challengeType: challenge.challengeBranch.convertChallengeType(),
+                            reviewType: reviewType,
+                            challengeSuccessMessage: "2023.00.00 챌린지 모집 시작"
+                        )
+                        cell.setUp(challengeId: challenge.challengeId)
+                        cell.addDeleteViewGesture(self, action: #selector(self.didTapDeleteReviewChallenge))
+                    }
+                   
+                    return cell
+                } else {
+                    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyChallengeEmptyCell.identifier, for: indexPath) as? MyChallengeEmptyCell else {
+                        return UICollectionViewCell()
+                    }
+                    cell.setUp(title: "심사중인 챌린지가 없습니다")
+                    return cell
                 }
-                cell.setUp(
-                    title: "만보 걷기",
-                    challengeType: .moneySaving,
-                    reviewType: .successReview,
-                    challengeSuccessMessage: "2023.07.11 챌린지 모집 시작"
-                )
-                return cell
+                
                 
             case .none:
                 return UICollectionViewCell()
@@ -142,7 +215,20 @@ private extension MyChallengeViewController {
                         withReuseIdentifier: HomeHeaderView.identifier,
                         for: indexPath
                     ) as? HomeHeaderView
-                    headerView?.setUp(leftTitle: "진행중인 챌린지", rightTitle: "2개", isClicked: false)
+                    if let ongoingChallengeListResponseDto = self.viewModel.ongoingChallengeListResponseDto {
+                        headerView?.setUp(
+                            leftTitle: "진행중인 챌린지",
+                            rightTitle: "\(ongoingChallengeListResponseDto.ongoingChallengeNum)개",
+                            isClicked: false
+                        )
+                    } else {
+                        headerView?.setUp(
+                            leftTitle: "진행중인 챌린지",
+                            rightTitle: "0개",
+                            isClicked: false
+                        )
+                    }
+                    
                     headerView?.setRightLabelColor(.custom.main)
                     return headerView ?? UICollectionReusableView()
                     
@@ -166,7 +252,20 @@ private extension MyChallengeViewController {
                         withReuseIdentifier: HomeHeaderView.identifier,
                         for: indexPath
                     ) as? HomeHeaderView
-                    headerView?.setUp(leftTitle: "최근 종료된 챌린지", rightTitle: "8개", isClicked: false)
+                    if let passedChallengeListResponseDto = self.viewModel.passedChallengeListResponseDto {
+                        headerView?.setUp(
+                            leftTitle: "최근 종료된 챌린지",
+                            rightTitle: "\(passedChallengeListResponseDto.passedChallengeNum)개",
+                            isClicked: false
+                        )
+                    } else {
+                        headerView?.setUp(
+                            leftTitle: "최근 종료된 챌린지",
+                            rightTitle: "0개",
+                            isClicked: false
+                        )
+                    }
+                   
                     return headerView ?? UICollectionReusableView()
                     
                 case SeparatorFooterView.identifier:
@@ -187,8 +286,22 @@ private extension MyChallengeViewController {
                     withReuseIdentifier: HomeHeaderView.identifier,
                     for: indexPath
                 ) as? HomeHeaderView
-                headerView?.setUp(leftTitle: "심사중인 챌린지", rightTitle: "2개", isClicked: false)
-                headerView?.setReviewSuccessLabel(successCount: 3)
+                if let judgingChallengeListResponseDto = self.viewModel.judgingChallengeListResponseDto {
+                    headerView?.setUp(
+                        leftTitle: "심사중인 챌린지",
+                        rightTitle: "\(judgingChallengeListResponseDto.judgingChallengeNum)개",
+                        isClicked: false
+                    )
+                    headerView?.setReviewSuccessLabel(successCount: judgingChallengeListResponseDto.completeNum)
+                } else {
+                    headerView?.setUp(
+                        leftTitle: "심사중인 챌린지",
+                        rightTitle: "0개",
+                        isClicked: false
+                    )
+                    headerView?.setReviewSuccessLabel(successCount: 0)
+                }
+                
                 return headerView ?? UICollectionReusableView()
                 
             default:
@@ -201,26 +314,36 @@ private extension MyChallengeViewController {
     func applySnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections([.onGoingChallenge])
-        snapshot.appendItems([Item(), Item(), Item(), Item(), Item(), Item()])
+        snapshot.appendItems(viewModel.ongoingItems)
         snapshot.appendSections([.closedChallenge])
-        snapshot.appendItems([Item(), Item(), Item(), Item(), Item(), Item()])
+        snapshot.appendItems(viewModel.passedItems)
         snapshot.appendSections([.reviewChallenge])
-        snapshot.appendItems([Item(), Item(), Item(), Item(), Item(), Item()])
+        snapshot.appendItems(viewModel.judgingItems)
         dataSource?.apply(snapshot)
+    }
+    
+    func reloadHeader() {
+        guard let snapshot = dataSource?.snapshot() else {
+            return
+        }
+        dataSource?.applySnapshotUsingReloadData(snapshot)
     }
     
     func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { [weak self] (sectionNumber, _) -> NSCollectionLayoutSection? in
+            guard let self = self else {
+                return nil
+            }
             let section = Section(rawValue: sectionNumber)
             switch section {
             case .onGoingChallenge:
-                return self?.onGoingSectionLayout()
+                return self.viewModel.ongoingChallenges.count > 0 ? self.onGoingSectionLayout() : self.emptyLayout()
                 
             case .closedChallenge:
-                return self?.challengeSectionLayout()
+                return self.viewModel.passedChallenges.count > 0 ? self.challengeSectionLayout() : self.emptyLayout()
                 
             case .reviewChallenge:
-                return self?.reviewSectionLayout()
+                return self.viewModel.judgingChallenges.count > 0 ? self.reviewSectionLayout() : self.emptyLayout()
                 
             case .none:
                 return nil
@@ -336,13 +459,75 @@ private extension MyChallengeViewController {
         ]
         return section
     }
-
+    
+    func emptyLayout() -> NSCollectionLayoutSection {
+        let layoutSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .absolute(163)
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: .init(
+                widthDimension: layoutSize.widthDimension,
+                heightDimension: layoutSize.heightDimension
+            ),
+            subitems: [.init(layoutSize: layoutSize)]
+        )
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+        
+        section.interGroupSpacing = 0
+        section.boundarySupplementaryItems = [
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: .init(
+                    widthDimension: .absolute(UIScreen.main.bounds.width),
+                    heightDimension: .absolute(49)
+                ),
+                elementKind: HomeHeaderView.identifier, alignment: .top
+            )
+        ]
+        
+        return section
+    }
+    
 }
 
 private extension MyChallengeViewController {
 
     @objc func didTapRightBarButton(_ sender: Any?) {
        print("didTapRightBarButton")
+    }
+    
+    @objc func didTapDeleteClosedChallenge(_ sender: UIButton) {
+        let contentView = sender.superview?.superview
+       
+        guard let cell = contentView?.superview as? UICollectionViewCell else {
+            return
+        }
+        
+        guard let indexPath = collectionView.indexPath(for: cell) else {
+            return
+        }
+        let challengeId = viewModel.passedChallenges[indexPath.row].challengeId
+        print(challengeId)
+        viewModel.didTapDeleteChallenge(challengeId: challengeId)
+    }
+    
+    @objc func didTapDeleteReviewChallenge(_ sender: UITapGestureRecognizer) {
+        guard let view = sender.view else {
+            return
+        }
+       
+        guard let cell = view.superview as? UICollectionViewCell else {
+            return
+        }
+        
+        guard let indexPath = collectionView.indexPath(for: cell) else {
+            return
+        }
+        let challengeId = viewModel.judgingChallenges[indexPath.row].challengeId
+        viewModel.didTapDeleteChallenge(challengeId: challengeId)
     }
     
 }
