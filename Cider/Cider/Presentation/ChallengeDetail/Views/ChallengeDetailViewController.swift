@@ -63,6 +63,13 @@ class ChallengeDetailViewController: UIViewController {
         return label
     }()
     
+    // TODO: 그림자 제거용 뷰
+    private lazy var bottomShadowView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+    
     private enum InfoSection: Int {
         case menu = 0
         case progress = 1
@@ -141,7 +148,7 @@ private extension ChallengeDetailViewController {
     
     func configure() {
         view.backgroundColor = .white
-        view.addSubviews(collectionView, bottomView, bottomButton, heartButton, heartCountLabel)
+        view.addSubviews(collectionView, bottomView, bottomButton, heartButton, heartCountLabel, bottomShadowView)
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -159,7 +166,11 @@ private extension ChallengeDetailViewController {
             heartButton.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 10),
             heartButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UIScreen.main.bounds.width*0.1),
             heartCountLabel.centerXAnchor.constraint(equalTo: heartButton.centerXAnchor),
-            heartCountLabel.topAnchor.constraint(equalTo: heartButton.bottomAnchor)
+            heartCountLabel.topAnchor.constraint(equalTo: heartButton.bottomAnchor),
+            bottomShadowView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            bottomShadowView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            bottomShadowView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            bottomShadowView.topAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: 0)
         ])
     }
     
