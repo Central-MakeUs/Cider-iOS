@@ -13,7 +13,7 @@ final class PrecautionViewModel: ViewModelType {
     
     enum ViewModelState {
         case changeNextButtonState(_ isEnabled: Bool)
-        case showMessage(_ message: String)
+        case showMessage(_ message: String?)
         case pushNextViewController
     }
     
@@ -57,7 +57,7 @@ private extension PrecautionViewModel {
         Task {
             let challengeResponse = try await usecase.postChallenge(parameters: challengeOpenRequest)
             guard let challengeId = challengeResponse.challengeId else {
-                currentState.send(.showMessage("일시적인 오류가 발생하였습니다."))
+                currentState.send(.showMessage(CiderError.serverError.errorDescription))
                 return
             }
             let imageResponse = try await usecase.postChallengeImage(
@@ -66,7 +66,7 @@ private extension PrecautionViewModel {
                 failData: failData
             )
             guard imageResponse.status == nil else {
-                currentState.send(.showMessage("일시적인 오류가 발생하였습니다."))
+                currentState.send(.showMessage(CiderError.serverError.errorDescription))
                 return
             }
             currentState.send(.pushNextViewController)

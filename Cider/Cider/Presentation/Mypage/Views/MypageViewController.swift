@@ -189,7 +189,13 @@ private extension MypageViewController {
     }
     
     func pushMyChallengeViewController() {
-        let viewController = MyChallengeViewController()
+        let viewController = MyChallengeViewController(
+            viewModel: MyChallengeViewModel(
+                usecase: DefaultMyChallengeUsecase(
+                    repository: DefaultMyChallengeRepository()
+                )
+            )
+        )
         viewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(viewController, animated: true)
     }

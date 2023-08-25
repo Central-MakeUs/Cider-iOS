@@ -205,6 +205,8 @@
 		FA9825E62A9844450013018D /* MyChallengeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825E52A9844450013018D /* MyChallengeResponse.swift */; };
 		FA9825E82A9845B40013018D /* MyChallengeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825E72A9845B40013018D /* MyChallengeRepository.swift */; };
 		FA9825EA2A9846E90013018D /* MyChallengeUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825E92A9846E90013018D /* MyChallengeUsecase.swift */; };
+		FA9825EC2A98479C0013018D /* MyChallengeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825EB2A98479C0013018D /* MyChallengeViewModel.swift */; };
+		FA9825EE2A9849110013018D /* CiderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825ED2A9849110013018D /* CiderError.swift */; };
 		FAB9A73B2A4C64CF00757A80 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */; };
 		FAB9A73F2A4C8DAB00757A80 /* ProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */; };
 		FABF17532A70D8910073C13B /* SeparatorFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABF17522A70D8910073C13B /* SeparatorFooterView.swift */; };
@@ -412,6 +414,8 @@
 		FA9825E52A9844450013018D /* MyChallengeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengeResponse.swift; sourceTree = "<group>"; };
 		FA9825E72A9845B40013018D /* MyChallengeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengeRepository.swift; sourceTree = "<group>"; };
 		FA9825E92A9846E90013018D /* MyChallengeUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengeUsecase.swift; sourceTree = "<group>"; };
+		FA9825EB2A98479C0013018D /* MyChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengeViewModel.swift; sourceTree = "<group>"; };
+		FA9825ED2A9849110013018D /* CiderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderError.swift; sourceTree = "<group>"; };
 		FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessView.swift; sourceTree = "<group>"; };
 		FABF17522A70D8910073C13B /* SeparatorFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorFooterView.swift; sourceTree = "<group>"; };
@@ -988,6 +992,7 @@
 			isa = PBXGroup;
 			children = (
 				FA57AF622A5D22A0008A5991 /* LoginError.swift */,
+				FA9825ED2A9849110013018D /* CiderError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -1039,6 +1044,7 @@
 			children = (
 				FA5911762A7D3CCC0022611B /* HomeViewModel.swift */,
 				FA5911862A7D5FF50022611B /* HomeDetailViewModel.swift */,
+				FA9825EB2A98479C0013018D /* MyChallengeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1313,6 +1319,7 @@
 				FA57AF4B2A5D0D72008A5991 /* CiderAPI.swift in Sources */,
 				FA313A172A8556CE006DBE69 /* LevelView.swift in Sources */,
 				FA57AF632A5D22A0008A5991 /* LoginError.swift in Sources */,
+				FA9825EE2A9849110013018D /* CiderError.swift in Sources */,
 				FA40E8292A8F384F00195810 /* ReportViewController.swift in Sources */,
 				FA59117D2A7D41EF0022611B /* HomeUsecase.swift in Sources */,
 				FA4DDB8E2A4D3178002EDEAD /* ServiceAgreeViewController.swift in Sources */,
@@ -1352,6 +1359,7 @@
 				FA31A9442A6A33BE004D1C3B /* ChallengeHomeCell.swift in Sources */,
 				FA4DDB972A4D66CB002EDEAD /* ServiceAgreeDetailCell.swift in Sources */,
 				FA3DA3582A8F524F00AF147B /* ReportPopupViewController.swift in Sources */,
+				FA9825EC2A98479C0013018D /* MyChallengeViewModel.swift in Sources */,
 				FA3281412A8C92FC00AD2FC2 /* MyLevelView.swift in Sources */,
 				FA313A132A85567A006DBE69 /* LevelProgressView.swift in Sources */,
 				FAB9A73F2A4C8DAB00757A80 /* ProcessView.swift in Sources */,
