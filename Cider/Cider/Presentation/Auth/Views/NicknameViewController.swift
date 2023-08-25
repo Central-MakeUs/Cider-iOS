@@ -28,7 +28,7 @@ final class NicknameViewController: UIViewController {
     }()
     
     private lazy var ciderTextFieldView: CiderTextFieldView = {
-        let view = CiderTextFieldView(minLength: 2, maxLength: 10)
+        let view = CiderTextFieldView(minLength: 2, maxLength: 10, notificationName: .didChangedCiderTextField)
         view.ciderTextField.addTarget(self, action: #selector(isAvailableNickname), for: .editingChanged)
         view.ciderTextField.addActionClearButton(self, action: #selector(didTapClear))
         view.setPlaceHoder("2~10자로 입력해주세요")

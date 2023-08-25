@@ -11,6 +11,12 @@ final class ChallengeCompleteViewController: UIViewController {
 
     private let titleLabel = MainTitleLabel(title: "챌린지 신청이\n완료되었습니다")
     
+    private lazy var iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "challenge")
+        return imageView
+    }()
+    
     private let reviewInfoView = ReviewInfoView(titles: [
         "·   심사는 최소 1일에서 최대 7일까지 소요되어요",
         "·   규칙에 어긋나는 내용이 있을시 반려될 수 있어요"
@@ -49,10 +55,14 @@ private extension ChallengeCompleteViewController {
     
     func configure() {
         view.backgroundColor = .white
-        view.addSubviews(titleLabel, reviewInfoView, bottomButton)
+        view.addSubviews(titleLabel, iconImageView, reviewInfoView, bottomButton)
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 52),
+            iconImageView.heightAnchor.constraint(equalToConstant: 150),
+            iconImageView.widthAnchor.constraint(equalToConstant: 150),
+            iconImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            iconImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor ,constant: 54),
             bottomButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             bottomButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             bottomButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),

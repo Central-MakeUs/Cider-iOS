@@ -11,6 +11,7 @@ import Combine
 final class ChallengeOpenSelectionView: UIView {
     
     private let type: ChallengeOpenSelectionType
+    private let notificationName: Notification.Name
     
     private lazy var mainTitleLabel = StarTitleLabel(title: type.mainTitle)
     
@@ -62,8 +63,9 @@ final class ChallengeOpenSelectionView: UIView {
     
     private lazy var selectedPickerViewData = type.defaultUnit
     
-    init(type: ChallengeOpenSelectionType) {
+    init(type: ChallengeOpenSelectionType, notificationName: Notification.Name) {
         self.type = type
+        self.notificationName = notificationName
         super.init(frame: .zero)
         setUp()
     }
@@ -75,7 +77,7 @@ final class ChallengeOpenSelectionView: UIView {
     func unitPublisher() -> AnyPublisher<Int, Never> {
         var unitPublisher: AnyPublisher<Int, Never> {
             NotificationCenter.default.publisher(
-                for: .didChangedUnit,
+                for: notificationName,
                 object: nil
             )
             .compactMap { $0.object as? Int }
@@ -131,7 +133,7 @@ private extension ChallengeOpenSelectionView {
     @objc func didTapDone(_ sender: UIBarButtonItem) {
         textField.resignFirstResponder()
         textField.text = String(selectedPickerViewData) + type.unitString
-        NotificationCenter.default.post(name: .didChangedUnit, object: selectedPickerViewData)
+        NotificationCenter.default.post(name: notificationName, object: selectedPickerViewData)
     }
     
     @objc func didTapCancel(_ sender: UIBarButtonItem) {

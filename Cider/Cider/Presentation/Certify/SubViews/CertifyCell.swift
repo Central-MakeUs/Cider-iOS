@@ -40,7 +40,7 @@ final class CertifyCell: UICollectionViewCell {
     )
     
     let titleTextFieldView: CiderTextFieldView = {
-        let view = CiderTextFieldView(minLength: 5, maxLength: 30)
+        let view = CiderTextFieldView(minLength: 5, maxLength: 30, notificationName: .didChangedCiderTextField)
         view.setPlaceHoder("오늘 인증 완료!")
         return view
     }()
