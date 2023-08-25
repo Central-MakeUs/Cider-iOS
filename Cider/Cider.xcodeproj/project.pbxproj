@@ -208,6 +208,8 @@
 		FA9825EC2A98479C0013018D /* MyChallengeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825EB2A98479C0013018D /* MyChallengeViewModel.swift */; };
 		FA9825EE2A9849110013018D /* CiderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825ED2A9849110013018D /* CiderError.swift */; };
 		FA9825F02A985BDF0013018D /* MyChallengeEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825EF2A985BDF0013018D /* MyChallengeEmptyCell.swift */; };
+		FA9825F22A9872E80013018D /* ChallengeDetailInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825F12A9872E80013018D /* ChallengeDetailInfoResponse.swift */; };
+		FA9825F52A98746D0013018D /* ChallengeDetailFeedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825F42A98746D0013018D /* ChallengeDetailFeedResponse.swift */; };
 		FAB9A73B2A4C64CF00757A80 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */; };
 		FAB9A73F2A4C8DAB00757A80 /* ProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */; };
 		FABF17532A70D8910073C13B /* SeparatorFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABF17522A70D8910073C13B /* SeparatorFooterView.swift */; };
@@ -418,6 +420,8 @@
 		FA9825EB2A98479C0013018D /* MyChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengeViewModel.swift; sourceTree = "<group>"; };
 		FA9825ED2A9849110013018D /* CiderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderError.swift; sourceTree = "<group>"; };
 		FA9825EF2A985BDF0013018D /* MyChallengeEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengeEmptyCell.swift; sourceTree = "<group>"; };
+		FA9825F12A9872E80013018D /* ChallengeDetailInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailInfoResponse.swift; sourceTree = "<group>"; };
+		FA9825F42A98746D0013018D /* ChallengeDetailFeedResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailFeedResponse.swift; sourceTree = "<group>"; };
 		FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessView.swift; sourceTree = "<group>"; };
 		FABF17522A70D8910073C13B /* SeparatorFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorFooterView.swift; sourceTree = "<group>"; };
@@ -968,6 +972,8 @@
 				FA2282C12A9654F800DF4ADB /* CertifyResponse.swift */,
 				FA57EC482A9749C700ED4A48 /* ChallengeOpenResponse.swift */,
 				FA9825E52A9844450013018D /* MyChallengeResponse.swift */,
+				FA9825F12A9872E80013018D /* ChallengeDetailInfoResponse.swift */,
+				FA9825F42A98746D0013018D /* ChallengeDetailFeedResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1249,6 +1255,7 @@
 				FA6C21672A5A4DD3008A9ADD /* CiderTextFieldView.swift in Sources */,
 				FA9825E22A9798EA0013018D /* ChallengeOpenRepository.swift in Sources */,
 				FA4280922A73FF3500828F93 /* MissionCell.swift in Sources */,
+				FA9825F52A98746D0013018D /* ChallengeDetailFeedResponse.swift in Sources */,
 				FA6100322A59AD8D002175CE /* GradientView.swift in Sources */,
 				FA3C43232A62EA18009E820B /* OnboardingRequest.swift in Sources */,
 				FA758ACE2A5F0374003E2F07 /* ChallengeResultType.swift in Sources */,
@@ -1345,6 +1352,7 @@
 				FA3DA35C2A8F5E5100AF147B /* SettingViewController.swift in Sources */,
 				FA313A052A84F9F0006DBE69 /* ChallengeSelectionView.swift in Sources */,
 				FA42807B2A736F7600828F93 /* DynamicLabel.swift in Sources */,
+				FA9825F22A9872E80013018D /* ChallengeDetailInfoResponse.swift in Sources */,
 				FA313A192A8556F6006DBE69 /* MypageInfoView.swift in Sources */,
 				FA57AF4F2A5D0EC7008A5991 /* LocalKey.swift in Sources */,
 				FA2A064E2A68DCE000AC649F /* PrecautionViewController.swift in Sources */,

@@ -42,7 +42,7 @@ final class MissionCell: UICollectionViewCell {
     private func configure() {
         addSubviews(missionBackgroundView, missionInfoLabel, successView, failView)
         NSLayoutConstraint.activate([
-            missionBackgroundView.heightAnchor.constraint(equalToConstant: 52),
+            missionBackgroundView.heightAnchor.constraint(equalTo: missionInfoLabel.heightAnchor, constant: 16),
             missionInfoLabel.centerYAnchor.constraint(equalTo: missionBackgroundView.centerYAnchor),
             missionInfoLabel.centerXAnchor.constraint(equalTo: missionBackgroundView.centerXAnchor),
             missionBackgroundView.topAnchor.constraint(equalTo: topAnchor),
