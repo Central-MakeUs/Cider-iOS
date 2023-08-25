@@ -12,6 +12,8 @@ final class ReportReasonViewController: UIViewController {
     
     private let viewModel: ReportReasonViewModel
     private let reportType: ReportType
+    private let userId: Int
+    private let certifyId: Int
     private var cancellables: Set<AnyCancellable> = .init()
     
     private lazy var titleLabel: UILabel = {
@@ -93,9 +95,11 @@ final class ReportReasonViewController: UIViewController {
         return stackView
     }()
     
-    init(viewModel: ReportReasonViewModel, reportType: ReportType) {
+    init(viewModel: ReportReasonViewModel, reportType: ReportType, userId: Int, certifyId: Int) {
         self.viewModel = viewModel
         self.reportType = reportType
+        self.userId = userId
+        self.certifyId = certifyId
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -150,7 +154,17 @@ private extension ReportReasonViewController {
     }
     
     func presentReportPopupViewController(_ reportType: ReportType) {
-        let viewController = ReportPopupViewController(reportType: reportType)
+        let viewController = ReportPopupViewController(
+            reportType: reportType,
+            viewModel: ReportViewModel(
+                usecase: DefaultReportUsecase(
+                    repository: DefaultReportRepository()
+                ),
+                userId: userId,
+                certifyId: certifyId,
+                reason: viewModel.reasons[viewModel.selectedIndex]
+            )
+        )
         viewController.modalTransitionStyle = .crossDissolve
         viewController.modalPresentationStyle = .overFullScreen
         self.present(viewController, animated: true)

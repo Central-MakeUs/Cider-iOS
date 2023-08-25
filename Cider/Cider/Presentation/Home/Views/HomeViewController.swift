@@ -80,6 +80,7 @@ private extension HomeViewController {
         setUpDataSource()
         applySnapshot()
         bind()
+        setNotificationCenter()
     }
     
     func bind() {
@@ -107,6 +108,15 @@ private extension HomeViewController {
             arrowTopButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
             arrowTopButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24)
         ])
+    }
+    
+    func setNotificationCenter() {
+        NotificationCenter.default.publisher(for: .reloadFeed)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.viewModel.viewWillAppear()
+            }
+            .store(in: &cancellables)
     }
     
     func reloadHeader() {
@@ -225,22 +235,24 @@ private extension HomeViewController {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCell.identifier, for: indexPath) as? FeedCell else {
                     return UICollectionViewCell()
                 }
-                let feed = self.viewModel.feeds[indexPath.row]
-                cell.setUp(
-                    nickname: feed.simpleMemberResponseDto.memberName,
-                    level: feed.simpleMemberResponseDto.memberLevelName,
-                    date: feed.createdDate.formatYYYYMMDDHHMMDot(),
-                    mainTitle: feed.certifyName,
-                    subTitle: feed.certifyContent,
-                    challengeType: feed.simpleChallengeResponseDto.challengeBranch.convertChallengeType(),
-                    challengeTitle: feed.simpleChallengeResponseDto.challengeName,
-                    people: String(feed.simpleChallengeResponseDto.participateNum),
-                    heart: String(feed.certifyLike),
-                    profileImageURL: feed.simpleMemberResponseDto.profilePath,
-                    feedImageURL: feed.certifyImageUrl,
-                    isLike: feed.isLike
-                )
-                cell.certifyId = feed.certifyId
+                if let feed = self.viewModel.feeds[indexPath.row] {
+                    cell.setUp(
+                        nickname: feed.simpleMemberResponseDto.memberName,
+                        level: feed.simpleMemberResponseDto.memberLevelName,
+                        date: feed.createdDate.formatYYYYMMDDHHMMDot(),
+                        mainTitle: feed.certifyName,
+                        subTitle: feed.certifyContent,
+                        challengeType: feed.simpleChallengeResponseDto.challengeBranch.convertChallengeType(),
+                        challengeTitle: feed.simpleChallengeResponseDto.challengeName,
+                        people: String(feed.simpleChallengeResponseDto.participateNum),
+                        heart: String(feed.certifyLike),
+                        profileImageURL: feed.simpleMemberResponseDto.profilePath,
+                        feedImageURL: feed.certifyImageUrl,
+                        isLike: feed.isLike
+                    )
+                    cell.certifyId = feed.certifyId
+                }
+                
                 cell.addHeartButtonAction(self, action: #selector(self.didTapFeedHeart))
                 cell.meatballButton.addTarget(self, action: #selector(self.didTapFeedMeatball), for: .touchUpInside)
                 return cell
@@ -621,13 +633,16 @@ private extension HomeViewController {
         guard let indexPath = collectionView.indexPath(for: cell) else {
             return
         }
-        viewModel.likeFeed(isLike: viewModel.feeds[indexPath.row].isLike, certifyId: viewModel.feeds[indexPath.row].certifyId)
-        if viewModel.feeds[indexPath.row].isLike {
-            viewModel.feeds[indexPath.row].certifyLike -= 1
-        } else {
-            viewModel.feeds[indexPath.row].certifyLike += 1
+        guard let feed = viewModel.feeds[indexPath.row] else {
+            return
         }
-        viewModel.feeds[indexPath.row].isLike.toggle()
+        viewModel.likeFeed(isLike: feed.isLike, certifyId: feed.certifyId)
+        if feed.isLike {
+            viewModel.feeds[indexPath.row]?.certifyLike -= 1
+        } else {
+            viewModel.feeds[indexPath.row]?.certifyLike += 1
+        }
+        viewModel.feeds[indexPath.row]?.isLike.toggle()
         reloadHeader()
     }
     
@@ -638,8 +653,11 @@ private extension HomeViewController {
         guard let indexPath = collectionView.indexPath(for: cell) else {
             return
         }
-        let feed = viewModel.feeds[indexPath.row]
-        pushReportViewContoller()
+        guard let feed = viewModel.feeds[indexPath.row] else {
+            return
+        }
+        // TODO: userID 변경
+        pushReportViewContoller(userId: feed.simpleMemberResponseDto.memberId, certifyId: feed.certifyId)
     }
     
     @objc func didTapChallengeOpen(_ sender: Any?) {
@@ -685,8 +703,8 @@ private extension HomeViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func pushReportViewContoller() {
-        let viewController = ReportViewController()
+    func pushReportViewContoller(userId: Int, certifyId: Int) {
+        let viewController = ReportViewController(userId: userId, certifyId: certifyId)
         if let sheet = viewController.sheetPresentationController {
             let identifier = UISheetPresentationController.Detent.Identifier("customMedium")
             let customDetent = UISheetPresentationController.Detent.custom(identifier: identifier) { context in

@@ -1113,8 +1113,8 @@ extension ChallengeDetailViewController: UICollectionViewDelegate {
 
 private extension ChallengeDetailViewController {
     
-    func pushReportViewContoller() {
-        let viewController = ReportViewController()
+    func pushReportViewContoller(userId: Int, certifyId: Int) {
+        let viewController = ReportViewController(userId: userId, certifyId: certifyId)
         if let sheet = viewController.sheetPresentationController {
             let identifier = UISheetPresentationController.Detent.Identifier("customMedium")
             let customDetent = UISheetPresentationController.Detent.custom(identifier: identifier) { context in
@@ -1169,8 +1169,11 @@ private extension ChallengeDetailViewController {
         guard let indexPath = collectionView.indexPath(for: cell) else {
             return
         }
-        let feed = viewModel.feedResponse?.simpleCertifyResponseDtoList[indexPath.row]
-        pushReportViewContoller()
+        guard let feed = viewModel.feedResponse?.simpleCertifyResponseDtoList[indexPath.row] else {
+            return
+        }
+        // TODO: userID 변경
+        pushReportViewContoller(userId: feed.simpleMemberResponseDto.memberId, certifyId: feed.certifyId)
     }
     
     @objc func didTapChallengeHeart(_ sender: Any?) {

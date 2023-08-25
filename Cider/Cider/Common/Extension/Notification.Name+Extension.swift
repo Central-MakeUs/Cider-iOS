@@ -20,4 +20,5 @@ extension Notification.Name {
     static let selectParticipateChallenge = Notification.Name("selectParticipateChallenge")
     static let didChangedChallengeName = Notification.Name("didChangedChallengeName")
     static let didChangedMission = Notification.Name("didChangedMission")
+    static let reloadFeed = Notification.Name("reloadFeed")
 }

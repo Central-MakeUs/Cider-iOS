@@ -8,6 +8,9 @@
 import UIKit
 
 final class ReportViewController: UIViewController {
+    
+    private let userId: Int
+    private let certifyId: Int
 
     private lazy var userReportButton: UIButton = {
         let button = UIButton()
@@ -62,6 +65,16 @@ final class ReportViewController: UIViewController {
         view.backgroundColor = .custom.underBar
         return view
     }()
+    
+    init(userId: Int, certifyId: Int) {
+        self.userId = userId
+        self.certifyId = certifyId
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,7 +139,9 @@ private extension ReportViewController {
     func presentReportReasonViewController(_ reportType: ReportType) {
         let viewController = ReportReasonViewController(
             viewModel: ReportReasonViewModel(),
-            reportType: reportType
+            reportType: reportType,
+            userId: userId,
+            certifyId: certifyId
         )
         if let sheet = viewController.sheetPresentationController {
             let identifier = UISheetPresentationController.Detent.Identifier("customMedium")
@@ -141,7 +156,16 @@ private extension ReportViewController {
     }
     
     func presentReportPopupViewController(_ reportType: ReportType) {
-        let viewController = ReportPopupViewController(reportType: reportType)
+        let viewController = ReportPopupViewController(
+            reportType: reportType,
+            viewModel: ReportViewModel(
+                usecase: DefaultReportUsecase(
+                    repository: DefaultReportRepository()
+                ), userId: userId,
+                certifyId: certifyId,
+                reason: nil
+            )
+        )
         viewController.modalTransitionStyle = .crossDissolve
         viewController.modalPresentationStyle = .overFullScreen
         self.present(viewController, animated: true)
