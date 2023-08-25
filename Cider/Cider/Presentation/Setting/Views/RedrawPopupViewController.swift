@@ -124,7 +124,7 @@ private extension RedrawPopupViewController {
     
     @objc func didTapRedraw(_ sender: Any?) {
         // TODO: 탈퇴 로직 풀기
-        //viewModel.redraw()
+        viewModel.redraw()
         if let loginType = UserDefaults.standard.read(key: .loginType) as? String {
             if loginType == "카카오" {
                 UserDefaults.standard.write(key: .isRedrawKakao, value: true)

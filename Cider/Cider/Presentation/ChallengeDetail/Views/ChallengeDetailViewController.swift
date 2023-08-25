@@ -373,7 +373,8 @@ private extension ChallengeDetailViewController {
                         withReuseIdentifier: HomeHeaderView.identifier,
                         for: indexPath
                     ) as? HomeHeaderView
-                    headerView?.setUp(leftTitle: "챌린지 현황", rightTitle: "30회 중 6회 진행", isClicked: false)
+                    // TODO: 30회 중 몇 회 구현하기
+                    headerView?.setUp(leftTitle: "챌린지 현황", rightTitle: "", isClicked: false)
                     return headerView ?? UICollectionReusableView()
                     
                 case SeparatorFooterView.identifier:

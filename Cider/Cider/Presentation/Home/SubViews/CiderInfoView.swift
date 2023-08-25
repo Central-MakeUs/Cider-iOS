@@ -56,7 +56,7 @@ final class CiderInfoView: UIView {
     
     private lazy var coinImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "smapleCoin")
+        imageView.image = UIImage(named: "graph_challengedetail")
         return imageView
     }()
     
