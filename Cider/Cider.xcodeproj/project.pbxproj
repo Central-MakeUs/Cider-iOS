@@ -218,6 +218,10 @@
 		FA9826032A98BF920013018D /* ReportRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9826022A98BF920013018D /* ReportRepository.swift */; };
 		FA9826052A98C0110013018D /* ReportUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9826042A98C0110013018D /* ReportUsecase.swift */; };
 		FA9826072A98C1040013018D /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9826062A98C1040013018D /* ReportViewModel.swift */; };
+		FA9826092A98EEB00013018D /* RedrawRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9826082A98EEB00013018D /* RedrawRepository.swift */; };
+		FA98260B2A98EEFA0013018D /* RedrawUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA98260A2A98EEFA0013018D /* RedrawUsecase.swift */; };
+		FA98260D2A98EFDB0013018D /* RedrawViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA98260C2A98EFDB0013018D /* RedrawViewModel.swift */; };
+		FA9826102A98F9BE0013018D /* LoginBlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA98260F2A98F9BE0013018D /* LoginBlockViewController.swift */; };
 		FAB9A73B2A4C64CF00757A80 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */; };
 		FAB9A73F2A4C8DAB00757A80 /* ProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */; };
 		FABF17532A70D8910073C13B /* SeparatorFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABF17522A70D8910073C13B /* SeparatorFooterView.swift */; };
@@ -438,6 +442,10 @@
 		FA9826022A98BF920013018D /* ReportRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportRepository.swift; sourceTree = "<group>"; };
 		FA9826042A98C0110013018D /* ReportUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportUsecase.swift; sourceTree = "<group>"; };
 		FA9826062A98C1040013018D /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
+		FA9826082A98EEB00013018D /* RedrawRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedrawRepository.swift; sourceTree = "<group>"; };
+		FA98260A2A98EEFA0013018D /* RedrawUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedrawUsecase.swift; sourceTree = "<group>"; };
+		FA98260C2A98EFDB0013018D /* RedrawViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedrawViewModel.swift; sourceTree = "<group>"; };
+		FA98260F2A98F9BE0013018D /* LoginBlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBlockViewController.swift; sourceTree = "<group>"; };
 		FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessView.swift; sourceTree = "<group>"; };
 		FABF17522A70D8910073C13B /* SeparatorFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorFooterView.swift; sourceTree = "<group>"; };
@@ -645,6 +653,7 @@
 		FA3DA3592A8F5E3E00AF147B /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				FA98260E2A98F04A0013018D /* ViewModels */,
 				FA3DA35D2A8F5EB400AF147B /* SubViews */,
 				FA3DA35A2A8F5E4400AF147B /* Views */,
 			);
@@ -657,6 +666,7 @@
 				FA3DA35B2A8F5E5100AF147B /* SettingViewController.swift */,
 				FA8C25992A8F8312005E89D6 /* WebViewController.swift */,
 				FA33300C2A8F858B001012C4 /* RedrawPopupViewController.swift */,
+				FA98260F2A98F9BE0013018D /* LoginBlockViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -870,6 +880,7 @@
 				FA9825E92A9846E90013018D /* MyChallengeUsecase.swift */,
 				FA9825F82A987DAA0013018D /* ChallengeDetailUsecase.swift */,
 				FA9826042A98C0110013018D /* ReportUsecase.swift */,
+				FA98260A2A98EEFA0013018D /* RedrawUsecase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -1017,6 +1028,7 @@
 				FA9825E72A9845B40013018D /* MyChallengeRepository.swift */,
 				FA9825F62A987BAD0013018D /* ChallengeDetailRepository.swift */,
 				FA9826022A98BF920013018D /* ReportRepository.swift */,
+				FA9826082A98EEB00013018D /* RedrawRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1157,6 +1169,14 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		FA98260E2A98F04A0013018D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FA98260C2A98EFDB0013018D /* RedrawViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		FABF17512A70D86E0073C13B /* FooterView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1266,6 +1286,7 @@
 			files = (
 				FA42808E2A73E79C00828F93 /* RuleView.swift in Sources */,
 				FA61002C2A5816E5002175CE /* KeywordsView.swift in Sources */,
+				FA9826102A98F9BE0013018D /* LoginBlockViewController.swift in Sources */,
 				FA57AF5D2A5D17A0008A5991 /* LoginRepository.swift in Sources */,
 				FA2282BE2A963E2300DF4ADB /* CertifyViewModel.swift in Sources */,
 				FA6C216B2A5A78C4008A9ADD /* RandomNicknameView.swift in Sources */,
@@ -1321,6 +1342,7 @@
 				FA4DF29C2A6C1F5D007F3035 /* CategoryHeaderView.swift in Sources */,
 				FA32B8382A6A67EA0086497D /* Item.swift in Sources */,
 				FA57EC452A973B4700ED4A48 /* CertifyUsecase.swift in Sources */,
+				FA98260D2A98EFDB0013018D /* RedrawViewModel.swift in Sources */,
 				FA758ACA2A5EF528003E2F07 /* ChallengeOpenSelectionView.swift in Sources */,
 				FA57AF6B2A5D73F8008A5991 /* ChallengeOpenCell.swift in Sources */,
 				FA2FE0822A8DCBEF005500D5 /* ProfileModifyViewController.swift in Sources */,
@@ -1353,6 +1375,7 @@
 				FA9825E42A979A3E0013018D /* ChallengeOpenUsecase.swift in Sources */,
 				FA348ED72A61190900EA3D04 /* RandomNicknameResponse.swift in Sources */,
 				FA57AF4B2A5D0D72008A5991 /* CiderAPI.swift in Sources */,
+				FA98260B2A98EEFA0013018D /* RedrawUsecase.swift in Sources */,
 				FA313A172A8556CE006DBE69 /* LevelView.swift in Sources */,
 				FA57AF632A5D22A0008A5991 /* LoginError.swift in Sources */,
 				FA9825EE2A9849110013018D /* CiderError.swift in Sources */,
@@ -1404,6 +1427,7 @@
 				FA313A132A85567A006DBE69 /* LevelProgressView.swift in Sources */,
 				FAB9A73F2A4C8DAB00757A80 /* ProcessView.swift in Sources */,
 				FA2A06522A68F19700AC649F /* ReviewInfoView.swift in Sources */,
+				FA9826092A98EEB00013018D /* RedrawRepository.swift in Sources */,
 				FA2A064C2A68DC0F00AC649F /* PrecautionView.swift in Sources */,
 				FA6C21692A5A4E21008A9ADD /* CiderEnabledStyle.swift in Sources */,
 				FA4280862A73D4B800828F93 /* ChallengeIntroCell.swift in Sources */,

@@ -44,6 +44,7 @@ enum CiderAPI {
     case reportFeed(parameters: [String: Any])
     case blockUser(parameters: [String: Any])
     case blockFeed(parameters: [String: Any])
+    case signout
 }
 
 extension CiderAPI: TargetType, AccessTokenAuthorizable {
@@ -120,6 +121,8 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             return "/api/block/feed"
         case .blockUser:
             return "/api/block/member"
+        case .signout:
+            return "/api/oauth/signout"
         }
     }
     
@@ -137,7 +140,8 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
              .reportUser,
              .reportFeed,
              .blockFeed,
-             .blockUser:
+             .blockUser,
+             .signout:
             return .post
             
         case .getRandomNickname,

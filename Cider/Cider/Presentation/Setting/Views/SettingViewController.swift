@@ -124,8 +124,9 @@ private extension SettingViewController {
                 )
             )
         )
-        viewController.modalPresentationStyle = .fullScreen
-        self.present(viewController, animated: true)
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.modalPresentationStyle = .fullScreen
+        self.present(navigationController, animated: true)
     }
     
     func presentWebViewController(_ url: String) {
@@ -134,7 +135,13 @@ private extension SettingViewController {
     }
     
     func presentPopupController() {
-        let viewController = RedrawPopupViewController()
+        let viewController = RedrawPopupViewController(
+            viewModel: RedrawViewModel(
+                usecase: DefaultRedrawUsecase(
+                    repository: DefaultRedrawRepository()
+                )
+            )
+        )
         viewController.modalPresentationStyle = .overFullScreen
         viewController.modalTransitionStyle = .crossDissolve
         self.present(viewController, animated: true)

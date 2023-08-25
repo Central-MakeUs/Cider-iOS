@@ -114,6 +114,8 @@ private extension LoginViewController {
                         return
                     }
                     isNewUser ? self?.pushServiceAgreeViewController() : self?.presentTabBarViewController()
+                case .showEnabledLogin:
+                    self?.presentLoginBlockViewController()
                 }
             }.store(in: &cancellables)
     }
@@ -127,6 +129,13 @@ private extension LoginViewController {
         UserManager.shared.updateLoginState(true)
         let viewController = TabBarViewController()
         viewController.modalPresentationStyle = .fullScreen
+        self.present(viewController, animated: true)
+    }
+    
+    func presentLoginBlockViewController() {
+        let viewController = LoginBlockViewController()
+        viewController.modalPresentationStyle = .overFullScreen
+        viewController.modalTransitionStyle = .crossDissolve
         self.present(viewController, animated: true)
     }
     

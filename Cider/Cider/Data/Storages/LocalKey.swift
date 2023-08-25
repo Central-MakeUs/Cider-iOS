@@ -12,6 +12,8 @@ public enum LocalKey: String {
     case isLogin
     case loginType
     case email
+    case isRedrawApple
+    case isRedrawKakao
 }
 
 public protocol LocalStorageService: AnyObject {
