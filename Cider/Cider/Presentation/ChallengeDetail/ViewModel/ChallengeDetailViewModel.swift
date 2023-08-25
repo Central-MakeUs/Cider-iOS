@@ -35,6 +35,15 @@ final class ChallengeDetailViewModel: ViewModelType {
         getChallengeDetail()
     }
     
+    func didTapSorting() {
+        if filter == .latest {
+            filter = .like
+        } else if filter == .like {
+            filter = .latest
+        }
+        getChallengeFeed()
+    }
+    
 }
 
 private extension ChallengeDetailViewModel {
@@ -45,15 +54,23 @@ private extension ChallengeDetailViewModel {
                 let infoResponse = try await usecase.getInfo(challengeId: challengeId)
                 print(infoResponse)
                 self.infoResponse = infoResponse
-                let feedResponse = try await usecase.getFeed(challengeId: challengeId, filter: filter.english)
-                print(feedResponse)
-                for _ in feedResponse.simpleCertifyResponseDtoList {
-                    feedItems.append(Item())
-                }
-                self.feedResponse = feedResponse
-                currentState.send(.applysnapshot)
+                getChallengeFeed()
             }
         }
+    }
+    
+    func getChallengeFeed() {
+        Task {
+            let feedResponse = try await usecase.getFeed(challengeId: challengeId, filter: filter.english)
+            print(feedResponse)
+            feedItems = []
+            for _ in feedResponse.simpleCertifyResponseDtoList {
+                feedItems.append(Item())
+            }
+            self.feedResponse = feedResponse
+            currentState.send(.applysnapshot)
+        }
+        
     }
     
 }

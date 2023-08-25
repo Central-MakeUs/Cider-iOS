@@ -75,7 +75,7 @@ class ChallengeDetailViewController: UIViewController {
     
     private enum FeedSection: Int {
         case menu = 0
-        case myMission = 1
+        case myCertify = 1
         case MissionPhoto = 2
         case feed = 3
     }
@@ -132,7 +132,8 @@ private extension ChallengeDetailViewController {
                 }
                 switch state {
                 case .applysnapshot:
-                    self.applyInfoSnapshot()
+                    self.applySnapshot()
+                    self.reloadHeader()
                 }
             }
             .store(in: &cancellables)
@@ -163,14 +164,8 @@ private extension ChallengeDetailViewController {
     }
     
     func setMenu(_ type: ChallengeDetailMenuType) {
-        switch type {
-        case .info:
-            setUpInfoDataSource()
-            applyInfoSnapshot()
-        case .feed:
-            setUpFeedDataSource()
-            applyFeedSnapshot()
-        }
+        setDataSource()
+        applySnapshot()
     }
     
     func setNotificationCenter() {
@@ -192,6 +187,15 @@ private extension ChallengeDetailViewController {
     func setNavigationBar() {
         self.navigationController?.navigationBar.topItem?.title = ""
         setNavigationBar(backgroundColor: challengeType.color, tintColor: .white, shadowColor: .clear)
+    }
+    
+    func setDataSource() {
+        switch menuType {
+        case .feed:
+            setUpFeedDataSource()
+        case .info:
+            setUpInfoDataSource()
+        }
     }
     
     func setUpInfoDataSource() {
@@ -495,7 +499,7 @@ private extension ChallengeDetailViewController {
                 cell.setUpMenu(self.menuType)
                 return cell
                 
-            case .myMission:
+            case .myCertify:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyMissionCell.identifier, for: indexPath) as? MyMissionCell else {
                     return UICollectionViewCell()
                 }
@@ -578,6 +582,8 @@ private extension ChallengeDetailViewController {
                     withReuseIdentifier: SortingHeaderView.identifier,
                     for: indexPath
                 ) as? SortingHeaderView
+                headerView?.setUp(text: self.viewModel.filter.korean)
+                headerView?.sortingView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTapSorting)))
                 return headerView
                
             default:
@@ -588,46 +594,52 @@ private extension ChallengeDetailViewController {
     }
     
     func reloadHeader() {
-//        guard let infoSnapshot = infoDataSource?.snapshot() else {
-//            return
-//        }
-//        infoDataSource?.applySnapshotUsingReloadData(infoSnapshot)
-//        guard let infoSnapshot = infoDataSource?.snapshot() else {
-//            return
-//        }
-//        infoDataSource?.applySnapshotUsingReloadData(infoSnapshot)
+        switch menuType {
+        case .feed:
+            guard let feedSnapshot = feedDataSource?.snapshot() else {
+                return
+            }
+            feedDataSource?.applySnapshotUsingReloadData(feedSnapshot)
+        case .info:
+            guard let infoSnapshot = infoDataSource?.snapshot() else {
+                return
+            }
+            infoDataSource?.applySnapshotUsingReloadData(infoSnapshot)
+        }
     }
     
-    func applyInfoSnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<InfoSection, Item>()
-        snapshot.appendSections([.menu])
-        snapshot.appendItems([Item()])
-        snapshot.appendSections([.progress])
-        snapshot.appendItems([Item()])
-        snapshot.appendSections([.challengeIntro])
-        snapshot.appendItems([Item()])
-        snapshot.appendSections([.challengeInfo])
-        snapshot.appendItems([Item()])
-        snapshot.appendSections([.rule])
-        snapshot.appendItems([Item()])
-        snapshot.appendSections([.mission])
-        snapshot.appendItems([Item()])
-        snapshot.appendSections([.host])
-        snapshot.appendItems([Item()])
-        infoDataSource?.apply(snapshot, animatingDifferences: false)
-    }
-    
-    func applyFeedSnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<FeedSection, Item>()
-        snapshot.appendSections([.menu])
-        snapshot.appendItems([Item()])
-        snapshot.appendSections([.myMission])
-        snapshot.appendItems([Item()])
-        snapshot.appendSections([.MissionPhoto])
-        snapshot.appendItems([Item()])
-        snapshot.appendSections([.feed])
-        snapshot.appendItems(viewModel.feedItems)
-        feedDataSource?.apply(snapshot, animatingDifferences: false)
+    func applySnapshot() {
+        switch menuType {
+        case .info:
+            var snapshot = NSDiffableDataSourceSnapshot<InfoSection, Item>()
+            snapshot.appendSections([.menu])
+            snapshot.appendItems([Item()])
+            snapshot.appendSections([.progress])
+            snapshot.appendItems([Item()])
+            snapshot.appendSections([.challengeIntro])
+            snapshot.appendItems([Item()])
+            snapshot.appendSections([.challengeInfo])
+            snapshot.appendItems([Item()])
+            snapshot.appendSections([.rule])
+            snapshot.appendItems([Item()])
+            snapshot.appendSections([.mission])
+            snapshot.appendItems([Item()])
+            snapshot.appendSections([.host])
+            snapshot.appendItems([Item()])
+            infoDataSource?.apply(snapshot, animatingDifferences: false)
+
+        case .feed:
+            var snapshot = NSDiffableDataSourceSnapshot<FeedSection, Item>()
+            snapshot.appendSections([.menu])
+            snapshot.appendItems([Item()])
+            snapshot.appendSections([.myCertify])
+            snapshot.appendItems([Item()])
+            snapshot.appendSections([.MissionPhoto])
+            snapshot.appendItems([Item()])
+            snapshot.appendSections([.feed])
+            snapshot.appendItems(viewModel.feedItems)
+            feedDataSource?.apply(snapshot, animatingDifferences: false)
+        }
     }
     
     func createLayout() -> UICollectionViewCompositionalLayout {
@@ -670,7 +682,7 @@ private extension ChallengeDetailViewController {
                 case .menu:
                     return self.menuSectionLayout()
                     
-                case .myMission:
+                case .myCertify:
                     return self.myMissionSectionLayout()
                     
                 case .MissionPhoto:
@@ -1016,6 +1028,17 @@ private extension ChallengeDetailViewController {
         return section
     }
     
+    func pushMyCertifyViewController() {
+        let viewController = MyCertifyViewController(
+            viewModel: MyCertifyViewModel(
+                usecase: DefaultMyCertifyUsecase(
+                    repository: DefaultMyCertifyRepository()
+                )
+            )
+        )
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
 }
 
 extension ChallengeDetailViewController: UICollectionViewDelegate {
@@ -1027,6 +1050,23 @@ extension ChallengeDetailViewController: UICollectionViewDelegate {
         } else {
             setNavigationBar(backgroundColor: challengeType.color, tintColor: .white, shadowColor: .clear)
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if menuType == .feed {
+            let section = FeedSection(rawValue: indexPath.section)
+            if section == .myCertify {
+                pushMyCertifyViewController()
+            }
+        }
+    }
+    
+}
+
+private extension ChallengeDetailViewController {
+    
+    @objc func didTapSorting(sender: Any?) {
+        viewModel.didTapSorting()
     }
     
 }
