@@ -15,6 +15,7 @@ final class MyChallengeViewController: UIViewController {
         collectionView.register(ClosedChallengeCell.self, forCellWithReuseIdentifier: ClosedChallengeCell.identifier)
         collectionView.register(OngoingCell.self, forCellWithReuseIdentifier: OngoingCell.identifier)
         collectionView.register(ReviewCell.self, forCellWithReuseIdentifier: ReviewCell.identifier)
+        collectionView.register(MyChallengeEmptyCell.self, forCellWithReuseIdentifier: MyChallengeEmptyCell.identifier)
         collectionView.register(HomeHeaderView.self, forSupplementaryViewOfKind: HomeHeaderView.identifier, withReuseIdentifier: HomeHeaderView.identifier)
         collectionView.register(SeparatorFooterView.self, forSupplementaryViewOfKind: SeparatorFooterView.identifier, withReuseIdentifier: SeparatorFooterView.identifier)
         collectionView.showsVerticalScrollIndicator = false
@@ -105,7 +106,6 @@ private extension MyChallengeViewController {
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = "내 챌린지"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBarButton)
         setNavigationBar(backgroundColor: .white, tintColor: .black, shadowColor: .clear)
     }
     
@@ -117,51 +117,78 @@ private extension MyChallengeViewController {
             let section = Section(rawValue: indexPath.section)
             switch section {
             case .onGoingChallenge:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OngoingCell.identifier, for: indexPath) as? OngoingCell else {
-                    return UICollectionViewCell()
+                if self.viewModel.ongoingChallenges.count > 0 {
+                    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OngoingCell.identifier, for: indexPath) as? OngoingCell else {
+                        return UICollectionViewCell()
+                    }
+                    let challenge = self.viewModel.ongoingChallenges[indexPath.row]
+                    cell.setUp(
+                        mainTitle: challenge.challengeName,
+                        challengeType: challenge.challengeBranch.convertChallengeType(),
+                        onGoing: "챌린지 진행 +\(challenge.ongoingDate)일",
+                        countText: "\(challenge.challengePeriod)회 중 \(challenge.certifyNum)회 달성"
+                    )
+                    return cell
+                } else {
+                    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyChallengeEmptyCell.identifier, for: indexPath) as? MyChallengeEmptyCell else {
+                        return UICollectionViewCell()
+                    }
+                    cell.setUp(title: "진행중인 챌린지가 없습니다")
+                    return cell
                 }
-                let challenge = self.viewModel.ongoingChallenges[indexPath.row]
-                cell.setUp(
-                    mainTitle: challenge.challengeName,
-                    challengeType: challenge.challengeBranch.convertChallengeType(),
-                    onGoing: "챌린지 진행 +\(challenge.ongoingDate)일",
-                    countText: "\(challenge.challengePeriod)회 중 \(challenge.certifyNum)회 달성"
-                )
-                return cell
+                
                 
             case .closedChallenge:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ClosedChallengeCell.identifier, for: indexPath) as? ClosedChallengeCell else {
-                    return UICollectionViewCell()
+                if self.viewModel.passedChallenges.count > 0 {
+                    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ClosedChallengeCell.identifier, for: indexPath) as? ClosedChallengeCell else {
+                        return UICollectionViewCell()
+                    }
+                    let challenge = self.viewModel.passedChallenges[indexPath.row]
+                    cell.setUp(
+                        type: challenge.challengeBranch.convertChallengeType(),
+                        isReward: challenge.isReward,
+                        date: "\(challenge.challengePeriod)주",
+                        title: challenge.challengeName,
+                        status: challenge.isSuccess,
+                        people: "\(challenge.successNum)명 챌린지 성공",
+                        isPublic: challenge.isOfficial
+                    )
+                    cell.challengeHomeView.setClosedChallenge(.fail)
+                    return cell
+                } else {
+                    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyChallengeEmptyCell.identifier, for: indexPath) as? MyChallengeEmptyCell else {
+                        return UICollectionViewCell()
+                    }
+                    cell.setUp(title: "최근 종료된 챌린지가 없습니다")
+                    return cell
                 }
-                let challenge = self.viewModel.passedChallenges[indexPath.row]
-                cell.setUp(
-                    type: challenge.challengeBranch.convertChallengeType(),
-                    isReward: challenge.isReward,
-                    date: "\(challenge.challengePeriod)주",
-                    title: challenge.challengeName,
-                    status: challenge.isSuccess,
-                    people: "\(challenge.successNum)명 챌린지 성공",
-                    isPublic: challenge.isOfficial
-                )
-                cell.challengeHomeView.setClosedChallenge(.fail)
-                return cell
+                
                 
             case .reviewChallenge:
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewCell.identifier, for: indexPath) as? ReviewCell else {
-                    return UICollectionViewCell()
+                if self.viewModel.judgingChallenges.count > 0 {
+                    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewCell.identifier, for: indexPath) as? ReviewCell else {
+                        return UICollectionViewCell()
+                    }
+                   
+                    let challenge = self.viewModel.judgingChallenges[indexPath.row]
+                    if let reviewType = challenge.judgingStatus.convertReviewType() {
+                        cell.setUp(
+                            title: challenge.challengeName,
+                            challengeType: challenge.challengeBranch.convertChallengeType(),
+                            reviewType: reviewType,
+                            challengeSuccessMessage: "2023.00.00 챌린지 모집 시작"
+                        )
+                    }
+                   
+                    return cell
+                } else {
+                    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyChallengeEmptyCell.identifier, for: indexPath) as? MyChallengeEmptyCell else {
+                        return UICollectionViewCell()
+                    }
+                    cell.setUp(title: "심사중인 챌린지가 없습니다")
+                    return cell
                 }
-               
-                let challenge = self.viewModel.judgingChallenges[indexPath.row]
-                if let reviewType = challenge.judgingStatus.convertReviewType() {
-                    cell.setUp(
-                        title: challenge.challengeName,
-                        challengeType: challenge.challengeBranch.convertChallengeType(),
-                        reviewType: reviewType,
-                        challengeSuccessMessage: "2023.00.00 챌린지 모집 시작"
-                    )
-                }
-               
-                return cell
+                
                 
             case .none:
                 return UICollectionViewCell()
@@ -301,16 +328,19 @@ private extension MyChallengeViewController {
     
     func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { [weak self] (sectionNumber, _) -> NSCollectionLayoutSection? in
+            guard let self = self else {
+                return nil
+            }
             let section = Section(rawValue: sectionNumber)
             switch section {
             case .onGoingChallenge:
-                return self?.onGoingSectionLayout()
+                return self.viewModel.ongoingChallenges.count > 0 ? self.onGoingSectionLayout() : self.emptyLayout()
                 
             case .closedChallenge:
-                return self?.challengeSectionLayout()
+                return self.viewModel.passedChallenges.count > 0 ? self.challengeSectionLayout() : self.emptyLayout()
                 
             case .reviewChallenge:
-                return self?.reviewSectionLayout()
+                return self.viewModel.judgingChallenges.count > 0 ? self.reviewSectionLayout() : self.emptyLayout()
                 
             case .none:
                 return nil
@@ -426,7 +456,38 @@ private extension MyChallengeViewController {
         ]
         return section
     }
-
+    
+    func emptyLayout() -> NSCollectionLayoutSection {
+        let layoutSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .absolute(163)
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: .init(
+                widthDimension: layoutSize.widthDimension,
+                heightDimension: layoutSize.heightDimension
+            ),
+            subitems: [.init(layoutSize: layoutSize)]
+        )
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+        
+        section.interGroupSpacing = 0
+        section.boundarySupplementaryItems = [
+            NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: .init(
+                    widthDimension: .absolute(UIScreen.main.bounds.width),
+                    heightDimension: .absolute(49)
+                ),
+                elementKind: HomeHeaderView.identifier, alignment: .top
+            )
+        ]
+        
+        return section
+    }
+    
 }
 
 private extension MyChallengeViewController {

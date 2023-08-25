@@ -72,7 +72,20 @@ private extension MyChallengeViewModel {
             for _ in 0..<passedChallenges.count {
                 passedItems.append(Item())
             }
+            setEmptyState()
             currentState.send(.applySnapshot(true))
+        }
+    }
+    
+    func setEmptyState() {
+        if judgingItems.count == 0 {
+            judgingItems = [Item()]
+        }
+        if ongoingItems.count == 0 {
+            ongoingItems = [Item()]
+        }
+        if passedItems.count == 0 {
+            passedItems = [Item()]
         }
     }
     
