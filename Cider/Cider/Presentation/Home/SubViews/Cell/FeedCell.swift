@@ -53,6 +53,8 @@ final class FeedCell: UICollectionViewCell {
         button.setTitleColor(UIColor.custom.gray5, for: .normal)
         button.titleLabel?.font = CustomFont.PretendardBold(size: .sm).font
         button.addTarget(self, action: #selector(didTapMore), for: .touchUpInside)
+        //TODO: 자세히 보기 히든 해제하기
+        button.isHidden = true
         return button
     }()
     
@@ -255,6 +257,10 @@ extension FeedCell {
     @objc func didTapMore(_ sender: Any?) {
         // TODO: collectionView applysnapshot 해주기
         subTitleLabel.numberOfLines = subTitleLabel.numberOfLines == 0 ? 1 : 0
+    }
+    
+    func setHiddenMeatball() {
+        meatballButton.isHidden = true
     }
     
 }

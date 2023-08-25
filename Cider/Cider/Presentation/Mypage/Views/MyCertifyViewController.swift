@@ -147,6 +147,7 @@ private extension MyCertifyViewController {
                             feedImageURL: myCeritfy.certifyImageUrl,
                             isLike: myCeritfy.isLike
                         )
+                        cell.setHiddenMeatball()
                         cell.certifyId = myCeritfy.certifyId
                         cell.addHeartButtonAction(self, action: #selector(self.didTapFeedHeart))
                     }

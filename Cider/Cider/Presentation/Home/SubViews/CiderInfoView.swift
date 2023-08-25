@@ -13,7 +13,7 @@ final class CiderInfoView: UIView {
         let label = UILabel()
         label.textColor = .white
         label.font = CustomFont.PretendardBold(size: .base).font
-        label.text = "사이다 소개"
+        label.text = "지금 앱 소개"
         return label
     }()
     
@@ -54,6 +54,12 @@ final class CiderInfoView: UIView {
         return imageView
     }()
     
+    private lazy var coinImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "smapleCoin")
+        return imageView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -65,18 +71,23 @@ final class CiderInfoView: UIView {
     
     private func configure() {
         backgroundColor = .custom.main
-        addSubviews(infoLabel, titleLabel, readingLabel, arrowImageView1, arrowImageView2)
+        addSubviews(infoLabel, titleLabel, coinImageView)
         NSLayoutConstraint.activate([
             infoLabel.topAnchor.constraint(equalTo: topAnchor, constant: 24),
             infoLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             titleLabel.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 16),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            readingLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24),
-            readingLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            arrowImageView1.centerYAnchor.constraint(equalTo: readingLabel.centerYAnchor),
-            arrowImageView1.leadingAnchor.constraint(equalTo: readingLabel.trailingAnchor, constant: 8),
-            arrowImageView2.centerYAnchor.constraint(equalTo: arrowImageView1.centerYAnchor),
-            arrowImageView2.leadingAnchor.constraint(equalTo: arrowImageView1.trailingAnchor)
+            // TODO: 지금 읽기 가린 상태 해제하기
+//            readingLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24),
+//            readingLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+//            arrowImageView1.centerYAnchor.constraint(equalTo: readingLabel.centerYAnchor),
+//            arrowImageView1.leadingAnchor.constraint(equalTo: readingLabel.trailingAnchor, constant: 8),
+//            arrowImageView2.centerYAnchor.constraint(equalTo: arrowImageView1.centerYAnchor),
+//            arrowImageView2.leadingAnchor.constraint(equalTo: arrowImageView1.trailingAnchor),
+            coinImageView.widthAnchor.constraint(equalToConstant: 140),
+            coinImageView.heightAnchor.constraint(equalToConstant: 140),
+            coinImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -7),
+            coinImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -17)
         ])
     }
     

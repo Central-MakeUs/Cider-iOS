@@ -12,14 +12,14 @@ final class HomeNavigationView: UIView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .custom.text
-        label.font = CustomFont.PretendardMedium(size: .xl2).font
-        label.text = "챌린지"
+        label.font = CustomFont.PretendardBold(size: .xl3).font
+        label.text = "챌린지 홈"
         return label
     }()
     
     private lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "heart")
+        imageView.image = UIImage(named: "miniIcon")
         imageView.widthAnchor.constraint(equalToConstant: 24).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 24).isActive = true
         return imageView

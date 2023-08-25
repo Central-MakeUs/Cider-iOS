@@ -321,7 +321,7 @@ private extension HomeViewController {
     func applySnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections([.banner])
-        snapshot.appendItems([Item(),Item(),Item(),Item(),Item(),Item()])
+        snapshot.appendItems([Item()])
         
         snapshot.appendSections([.popluarChallenge])
         snapshot.appendItems(viewModel.popularItems)
