@@ -203,6 +203,8 @@
 		FA9825E22A9798EA0013018D /* ChallengeOpenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825E12A9798EA0013018D /* ChallengeOpenRepository.swift */; };
 		FA9825E42A979A3E0013018D /* ChallengeOpenUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825E32A979A3E0013018D /* ChallengeOpenUsecase.swift */; };
 		FA9825E62A9844450013018D /* MyChallengeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825E52A9844450013018D /* MyChallengeResponse.swift */; };
+		FA9825E82A9845B40013018D /* MyChallengeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825E72A9845B40013018D /* MyChallengeRepository.swift */; };
+		FA9825EA2A9846E90013018D /* MyChallengeUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825E92A9846E90013018D /* MyChallengeUsecase.swift */; };
 		FAB9A73B2A4C64CF00757A80 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */; };
 		FAB9A73F2A4C8DAB00757A80 /* ProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */; };
 		FABF17532A70D8910073C13B /* SeparatorFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABF17522A70D8910073C13B /* SeparatorFooterView.swift */; };
@@ -408,6 +410,8 @@
 		FA9825E12A9798EA0013018D /* ChallengeOpenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOpenRepository.swift; sourceTree = "<group>"; };
 		FA9825E32A979A3E0013018D /* ChallengeOpenUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOpenUsecase.swift; sourceTree = "<group>"; };
 		FA9825E52A9844450013018D /* MyChallengeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengeResponse.swift; sourceTree = "<group>"; };
+		FA9825E72A9845B40013018D /* MyChallengeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengeRepository.swift; sourceTree = "<group>"; };
+		FA9825E92A9846E90013018D /* MyChallengeUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengeUsecase.swift; sourceTree = "<group>"; };
 		FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessView.swift; sourceTree = "<group>"; };
 		FABF17522A70D8910073C13B /* SeparatorFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorFooterView.swift; sourceTree = "<group>"; };
@@ -833,6 +837,7 @@
 				FA2282BA2A95F5A800DF4ADB /* MyCertifyUsecase.swift */,
 				FA57EC442A973B4700ED4A48 /* CertifyUsecase.swift */,
 				FA9825E32A979A3E0013018D /* ChallengeOpenUsecase.swift */,
+				FA9825E92A9846E90013018D /* MyChallengeUsecase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -974,6 +979,7 @@
 				FABF6CEA2A95F21400B6A646 /* MyCertifyRepository.swift */,
 				FA57EC422A973AC900ED4A48 /* CertifyRepository.swift */,
 				FA9825E12A9798EA0013018D /* ChallengeOpenRepository.swift */,
+				FA9825E72A9845B40013018D /* MyChallengeRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1356,6 +1362,7 @@
 				FA3D49382A8E6CC700024A1C /* ProfileModifyUsecase.swift in Sources */,
 				FA8CA6072A46D322005A6709 /* AppDelegate.swift in Sources */,
 				FA4280692A721C7900828F93 /* ClosedChallengeCell.swift in Sources */,
+				FA9825E82A9845B40013018D /* MyChallengeRepository.swift in Sources */,
 				FA44D39B2A4C46A30037E328 /* CustomFont.swift in Sources */,
 				FA3281432A8CA40100AD2FC2 /* MyLevelViewController.swift in Sources */,
 				FA3C432C2A62F816009E820B /* Onboarding.swift in Sources */,
@@ -1399,6 +1406,7 @@
 				FA4280842A73ADF900828F93 /* ProgressBarCell.swift in Sources */,
 				FA8C25982A8F67F0005E89D6 /* AccountDetailView.swift in Sources */,
 				FA44D3992A4C43B80037E328 /* Color+Extension.swift in Sources */,
+				FA9825EA2A9846E90013018D /* MyChallengeUsecase.swift in Sources */,
 				FAD6E3D42A64F2A6002C8007 /* WritingView.swift in Sources */,
 				FA40E8312A8F473100195810 /* ReportReasonViewModel.swift in Sources */,
 				FA313A1B2A855720006DBE69 /* MypageViewController.swift in Sources */,

@@ -46,7 +46,6 @@ final class CertifyViewModel: ViewModelType {
     }
     
     func selectImage(_ image: UIImage) {
-        let data = image.jpegData(compressionQuality: 0.9)
         certifyImage = image
         currentState.send(.changeNextButtonState(isAvailableNextButton()))
     }
