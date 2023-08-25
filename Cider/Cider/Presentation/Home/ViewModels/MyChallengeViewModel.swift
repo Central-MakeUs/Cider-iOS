@@ -38,6 +38,10 @@ final class MyChallengeViewModel: ViewModelType {
     func viewDidload() {
         getMyChallenges()
     }
+    
+    func didTapDeleteChallenge(challengeId: Int) {
+        deleteChallenge(challengeId: challengeId)
+    }
    
 }
 
@@ -74,6 +78,18 @@ private extension MyChallengeViewModel {
             }
             setEmptyState()
             currentState.send(.applySnapshot(true))
+        }
+    }
+    
+    func deleteChallenge(challengeId: Int) {
+        Task {
+            let response = try await usecase.deleteChallenge(challengeId: challengeId)
+            print(response)
+            if response.status == nil {
+                getMyChallenges()
+            } else {
+                currentState.send(.sendMessage(CiderError.serverError.errorDescription))
+            }
         }
     }
     

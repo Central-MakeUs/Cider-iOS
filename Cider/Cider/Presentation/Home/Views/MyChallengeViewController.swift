@@ -154,6 +154,8 @@ private extension MyChallengeViewController {
                         isPublic: challenge.isOfficial
                     )
                     cell.challengeHomeView.setClosedChallenge(.fail)
+                    cell.setUp(challengeId: challenge.challengeId)
+                    cell.challengeHomeView.addActionHeart(self, action: #selector(self.didTapDeleteClosedChallenge))
                     return cell
                 } else {
                     guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyChallengeEmptyCell.identifier, for: indexPath) as? MyChallengeEmptyCell else {
@@ -178,6 +180,8 @@ private extension MyChallengeViewController {
                             reviewType: reviewType,
                             challengeSuccessMessage: "2023.00.00 챌린지 모집 시작"
                         )
+                        cell.setUp(challengeId: challenge.challengeId)
+                        cell.addDeleteViewGesture(self, action: #selector(self.didTapDeleteReviewChallenge))
                     }
                    
                     return cell
@@ -282,7 +286,6 @@ private extension MyChallengeViewController {
                     withReuseIdentifier: HomeHeaderView.identifier,
                     for: indexPath
                 ) as? HomeHeaderView
-                print(self.viewModel.judgingChallengeListResponseDto)
                 if let judgingChallengeListResponseDto = self.viewModel.judgingChallengeListResponseDto {
                     headerView?.setUp(
                         leftTitle: "심사중인 챌린지",
@@ -494,6 +497,37 @@ private extension MyChallengeViewController {
 
     @objc func didTapRightBarButton(_ sender: Any?) {
        print("didTapRightBarButton")
+    }
+    
+    @objc func didTapDeleteClosedChallenge(_ sender: UIButton) {
+        let contentView = sender.superview?.superview
+       
+        guard let cell = contentView?.superview as? UICollectionViewCell else {
+            return
+        }
+        
+        guard let indexPath = collectionView.indexPath(for: cell) else {
+            return
+        }
+        let challengeId = viewModel.passedChallenges[indexPath.row].challengeId
+        print(challengeId)
+        viewModel.didTapDeleteChallenge(challengeId: challengeId)
+    }
+    
+    @objc func didTapDeleteReviewChallenge(_ sender: UITapGestureRecognizer) {
+        guard let view = sender.view else {
+            return
+        }
+       
+        guard let cell = view.superview as? UICollectionViewCell else {
+            return
+        }
+        
+        guard let indexPath = collectionView.indexPath(for: cell) else {
+            return
+        }
+        let challengeId = viewModel.judgingChallenges[indexPath.row].challengeId
+        viewModel.didTapDeleteChallenge(challengeId: challengeId)
     }
     
 }
