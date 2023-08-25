@@ -212,6 +212,8 @@
 		FA9825F52A98746D0013018D /* ChallengeDetailFeedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825F42A98746D0013018D /* ChallengeDetailFeedResponse.swift */; };
 		FA9825F72A987BAD0013018D /* ChallengeDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825F62A987BAD0013018D /* ChallengeDetailRepository.swift */; };
 		FA9825F92A987DAA0013018D /* ChallengeDetailUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825F82A987DAA0013018D /* ChallengeDetailUsecase.swift */; };
+		FA9825FD2A98AAA50013018D /* ChallengeStatusType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825FC2A98AAA50013018D /* ChallengeStatusType.swift */; };
+		FA9825FF2A98AD690013018D /* ChallengeParticiapiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825FE2A98AD690013018D /* ChallengeParticiapiteViewController.swift */; };
 		FAB9A73B2A4C64CF00757A80 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */; };
 		FAB9A73F2A4C8DAB00757A80 /* ProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */; };
 		FABF17532A70D8910073C13B /* SeparatorFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABF17522A70D8910073C13B /* SeparatorFooterView.swift */; };
@@ -426,6 +428,8 @@
 		FA9825F42A98746D0013018D /* ChallengeDetailFeedResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailFeedResponse.swift; sourceTree = "<group>"; };
 		FA9825F62A987BAD0013018D /* ChallengeDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailRepository.swift; sourceTree = "<group>"; };
 		FA9825F82A987DAA0013018D /* ChallengeDetailUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailUsecase.swift; sourceTree = "<group>"; };
+		FA9825FC2A98AAA50013018D /* ChallengeStatusType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeStatusType.swift; sourceTree = "<group>"; };
+		FA9825FE2A98AD690013018D /* ChallengeParticiapiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeParticiapiteViewController.swift; sourceTree = "<group>"; };
 		FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessView.swift; sourceTree = "<group>"; };
 		FABF17522A70D8910073C13B /* SeparatorFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorFooterView.swift; sourceTree = "<group>"; };
@@ -583,6 +587,7 @@
 				FA4280622A70E68100828F93 /* ReviewType.swift */,
 				FA57003A2A82849200CFECBC /* SortingType.swift */,
 				FA40E8322A8F4DAF00195810 /* ReportType.swift */,
+				FA9825FC2A98AAA50013018D /* ChallengeStatusType.swift */,
 			);
 			path = Type;
 			sourceTree = "<group>";
@@ -733,6 +738,7 @@
 			isa = PBXGroup;
 			children = (
 				FA42807C2A737C3600828F93 /* ChallengeDetailViewController.swift */,
+				FA9825FE2A98AD690013018D /* ChallengeParticiapiteViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1259,6 +1265,7 @@
 				FA2A06582A69014100AC649F /* ChallengeHomeView.swift in Sources */,
 				FA3C432A2A62F1FB009E820B /* OnboardingResponse.swift in Sources */,
 				FA6C21672A5A4DD3008A9ADD /* CiderTextFieldView.swift in Sources */,
+				FA9825FF2A98AD690013018D /* ChallengeParticiapiteViewController.swift in Sources */,
 				FA9825E22A9798EA0013018D /* ChallengeOpenRepository.swift in Sources */,
 				FA4280922A73FF3500828F93 /* MissionCell.swift in Sources */,
 				FA9825F52A98746D0013018D /* ChallengeDetailFeedResponse.swift in Sources */,
@@ -1355,6 +1362,7 @@
 				FA4280632A70E68100828F93 /* ReviewType.swift in Sources */,
 				FA59116F2A7BEF360022611B /* MissionPhotoCell.swift in Sources */,
 				FA5B8BE12A4DCAE000CEB0F6 /* UITextField+Extension.swift in Sources */,
+				FA9825FD2A98AAA50013018D /* ChallengeStatusType.swift in Sources */,
 				FABF6CEB2A95F21400B6A646 /* MyCertifyRepository.swift in Sources */,
 				FA3DA35C2A8F5E5100AF147B /* SettingViewController.swift in Sources */,
 				FA313A052A84F9F0006DBE69 /* ChallengeSelectionView.swift in Sources */,

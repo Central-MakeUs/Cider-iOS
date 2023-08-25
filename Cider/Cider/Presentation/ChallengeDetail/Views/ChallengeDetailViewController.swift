@@ -44,7 +44,7 @@ class ChallengeDetailViewController: UIViewController {
     }()
     
     private lazy var bottomButton: CiderBottomButton = {
-        let button = CiderBottomButton(style: .enabled, title: "챌린지 기다리기 D-5")
+        let button = CiderBottomButton(style: .enabled, title: "")
         button.setFont(CustomFont.PretendardBold(size: .xl).font)
         return button
     }()
@@ -143,6 +143,9 @@ private extension ChallengeDetailViewController {
                     self.reloadHeader()
                 case .setHeart(let isLike, let likeCount):
                     self.setHeart(isLike: isLike, likeCount: likeCount)
+                case .challengeStatus(let status):
+                    print("status \(status)")
+                    self.setBottomButton(status)
                 }
             }
             .store(in: &cancellables)
@@ -189,6 +192,25 @@ private extension ChallengeDetailViewController {
         }
         heartCountLabel.text = String(likeCount)
         heartCountLabel.textColor = isLike ? .custom.main : .custom.icon
+    }
+    
+    func setBottomButton(_ status: String) {
+        bottomButton.setTitle(status, for: .normal)
+        switch status {
+        case "오늘 참여 인증하기":
+            bottomButton.setStyle(.enabled)
+            
+        case "이 챌린지 참여하기":
+            bottomButton.setStyle(.enabled)
+            viewModel.didTapParticipateChallenge()
+            
+        default:
+            bottomButton.setStyle(.disabled)
+        }
+        if status.contains("챌린지 기다리기") {
+            bottomButton.setStyle(.enabled)
+            viewModel.didTapParticipateChallenge()
+        }
     }
     
     func setNotificationCenter() {

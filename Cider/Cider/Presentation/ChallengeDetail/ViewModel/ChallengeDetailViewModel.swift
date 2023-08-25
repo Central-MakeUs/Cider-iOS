@@ -13,6 +13,7 @@ final class ChallengeDetailViewModel: ViewModelType {
     enum ViewModelState {
         case applysnapshot
         case setHeart(isLike: Bool, likeCount: Int)
+        case challengeStatus(_ status: String)
     }
     
     private var usecase: ChallengeDetailUsecase
@@ -56,6 +57,10 @@ final class ChallengeDetailViewModel: ViewModelType {
         isLike ? deleteLikeFeed(certifyId: certifyId): postLikeFeed(certifyId: certifyId)
     }
     
+    func didTapParticipateChallenge() {
+        postParticipateChallenge()
+    }
+    
 }
 
 private extension ChallengeDetailViewModel {
@@ -68,6 +73,17 @@ private extension ChallengeDetailViewModel {
                 self.infoResponse = infoResponse
                 getChallengeFeed()
                 currentState.send(.setHeart(isLike: infoResponse.isLike, likeCount: infoResponse.challengeLikeNum))
+                currentState.send(.challengeStatus(infoResponse.myChallengeStatus))
+            }
+        }
+    }
+    
+    func postParticipateChallenge() {
+        Task {
+            do {
+                let response = try await usecase.postChallengeParticipate(challengeId: challengeId)
+                print(response)
+                getChallengeDetail()
             }
         }
     }
