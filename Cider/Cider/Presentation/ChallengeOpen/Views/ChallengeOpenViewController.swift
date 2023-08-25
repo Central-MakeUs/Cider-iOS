@@ -82,6 +82,8 @@ private extension ChallengeOpenViewController {
                 switch state {
                 case .changeNextButtonState(let isEnabled):
                     self?.bottomButton.setStyle(isEnabled ? .enabled : .disabled)
+                case .pushPrecautionViewController(let request, let successData, let failData):
+                    self?.pushPrecautionViewController(request: request, successData: successData, failData: failData)
                 }
             }
             .store(in: &cancellables)
@@ -178,9 +180,16 @@ private extension ChallengeOpenViewController {
         return layout
     }
     
-    func pushPrecautionViewController() {
+    func pushPrecautionViewController(request: ChallengeOpenRequest, successData: Data, failData: Data) {
         let viewController = PrecautionViewController(
-            viewModel: PrecautionViewModel()
+            viewModel: PrecautionViewModel(
+                usecase: DefaultChallengeOpenUsecase(
+                    repository: DefaultChallengeOpenRepository()
+                ),
+                challengeOpenRequest: request,
+                failData: failData,
+                successData: successData
+            )
         )
         self.navigationController?.pushViewController(viewController, animated: true)
     }
@@ -200,7 +209,7 @@ private extension ChallengeOpenViewController {
     }
     
     @objc func didTapNextButton(_ sender: Any?) {
-        pushPrecautionViewController()
+        viewModel.didTapNextButton()
     }
     
 }

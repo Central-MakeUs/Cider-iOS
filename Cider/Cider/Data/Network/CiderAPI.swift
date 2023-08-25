@@ -34,7 +34,7 @@ enum CiderAPI {
     case postCertify(parameters: [String: Any])
     case postCertifyImage(image: UIImage, certifyId: Int)
     case postChallenge(parameters: [String: Any])
-    case postChallengeImage(challengeId: Int, succesImage: UIImage, failImage: UIImage)
+    case postChallengeImage(challengeId: Int, successData: Data, failData: Data)
 }
 
 extension CiderAPI: TargetType, AccessTokenAuthorizable {
@@ -157,9 +157,7 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             let multipartData: MultipartFormData = [imageData]
             return .uploadMultipartFormData(multipartData)
             
-        case .postChallengeImage(_, let succesImage, let failImage):
-            let successData = succesImage.jpegData(compressionQuality: 0.1)!
-            let failData = failImage.jpegData(compressionQuality: 0.1)!
+        case .postChallengeImage(_, let successData, let failData):
             let successImageData = MultipartFormBodyPart(provider: .data(successData), name: "successExampleImages", fileName: "image.jpeg", mimeType: "image/jpeg")
             let failImageData = MultipartFormBodyPart(provider: .data(failData), name: "failureExampleImages", fileName: "image.jpeg", mimeType: "image/jpeg")
             let multipartData: MultipartFormData = [successImageData, failImageData]

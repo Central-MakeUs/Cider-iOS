@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import UIKit
 
 final class PrecautionViewModel: ViewModelType {
     
@@ -18,8 +19,24 @@ final class PrecautionViewModel: ViewModelType {
     var currentState: CurrentValueSubject<ViewModelState?, Never> = .init(nil)
     private var cancellables: Set<AnyCancellable> = .init()
     
+    private let usecase: ChallengeOpenUsecase
+    private let challengeOpenRequest: ChallengeOpenRequest
+    private let failData: Data
+    private let successData: Data
     
     private var isSelectedList = [false, false, false, false]
+    
+    init(
+        usecase: ChallengeOpenUsecase,
+        challengeOpenRequest: ChallengeOpenRequest,
+        failData: Data,
+        successData: Data
+    ) {
+        self.usecase = usecase
+        self.challengeOpenRequest = challengeOpenRequest
+        self.failData = failData
+        self.successData = successData
+    }
     
     func didTapCheckbox(index: Int) {
         isSelectedList[index].toggle()

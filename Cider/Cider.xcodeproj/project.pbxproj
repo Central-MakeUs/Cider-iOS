@@ -200,6 +200,8 @@
 		FA8CA6262A49B541005A6709 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA8CA6232A49B541005A6709 /* Pretendard-Bold.otf */; };
 		FA8CA6272A49B541005A6709 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA8CA6242A49B541005A6709 /* Pretendard-Regular.otf */; };
 		FA8CA6282A49B541005A6709 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = FA8CA6252A49B541005A6709 /* Pretendard-Medium.otf */; };
+		FA9825E22A9798EA0013018D /* ChallengeOpenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825E12A9798EA0013018D /* ChallengeOpenRepository.swift */; };
+		FA9825E42A979A3E0013018D /* ChallengeOpenUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825E32A979A3E0013018D /* ChallengeOpenUsecase.swift */; };
 		FAB9A73B2A4C64CF00757A80 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */; };
 		FAB9A73F2A4C8DAB00757A80 /* ProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */; };
 		FABF17532A70D8910073C13B /* SeparatorFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABF17522A70D8910073C13B /* SeparatorFooterView.swift */; };
@@ -402,6 +404,8 @@
 		FA8CA6232A49B541005A6709 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		FA8CA6242A49B541005A6709 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		FA8CA6252A49B541005A6709 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		FA9825E12A9798EA0013018D /* ChallengeOpenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOpenRepository.swift; sourceTree = "<group>"; };
+		FA9825E32A979A3E0013018D /* ChallengeOpenUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOpenUsecase.swift; sourceTree = "<group>"; };
 		FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessView.swift; sourceTree = "<group>"; };
 		FABF17522A70D8910073C13B /* SeparatorFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorFooterView.swift; sourceTree = "<group>"; };
@@ -826,6 +830,7 @@
 				FA3D49372A8E6CC700024A1C /* ProfileModifyUsecase.swift */,
 				FA2282BA2A95F5A800DF4ADB /* MyCertifyUsecase.swift */,
 				FA57EC442A973B4700ED4A48 /* CertifyUsecase.swift */,
+				FA9825E32A979A3E0013018D /* ChallengeOpenUsecase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -965,6 +970,7 @@
 				FA3D49352A8E6C5C00024A1C /* ProfileModifyRepository.swift */,
 				FABF6CEA2A95F21400B6A646 /* MyCertifyRepository.swift */,
 				FA57EC422A973AC900ED4A48 /* CertifyRepository.swift */,
+				FA9825E12A9798EA0013018D /* ChallengeOpenRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1223,6 +1229,7 @@
 				FA2A06582A69014100AC649F /* ChallengeHomeView.swift in Sources */,
 				FA3C432A2A62F1FB009E820B /* OnboardingResponse.swift in Sources */,
 				FA6C21672A5A4DD3008A9ADD /* CiderTextFieldView.swift in Sources */,
+				FA9825E22A9798EA0013018D /* ChallengeOpenRepository.swift in Sources */,
 				FA4280922A73FF3500828F93 /* MissionCell.swift in Sources */,
 				FA6100322A59AD8D002175CE /* GradientView.swift in Sources */,
 				FA3C43232A62EA18009E820B /* OnboardingRequest.swift in Sources */,
@@ -1291,6 +1298,7 @@
 				FA56F9842A542FA70099EC6F /* GenderAndBirthdayViewController.swift in Sources */,
 				FA0322812A4DC2B0000993DF /* NicknameViewController.swift in Sources */,
 				FA5911722A7BF7E60022611B /* ChallengeDetailViewModel.swift in Sources */,
+				FA9825E42A979A3E0013018D /* ChallengeOpenUsecase.swift in Sources */,
 				FA348ED72A61190900EA3D04 /* RandomNicknameResponse.swift in Sources */,
 				FA57AF4B2A5D0D72008A5991 /* CiderAPI.swift in Sources */,
 				FA313A172A8556CE006DBE69 /* LevelView.swift in Sources */,

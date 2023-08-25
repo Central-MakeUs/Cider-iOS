@@ -137,20 +137,20 @@ private extension PrecautionViewController {
 }
 
 
-#if DEBUG
-import SwiftUI
-
-@available(iOS 13.0, *)
-struct PrecautionViewController_Preview: PreviewProvider {
-    static var devices = ["iPhone 12", "iPhone SE", "iPhone 11 Pro Max"]
-
-    static var previews: some View {
-        ForEach(devices, id: \.self) { deviceName in
-            PrecautionViewController(viewModel: PrecautionViewModel())
-            .toPreview()
-            .previewDevice(PreviewDevice(rawValue: deviceName))
-            .previewDisplayName(deviceName)
-        }
-    }
-}
-#endif
+//#if DEBUG
+//import SwiftUI
+//
+//@available(iOS 13.0, *)
+//struct PrecautionViewController_Preview: PreviewProvider {
+//    static var devices = ["iPhone 12", "iPhone SE", "iPhone 11 Pro Max"]
+//
+//    static var previews: some View {
+//        ForEach(devices, id: \.self) { deviceName in
+//            PrecautionViewController(viewModel: PrecautionViewModel())
+//            .toPreview()
+//            .previewDevice(PreviewDevice(rawValue: deviceName))
+//            .previewDisplayName(deviceName)
+//        }
+//    }
+//}
+//#endif

@@ -13,6 +13,7 @@ final class ChallengeOpenViewModel: ViewModelType {
     
     enum ViewModelState {
         case changeNextButtonState(_ isEnabled: Bool)
+        case pushPrecautionViewController(request: ChallengeOpenRequest, successData: Data, failData: Data)
     }
     
     var state: AnyPublisher<ViewModelState, Never> { currentState.compactMap { $0 }.eraseToAnyPublisher() }
@@ -79,6 +80,21 @@ final class ChallengeOpenViewModel: ViewModelType {
         currentState.send(.changeNextButtonState(isAvailableNextButton()))
     }
     
+    func didTapNextButton() {
+        guard let request = getRequest(),
+              let successData = successImageData,
+              let failData = failImageData else {
+            return
+        }
+        currentState.send(
+            .pushPrecautionViewController(
+                request: request,
+                successData: successData,
+                failData: failData
+            )
+        )
+    }
+    
 }
 
 
@@ -93,7 +109,7 @@ private extension ChallengeOpenViewModel {
               let _ = failImageData else {
             return false
         }
-        
+        print(getRequest())
         guard challengeName.count >= textFieldMinLength,
               challengeInfo.count >= textViewMinLength,
               missionInfo.count >= textFieldMinLength else {
@@ -101,6 +117,27 @@ private extension ChallengeOpenViewModel {
         }
         
         return true
+    }
+    
+    func getRequest() -> ChallengeOpenRequest? {
+        guard let challengeName = challengeName,
+              let challengeInfo = challengeInfo,
+              let missionInfo = missionInfo,
+              let challengeType = challengeType else {
+            return nil
+        }
+        
+        let request = ChallengeOpenRequest(
+            challengeBranch: challengeType,
+            challengeName: challengeName,
+            challengeInfo: challengeInfo,
+            certifyMission: missionInfo,
+            challengeCapacity: challengeCapacity,
+            recruitPeriod: recruitPeriod,
+            challengePeriod: challengePeriod,
+            isPublic: false
+        )
+        return request
     }
     
 }
