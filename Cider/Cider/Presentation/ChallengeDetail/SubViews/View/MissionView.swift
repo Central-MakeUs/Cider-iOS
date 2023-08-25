@@ -64,8 +64,8 @@ final class MissionView: UIView {
 
 extension MissionView {
     
-    func setUp(image: UIImage?) {
-        photoImageView.image = image
+    func setUp(url: String) {
+        photoImageView.load(url: url)
     }
     
 }

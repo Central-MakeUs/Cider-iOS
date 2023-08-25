@@ -10,7 +10,7 @@ import UIKit
 class SortingHeaderView: UICollectionReusableView {
     
     static let identifier = "SortingHeaderView"
-    private let sortingView = SortingView()
+    let sortingView = SortingView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

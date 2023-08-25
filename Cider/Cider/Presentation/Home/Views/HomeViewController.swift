@@ -323,7 +323,7 @@ private extension HomeViewController {
         snapshot.appendSections([.feed])
         snapshot.appendItems(viewModel.feedItems)
         
-        dataSource?.apply(snapshot)
+        dataSource?.apply(snapshot, animatingDifferences: false)
     }
     
     func createLayout() -> UICollectionViewCompositionalLayout {
@@ -676,8 +676,11 @@ private extension HomeViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func pushChallengeDetailViewController(_ type: ChallengeType) {
-        let viewController = ChallengeDetailViewController(challengeType: type)
+    func pushChallengeDetailViewController(_ type: ChallengeType, challengeId: Int) {
+        let viewController = ChallengeDetailViewController(
+            challengeType: type,
+            viewModel: ChallengeDetailViewModel(usecase: DefaultChallengeDetailUsecase(repository: DefaultChallengeDetailRepository()), challengeId: challengeId)
+        )
         viewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(viewController, animated: true)
     }
@@ -713,18 +716,22 @@ extension HomeViewController: UICollectionViewDelegate {
         case .popluarChallenge:
             if viewModel.popularChallanges.count > 0 {
                 let challengeType = viewModel.popularChallanges[indexPath.row].interestField.convertChallengeType()
-                pushChallengeDetailViewController(challengeType)
+                let challengeId =  viewModel.popularChallanges[indexPath.row].challengeId
+                pushChallengeDetailViewController(challengeType, challengeId: challengeId)
             }
            
         case .publicChallenge:
             if viewModel.publicChallanges.count > 0 {
                 let challengeType = viewModel.publicChallanges[indexPath.row].interestField.convertChallengeType()
-                pushChallengeDetailViewController(challengeType)
+                let challengeId =  viewModel.publicChallanges[indexPath.row].challengeId
+                pushChallengeDetailViewController(challengeType, challengeId: challengeId)
             }
             
         case .category:
             if viewModel.categoryChallenges.count > 0 {
-                pushChallengeDetailViewController(viewModel.categoryChallenges[indexPath.row].interestField.convertChallengeType())
+                let challengeType = viewModel.categoryChallenges[indexPath.row].interestField.convertChallengeType()
+                let challengeId =  viewModel.categoryChallenges[indexPath.row].challengeId
+                pushChallengeDetailViewController(challengeType, challengeId: challengeId)
                 
             }
            

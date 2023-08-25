@@ -37,6 +37,9 @@ enum CiderAPI {
     case postChallengeImage(challengeId: Int, successData: Data, failData: Data)
     case getMyChallenge
     case deleteChallenge(challengeId: Int)
+    case getChallengeDetailInfo(challengeId: Int)
+    case getChallengeDetailFeed(challengeId: Int, filter: String)
+    case postChallengeParticipiate(parameters: [String: Any])
 }
 
 extension CiderAPI: TargetType, AccessTokenAuthorizable {
@@ -99,6 +102,12 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             return "/api/challenge/my"
         case .deleteChallenge(let challengeId):
             return "/api/challenge/\(challengeId)"
+        case .getChallengeDetailInfo(let challengeId):
+            return "/api/challenge/detail/info/\(challengeId)"
+        case .getChallengeDetailFeed(let challengeId, let filter):
+            return "/api/challenge/detail/feed/\(challengeId)/\(filter)"
+        case .postChallengeParticipiate:
+            return "/api/challenge/participate"
         }
     }
     
@@ -111,7 +120,8 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
              .postCertify,
              .postCertifyImage,
              .postChallenge,
-             .postChallengeImage:
+             .postChallengeImage,
+             .postChallengeParticipiate:
             return .post
             
         case .getRandomNickname,
@@ -126,7 +136,9 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
              .getMyLikeChallenge,
              .getMyCerify,
              .getMyParticipateChallenge,
-             .getMyChallenge:
+             .getMyChallenge,
+             .getChallengeDetailInfo,
+             .getChallengeDetailFeed:
             return .get
             
         case .patchOnboarding,
@@ -150,7 +162,8 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
              .postLikeFeed(let parameters),
              .patchProfile(let parameters),
              .postCertify(let parameters),
-             .postChallenge(let parameters):
+             .postChallenge(let parameters),
+             .postChallengeParticipiate(let parameters):
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
     
         case .patchProfileImage(let image):

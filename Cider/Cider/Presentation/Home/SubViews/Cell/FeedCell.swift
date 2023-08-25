@@ -151,6 +151,11 @@ final class FeedCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        feedImageView.image = nil
+        profileImageView.image = nil
+    }
+    
     private func configure() {
         addSubviews(profileImageView, nicknameLabel, levelLabel, dateLabel, meatballButton,
                     moreButton, mainTitleLabel, subTitleLabel, feedImageView, challengeTypeStackView, roundView, heartButton, heartLabel, bottomView)

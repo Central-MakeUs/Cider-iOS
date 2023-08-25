@@ -168,13 +168,13 @@ extension ChallengeDetailMenuCell {
     
     func setUp(
         challengeType: ChallengeType,
-        profileImage: UIImage?,
+        profileUrl: String,
         mainTitle: String,
         participant: String,
         status: String
     ) {
         self.backgroundColor = challengeType.color
-        profileImageView.image = profileImage
+        profileImageView.load(url: profileUrl)
         challengeIconImageView.image = UIImage(named: challengeType.bannerImageName)
         mainTitleLabel.text = mainTitle
         participantsLabel.text = participant
@@ -202,7 +202,7 @@ struct ChallengeDetailMenuCell_Preview: PreviewProvider {
             let cell = ChallengeDetailMenuCell()
             cell.setUp(
                 challengeType: .moneySaving,
-                profileImage: UIImage(named: "sample"),
+                profileUrl: "aa",
                 mainTitle: "만보 걷기~~~~~~",
                 participant: "29 / 30명",
                 status: "진행중 D-6"
