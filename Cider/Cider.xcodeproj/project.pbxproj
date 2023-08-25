@@ -222,6 +222,7 @@
 		FA98260B2A98EEFA0013018D /* RedrawUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA98260A2A98EEFA0013018D /* RedrawUsecase.swift */; };
 		FA98260D2A98EFDB0013018D /* RedrawViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA98260C2A98EFDB0013018D /* RedrawViewModel.swift */; };
 		FA9826102A98F9BE0013018D /* LoginBlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA98260F2A98F9BE0013018D /* LoginBlockViewController.swift */; };
+		FA9826122A98FE010013018D /* CommonText.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9826112A98FE010013018D /* CommonText.swift */; };
 		FAB9A73B2A4C64CF00757A80 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */; };
 		FAB9A73F2A4C8DAB00757A80 /* ProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */; };
 		FABF17532A70D8910073C13B /* SeparatorFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABF17522A70D8910073C13B /* SeparatorFooterView.swift */; };
@@ -446,6 +447,7 @@
 		FA98260A2A98EEFA0013018D /* RedrawUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedrawUsecase.swift; sourceTree = "<group>"; };
 		FA98260C2A98EFDB0013018D /* RedrawViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedrawViewModel.swift; sourceTree = "<group>"; };
 		FA98260F2A98F9BE0013018D /* LoginBlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBlockViewController.swift; sourceTree = "<group>"; };
+		FA9826112A98FE010013018D /* CommonText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonText.swift; sourceTree = "<group>"; };
 		FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessView.swift; sourceTree = "<group>"; };
 		FABF17522A70D8910073C13B /* SeparatorFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorFooterView.swift; sourceTree = "<group>"; };
@@ -604,6 +606,7 @@
 				FA57003A2A82849200CFECBC /* SortingType.swift */,
 				FA40E8322A8F4DAF00195810 /* ReportType.swift */,
 				FA9825FC2A98AAA50013018D /* ChallengeStatusType.swift */,
+				FA9826112A98FE010013018D /* CommonText.swift */,
 			);
 			path = Type;
 			sourceTree = "<group>";
@@ -1377,6 +1380,7 @@
 				FA57AF4B2A5D0D72008A5991 /* CiderAPI.swift in Sources */,
 				FA98260B2A98EEFA0013018D /* RedrawUsecase.swift in Sources */,
 				FA313A172A8556CE006DBE69 /* LevelView.swift in Sources */,
+				FA9826122A98FE010013018D /* CommonText.swift in Sources */,
 				FA57AF632A5D22A0008A5991 /* LoginError.swift in Sources */,
 				FA9825EE2A9849110013018D /* CiderError.swift in Sources */,
 				FA40E8292A8F384F00195810 /* ReportViewController.swift in Sources */,

@@ -154,11 +154,11 @@ private extension SettingViewController {
     }
     
     @objc func didTapAgreement() {
-        presentWebViewController("https://github.com/dudtjs1021ej")
+        presentWebViewController("https://spiced-pentagon-516.notion.site/f54a1839ae5f43b6a839eda20124675d")
     }
     
     @objc func didTapPrivacy() {
-       presentWebViewController("https://github.com/dudtjs1021ej")
+       presentWebViewController("https://spiced-pentagon-516.notion.site/ccea6cb2cb6845d597cf76118fb6615c")
     }
     
     @objc func didTapRedraw() {

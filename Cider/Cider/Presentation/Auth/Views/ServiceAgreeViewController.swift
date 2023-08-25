@@ -39,31 +39,8 @@ final class ServiceAgreeViewController: UIViewController {
     // TODO: 약관 내용 나오면 수정
     private var cellData = [
         ServiceAgreeCellData(mainTitle: "만 14세 이상입니다(필수)"),
-        ServiceAgreeCellData(mainTitle: "서비스 이용 약관(필수)", subTitle: "자세히 보기", detailText: """
-        개인정보 처리
-        개인정보 처리
-        개인정보 처리
-        개인정보
-                서비스 이용 약관(필수)
-        개인정보 처리
-        개인정보 처리
-        개인정보 처리
-        개인정보 처리
-                서비스 이용 약관(필수)
-        개인정보 처리
-        개인정보 처리서비스 이용 약관(필수)
-        개인정보 처리
-        개인정보 처리
-                서비스 이용 약관(필수)서비스 이용 약관(필수)서비스 이용 약관(필수)서비스 이용 약관(필수)
-        개인정보 처리
-        개인정보 처리
-        개인정보 처리 개인정보 처리 방침(필수)개인정보 처리 방침(필수)개인정보 처리 방침(필수)개인정보 처리 방침(필수)개인정보 처리 방침(필수)개인정보 처리 방침(필수)개인정보 처리 방침(필수)개인정보 처리 방침(필수)
-        """),
-        ServiceAgreeCellData(mainTitle: "개인정보 처리 방침(필수)",  subTitle: "자세히 보기", detailText: """
-        개인정보 처리
-        개인정보 처리
-        개인정보 처리
-        """),
+        ServiceAgreeCellData(mainTitle: "서비스 이용 약관(필수)", subTitle: "자세히 보기", detailText: CommonText.agreement),
+        ServiceAgreeCellData(mainTitle: "개인정보 처리 방침(필수)",  subTitle: "자세히 보기", detailText: CommonText.privacy),
         ServiceAgreeCellData(mainTitle: "약관 전체 동의", subTitle: "전체 약관에 동의합니다")
     ]
     

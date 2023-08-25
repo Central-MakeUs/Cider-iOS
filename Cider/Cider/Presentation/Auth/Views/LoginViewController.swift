@@ -18,7 +18,7 @@ final class LoginViewController: UIViewController {
     
     private lazy var logoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "heart")
+        imageView.image = UIImage(named: "logo")
         imageView.heightAnchor.constraint(equalToConstant: 64).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 64).isActive = true
         return imageView
@@ -27,7 +27,7 @@ final class LoginViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = CustomFont.PretendardBold(size: .xl5).font
-        label.text = "금융과 소비를\n시원하게 연결하다\n사이다"
+        label.text = "시작하는\n금융챌린지\n지금"
         label.textColor = .custom.text
         label.setTextWithLineHeight(lineHeight: 39.2)
         label.numberOfLines = 0
