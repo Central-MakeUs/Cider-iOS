@@ -32,15 +32,18 @@ final class ChallengeOpenCell: UICollectionViewCell {
     )
     
     let memberView = ChallengeOpenSelectionView(
-        type: .member
+        type: .member,
+        notificationName: .didChangedMember
     )
     
     let recruitmentView = ChallengeOpenSelectionView(
-        type: .recruitment
+        type: .recruitment,
+        notificationName: .didChangedRecruit
     )
     
     let participationView = ChallengeOpenSelectionView(
-        type: .participation
+        type: .participation,
+        notificationName: .didChangedChallengeDate
     )
     
     private let missionLabel = StarTitleLabel(

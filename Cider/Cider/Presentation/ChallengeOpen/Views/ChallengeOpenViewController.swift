@@ -130,12 +130,21 @@ private extension ChallengeOpenViewController {
                 }
                 .store(in: &self.cancellables)
             
+            if let challengeName = self.viewModel.challengeName {
+                cell.challengeTitleTextFieldView.ciderTextField.text = challengeName
+            }
+            
             cell.missionTextFieldView.textPublisher()
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] missionInfo in
                     self?.viewModel.changeMissionInfo(missionInfo)
                 }
                 .store(in: &self.cancellables)
+            
+            if let missionInfo = self.viewModel.missionInfo {
+                cell.missionTextFieldView.ciderTextField.text = missionInfo
+            }
+            
             
             cell.challengeIntroductionTextView.textPublisher()
                 .receive(on: DispatchQueue.main)
@@ -144,12 +153,33 @@ private extension ChallengeOpenViewController {
                 }
                 .store(in: &self.cancellables)
             
+            if self.viewModel.challengeInfo != self.viewModel.infoPlaceHolder {
+                cell.challengeIntroductionTextView.textView.text = self.viewModel.challengeInfo
+            }
+            
             cell.memberView.unitPublisher()
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] recruitPeriod in
+                    self?.viewModel.changeChallengeCapacity(recruitPeriod)
+                }
+                .store(in: &self.cancellables)
+            cell.memberView.setTextFieltText("\(String(self.viewModel.challengeCapacity))명")
+            
+            cell.recruitmentView.unitPublisher()
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] recruitPeriod in
                     self?.viewModel.changeRecruitPeriod(recruitPeriod)
                 }
                 .store(in: &self.cancellables)
+            cell.recruitmentView.setTextFieltText("\(String(self.viewModel.recruitPeriod))일")
+            
+            cell.participationView.unitPublisher()
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] recruitPeriod in
+                    self?.viewModel.changeChallengePeriod(recruitPeriod)
+                }
+                .store(in: &self.cancellables)
+            cell.participationView.setTextFieltText("\(String(self.viewModel.challengePeriod))주")
             
             return cell
         })
