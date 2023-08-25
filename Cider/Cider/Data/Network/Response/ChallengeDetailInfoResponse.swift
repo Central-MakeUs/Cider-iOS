@@ -15,8 +15,8 @@ struct ChallengeDetailInfoResponse: Codable {
     let myChallengeStatus, challengeBranch, challengeName: String
     let challengeCapacity, participateNum: Int
     let challengeStatus, challengeIntro: String
-    let challengeLikeNum: Int
-    let isLike: Bool
+    var challengeLikeNum: Int
+    var isLike: Bool
     let challengeConditionResponseDto: ChallengeConditionResponseDto
     let challengeInfoResponseDto: ChallengeInfoResponseDto
     let challengeRuleResponseDto: ChallengeRuleResponseDto

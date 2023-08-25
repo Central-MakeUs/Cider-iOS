@@ -13,7 +13,7 @@ struct ChallengeDetailFeedResponse: Codable {
     let challengeBranch, challengeName: String
     let challengeCapacity, participateNum: Int
     let certifyImageUrlList: [String]
-    let simpleCertifyResponseDtoList: [SimpleCertifyResponseDtoList]
+    var simpleCertifyResponseDtoList: [SimpleCertifyResponseDtoList]
 }
 
 // MARK: - SimpleCertifyResponseDtoList
@@ -22,6 +22,6 @@ struct SimpleCertifyResponseDtoList: Codable {
     let certifyId: Int
     let createdDate, certifyName, certifyContent: String
     let certifyImageUrl: String
-    let certifyLike: Int
-    let isLike: Bool
+    var certifyLike: Int
+    var isLike: Bool
 }

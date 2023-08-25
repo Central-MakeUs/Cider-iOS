@@ -12,6 +12,7 @@ final class ChallengeDetailViewModel: ViewModelType {
     
     enum ViewModelState {
         case applysnapshot
+        case setHeart(isLike: Bool, likeCount: Int)
     }
     
     private var usecase: ChallengeDetailUsecase
@@ -44,6 +45,17 @@ final class ChallengeDetailViewModel: ViewModelType {
         getChallengeFeed()
     }
     
+    func likeChallenge() {
+        guard let response = infoResponse else {
+            return
+        }
+        response.isLike ? deleteLikeChallenge(challengeId: challengeId) : postLikeChallenge(challengeId: challengeId)
+    }
+    
+    func likeFeed(isLike: Bool, certifyId: Int) {
+        isLike ? deleteLikeFeed(certifyId: certifyId): postLikeFeed(certifyId: certifyId)
+    }
+    
 }
 
 private extension ChallengeDetailViewModel {
@@ -55,6 +67,7 @@ private extension ChallengeDetailViewModel {
                 print(infoResponse)
                 self.infoResponse = infoResponse
                 getChallengeFeed()
+                currentState.send(.setHeart(isLike: infoResponse.isLike, likeCount: infoResponse.challengeLikeNum))
             }
         }
     }
@@ -71,6 +84,34 @@ private extension ChallengeDetailViewModel {
             currentState.send(.applysnapshot)
         }
         
+    }
+    
+    func deleteLikeChallenge(challengeId: Int) {
+        Task {
+            let response = try await usecase.deleteLikeChallenge(chllangeId: challengeId)
+            print(response)
+        }
+    }
+    
+    func postLikeChallenge(challengeId: Int) {
+        Task {
+            let response = try await usecase.postLikeChallenge(chllangeId: challengeId)
+            print(response)
+        }
+    }
+    
+    func deleteLikeFeed(certifyId: Int) {
+        Task {
+            let response = try await usecase.deleteLikeFeed(certifyId: certifyId)
+            print(response)
+        }
+    }
+    
+    func postLikeFeed(certifyId: Int) {
+        Task {
+            let response = try await usecase.postLikeFeed(certifyId: certifyId)
+            print(response)
+        }
     }
     
 }

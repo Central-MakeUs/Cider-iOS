@@ -51,7 +51,7 @@ class ChallengeDetailViewController: UIViewController {
     
     private lazy var heartButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "filled_like_24")?.withTintColor(.custom.main ?? .white), for: .normal)
+        button.addTarget(self, action: #selector(didTapChallengeHeart), for: .touchUpInside)
         return button
     }()
     
@@ -63,7 +63,7 @@ class ChallengeDetailViewController: UIViewController {
         return label
     }()
     
-    // TODO: 그림자 제거용 뷰
+    // TODO: 그림자 제거용 뷰 수정하기
     private lazy var bottomShadowView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -141,6 +141,8 @@ private extension ChallengeDetailViewController {
                 case .applysnapshot:
                     self.applySnapshot()
                     self.reloadHeader()
+                case .setHeart(let isLike, let likeCount):
+                    self.setHeart(isLike: isLike, likeCount: likeCount)
                 }
             }
             .store(in: &cancellables)
@@ -177,6 +179,16 @@ private extension ChallengeDetailViewController {
     func setMenu(_ type: ChallengeDetailMenuType) {
         setDataSource()
         applySnapshot()
+    }
+    
+    func setHeart(isLike: Bool, likeCount: Int) {
+        if isLike {
+            heartButton.setImage(UIImage(named: "filled_like_24")?.withTintColor(.custom.main ?? .white), for: .normal)
+        } else {
+            heartButton.setImage(UIImage(named: "line_like_24"), for: .normal)
+        }
+        heartCountLabel.text = String(likeCount)
+        heartCountLabel.textColor = isLike ? .custom.main : .custom.icon
     }
     
     func setNotificationCenter() {
@@ -550,6 +562,8 @@ private extension ChallengeDetailViewController {
                         isLike: feed.isLike
                     )
                 }
+                cell.addHeartButtonAction(self, action: #selector(self.didTapFeedHeart))
+                cell.meatballButton.addTarget(self, action: #selector(self.didTapFeedMeatball), for: .touchUpInside)
                 return cell
                 
             case .none:
@@ -1076,8 +1090,69 @@ extension ChallengeDetailViewController: UICollectionViewDelegate {
 
 private extension ChallengeDetailViewController {
     
+    func pushReportViewContoller() {
+        let viewController = ReportViewController()
+        if let sheet = viewController.sheetPresentationController {
+            let identifier = UISheetPresentationController.Detent.Identifier("customMedium")
+            let customDetent = UISheetPresentationController.Detent.custom(identifier: identifier) { context in
+                return 248-34
+            }
+            sheet.detents = [customDetent]
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            sheet.prefersGrabberVisible = true
+        }
+        self.present(viewController, animated: true)
+    }
+    
     @objc func didTapSorting(sender: Any?) {
         viewModel.didTapSorting()
+    }
+    
+    @objc func didTapFeedHeart(_ sender: UIButton) {
+        guard let cell = sender.superview as? UICollectionViewCell else {
+            return
+        }
+        guard let indexPath = collectionView.indexPath(for: cell) else {
+            return
+        }
+        if let feedResponse = viewModel.feedResponse {
+            viewModel.likeFeed(isLike: feedResponse.simpleCertifyResponseDtoList[indexPath.row].isLike, certifyId: feedResponse.simpleCertifyResponseDtoList[indexPath.row].certifyId)
+            if feedResponse.simpleCertifyResponseDtoList[indexPath.row].isLike {
+                viewModel.feedResponse?.simpleCertifyResponseDtoList[indexPath.row].certifyLike -= 1
+            } else {
+                viewModel.feedResponse?.simpleCertifyResponseDtoList[indexPath.row].certifyLike += 1
+            }
+            viewModel.feedResponse?.simpleCertifyResponseDtoList[indexPath.row].isLike.toggle()
+        }
+        
+        reloadHeader()
+    }
+    
+    @objc func didTapFeedMeatball(_ sender: UIButton) {
+        guard let cell = sender.superview as? UICollectionViewCell else {
+            return
+        }
+        guard let indexPath = collectionView.indexPath(for: cell) else {
+            return
+        }
+        let feed = viewModel.feedResponse?.simpleCertifyResponseDtoList[indexPath.row]
+        pushReportViewContoller()
+    }
+    
+    @objc func didTapChallengeHeart(_ sender: Any?) {
+        guard let response = viewModel.infoResponse else {
+            return
+        }
+        viewModel.likeChallenge()
+        if response.isLike {
+            viewModel.infoResponse?.challengeLikeNum -= 1
+            setHeart(isLike: false, likeCount: response.challengeLikeNum-1)
+        } else {
+            viewModel.infoResponse?.challengeLikeNum += 1
+            setHeart(isLike: true, likeCount: response.challengeLikeNum+1)
+        }
+        viewModel.infoResponse?.isLike.toggle()
+        
     }
     
 }
