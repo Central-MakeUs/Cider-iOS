@@ -69,7 +69,7 @@ final class MissionPhotoView: UIView {
     
     private lazy var cameraLabel: UILabel = {
         let label = UILabel()
-        label.text = "0/2"
+        label.text = "0/1"
         label.textColor = .custom.gray5
         label.font = CustomFont.PretendardRegular(size: .base).font
         label.textAlignment = .center
