@@ -96,6 +96,10 @@ private extension PrecautionViewController {
                 switch state {
                 case .changeNextButtonState(let isEnabled):
                     self?.bottomButton.setStyle(isEnabled ? .enabled : .disabled)
+                case .pushNextViewController:
+                    self?.pushChallengeOpenCompleteViewController()
+                case .showMessage(let message):
+                    self?.showAlert(message: message)
                 }
             }
             .store(in: &cancellables)
@@ -141,7 +145,7 @@ private extension PrecautionViewController {
     }
     
     @objc func didTapNextButton(_ sender: Any?) {
-        pushChallengeOpenCompleteViewController()
+        viewModel.didTapNextButton()
     }
     
 }

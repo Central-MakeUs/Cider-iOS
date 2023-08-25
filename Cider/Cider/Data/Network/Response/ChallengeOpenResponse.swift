@@ -8,5 +8,5 @@
 import Foundation
 
 struct ChallengeOpenResponse: Codable {
-    let challengeId: Int
+    let challengeId: Int?
 }

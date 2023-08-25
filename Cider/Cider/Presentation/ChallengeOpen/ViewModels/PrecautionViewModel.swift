@@ -13,6 +13,8 @@ final class PrecautionViewModel: ViewModelType {
     
     enum ViewModelState {
         case changeNextButtonState(_ isEnabled: Bool)
+        case showMessage(_ message: String)
+        case pushNextViewController
     }
     
     var state: AnyPublisher<ViewModelState, Never> { currentState.compactMap { $0 }.eraseToAnyPublisher() }
@@ -43,9 +45,33 @@ final class PrecautionViewModel: ViewModelType {
         currentState.send(.changeNextButtonState(isAvailableNextButton()))
     }
     
+    func didTapNextButton() {
+        postChallenge()
+    }
+    
 }
 
 private extension PrecautionViewModel {
+    
+    func postChallenge() {
+        Task {
+            let challengeResponse = try await usecase.postChallenge(parameters: challengeOpenRequest)
+            guard let challengeId = challengeResponse.challengeId else {
+                currentState.send(.showMessage("일시적인 오류가 발생하였습니다."))
+                return
+            }
+            let imageResponse = try await usecase.postChallengeImage(
+                challengeId: challengeId,
+                successData: successData,
+                failData: failData
+            )
+            guard imageResponse.status == nil else {
+                currentState.send(.showMessage("일시적인 오류가 발생하였습니다."))
+                return
+            }
+            currentState.send(.pushNextViewController)
+        }
+    }
     
     func isAvailableNextButton() -> Bool {
         return isSelectedList.filter {$0==true}.count == 4
