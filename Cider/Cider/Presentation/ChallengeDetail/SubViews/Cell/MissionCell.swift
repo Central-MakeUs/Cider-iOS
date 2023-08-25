@@ -59,11 +59,11 @@ final class MissionCell: UICollectionViewCell {
 
 extension MissionCell {
     
-    func setUp(mission: String, successImage: UIImage?, failImage: UIImage?) {
+    func setUp(mission: String, successUrl: String, failUrl: String) {
         missionInfoLabel.text = mission
         missionInfoLabel.setTextWithLineHeight(lineHeight: 18.2)
-        successView.setUp(image: successImage)
-        failView.setUp(image: failImage)
+        successView.setUp(url: successUrl)
+        failView.setUp(url: failUrl)
     }
     
 }
@@ -79,8 +79,8 @@ struct MissionCell_Preview: PreviewProvider {
             let cell = MissionCell()
             cell.setUp(
                mission: "하루 한번 아침에 일어나서 물이 담긴 컵사진 인증\n하루 한번 아침에 일어나서 물이 담긴 컵사진 인증",
-               successImage: UIImage(named: "sample"),
-               failImage: UIImage(named: "sample")
+               successUrl:"url",
+               failUrl:"rul"
             )
             return cell
         }

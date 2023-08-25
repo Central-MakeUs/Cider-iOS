@@ -210,6 +210,8 @@
 		FA9825F02A985BDF0013018D /* MyChallengeEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825EF2A985BDF0013018D /* MyChallengeEmptyCell.swift */; };
 		FA9825F22A9872E80013018D /* ChallengeDetailInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825F12A9872E80013018D /* ChallengeDetailInfoResponse.swift */; };
 		FA9825F52A98746D0013018D /* ChallengeDetailFeedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825F42A98746D0013018D /* ChallengeDetailFeedResponse.swift */; };
+		FA9825F72A987BAD0013018D /* ChallengeDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825F62A987BAD0013018D /* ChallengeDetailRepository.swift */; };
+		FA9825F92A987DAA0013018D /* ChallengeDetailUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9825F82A987DAA0013018D /* ChallengeDetailUsecase.swift */; };
 		FAB9A73B2A4C64CF00757A80 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */; };
 		FAB9A73F2A4C8DAB00757A80 /* ProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */; };
 		FABF17532A70D8910073C13B /* SeparatorFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABF17522A70D8910073C13B /* SeparatorFooterView.swift */; };
@@ -422,6 +424,8 @@
 		FA9825EF2A985BDF0013018D /* MyChallengeEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengeEmptyCell.swift; sourceTree = "<group>"; };
 		FA9825F12A9872E80013018D /* ChallengeDetailInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailInfoResponse.swift; sourceTree = "<group>"; };
 		FA9825F42A98746D0013018D /* ChallengeDetailFeedResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailFeedResponse.swift; sourceTree = "<group>"; };
+		FA9825F62A987BAD0013018D /* ChallengeDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailRepository.swift; sourceTree = "<group>"; };
+		FA9825F82A987DAA0013018D /* ChallengeDetailUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailUsecase.swift; sourceTree = "<group>"; };
 		FAB9A73A2A4C64CF00757A80 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FAB9A73E2A4C8DAA00757A80 /* ProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessView.swift; sourceTree = "<group>"; };
 		FABF17522A70D8910073C13B /* SeparatorFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorFooterView.swift; sourceTree = "<group>"; };
@@ -849,6 +853,7 @@
 				FA57EC442A973B4700ED4A48 /* CertifyUsecase.swift */,
 				FA9825E32A979A3E0013018D /* ChallengeOpenUsecase.swift */,
 				FA9825E92A9846E90013018D /* MyChallengeUsecase.swift */,
+				FA9825F82A987DAA0013018D /* ChallengeDetailUsecase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -993,6 +998,7 @@
 				FA57EC422A973AC900ED4A48 /* CertifyRepository.swift */,
 				FA9825E12A9798EA0013018D /* ChallengeOpenRepository.swift */,
 				FA9825E72A9845B40013018D /* MyChallengeRepository.swift */,
+				FA9825F62A987BAD0013018D /* ChallengeDetailRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1335,6 +1341,7 @@
 				FA4DDB8E2A4D3178002EDEAD /* ServiceAgreeViewController.swift in Sources */,
 				FA8CA60B2A46D322005A6709 /* LoginViewController.swift in Sources */,
 				FA4A24BB2A7004540078A86C /* OngoingCell.swift in Sources */,
+				FA9825F92A987DAA0013018D /* ChallengeDetailUsecase.swift in Sources */,
 				FA619D682A8BBD1D000BDDA5 /* MyHeartChallengeViewController.swift in Sources */,
 				FA57EC472A9749AB00ED4A48 /* ChallengeOpenRequest.swift in Sources */,
 				FA4DDB922A4D5810002EDEAD /* ServiceAgreeCellData.swift in Sources */,
@@ -1440,6 +1447,7 @@
 				FA3AE4072A57D2970078A4DF /* GenderAndBirthdayViewModel.swift in Sources */,
 				FA4280672A70F17800828F93 /* ReviewCell.swift in Sources */,
 				FA6AE8B02A6045AB00512EE1 /* ChallengeOpenSelectionType.swift in Sources */,
+				FA9825F72A987BAD0013018D /* ChallengeDetailRepository.swift in Sources */,
 				FAB9A73B2A4C64CF00757A80 /* UILabel+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
