@@ -129,6 +129,7 @@ private extension MyHeartChallengeViewController {
                         return UICollectionViewCell()
                     }
                     let challenge = self.viewModel.challenges[indexPath.row]
+                    let dDay = challenge.recruitLeft<=0 ? "D+\(challenge.recruitLeft * -1)" : "D-\(challenge.recruitLeft)"
                     cell.setUp(
                         type: challenge.interestField.convertChallengeType(),
                         isReward: challenge.isReward,
@@ -138,7 +139,7 @@ private extension MyHeartChallengeViewController {
                         status: challenge.challengeStatus.convertStatusKorean(),
                         people: "\(challenge.participateNum)명 모집중",
                         isPublic: challenge.isOfficial,
-                        dDay: "D-\(challenge.recruitLeft)",
+                        dDay: dDay,
                         isLike: challenge.isLike
                     )
                     cell.challengeId = challenge.challengeId

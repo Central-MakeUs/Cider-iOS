@@ -151,7 +151,9 @@ private extension HomeViewController {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeHomeCell.identifier, for: indexPath) as? ChallengeHomeCell else {
                     return UICollectionViewCell()
                 }
+                
                 let challenge = self.viewModel.popularChallanges[indexPath.row]
+                let dDay = challenge.recruitLeft<=0 ? "D+\(challenge.recruitLeft * -1)" : "D-\(challenge.recruitLeft)"
                     cell.setUp(
                         type: challenge.interestField.convertChallengeType(),
                         isReward: challenge.isReward,
@@ -161,7 +163,7 @@ private extension HomeViewController {
                         status: challenge.challengeStatus.convertStatusKorean(),
                         people: "\(challenge.participateNum)명 모집중",
                         isPublic: challenge.isOfficial,
-                        dDay: "D-\(challenge.recruitLeft)",
+                        dDay: dDay,
                         isLike: challenge.isLike
                     )
                     cell.challengeId = challenge.challengeId
@@ -177,6 +179,7 @@ private extension HomeViewController {
                         return UICollectionViewCell()
                     }
                     let challenge = self.viewModel.publicChallanges[indexPath.row]
+                    let dDay = challenge.recruitLeft<=0 ? "D+\(challenge.recruitLeft * -1)" : "D-\(challenge.recruitLeft)"
                         cell.setUp(
                             type: challenge.interestField.convertChallengeType(),
                             isReward: challenge.isReward,
@@ -186,7 +189,7 @@ private extension HomeViewController {
                             status: challenge.challengeStatus.convertStatusKorean(),
                             people: "\(challenge.participateNum)명 모집중",
                             isPublic: challenge.isOfficial,
-                            dDay: "D-\(challenge.recruitLeft)",
+                            dDay: dDay,
                             isLike: challenge.isLike
                         )
                         cell.challengeId = challenge.challengeId
@@ -207,6 +210,7 @@ private extension HomeViewController {
                         return UICollectionViewCell()
                     }
                     let challenge = self.viewModel.categoryChallenges[indexPath.row]
+                    let dDay = challenge.recruitLeft<=0 ? "D+\(challenge.recruitLeft * -1)" : "D-\(challenge.recruitLeft)"
                     cell.setUp(
                         type: challenge.interestField.convertChallengeType(),
                         isReward: challenge.isReward,
@@ -216,7 +220,7 @@ private extension HomeViewController {
                         status: challenge.challengeStatus.convertStatusKorean(),
                         people: "\(challenge.participateNum)명 모집중",
                         isPublic: challenge.isOfficial,
-                        dDay: "D-\(challenge.recruitLeft)",
+                        dDay: dDay,
                         isLike: challenge.isLike
                     )
                     cell.challengeId = challenge.challengeId
