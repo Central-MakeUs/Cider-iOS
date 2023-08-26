@@ -719,6 +719,7 @@ private extension HomeViewController {
     
     func pushChallengeTypeViewController() {
         let viewController = ChallengeTypeViewController()
+        viewController.showSubTitle()
         viewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(viewController, animated: true)
     }

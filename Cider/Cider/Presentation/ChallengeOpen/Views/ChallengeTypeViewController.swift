@@ -15,8 +15,10 @@ class ChallengeTypeViewController: UIViewController {
         let label = UILabel()
         label.text = "선택해주시면 추후 취향을 반영한\n피드를 추천해드릴게요"
         label.font = CustomFont.PretendardBold(size: .lg).font
+        label.numberOfLines = 0
         label.setTextWithLineHeight(lineHeight: 19.6)
         label.textColor = .custom.main
+        label.isHidden = true
         return label
     }()
     
@@ -37,6 +39,10 @@ class ChallengeTypeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNavigationBar()
+    }
+    
+    func showSubTitle() {
+        subTitleLabel.isHidden = false
     }
     
 }
