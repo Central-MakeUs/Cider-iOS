@@ -246,7 +246,7 @@ private extension HomeViewController {
                         challengeTitle: feed.simpleChallengeResponseDto.challengeName,
                         people: String(feed.simpleChallengeResponseDto.participateNum),
                         heart: String(feed.certifyLike),
-                        profileImageURL: feed.simpleMemberResponseDto.profilePath,
+                        profileImageURL: feed.simpleMemberResponseDto.profilePath ?? "",
                         feedImageURL: feed.certifyImageUrl,
                         isLike: feed.isLike
                     )

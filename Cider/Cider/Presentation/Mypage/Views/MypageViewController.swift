@@ -134,9 +134,9 @@ private extension MypageViewController {
 
     func setData(_ data: MypageResponse) {
         mypageInfoView.setUp(
-            profileURL: data.simpleMember.profilePath,
-            nickname: data.simpleMember.memberName,
-            levelText: data.simpleMember.memberLevelName,
+            profileURL: data.simpleMember.profilePath ?? "",
+            nickname: data.simpleMember.memberName ?? "",
+            levelText: data.simpleMember.memberLevelName ?? "",
             particiationText: "\(data.simpleMember.participateChallengeNum)번째 챌린지",
             levelCount: "Lv \(data.memberActivityInfo.myLevel)",
             certifyCount: String(data.memberActivityInfo.myCertifyNum),

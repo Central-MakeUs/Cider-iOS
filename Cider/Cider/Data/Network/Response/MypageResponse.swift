@@ -37,6 +37,6 @@ struct TLevel: Codable {
 
 // MARK: - SimpleMember
 struct SimpleMember: Codable {
-    let memberName, profilePath, memberLevelName: String
+    let memberName, profilePath, memberLevelName: String?
     let participateChallengeNum: Int
 }

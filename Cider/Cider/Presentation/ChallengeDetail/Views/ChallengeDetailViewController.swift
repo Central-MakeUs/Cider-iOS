@@ -258,7 +258,7 @@ private extension ChallengeDetailViewController {
                 if let infoResponse = self.viewModel.infoResponse {
                     cell.setUp(
                         challengeType: self.challengeType,
-                        profileUrl: infoResponse.simpleMemberResponseDto.profilePath,
+                        profileUrl: infoResponse.simpleMemberResponseDto.profilePath ?? "",
                         mainTitle: infoResponse.challengeName,
                         participant: "\(infoResponse.participateNum) / \(infoResponse.challengeCapacity)명",
                         status: infoResponse.challengeStatus.convertStatusKorean()
@@ -347,7 +347,7 @@ private extension ChallengeDetailViewController {
                         nickname: infoResponse.simpleMemberResponseDto.memberName,
                         levelInfo: infoResponse.simpleMemberResponseDto.memberLevelName,
                         hostCountInfo: "\(infoResponse.simpleMemberResponseDto.participateChallengeNum)번째 챌린지",
-                        profileUrl: infoResponse.simpleMemberResponseDto.profilePath
+                        profileUrl: infoResponse.simpleMemberResponseDto.profilePath ?? ""
                     )
                 }
                 return cell
@@ -529,7 +529,7 @@ private extension ChallengeDetailViewController {
                 if let infoResponse = self.viewModel.infoResponse {
                     cell.setUp(
                         challengeType: self.challengeType,
-                        profileUrl: infoResponse.simpleMemberResponseDto.profilePath,
+                        profileUrl: infoResponse.simpleMemberResponseDto.profilePath ?? "",
                         mainTitle: infoResponse.challengeName,
                         participant: "\(infoResponse.participateNum) / \(infoResponse.challengeCapacity)명",
                         status: infoResponse.challengeStatus.convertStatusKorean()
@@ -581,7 +581,7 @@ private extension ChallengeDetailViewController {
                         challengeTitle: infoResponse.challengeName,
                         people: String(infoResponse.participateNum),
                         heart: String(feed.certifyLike),
-                        profileImageURL: feed.simpleMemberResponseDto.profilePath,
+                        profileImageURL: feed.simpleMemberResponseDto.profilePath ?? "",
                         feedImageURL: feed.certifyImageUrl,
                         isLike: feed.isLike
                     )

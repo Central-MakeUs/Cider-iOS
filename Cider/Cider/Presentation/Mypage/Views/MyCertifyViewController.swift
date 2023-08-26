@@ -143,7 +143,7 @@ private extension MyCertifyViewController {
                             challengeTitle: response.simpleChallengeResponseDto.challengeName,
                             people: String(response.simpleChallengeResponseDto.participateNum),
                             heart: String(myCeritfy.certifyLike),
-                            profileImageURL: response.simpleMemberResponseDto.profilePath,
+                            profileImageURL: response.simpleMemberResponseDto.profilePath ?? "",
                             feedImageURL: myCeritfy.certifyImageUrl,
                             isLike: myCeritfy.isLike
                         )

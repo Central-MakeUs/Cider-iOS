@@ -179,6 +179,9 @@
 		FA619D6A2A8BC2CE000BDDA5 /* MyHeartChallengeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA619D692A8BC2CE000BDDA5 /* MyHeartChallengeViewModel.swift */; };
 		FA619D6C2A8BC3E1000BDDA5 /* MyHeartChallengeUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA619D6B2A8BC3E1000BDDA5 /* MyHeartChallengeUsecase.swift */; };
 		FA619D6E2A8BC42B000BDDA5 /* MyHeartChallengeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA619D6D2A8BC42B000BDDA5 /* MyHeartChallengeRepository.swift */; };
+		FA64FEC52A999F8D00EE9331 /* Frame 427319664@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA64FEC22A999F8D00EE9331 /* Frame 427319664@3x.png */; };
+		FA64FEC62A999F8D00EE9331 /* Frame 427319664.png in Resources */ = {isa = PBXBuildFile; fileRef = FA64FEC32A999F8D00EE9331 /* Frame 427319664.png */; };
+		FA64FEC72A999F8D00EE9331 /* Frame 427319664@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA64FEC42A999F8D00EE9331 /* Frame 427319664@2x.png */; };
 		FA6AE8B02A6045AB00512EE1 /* ChallengeOpenSelectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AE8AF2A6045AB00512EE1 /* ChallengeOpenSelectionType.swift */; };
 		FA6AE8B22A6047CB00512EE1 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AE8B12A6047CB00512EE1 /* UITextView+Extension.swift */; };
 		FA6C21672A5A4DD3008A9ADD /* CiderTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C21662A5A4DD3008A9ADD /* CiderTextFieldView.swift */; };
@@ -402,6 +405,9 @@
 		FA619D692A8BC2CE000BDDA5 /* MyHeartChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHeartChallengeViewModel.swift; sourceTree = "<group>"; };
 		FA619D6B2A8BC3E1000BDDA5 /* MyHeartChallengeUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHeartChallengeUsecase.swift; sourceTree = "<group>"; };
 		FA619D6D2A8BC42B000BDDA5 /* MyHeartChallengeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHeartChallengeRepository.swift; sourceTree = "<group>"; };
+		FA64FEC22A999F8D00EE9331 /* Frame 427319664@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Frame 427319664@3x.png"; sourceTree = "<group>"; };
+		FA64FEC32A999F8D00EE9331 /* Frame 427319664.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Frame 427319664.png"; sourceTree = "<group>"; };
+		FA64FEC42A999F8D00EE9331 /* Frame 427319664@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Frame 427319664@2x.png"; sourceTree = "<group>"; };
 		FA6AE8AF2A6045AB00512EE1 /* ChallengeOpenSelectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOpenSelectionType.swift; sourceTree = "<group>"; };
 		FA6AE8B12A6047CB00512EE1 /* UITextView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
 		FA6C21662A5A4DD3008A9ADD /* CiderTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiderTextFieldView.swift; sourceTree = "<group>"; };
@@ -914,6 +920,7 @@
 		FA44D3952A4C3E1B0037E328 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FA64FEC82A999FC500EE9331 /* Splash */,
 				FA8CA6222A49B51F005A6709 /* Font */,
 				FA8CA60F2A46D324005A6709 /* Assets.xcassets */,
 				FA8CA6112A46D324005A6709 /* LaunchScreen.storyboard */,
@@ -1116,6 +1123,16 @@
 			path = HeaderView;
 			sourceTree = "<group>";
 		};
+		FA64FEC82A999FC500EE9331 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				FA64FEC32A999F8D00EE9331 /* Frame 427319664.png */,
+				FA64FEC42A999F8D00EE9331 /* Frame 427319664@2x.png */,
+				FA64FEC22A999F8D00EE9331 /* Frame 427319664@3x.png */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
 		FA758AC62A5EF191003E2F07 /* Component */ = {
 			isa = PBXGroup;
 			children = (
@@ -1272,9 +1289,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA64FEC72A999F8D00EE9331 /* Frame 427319664@2x.png in Resources */,
 				FA8CA6132A46D324005A6709 /* LaunchScreen.storyboard in Resources */,
 				FA8CA6262A49B541005A6709 /* Pretendard-Bold.otf in Resources */,
 				FA8CA6272A49B541005A6709 /* Pretendard-Regular.otf in Resources */,
+				FA64FEC52A999F8D00EE9331 /* Frame 427319664@3x.png in Resources */,
+				FA64FEC62A999F8D00EE9331 /* Frame 427319664.png in Resources */,
 				FA8CA6102A46D324005A6709 /* Assets.xcassets in Resources */,
 				FA8CA6282A49B541005A6709 /* Pretendard-Medium.otf in Resources */,
 			);

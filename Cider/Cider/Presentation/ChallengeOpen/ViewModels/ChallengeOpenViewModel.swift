@@ -35,13 +35,13 @@ final class ChallengeOpenViewModel: ViewModelType {
     private var isPublic = false
     
     func selectFailImage(_ image: UIImage) {
-        let data = image.jpegData(compressionQuality: 0.9)
+        let data = image.jpegData(compressionQuality: 0.1)
         failImageData = data
         currentState.send(.changeNextButtonState(isAvailableNextButton()))
     }
     
     func selectSuccessImage(_ image: UIImage) {
-        let data = image.jpegData(compressionQuality: 0.9)
+        let data = image.jpegData(compressionQuality: 0.1)
         successImageData = data
         currentState.send(.changeNextButtonState(isAvailableNextButton()))
     }

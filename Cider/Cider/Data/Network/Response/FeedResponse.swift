@@ -25,7 +25,7 @@ struct SimpleChallengeResponseDto: Codable {
 
 struct SimpleMemberResponseDto: Codable {
     let memberName: String
-    let profilePath: String
+    let profilePath: String?
     let memberLevelName: String
     let participateChallengeNum: Int
     let memberId: Int
