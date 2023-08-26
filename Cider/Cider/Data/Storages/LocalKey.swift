@@ -11,7 +11,8 @@ public enum LocalKey: String {
     case userIdentifier
     case isLogin
     case loginType
-    case email
+    case kakaoEmail
+    case appleEmail
     case isRedrawApple
     case isRedrawKakao
 }

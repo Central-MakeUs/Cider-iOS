@@ -41,6 +41,7 @@ final class ChallengeSelectionViewModel: ViewModelType {
         }
         
         Task {
+            print(request)
             let isSuccess = try await useCase.patchOnBoarding(parameters: request)
             currentState.send(.isSuccessOnboarding(isSuccess))
         }

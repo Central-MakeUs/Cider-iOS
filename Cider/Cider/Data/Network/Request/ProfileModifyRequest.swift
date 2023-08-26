@@ -9,5 +9,4 @@ import Foundation
 
 struct ProfileModifyRequest: Codable {
     let memberName: String
-    var memberIntro: String = ""
 }

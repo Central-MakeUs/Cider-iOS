@@ -32,8 +32,8 @@ final class ProgressBarCell: UICollectionViewCell {
 extension ProgressBarCell {
     
     func setUp(
-        averagePercent: Float,
-        myPercent: Float?
+        averagePercent: Double,
+        myPercent: Double?
     ) {
         self.backgroundColor = .white
         if let myPercent {

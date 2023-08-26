@@ -37,6 +37,7 @@ private extension MypageViewModel {
         Task {
             do {
                 let response = try await usecase.getMypage()
+                print(response)
                 data = response
                 currentState.send(.sendData(response))
             }

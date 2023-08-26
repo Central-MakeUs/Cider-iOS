@@ -16,7 +16,7 @@ class SettingViewController: UIViewController {
     
     private lazy var accountDetailView: AccountDetailView = {
         let title = UserDefaults.standard.read(key: .loginType) as? String ?? ""
-        let email = UserDefaults.standard.read(key: .email) as? String ?? ""
+        let email = UserDefaults.standard.read(key: title == "카카오" ? .kakaoEmail : .appleEmail) as? String ?? ""
         let view = AccountDetailView(title: title, account: email)
         return view
     }()

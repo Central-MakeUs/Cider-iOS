@@ -143,7 +143,7 @@ private extension MypageViewController {
             heartCount: String(data.memberActivityInfo.myLikeChallengeNum)
         )
         levelView.setUp(
-            percent: Float(data.memberLevelInfo.levelPercent)*0.01,
+            percent: Double(data.memberLevelInfo.levelPercent)*0.01,
             experience: "남은 경험치 \(data.memberLevelInfo.experienceLeft)",
             level: "Lv \(data.memberLevelInfo.myLevel)",
             currentLevel: "LV \(data.memberLevelInfo.currentLevel.level) \(data.memberLevelInfo.currentLevel.levelName)",

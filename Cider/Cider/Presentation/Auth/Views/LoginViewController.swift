@@ -191,7 +191,7 @@ private extension LoginViewController {
                 return
             }
             UserDefaults.standard.write(key: .loginType, value: "카카오")
-            UserDefaults.standard.write(key: .email, value: email)
+            UserDefaults.standard.write(key: .kakaoEmail, value: email)
         }
     }
     
@@ -216,10 +216,9 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 return
             }
             viewModel.appleLogin(token: token)
-            
+            UserDefaults.standard.write(key: .loginType, value: "애플")
             if let email = credential.email {
-                UserDefaults.standard.write(key: .email, value: email)
-                UserDefaults.standard.write(key: .loginType, value: "애플")
+                UserDefaults.standard.write(key: .appleEmail, value: email)
             }
            
         }

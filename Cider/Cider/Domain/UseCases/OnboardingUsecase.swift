@@ -21,6 +21,7 @@ final class DefaultOnboardingUsecase: OnboardingUsecase {
     
     func patchOnBoarding(parameters: OnboardingRequest) async throws -> Bool {
         let response = try await repository.patchOnboarding(parameters: parameters)
+        print(response)
         return response.status == nil
     }
     

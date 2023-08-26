@@ -28,6 +28,10 @@ final class RedrawViewModel: ViewModelType {
     func redraw() {
         Task {
             do {
+                guard let refreshToken = Keychain.loadRefreshToken() else {
+                    return
+                }
+                Keychain.saveToken(data: refreshToken)
                 let response = try await usecase.redraw()
                 print(response)
             }

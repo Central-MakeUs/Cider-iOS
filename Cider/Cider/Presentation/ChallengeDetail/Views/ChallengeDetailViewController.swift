@@ -284,8 +284,8 @@ private extension ChallengeDetailViewController {
                 }
                 if let infoResponse = self.viewModel.infoResponse {
                     cell.setUp(
-                        averagePercent: Float(infoResponse.challengeConditionResponseDto.averageCondition)*0.01,
-                        myPercent: Float(infoResponse.challengeConditionResponseDto.myCondition)*0.01
+                        averagePercent: Double(infoResponse.challengeConditionResponseDto.averageCondition)*0.01,
+                        myPercent: Double(infoResponse.challengeConditionResponseDto.myCondition)*0.01
                     )
                 }
                

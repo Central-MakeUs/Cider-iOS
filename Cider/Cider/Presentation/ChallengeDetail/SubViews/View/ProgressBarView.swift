@@ -101,7 +101,7 @@ final class ProgressBarView: UIView {
 
 extension ProgressBarView {
     
-    func setUp(_ type: ProgressBarType, percent: Float) {
+    func setUp(_ type: ProgressBarType, percent: Double) {
         progressView.progressTintColor = type.mainColor
         percentLabel.backgroundColor = percent < 0.1 ? .custom.gray4 : type.mainColor
         percentLabel.text = "\(Int(percent*100))%"
@@ -128,7 +128,7 @@ extension ProgressBarView {
         ).isActive = true
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.2) {
-            self.progressView.setProgress(percent, animated: false)
+            self.progressView.setProgress(Float(percent), animated: false)
         }
     }
     
