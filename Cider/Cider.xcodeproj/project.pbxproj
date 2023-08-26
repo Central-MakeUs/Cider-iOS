@@ -182,6 +182,7 @@
 		FA64FEC52A999F8D00EE9331 /* Frame 427319664@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA64FEC22A999F8D00EE9331 /* Frame 427319664@3x.png */; };
 		FA64FEC62A999F8D00EE9331 /* Frame 427319664.png in Resources */ = {isa = PBXBuildFile; fileRef = FA64FEC32A999F8D00EE9331 /* Frame 427319664.png */; };
 		FA64FEC72A999F8D00EE9331 /* Frame 427319664@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA64FEC42A999F8D00EE9331 /* Frame 427319664@2x.png */; };
+		FA64FECB2A99A32400EE9331 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FA64FECA2A99A32400EE9331 /* Kingfisher */; };
 		FA6AE8B02A6045AB00512EE1 /* ChallengeOpenSelectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AE8AF2A6045AB00512EE1 /* ChallengeOpenSelectionType.swift */; };
 		FA6AE8B22A6047CB00512EE1 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AE8B12A6047CB00512EE1 /* UITextView+Extension.swift */; };
 		FA6C21672A5A4DD3008A9ADD /* CiderTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C21662A5A4DD3008A9ADD /* CiderTextFieldView.swift */; };
@@ -472,6 +473,7 @@
 				FA553EB62A5C026300DAE63B /* KakaoSDKCommon in Frameworks */,
 				FA57AF482A5C5116008A5991 /* Moya in Frameworks */,
 				FA553EB42A5C026300DAE63B /* KakaoSDKAuth in Frameworks */,
+				FA64FECB2A99A32400EE9331 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1242,6 +1244,7 @@
 				FA553EB32A5C026300DAE63B /* KakaoSDKAuth */,
 				FA553EB52A5C026300DAE63B /* KakaoSDKCommon */,
 				FA57AF472A5C5116008A5991 /* Moya */,
+				FA64FECA2A99A32400EE9331 /* Kingfisher */,
 			);
 			productName = Cider;
 			productReference = FA8CA6032A46D322005A6709 /* Cider.app */;
@@ -1274,6 +1277,7 @@
 			packageReferences = (
 				FA553EB02A5C026300DAE63B /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				FA57AF462A5C5116008A5991 /* XCRemoteSwiftPackageReference "Moya" */,
+				FA64FEC92A99A32400EE9331 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = FA8CA6042A46D322005A6709 /* Products */;
 			projectDirPath = "";
@@ -1766,6 +1770,14 @@
 				kind = branch;
 			};
 		};
+		FA64FEC92A99A32400EE9331 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1788,6 +1800,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FA57AF462A5C5116008A5991 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
+		};
+		FA64FECA2A99A32400EE9331 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA64FEC92A99A32400EE9331 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
