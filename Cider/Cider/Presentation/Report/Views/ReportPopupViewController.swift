@@ -99,8 +99,8 @@ private extension ReportPopupViewController {
     
     @objc func didTapBottom(_ sender: Any?) {
         viewModel.report(reportType)
-        self.view.window?.rootViewController?.showToast(message: reportType.toastMessage)
-        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true)
+        self.presentingViewController?.presentingViewController?.presentingViewController?.showToast(message: reportType.toastMessage)
     }
     
 }

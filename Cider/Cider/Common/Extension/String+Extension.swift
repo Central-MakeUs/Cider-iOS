@@ -24,6 +24,8 @@ extension String {
             return "참여가능"
         case "IMPOSSIBLE":
             return "종료"
+        case "END":
+            return "종료"
         default:
             return ""
         }

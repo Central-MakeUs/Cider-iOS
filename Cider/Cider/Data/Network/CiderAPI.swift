@@ -70,7 +70,7 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
         case .getPopularChallenge(let filter):
             return "/api/challenge/popular/\(filter)"
         case .getAllChallenge(let filter):
-            return "/api/challenge/\(filter)"
+            return "/api/challenge/list/\(filter)"
         case .getPublicChallenge(let filter):
             return "/api/challenge/official/\(filter)"
         case .getHomeFeed:

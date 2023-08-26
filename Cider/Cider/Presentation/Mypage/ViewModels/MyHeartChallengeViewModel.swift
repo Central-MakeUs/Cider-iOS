@@ -45,6 +45,7 @@ private extension MyHeartChallengeViewModel {
     func getMyHeartChallenges() {
         Task {
             let response = try await usecase.getMyHeartChallenge()
+            print(response)
             items = []
             challenges = response
             for _ in 0..<challenges.count {
