@@ -55,6 +55,11 @@ final class CertifyViewModel: ViewModelType {
         currentState.send(.changeNextButtonState(isAvailableNextButton()))
     }
     
+    func changeCertifyImage(_ image: UIImage?) {
+        self.certifyImage = image
+        currentState.send(.changeNextButtonState(isAvailableNextButton()))
+    }
+    
     func changechallengeContent(_ challengeContent: String) {
         self.challengeContent = challengeContent
         currentState.send(.changeNextButtonState(isAvailableNextButton()))

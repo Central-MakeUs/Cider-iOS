@@ -141,7 +141,7 @@ private extension CertifyViewController {
                     self?.viewModel.changechallengeContent(content)
                 }
                 .store(in: &self.cancellables)
-            cell.contentTextView.textView.text = self.viewModel.challengeContent
+            cell.contentTextView.setText(self.viewModel.challengeContent)
             
             cell.challengeSelectionView.indexPublisher()
                 .receive(on: DispatchQueue.main)
@@ -201,7 +201,7 @@ extension CertifyViewController: UIImagePickerControllerDelegate, UINavigationCo
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            viewModel.certifyImage = image
+            viewModel.changeCertifyImage(image)
         }
         picker.dismiss(animated: true, completion: nil)
         applySnapshot()

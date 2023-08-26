@@ -27,10 +27,18 @@ final class LoginViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = CustomFont.PretendardBold(size: .xl5).font
-        label.text = "시작하는\n금융챌린지\n지금"
+        label.text = "시작하는\n금융챌린지"
         label.textColor = .custom.text
         label.setTextWithLineHeight(lineHeight: 39.2)
         label.numberOfLines = 0
+        return label
+    }()
+    
+    private lazy var nowLabel: UILabel = {
+        let label = UILabel()
+        label.font = CustomFont.PretendardBold(size: .xl5).font
+        label.text = "지금"
+        label.textColor = .custom.main
         return label
     }()
     
@@ -89,12 +97,14 @@ private extension LoginViewController {
     }
     
     func configure() {
-        view.addSubviews(logoImageView, titleLabel, appleLoginButton, kakaoLoginButton)
+        view.addSubviews(logoImageView, titleLabel, nowLabel, appleLoginButton, kakaoLoginButton)
         NSLayoutConstraint.activate([
             logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 130),
             logoImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             titleLabel.leadingAnchor.constraint(equalTo: logoImageView.leadingAnchor),
             titleLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 16),
+            nowLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            nowLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
             kakaoLoginButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
             kakaoLoginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             kakaoLoginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),

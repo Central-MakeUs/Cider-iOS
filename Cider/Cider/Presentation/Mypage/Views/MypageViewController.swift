@@ -211,6 +211,17 @@ private extension MypageViewController {
         guard let profilePath = viewModel.data?.simpleMember.profilePath,
               let nickname = viewModel.data?.simpleMember.memberName,
               let url = URL(string: profilePath) else {
+            let viewController = ProfileModifyViewController(
+                viewModel: ProfileModifyViewModel(
+                    useCase: DefaultProfileModifyUsecase(
+                        repository: DefaultProfileModifyRepository()
+                    ),
+                    nickname: "",
+                    profileImage: nil
+                )
+            )
+            viewController.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(viewController, animated: true)
             return
         }
         

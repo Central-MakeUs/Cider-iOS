@@ -75,6 +75,15 @@ final class CiderTextView: UIView {
         }
         return textPublisher
     }
+    
+    func setText(_ text: String) {
+        textView.text = text
+        if textView.text == placeHolder {
+            textView.textColor = .custom.gray4
+        } else {
+            textView.textColor = .custom.text
+        }
+    }
   
 }
 
