@@ -198,10 +198,12 @@ private extension ChallengeDetailViewController {
         bottomButton.setTitle(status, for: .normal)
         switch status {
         case "오늘 참여 인증하기":
+            bottomButton.isEnabled = true
             bottomButton.setStyle(.enabled)
             bottomButton.addTarget(self, action: #selector(didTapCertify), for: .touchUpInside)
             
         case "이 챌린지 참여하기":
+            bottomButton.isEnabled = true
             bottomButton.setStyle(.enabled)
             bottomButton.addTarget(self, action: #selector(didTapParticipate), for: .touchUpInside)
             
@@ -1194,7 +1196,9 @@ private extension ChallengeDetailViewController {
     }
     
     @objc func didTapParticipate(_ sender: Any?) {
+        bottomButton.isEnabled = false
         viewModel.didTapParticipateChallenge()
+        self.showToast(message: "챌린지 참여가 완료되었습니다")
     }
     
     @objc func didTapCertify(_ sender: Any?) {
