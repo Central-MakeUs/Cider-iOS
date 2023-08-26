@@ -18,7 +18,7 @@ final class LoginViewController: UIViewController {
     
     private lazy var logoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "logo")
+        imageView.image = UIImage(named: "Logo")
         imageView.heightAnchor.constraint(equalToConstant: 64).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 64).isActive = true
         return imageView

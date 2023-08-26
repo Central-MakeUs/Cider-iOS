@@ -10,6 +10,16 @@ import UIKit
 class ChallengeTypeViewController: UIViewController {
 
     private let mainTitleLabel = MainTitleLabel(title: "개설을 원하는\n챌린지 분야를\n선택해보세요")
+    
+    private lazy var subTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "선택해주시면 추후 취향을 반영한\n피드를 추천해드릴게요"
+        label.font = CustomFont.PretendardBold(size: .lg).font
+        label.setTextWithLineHeight(lineHeight: 19.6)
+        label.textColor = .custom.main
+        return label
+    }()
+    
     private lazy var challengesView: ChallengesView =  {
         let view = ChallengesView()
         view.financialTechView.addTapGesture(self, action: #selector(didTapFinancialTech))
@@ -39,10 +49,12 @@ private extension ChallengeTypeViewController {
     
     func configure() {
         view.backgroundColor = .white
-        view.addSubviews(mainTitleLabel, challengesView)
+        view.addSubviews(mainTitleLabel, challengesView, subTitleLabel)
         NSLayoutConstraint.activate([
             mainTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 52),
             mainTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            subTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            subTitleLabel.topAnchor.constraint(equalTo: mainTitleLabel.bottomAnchor, constant: 16),
             challengesView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
             challengesView.leadingAnchor.constraint(equalTo: mainTitleLabel.leadingAnchor),
             challengesView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
