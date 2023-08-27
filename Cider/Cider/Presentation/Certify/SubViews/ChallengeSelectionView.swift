@@ -113,6 +113,9 @@ private extension ChallengeSelectionView {
     }
     
     @objc func didTapDone(_ sender: UIBarButtonItem) {
+        guard challengeList.count > 0 else {
+            return
+        }
         textField.resignFirstResponder()
         textField.text = String(selectedPickerViewData)
         NotificationCenter.default.post(name: .selectParticipateChallenge, object: selectedIndex)
