@@ -27,7 +27,7 @@ enum HomeDetailType {
     var mainTitle: String? {
         switch self {
         case .popularChallenge:
-            return "사이다에서 가장 \n인기 있는 챌린지\nTop 10"
+            return "지금에서 가장 \n인기 있는 챌린지\nTop 10"
         case .publicChallenge:
             return "운영진이 함께하는\n공식 금융 챌린지"
         case .allChallenge:
