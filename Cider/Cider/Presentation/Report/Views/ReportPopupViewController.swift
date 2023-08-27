@@ -94,13 +94,25 @@ private extension ReportPopupViewController {
     }
     
     @objc func dismissAllViewController(_ sender: Any?) {
-        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        switch reportType {
+        case .postBlock, .userBlock:
+            self.presentingViewController?.presentingViewController?.dismiss(animated: true)
+        case .postReport, .userReport:
+            self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true)
+        }
     }
     
     @objc func didTapBottom(_ sender: Any?) {
         viewModel.report(reportType)
-        self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true)
-        self.presentingViewController?.presentingViewController?.presentingViewController?.showToast(message: reportType.toastMessage)
+        switch reportType {
+        case .postBlock, .userBlock:
+            self.presentingViewController?.presentingViewController?.dismiss(animated: true)
+            self.presentingViewController?.presentingViewController?.showToast(message: reportType.toastMessage)
+        case .postReport, .userReport:
+            self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true)
+            self.presentingViewController?.presentingViewController?.presentingViewController?.showToast(message: reportType.toastMessage)
+        }
+        
     }
     
 }
