@@ -80,6 +80,9 @@ extension LevelProgressView {
             case 0..<0.1:
                 return 0
 
+            case 0.1..<0.9:
+                return self.progressWidth*CGFloat(percent) + 37/2
+                
             case 0.9...1:
                 return self.progressWidth*CGFloat(percent)
 
@@ -109,11 +112,11 @@ struct LevelProgressView_Preview: PreviewProvider {
 
         UIViewPreview {
             let view = LevelProgressView()
-            view.setUp(percent: 0.1, level: "Lv 5")
+            view.setUp(percent: 0.18, level: "Lv 5")
             return view
         }
         .previewLayout(.sizeThatFits)
-        .padding(50)
+        .padding(24)
     }
 }
 #endif

@@ -205,7 +205,7 @@ private extension CertifyViewController {
 extension CertifyViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             viewModel.changeCertifyImage(image)
         }
         picker.dismiss(animated: true, completion: nil)

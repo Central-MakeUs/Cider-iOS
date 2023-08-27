@@ -251,7 +251,7 @@ extension ChallengeOpenViewController: UIImagePickerControllerDelegate, UINaviga
             return
         }
         
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             if missionType == .success {
                 successImage = image
                 viewModel.selectSuccessImage(image)
