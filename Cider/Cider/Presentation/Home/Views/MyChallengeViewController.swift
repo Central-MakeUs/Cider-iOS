@@ -122,10 +122,11 @@ private extension MyChallengeViewController {
                         return UICollectionViewCell()
                     }
                     let challenge = self.viewModel.ongoingChallenges[indexPath.row]
+                    let dDay = challenge.ongoingDate<=0 ? "+\(challenge.ongoingDate * -1)" : "-\(challenge.ongoingDate)"
                     cell.setUp(
                         mainTitle: challenge.challengeName,
                         challengeType: challenge.challengeBranch.convertChallengeType(),
-                        onGoing: "챌린지 진행 +\(challenge.ongoingDate)일",
+                        onGoing: "챌린지 진행 \(dDay)일",
                         countText: "\(challenge.challengePeriod)회 중 \(challenge.certifyNum)회 달성"
                     )
                     return cell
