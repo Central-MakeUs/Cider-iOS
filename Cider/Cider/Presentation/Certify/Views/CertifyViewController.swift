@@ -78,10 +78,14 @@ private extension CertifyViewController {
                     self?.applySnapshot()
                 case .showMessage(let message):
                     self?.showAlert(message: message)
+                    self?.bottomButton.isEnabled = true
                 case .isSuccess(let isSuccess):
                     guard isSuccess else {
+                        self?.bottomButton.isEnabled = true
                         return
                     }
+                    let rootViewController = self?.navigationController?.viewControllers.first
+                    rootViewController?.showToast(message: "챌린지 인증이 완료되었습니다")
                     self?.popToRootViewController()
                 }
             }
@@ -189,6 +193,7 @@ private extension CertifyViewController {
 private extension CertifyViewController {
     
     @objc func didTapNextButton(_ sender: Any?) {
+        bottomButton.isEnabled = false
         viewModel.didTapBottomButton()
     }
     
