@@ -123,7 +123,7 @@ private extension LoginViewController {
                     guard isSuccess else {
                         return
                     }
-                    isNewUser ? self?.pushServiceAgreeViewController() : self?.presentTabBarViewController()
+                    isNewUser ? self?.pushServiceAgreeViewController() : self?.pushServiceAgreeViewController()
                 case .showEnabledLogin:
                     self?.presentLoginBlockViewController()
                 }

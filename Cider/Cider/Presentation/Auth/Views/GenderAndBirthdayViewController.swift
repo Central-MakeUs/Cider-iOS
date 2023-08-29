@@ -119,7 +119,7 @@ final class GenderAndBirthdayViewController: UIViewController {
     }()
     
     private lazy var nextButton: CiderBottomButton = {
-        let button = CiderBottomButton(style: .disabled, title: "다음")
+        let button = CiderBottomButton(style: .enabled, title: "다음")
         button.addTarget(self, action: #selector(didTapNext), for: .touchUpInside)
         return button
     }()
