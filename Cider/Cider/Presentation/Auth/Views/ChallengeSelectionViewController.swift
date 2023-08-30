@@ -18,6 +18,16 @@ final class ChallengeSelectionViewController: UIViewController {
     
     private let mainTitleLabel = MainTitleLabel(title: "원하는 챌린지 분야를\n선택해보세요")
     
+    private lazy var subTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "선택해주시면 추후 취향을 반영한\n피드를 추천해드릴게요"
+        label.font = CustomFont.PretendardBold(size: .lg).font
+        label.numberOfLines = 0
+        label.setTextWithLineHeight(lineHeight: 19.6)
+        label.textColor = .custom.main
+        return label
+    }()
+    
     private lazy var rightButton: UIButton = {
         let button = UIButton()
         button.setTitle("완료", for: .normal)
@@ -56,7 +66,7 @@ private extension ChallengeSelectionViewController {
     func configure() {
         view.backgroundColor = .white
         processView.setProcessType(.challengeRecommendation)
-        view.addSubviews(processView, mainTitleLabel, challengesView)
+        view.addSubviews(processView, mainTitleLabel, challengesView, subTitleLabel)
         
         NSLayoutConstraint.activate([
             processView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
@@ -64,6 +74,8 @@ private extension ChallengeSelectionViewController {
             processView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             mainTitleLabel.topAnchor.constraint(equalTo: processView.bottomAnchor, constant: 24),
             mainTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            subTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            subTitleLabel.topAnchor.constraint(equalTo: mainTitleLabel.bottomAnchor, constant: 16),
             challengesView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
             challengesView.leadingAnchor.constraint(equalTo: mainTitleLabel.leadingAnchor),
             challengesView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),

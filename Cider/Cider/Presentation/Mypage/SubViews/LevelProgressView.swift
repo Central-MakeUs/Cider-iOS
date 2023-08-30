@@ -70,7 +70,7 @@ final class LevelProgressView: UIView {
 
 extension LevelProgressView {
 
-    func setUp(percent: Float, level: String) {
+    func setUp(percent: Double, level: String) {
         percentLabel.backgroundColor = percent < 0.1 ? .custom.gray4 : .custom.main
         percentLabel.text = "\(Int(percent*100))%"
         levelLabel.text = level
@@ -80,6 +80,9 @@ extension LevelProgressView {
             case 0..<0.1:
                 return 0
 
+            case 0.1..<0.9:
+                return self.progressWidth*CGFloat(percent) + 37/2
+                
             case 0.9...1:
                 return self.progressWidth*CGFloat(percent)
 
@@ -94,7 +97,7 @@ extension LevelProgressView {
         ).isActive = true
 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.2) {
-            self.progressView.setProgress(percent, animated: false)
+            self.progressView.setProgress(Float(percent), animated: false)
         }
     }
 
@@ -109,11 +112,11 @@ struct LevelProgressView_Preview: PreviewProvider {
 
         UIViewPreview {
             let view = LevelProgressView()
-            view.setUp(percent: 0.2, level: "Lv 5")
+            view.setUp(percent: 0.18, level: "Lv 5")
             return view
         }
         .previewLayout(.sizeThatFits)
-        .padding(50)
+        .padding(24)
     }
 }
 #endif

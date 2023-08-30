@@ -134,16 +134,16 @@ private extension MypageViewController {
 
     func setData(_ data: MypageResponse) {
         mypageInfoView.setUp(
-            profileURL: data.simpleMember.profilePath,
-            nickname: data.simpleMember.memberName,
-            levelText: data.simpleMember.memberLevelName,
+            profileURL: data.simpleMember.profilePath ?? "",
+            nickname: data.simpleMember.memberName ?? "",
+            levelText: data.simpleMember.memberLevelName ?? "",
             particiationText: "\(data.simpleMember.participateChallengeNum)번째 챌린지",
             levelCount: "Lv \(data.memberActivityInfo.myLevel)",
             certifyCount: String(data.memberActivityInfo.myCertifyNum),
             heartCount: String(data.memberActivityInfo.myLikeChallengeNum)
         )
         levelView.setUp(
-            percent: Float(data.memberLevelInfo.levelPercent)*0.01,
+            percent: Double(data.memberLevelInfo.levelPercent)*0.01,
             experience: "남은 경험치 \(data.memberLevelInfo.experienceLeft)",
             level: "Lv \(data.memberLevelInfo.myLevel)",
             currentLevel: "LV \(data.memberLevelInfo.currentLevel.level) \(data.memberLevelInfo.currentLevel.levelName)",
@@ -167,8 +167,8 @@ private extension MypageViewController {
     func pushMyCertifyViewController() {
         let viewController = MyCertifyViewController(
             viewModel: MyCertifyViewModel(
-                usecase: DefaultHomeUsecase(
-                    repository: DefaultHomeRepository()
+                usecase: DefaultMyCertifyUsecase(
+                    repository: DefaultMyCertifyRepository()
                 )
             )
         )
@@ -189,7 +189,13 @@ private extension MypageViewController {
     }
     
     func pushMyChallengeViewController() {
-        let viewController = MyChallengeViewController()
+        let viewController = MyChallengeViewController(
+            viewModel: MyChallengeViewModel(
+                usecase: DefaultMyChallengeUsecase(
+                    repository: DefaultMyChallengeRepository()
+                )
+            )
+        )
         viewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(viewController, animated: true)
     }
@@ -205,6 +211,17 @@ private extension MypageViewController {
         guard let profilePath = viewModel.data?.simpleMember.profilePath,
               let nickname = viewModel.data?.simpleMember.memberName,
               let url = URL(string: profilePath) else {
+            let viewController = ProfileModifyViewController(
+                viewModel: ProfileModifyViewModel(
+                    useCase: DefaultProfileModifyUsecase(
+                        repository: DefaultProfileModifyRepository()
+                    ),
+                    nickname: "",
+                    profileImage: nil
+                )
+            )
+            viewController.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(viewController, animated: true)
             return
         }
         

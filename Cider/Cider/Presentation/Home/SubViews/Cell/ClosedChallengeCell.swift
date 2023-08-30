@@ -9,6 +9,7 @@ import UIKit
 final class ClosedChallengeCell: UICollectionViewCell {
     
     static let identifier = "ClosedChallengeCell"
+    var challengeId: Int?
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -98,6 +99,7 @@ private extension ClosedChallengeCell {
 }
 
 extension ClosedChallengeCell {
+    
     func setUp(
         type: ChallengeType,
         isReward: Bool,
@@ -113,6 +115,11 @@ extension ClosedChallengeCell {
         publicImageView.isHidden = !isPublic
         challengeHomeView.setUp(type: type, status: status, isReward: isReward, date: date, isLike: true)
     }
+    
+    func setUp(challengeId: Int) {
+        self.challengeId = challengeId
+    }
+    
 }
 
 

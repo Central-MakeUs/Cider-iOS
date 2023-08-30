@@ -10,7 +10,7 @@ import Combine
 
 final class CiderTextView: UIView {
     
-    private lazy var textView: CiderUITextView = {
+    lazy var textView: CiderUITextView = {
         let textView = CiderUITextView()
         textView.text = placeHolder
         textView.configure()
@@ -74,6 +74,15 @@ final class CiderTextView: UIView {
             .eraseToAnyPublisher()
         }
         return textPublisher
+    }
+    
+    func setText(_ text: String) {
+        textView.text = text
+        if textView.text == placeHolder {
+            textView.textColor = .custom.gray4
+        } else {
+            textView.textColor = .custom.text
+        }
     }
   
 }

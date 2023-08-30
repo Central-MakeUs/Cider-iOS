@@ -16,7 +16,7 @@ final class ChallengeOpenCell: UICollectionViewCell {
     )
     
     let challengeTitleTextFieldView: CiderTextFieldView = {
-        let view = CiderTextFieldView(minLength: 5, maxLength: 30)
+        let view = CiderTextFieldView(minLength: 5, maxLength: 30, notificationName: .didChangedChallengeName)
         view.setPlaceHoder("하루 만보 걷기 인증하기")
         return view
     }()
@@ -32,15 +32,18 @@ final class ChallengeOpenCell: UICollectionViewCell {
     )
     
     let memberView = ChallengeOpenSelectionView(
-        type: .member
+        type: .member,
+        notificationName: .didChangedMember
     )
     
     let recruitmentView = ChallengeOpenSelectionView(
-        type: .recruitment
+        type: .recruitment,
+        notificationName: .didChangedRecruit
     )
     
     let participationView = ChallengeOpenSelectionView(
-        type: .participation
+        type: .participation,
+        notificationName: .didChangedChallengeDate
     )
     
     private let missionLabel = StarTitleLabel(
@@ -48,7 +51,7 @@ final class ChallengeOpenCell: UICollectionViewCell {
     )
     
     let missionTextFieldView: CiderTextFieldView = {
-        let view = CiderTextFieldView(minLength: 5, maxLength: 30)
+        let view = CiderTextFieldView(minLength: 5, maxLength: 30, notificationName: .didChangedMission)
         view.setPlaceHoder("인증샷 모드에서 10,000원이 적힌 화면 인증")
         return view
     }()

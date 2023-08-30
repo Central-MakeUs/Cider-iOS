@@ -10,6 +10,7 @@ import UIKit
 final class ReviewCell: UICollectionViewCell {
     
     static let identifier = "ReviewCell"
+    var challengeId: Int?
     
     private lazy var mainTitleLabel: UILabel = {
         let label = UILabel()
@@ -142,6 +143,14 @@ final class ReviewCell: UICollectionViewCell {
             rightLabel.text = challengeSuccessMessage
         }
         
+    }
+    
+    func setUp(challengeId: Int) {
+        self.challengeId = challengeId
+    }
+    
+    func addDeleteViewGesture(_ target: Any?, action: Selector) {
+        self.rightStackView.addGestureRecognizer(UITapGestureRecognizer(target: target, action: action))
     }
     
 }

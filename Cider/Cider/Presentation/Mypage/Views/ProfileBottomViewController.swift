@@ -117,7 +117,7 @@ private extension ProfileBottomViewController {
 extension ProfileBottomViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             NotificationCenter.default.post(name: .selectProfileImage, object: image)
         }
         picker.dismiss(animated: true, completion: nil)

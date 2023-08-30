@@ -11,14 +11,6 @@ final class CertifyCell: UICollectionViewCell {
     
     static let identifier = "CertifyCell"
     
-    private lazy var challengeNameLabel: UILabel = {
-        let label = UILabel()
-        label.text = "챌린지 이름"
-        label.font = CustomFont.PretendardBold(size: .xl2).font
-        label.textColor = .custom.text
-        return label
-    }()
-    
     private lazy var photoSubTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "최소 1개 이상의 사진을 첨부해주세요"
@@ -40,7 +32,7 @@ final class CertifyCell: UICollectionViewCell {
     )
     
     let titleTextFieldView: CiderTextFieldView = {
-        let view = CiderTextFieldView(minLength: 5, maxLength: 30)
+        let view = CiderTextFieldView(minLength: 5, maxLength: 30, notificationName: .didChangedCiderTextField)
         view.setPlaceHoder("오늘 인증 완료!")
         return view
     }()
@@ -112,37 +104,39 @@ final class CertifyCell: UICollectionViewCell {
     }
     
     private func configure() {
-        addSubviews(challengeNameLabel, challengeSelectionView, certifyPhotoLabel, backView, caemeraStackView, imageView,
+        addSubviews(challengeSelectionView, certifyPhotoLabel, backView, caemeraStackView, imageView,
                     titleLabel, titleTextFieldView, contentLabel, contentTextView, photoSubTitleLabel)
         NSLayoutConstraint.activate([
-            challengeNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 24),
-            challengeNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-            challengeSelectionView.topAnchor.constraint(equalTo: challengeNameLabel.bottomAnchor, constant: 8),
-            challengeSelectionView.leadingAnchor.constraint(equalTo: challengeNameLabel.leadingAnchor),
+            challengeSelectionView.topAnchor.constraint(equalTo: topAnchor, constant: 4),
+            challengeSelectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
             challengeSelectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
-            certifyPhotoLabel.topAnchor.constraint(equalTo: challengeSelectionView.bottomAnchor, constant: 24),
-            certifyPhotoLabel.leadingAnchor.constraint(equalTo: challengeNameLabel.leadingAnchor),
-            photoSubTitleLabel.centerYAnchor.constraint(equalTo: certifyPhotoLabel.centerYAnchor),
-            photoSubTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
-            backView.topAnchor.constraint(equalTo: certifyPhotoLabel.bottomAnchor, constant: 16),
-            backView.leadingAnchor.constraint(equalTo: challengeNameLabel.leadingAnchor),
-            imageView.topAnchor.constraint(equalTo: certifyPhotoLabel.bottomAnchor, constant: 8),
-            imageView.leadingAnchor.constraint(equalTo: challengeNameLabel.leadingAnchor),
-            caemeraStackView.centerYAnchor.constraint(equalTo: backView.centerYAnchor),
-            caemeraStackView.centerXAnchor.constraint(equalTo: backView.centerXAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: challengeNameLabel.leadingAnchor),
-            titleLabel.topAnchor.constraint(equalTo: caemeraStackView.bottomAnchor, constant: 36),
-            titleTextFieldView.leadingAnchor.constraint(equalTo: challengeNameLabel.leadingAnchor),
+            
+            titleLabel.leadingAnchor.constraint(equalTo: challengeSelectionView.leadingAnchor),
+            titleLabel.topAnchor.constraint(equalTo: challengeSelectionView.bottomAnchor, constant: 16),
+            titleTextFieldView.leadingAnchor.constraint(equalTo: challengeSelectionView.leadingAnchor),
             titleTextFieldView.trailingAnchor.constraint(equalTo: challengeSelectionView.trailingAnchor),
             titleTextFieldView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
             titleTextFieldView.heightAnchor.constraint(equalToConstant: 65),
-            contentLabel.leadingAnchor.constraint(equalTo: challengeNameLabel.leadingAnchor),
+            
+            contentLabel.leadingAnchor.constraint(equalTo: challengeSelectionView.leadingAnchor),
             contentLabel.topAnchor.constraint(equalTo: titleTextFieldView.bottomAnchor, constant: 24),
             contentTextView.topAnchor.constraint(equalTo: contentLabel.bottomAnchor, constant: 8),
             contentTextView.leadingAnchor.constraint(equalTo: challengeSelectionView.leadingAnchor),
             contentTextView.trailingAnchor.constraint(equalTo: challengeSelectionView.trailingAnchor),
             contentTextView.heightAnchor.constraint(equalToConstant: 171),
-            contentTextView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
+        
+            certifyPhotoLabel.topAnchor.constraint(equalTo: contentTextView.bottomAnchor, constant: 24),
+            certifyPhotoLabel.leadingAnchor.constraint(equalTo: challengeSelectionView.leadingAnchor),
+            photoSubTitleLabel.centerYAnchor.constraint(equalTo: certifyPhotoLabel.centerYAnchor),
+            photoSubTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            backView.topAnchor.constraint(equalTo: certifyPhotoLabel.bottomAnchor, constant: 16),
+            backView.leadingAnchor.constraint(equalTo: challengeSelectionView.leadingAnchor),
+            imageView.topAnchor.constraint(equalTo: certifyPhotoLabel.bottomAnchor, constant: 8),
+            imageView.leadingAnchor.constraint(equalTo: challengeSelectionView.leadingAnchor),
+            caemeraStackView.centerYAnchor.constraint(equalTo: backView.centerYAnchor),
+            caemeraStackView.centerXAnchor.constraint(equalTo: backView.centerXAnchor),
+           
+            
         ])
     }
     

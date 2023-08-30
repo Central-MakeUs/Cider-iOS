@@ -80,6 +80,7 @@ private extension HomeViewController {
         setUpDataSource()
         applySnapshot()
         bind()
+        setNotificationCenter()
     }
     
     func bind() {
@@ -107,6 +108,15 @@ private extension HomeViewController {
             arrowTopButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
             arrowTopButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24)
         ])
+    }
+    
+    func setNotificationCenter() {
+        NotificationCenter.default.publisher(for: .reloadFeed)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.viewModel.viewWillAppear()
+            }
+            .store(in: &cancellables)
     }
     
     func reloadHeader() {
@@ -141,7 +151,9 @@ private extension HomeViewController {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeHomeCell.identifier, for: indexPath) as? ChallengeHomeCell else {
                     return UICollectionViewCell()
                 }
+                
                 let challenge = self.viewModel.popularChallanges[indexPath.row]
+                let dDay = challenge.recruitLeft<=0 ? "D+\(challenge.recruitLeft * -1)" : "D-\(challenge.recruitLeft)"
                     cell.setUp(
                         type: challenge.interestField.convertChallengeType(),
                         isReward: challenge.isReward,
@@ -151,7 +163,7 @@ private extension HomeViewController {
                         status: challenge.challengeStatus.convertStatusKorean(),
                         people: "\(challenge.participateNum)명 모집중",
                         isPublic: challenge.isOfficial,
-                        dDay: "D-\(challenge.recruitLeft)",
+                        dDay: dDay,
                         isLike: challenge.isLike
                     )
                     cell.challengeId = challenge.challengeId
@@ -167,6 +179,7 @@ private extension HomeViewController {
                         return UICollectionViewCell()
                     }
                     let challenge = self.viewModel.publicChallanges[indexPath.row]
+                    let dDay = challenge.recruitLeft<=0 ? "D+\(challenge.recruitLeft * -1)" : "D-\(challenge.recruitLeft)"
                         cell.setUp(
                             type: challenge.interestField.convertChallengeType(),
                             isReward: challenge.isReward,
@@ -176,7 +189,7 @@ private extension HomeViewController {
                             status: challenge.challengeStatus.convertStatusKorean(),
                             people: "\(challenge.participateNum)명 모집중",
                             isPublic: challenge.isOfficial,
-                            dDay: "D-\(challenge.recruitLeft)",
+                            dDay: dDay,
                             isLike: challenge.isLike
                         )
                         cell.challengeId = challenge.challengeId
@@ -197,6 +210,7 @@ private extension HomeViewController {
                         return UICollectionViewCell()
                     }
                     let challenge = self.viewModel.categoryChallenges[indexPath.row]
+                    let dDay = challenge.recruitLeft<=0 ? "D+\(challenge.recruitLeft * -1)" : "D-\(challenge.recruitLeft)"
                     cell.setUp(
                         type: challenge.interestField.convertChallengeType(),
                         isReward: challenge.isReward,
@@ -206,7 +220,7 @@ private extension HomeViewController {
                         status: challenge.challengeStatus.convertStatusKorean(),
                         people: "\(challenge.participateNum)명 모집중",
                         isPublic: challenge.isOfficial,
-                        dDay: "D-\(challenge.recruitLeft)",
+                        dDay: dDay,
                         isLike: challenge.isLike
                     )
                     cell.challengeId = challenge.challengeId
@@ -225,22 +239,24 @@ private extension HomeViewController {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCell.identifier, for: indexPath) as? FeedCell else {
                     return UICollectionViewCell()
                 }
-                let feed = self.viewModel.feeds[indexPath.row]
-                cell.setUp(
-                    nickname: feed.simpleMemberResponseDto.memberName,
-                    level: feed.simpleMemberResponseDto.memberLevelName,
-                    date: feed.createdDate.formatYYYYMMDDHHMMDot(),
-                    mainTitle: feed.certifyName,
-                    subTitle: feed.certifyContent,
-                    challengeType: feed.simpleChallengeResponseDto.challengeBranch.convertChallengeType(),
-                    challengeTitle: feed.simpleChallengeResponseDto.challengeName,
-                    people: String(feed.simpleChallengeResponseDto.participateNum),
-                    heart: String(feed.certifyLike),
-                    profileImageURL: feed.simpleMemberResponseDto.profilePath,
-                    feedImageURL: feed.certifyImageUrl,
-                    isLike: feed.isLike
-                )
-                cell.certifyId = feed.certifyId
+                if let feed = self.viewModel.feeds[indexPath.row] {
+                    cell.setUp(
+                        nickname: feed.simpleMemberResponseDto.memberName,
+                        level: feed.simpleMemberResponseDto.memberLevelName,
+                        date: feed.createdDate.formatYYYYMMDDHHMMDot(),
+                        mainTitle: feed.certifyName,
+                        subTitle: feed.certifyContent,
+                        challengeType: feed.simpleChallengeResponseDto.challengeBranch.convertChallengeType(),
+                        challengeTitle: feed.simpleChallengeResponseDto.challengeName,
+                        people: String(feed.simpleChallengeResponseDto.participateNum),
+                        heart: String(feed.certifyLike),
+                        profileImageURL: feed.simpleMemberResponseDto.profilePath ?? "",
+                        feedImageURL: feed.certifyImageUrl,
+                        isLike: feed.isLike
+                    )
+                    cell.certifyId = feed.certifyId
+                }
+                
                 cell.addHeartButtonAction(self, action: #selector(self.didTapFeedHeart))
                 cell.meatballButton.addTarget(self, action: #selector(self.didTapFeedMeatball), for: .touchUpInside)
                 return cell
@@ -309,7 +325,7 @@ private extension HomeViewController {
     func applySnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections([.banner])
-        snapshot.appendItems([Item(),Item(),Item(),Item(),Item(),Item()])
+        snapshot.appendItems([Item()])
         
         snapshot.appendSections([.popluarChallenge])
         snapshot.appendItems(viewModel.popularItems)
@@ -323,7 +339,7 @@ private extension HomeViewController {
         snapshot.appendSections([.feed])
         snapshot.appendItems(viewModel.feedItems)
         
-        dataSource?.apply(snapshot)
+        dataSource?.apply(snapshot, animatingDifferences: false)
     }
     
     func createLayout() -> UICollectionViewCompositionalLayout {
@@ -621,13 +637,16 @@ private extension HomeViewController {
         guard let indexPath = collectionView.indexPath(for: cell) else {
             return
         }
-        viewModel.likeFeed(isLike: viewModel.feeds[indexPath.row].isLike, certifyId: viewModel.feeds[indexPath.row].certifyId)
-        if viewModel.feeds[indexPath.row].isLike {
-            viewModel.feeds[indexPath.row].certifyLike -= 1
-        } else {
-            viewModel.feeds[indexPath.row].certifyLike += 1
+        guard let feed = viewModel.feeds[indexPath.row] else {
+            return
         }
-        viewModel.feeds[indexPath.row].isLike.toggle()
+        viewModel.likeFeed(isLike: feed.isLike, certifyId: feed.certifyId)
+        if feed.isLike {
+            viewModel.feeds[indexPath.row]?.certifyLike -= 1
+        } else {
+            viewModel.feeds[indexPath.row]?.certifyLike += 1
+        }
+        viewModel.feeds[indexPath.row]?.isLike.toggle()
         reloadHeader()
     }
     
@@ -638,8 +657,11 @@ private extension HomeViewController {
         guard let indexPath = collectionView.indexPath(for: cell) else {
             return
         }
-        let feed = viewModel.feeds[indexPath.row]
-        pushReportViewContoller()
+        guard let feed = viewModel.feeds[indexPath.row] else {
+            return
+        }
+        // TODO: userID 변경
+        pushReportViewContoller(userId: feed.simpleMemberResponseDto.memberId, certifyId: feed.certifyId)
     }
     
     @objc func didTapChallengeOpen(_ sender: Any?) {
@@ -665,19 +687,28 @@ private extension HomeViewController {
     }
     
     func pushMyChallengeViewController() {
-        let viewController = MyChallengeViewController()
+        let viewController = MyChallengeViewController(
+            viewModel: MyChallengeViewModel(
+                usecase: DefaultMyChallengeUsecase(
+                    repository: DefaultMyChallengeRepository()
+                )
+            )
+        )
         viewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func pushChallengeDetailViewController(_ type: ChallengeType) {
-        let viewController = ChallengeDetailViewController(challengeType: type)
+    func pushChallengeDetailViewController(_ type: ChallengeType, challengeId: Int) {
+        let viewController = ChallengeDetailViewController(
+            challengeType: type,
+            viewModel: ChallengeDetailViewModel(usecase: DefaultChallengeDetailUsecase(repository: DefaultChallengeDetailRepository()), challengeId: challengeId)
+        )
         viewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func pushReportViewContoller() {
-        let viewController = ReportViewController()
+    func pushReportViewContoller(userId: Int, certifyId: Int) {
+        let viewController = ReportViewController(userId: userId, certifyId: certifyId)
         if let sheet = viewController.sheetPresentationController {
             let identifier = UISheetPresentationController.Detent.Identifier("customMedium")
             let customDetent = UISheetPresentationController.Detent.custom(identifier: identifier) { context in
@@ -707,18 +738,22 @@ extension HomeViewController: UICollectionViewDelegate {
         case .popluarChallenge:
             if viewModel.popularChallanges.count > 0 {
                 let challengeType = viewModel.popularChallanges[indexPath.row].interestField.convertChallengeType()
-                pushChallengeDetailViewController(challengeType)
+                let challengeId =  viewModel.popularChallanges[indexPath.row].challengeId
+                pushChallengeDetailViewController(challengeType, challengeId: challengeId)
             }
            
         case .publicChallenge:
             if viewModel.publicChallanges.count > 0 {
                 let challengeType = viewModel.publicChallanges[indexPath.row].interestField.convertChallengeType()
-                pushChallengeDetailViewController(challengeType)
+                let challengeId =  viewModel.publicChallanges[indexPath.row].challengeId
+                pushChallengeDetailViewController(challengeType, challengeId: challengeId)
             }
             
         case .category:
             if viewModel.categoryChallenges.count > 0 {
-                pushChallengeDetailViewController(viewModel.categoryChallenges[indexPath.row].interestField.convertChallengeType())
+                let challengeType = viewModel.categoryChallenges[indexPath.row].interestField.convertChallengeType()
+                let challengeId =  viewModel.categoryChallenges[indexPath.row].challengeId
+                pushChallengeDetailViewController(challengeType, challengeId: challengeId)
                 
             }
            

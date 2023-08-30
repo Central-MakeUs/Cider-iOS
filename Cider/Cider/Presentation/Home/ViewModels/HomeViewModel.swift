@@ -92,13 +92,23 @@ private extension HomeViewModel {
     func getHomeFeed() {
         Task {
             let response = try await usecase.getHomeFeed()
-            feeds = response
+            feeds = removeFeedNull(response)
             feedItems = []
             for _ in 0..<feeds.count {
                 feedItems.append(Item())
             }
             currentState.send(.applySnapshot(true))
         }
+    }
+    
+    func removeFeedNull(_ response: FeedResponse) -> FeedResponse {
+        var feedResponse: [FeedResponseElement] = []
+        for element in response {
+            if let element {
+                feedResponse.append(element)
+            }
+        }
+        return feedResponse
     }
     
     func deleteLikeChallenge(challengeId: Int) {

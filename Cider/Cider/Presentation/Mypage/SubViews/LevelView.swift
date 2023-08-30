@@ -131,7 +131,7 @@ final class LevelView: UIView {
 extension LevelView {
 
     func setUp(
-        percent: Float,
+        percent: Double,
         experience: String,
         level: String,
         currentLevel: String,

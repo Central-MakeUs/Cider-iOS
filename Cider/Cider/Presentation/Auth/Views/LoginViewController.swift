@@ -18,7 +18,7 @@ final class LoginViewController: UIViewController {
     
     private lazy var logoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "heart")
+        imageView.image = UIImage(named: "Logo")
         imageView.heightAnchor.constraint(equalToConstant: 64).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 64).isActive = true
         return imageView
@@ -27,10 +27,18 @@ final class LoginViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = CustomFont.PretendardBold(size: .xl5).font
-        label.text = "금융과 소비를\n시원하게 연결하다\n사이다"
+        label.text = "시작하는\n금융챌린지"
         label.textColor = .custom.text
         label.setTextWithLineHeight(lineHeight: 39.2)
         label.numberOfLines = 0
+        return label
+    }()
+    
+    private lazy var nowLabel: UILabel = {
+        let label = UILabel()
+        label.font = CustomFont.PretendardBold(size: .xl5).font
+        label.text = "지금"
+        label.textColor = .custom.main
         return label
     }()
     
@@ -89,12 +97,14 @@ private extension LoginViewController {
     }
     
     func configure() {
-        view.addSubviews(logoImageView, titleLabel, appleLoginButton, kakaoLoginButton)
+        view.addSubviews(logoImageView, titleLabel, nowLabel, appleLoginButton, kakaoLoginButton)
         NSLayoutConstraint.activate([
             logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 130),
             logoImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             titleLabel.leadingAnchor.constraint(equalTo: logoImageView.leadingAnchor),
             titleLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 16),
+            nowLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            nowLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
             kakaoLoginButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
             kakaoLoginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             kakaoLoginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
@@ -113,7 +123,9 @@ private extension LoginViewController {
                     guard isSuccess else {
                         return
                     }
-                    isNewUser ? self?.pushServiceAgreeViewController() : self?.presentTabBarViewController()
+                    isNewUser ? self?.pushServiceAgreeViewController() : self?.pushServiceAgreeViewController()
+                case .showEnabledLogin:
+                    self?.presentLoginBlockViewController()
                 }
             }.store(in: &cancellables)
     }
@@ -127,6 +139,13 @@ private extension LoginViewController {
         UserManager.shared.updateLoginState(true)
         let viewController = TabBarViewController()
         viewController.modalPresentationStyle = .fullScreen
+        self.present(viewController, animated: true)
+    }
+    
+    func presentLoginBlockViewController() {
+        let viewController = LoginBlockViewController()
+        viewController.modalPresentationStyle = .overFullScreen
+        viewController.modalTransitionStyle = .crossDissolve
         self.present(viewController, animated: true)
     }
     
@@ -182,7 +201,7 @@ private extension LoginViewController {
                 return
             }
             UserDefaults.standard.write(key: .loginType, value: "카카오")
-            UserDefaults.standard.write(key: .email, value: email)
+            UserDefaults.standard.write(key: .kakaoEmail, value: email)
         }
     }
     
@@ -207,10 +226,9 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 return
             }
             viewModel.appleLogin(token: token)
-            
+            UserDefaults.standard.write(key: .loginType, value: "애플")
             if let email = credential.email {
-                UserDefaults.standard.write(key: .email, value: email)
-                UserDefaults.standard.write(key: .loginType, value: "애플")
+                UserDefaults.standard.write(key: .appleEmail, value: email)
             }
            
         }

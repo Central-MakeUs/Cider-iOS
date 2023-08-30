@@ -82,6 +82,8 @@ private extension ChallengeOpenViewController {
                 switch state {
                 case .changeNextButtonState(let isEnabled):
                     self?.bottomButton.setStyle(isEnabled ? .enabled : .disabled)
+                case .pushPrecautionViewController(let request, let successData, let failData):
+                    self?.pushPrecautionViewController(request: request, successData: successData, failData: failData)
                 }
             }
             .store(in: &cancellables)
@@ -128,12 +130,21 @@ private extension ChallengeOpenViewController {
                 }
                 .store(in: &self.cancellables)
             
+            if let challengeName = self.viewModel.challengeName {
+                cell.challengeTitleTextFieldView.ciderTextField.text = challengeName
+            }
+            
             cell.missionTextFieldView.textPublisher()
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] missionInfo in
                     self?.viewModel.changeMissionInfo(missionInfo)
                 }
                 .store(in: &self.cancellables)
+            
+            if let missionInfo = self.viewModel.missionInfo {
+                cell.missionTextFieldView.ciderTextField.text = missionInfo
+            }
+            
             
             cell.challengeIntroductionTextView.textPublisher()
                 .receive(on: DispatchQueue.main)
@@ -142,12 +153,33 @@ private extension ChallengeOpenViewController {
                 }
                 .store(in: &self.cancellables)
             
+            if self.viewModel.challengeInfo != self.viewModel.infoPlaceHolder {
+                cell.challengeIntroductionTextView.textView.text = self.viewModel.challengeInfo
+            }
+            
             cell.memberView.unitPublisher()
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] recruitPeriod in
+                    self?.viewModel.changeChallengeCapacity(recruitPeriod)
+                }
+                .store(in: &self.cancellables)
+            cell.memberView.setTextFieltText("\(String(self.viewModel.challengeCapacity))명")
+            
+            cell.recruitmentView.unitPublisher()
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] recruitPeriod in
                     self?.viewModel.changeRecruitPeriod(recruitPeriod)
                 }
                 .store(in: &self.cancellables)
+            cell.recruitmentView.setTextFieltText("\(String(self.viewModel.recruitPeriod))일")
+            
+            cell.participationView.unitPublisher()
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] recruitPeriod in
+                    self?.viewModel.changeChallengePeriod(recruitPeriod)
+                }
+                .store(in: &self.cancellables)
+            cell.participationView.setTextFieltText("\(String(self.viewModel.challengePeriod))주")
             
             return cell
         })
@@ -178,9 +210,16 @@ private extension ChallengeOpenViewController {
         return layout
     }
     
-    func pushPrecautionViewController() {
+    func pushPrecautionViewController(request: ChallengeOpenRequest, successData: Data, failData: Data) {
         let viewController = PrecautionViewController(
-            viewModel: PrecautionViewModel()
+            viewModel: PrecautionViewModel(
+                usecase: DefaultChallengeOpenUsecase(
+                    repository: DefaultChallengeOpenRepository()
+                ),
+                challengeOpenRequest: request,
+                failData: failData,
+                successData: successData
+            )
         )
         self.navigationController?.pushViewController(viewController, animated: true)
     }
@@ -200,7 +239,7 @@ private extension ChallengeOpenViewController {
     }
     
     @objc func didTapNextButton(_ sender: Any?) {
-        pushPrecautionViewController()
+        viewModel.didTapNextButton()
     }
     
 }
@@ -212,7 +251,7 @@ extension ChallengeOpenViewController: UIImagePickerControllerDelegate, UINaviga
             return
         }
         
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             if missionType == .success {
                 successImage = image
                 viewModel.selectSuccessImage(image)

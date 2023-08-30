@@ -30,7 +30,11 @@ final class DefaultLoginUsecase: LoginUsecase {
         guard let accessToken = response.accessToken else {
             return nil
         }
+        guard let refreshToken = response.refreshToken else {
+            return nil
+        }
         Keychain.saveToken(data: accessToken)
+        Keychain.saveRefreshToken(data: refreshToken)
         return response
     }
     
@@ -39,10 +43,15 @@ final class DefaultLoginUsecase: LoginUsecase {
         Keychain.saveToken(data: token)
         let request = LoginRequest(socialType: "APPLE", clientType: "IOS")
         let response = try await loginRepository.signInKakao(parameters: request)
+        print(response)
         guard let accessToken = response.accessToken else {
             return nil
         }
+        guard let refreshToken = response.refreshToken else {
+            return nil
+        }
         Keychain.saveToken(data: accessToken)
+        Keychain.saveRefreshToken(data: refreshToken)
         return response
     }
     

@@ -29,6 +29,22 @@ enum CiderAPI {
     case getMyLikeChallenge
     case patchProfileImage(image: UIImage)
     case patchProfile(parameters: [String: Any])
+    case getMyParticipateChallenge
+    case getMyCerify(challengeId: Int)
+    case postCertify(parameters: [String: Any])
+    case postCertifyImage(image: UIImage, certifyId: Int)
+    case postChallenge(parameters: [String: Any])
+    case postChallengeImage(challengeId: Int, successData: Data, failData: Data)
+    case getMyChallenge
+    case deleteChallenge(challengeId: Int)
+    case getChallengeDetailInfo(challengeId: Int)
+    case getChallengeDetailFeed(challengeId: Int, filter: String)
+    case postChallengeParticipiate(parameters: [String: Any])
+    case reportUser(parameters: [String: Any])
+    case reportFeed(parameters: [String: Any])
+    case blockUser(parameters: [String: Any])
+    case blockFeed(parameters: [String: Any])
+    case signout
 }
 
 extension CiderAPI: TargetType, AccessTokenAuthorizable {
@@ -54,7 +70,7 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
         case .getPopularChallenge(let filter):
             return "/api/challenge/popular/\(filter)"
         case .getAllChallenge(let filter):
-            return "/api/challenge/\(filter)"
+            return "/api/challenge/list/\(filter)"
         case .getPublicChallenge(let filter):
             return "/api/challenge/official/\(filter)"
         case .getHomeFeed:
@@ -75,7 +91,38 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             return "/api/member/profile/image"
         case .patchProfile:
             return "/api/member/profile"
-
+        case .getMyParticipateChallenge:
+            return "/api/challenge/participate"
+        case .getMyCerify(let challengeId):
+            return "/api/certify/mypage/\(challengeId)"
+        case .postCertify:
+            return "/api/certify"
+        case .postCertifyImage(_, let certifyId):
+            return "/api/certify/images/\(certifyId)"
+        case .postChallenge:
+            return "/api/challenge"
+        case .postChallengeImage(let challengeId, _, _):
+            return "/api/challenge/images/\(challengeId)"
+        case .getMyChallenge:
+            return "/api/challenge/my"
+        case .deleteChallenge(let challengeId):
+            return "/api/challenge/\(challengeId)"
+        case .getChallengeDetailInfo(let challengeId):
+            return "/api/challenge/detail/info/\(challengeId)"
+        case .getChallengeDetailFeed(let challengeId, let filter):
+            return "/api/challenge/detail/feed/\(challengeId)/\(filter)"
+        case .postChallengeParticipiate:
+            return "/api/challenge/participate"
+        case .reportUser:
+            return "/api/report/member"
+        case .reportFeed:
+            return "/api/report/feed"
+        case .blockFeed:
+            return "/api/block/feed"
+        case .blockUser:
+            return "/api/block/member"
+        case .signout:
+            return "/api/oauth/signout"
         }
     }
     
@@ -84,7 +131,17 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
         case .signInApple,
              .signInKakao,
              .postLikeChallenge,
-             .postLikeFeed:
+             .postLikeFeed,
+             .postCertify,
+             .postCertifyImage,
+             .postChallenge,
+             .postChallengeImage,
+             .postChallengeParticipiate,
+             .reportUser,
+             .reportFeed,
+             .blockFeed,
+             .blockUser,
+             .signout:
             return .post
             
         case .getRandomNickname,
@@ -96,7 +153,12 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
              .getPublicChallenge,
              .getHomeFeed,
              .getMypage,
-             .getMyLikeChallenge:
+             .getMyLikeChallenge,
+             .getMyCerify,
+             .getMyParticipateChallenge,
+             .getMyChallenge,
+             .getChallengeDetailInfo,
+             .getChallengeDetailFeed:
             return .get
             
         case .patchOnboarding,
@@ -105,7 +167,8 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
             return .patch
             
         case .deleteLikeChallenge,
-             .deleteLikeFeed:
+             .deleteLikeFeed,
+             .deleteChallenge:
             return .delete
         }
     }
@@ -117,13 +180,32 @@ extension CiderAPI: TargetType, AccessTokenAuthorizable {
              .patchOnboarding(let parameters),
              .postLikeChallenge(let parameters),
              .postLikeFeed(let parameters),
-             .patchProfile(let parameters):
+             .patchProfile(let parameters),
+             .postCertify(let parameters),
+             .postChallenge(let parameters),
+             .postChallengeParticipiate(let parameters),
+             .blockUser(let parameters),
+             .blockFeed(let parameters),
+             .reportFeed(let parameters),
+             .reportUser(let parameters):
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
     
         case .patchProfileImage(let image):
             let data = image.jpegData(compressionQuality: 0.1)!
             let imageData = MultipartFormBodyPart(provider: .data(data), name: "profileImage", fileName: "image.jpeg", mimeType: "image/jpeg")
             let multipartData: MultipartFormData = [imageData]
+            return .uploadMultipartFormData(multipartData)
+            
+        case .postCertifyImage(let image, _):
+            let data = image.jpegData(compressionQuality: 0.1)!
+            let imageData = MultipartFormBodyPart(provider: .data(data), name: "certifyImages", fileName: "image.jpeg", mimeType: "image/jpeg")
+            let multipartData: MultipartFormData = [imageData]
+            return .uploadMultipartFormData(multipartData)
+            
+        case .postChallengeImage(_, let successData, let failData):
+            let successImageData = MultipartFormBodyPart(provider: .data(successData), name: "successExampleImages", fileName: "image.jpeg", mimeType: "image/jpeg")
+            let failImageData = MultipartFormBodyPart(provider: .data(failData), name: "failureExampleImages", fileName: "image.jpeg", mimeType: "image/jpeg")
+            let multipartData: MultipartFormData = [successImageData, failImageData]
             return .uploadMultipartFormData(multipartData)
             
         default:

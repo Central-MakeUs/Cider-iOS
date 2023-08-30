@@ -33,6 +33,16 @@ final class Keychain: NSObject {
        
         self.delete(service: serviceIdentifier, forKey: "tokenKey", data: token)
     }
+    
+    public class func saveRefreshToken(data: String) {
+        self.save(service: "refreshToken", forKey: "tokenKey", data: data)
+    }
+    
+    public class func loadRefreshToken() -> String? {
+        let data = self.load(service: "refreshToken", forKey: "tokenKey")
+        return data
+    }
+  
 }
 
 private extension Keychain {

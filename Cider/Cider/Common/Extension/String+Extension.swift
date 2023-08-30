@@ -24,6 +24,8 @@ extension String {
             return "참여가능"
         case "IMPOSSIBLE":
             return "종료"
+        case "END":
+            return "종료"
         default:
             return ""
         }
@@ -53,6 +55,19 @@ extension String {
             return outputFormatter.string(from: date)
         } else {
             return ""
+        }
+    }
+    
+    func convertReviewType() -> ReviewType? {
+        switch self {
+        case "JUDGING":
+            return .reviewing
+        case "COMPLETE":
+            return .successReview
+        case "FAILURE":
+            return .failReview
+        default:
+            return nil
         }
     }
     

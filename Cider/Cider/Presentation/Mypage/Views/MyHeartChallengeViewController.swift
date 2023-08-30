@@ -16,6 +16,7 @@ class MyHeartChallengeViewController: UIViewController {
         collectionView.register(MyHeartEmptyCell.self, forCellWithReuseIdentifier: MyHeartEmptyCell.identifier)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.keyboardDismissMode = .onDrag
+        collectionView.delegate = self
         return collectionView
     }()
     
@@ -128,6 +129,7 @@ private extension MyHeartChallengeViewController {
                         return UICollectionViewCell()
                     }
                     let challenge = self.viewModel.challenges[indexPath.row]
+                    let dDay = challenge.recruitLeft<=0 ? "D+\(challenge.recruitLeft * -1)" : "D-\(challenge.recruitLeft)"
                     cell.setUp(
                         type: challenge.interestField.convertChallengeType(),
                         isReward: challenge.isReward,
@@ -137,7 +139,7 @@ private extension MyHeartChallengeViewController {
                         status: challenge.challengeStatus.convertStatusKorean(),
                         people: "\(challenge.participateNum)명 모집중",
                         isPublic: challenge.isOfficial,
-                        dDay: "D-\(challenge.recruitLeft)",
+                        dDay: dDay,
                         isLike: challenge.isLike
                     )
                     cell.challengeId = challenge.challengeId
@@ -238,6 +240,21 @@ private extension MyHeartChallengeViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
+    func pushChallengeDetailViewController(index: Int) {
+        let challengeType = viewModel.challenges[index].interestField.convertChallengeType()
+        let challengeId = viewModel.challenges[index].challengeId
+        let viewController = ChallengeDetailViewController(
+            challengeType: challengeType,
+            viewModel: ChallengeDetailViewModel(
+                usecase: DefaultChallengeDetailUsecase(
+                    repository: DefaultChallengeDetailRepository()
+                ),
+                challengeId: challengeId
+            )
+        )
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
     @objc func didTapChallengeHeart(_ sender: UIButton) {
         let contentView = sender.superview?.superview
         var challengeId: Int?
@@ -264,6 +281,14 @@ private extension MyHeartChallengeViewController {
     
     @objc func didTapChallengeOpen(_ sender: Any?) {
         pushChallengeOpenViewController()
+    }
+    
+}
+
+extension MyHeartChallengeViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        pushChallengeDetailViewController(index: indexPath.row)
     }
     
 }

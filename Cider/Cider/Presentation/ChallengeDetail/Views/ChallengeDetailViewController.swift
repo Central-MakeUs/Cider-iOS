@@ -44,14 +44,14 @@ class ChallengeDetailViewController: UIViewController {
     }()
     
     private lazy var bottomButton: CiderBottomButton = {
-        let button = CiderBottomButton(style: .enabled, title: "챌린지 기다리기 D-5")
+        let button = CiderBottomButton(style: .enabled, title: "")
         button.setFont(CustomFont.PretendardBold(size: .xl).font)
         return button
     }()
     
     private lazy var heartButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "filled_like_24")?.withTintColor(.custom.main ?? .white), for: .normal)
+        button.addTarget(self, action: #selector(didTapChallengeHeart), for: .touchUpInside)
         return button
     }()
     
@@ -61,6 +61,13 @@ class ChallengeDetailViewController: UIViewController {
         label.font = CustomFont.PretendardBold(size: .xs).font
         label.textColor = .custom.main
         return label
+    }()
+    
+    // TODO: 그림자 제거용 뷰 수정하기
+    private lazy var bottomShadowView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
     }()
     
     private enum InfoSection: Int {
@@ -75,7 +82,7 @@ class ChallengeDetailViewController: UIViewController {
     
     private enum FeedSection: Int {
         case menu = 0
-        case myMission = 1
+        case myCertify = 1
         case MissionPhoto = 2
         case feed = 3
     }
@@ -85,10 +92,12 @@ class ChallengeDetailViewController: UIViewController {
     private var feedDataSource: UICollectionViewDiffableDataSource<FeedSection, Item>?
 
     private let challengeType: ChallengeType
+    private let viewModel: ChallengeDetailViewModel
     private var menuType: ChallengeDetailMenuType = .info
     
-    init(challengeType: ChallengeType) {
+    init(challengeType: ChallengeType, viewModel: ChallengeDetailViewModel) {
         self.challengeType = challengeType
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -99,6 +108,7 @@ class ChallengeDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
+        viewModel.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -118,11 +128,32 @@ private extension ChallengeDetailViewController {
         configure()
         setMenu(menuType)
         setNotificationCenter()
+        bind()
+    }
+    
+    func bind() {
+        viewModel.state.receive(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                guard let self = self else {
+                    return
+                }
+                switch state {
+                case .applysnapshot:
+                    self.applySnapshot()
+                    self.reloadHeader()
+                case .setHeart(let isLike, let likeCount):
+                    self.setHeart(isLike: isLike, likeCount: likeCount)
+                case .challengeStatus(let status):
+                    print("status \(status)")
+                    self.setBottomButton(status)
+                }
+            }
+            .store(in: &cancellables)
     }
     
     func configure() {
         view.backgroundColor = .white
-        view.addSubviews(collectionView, bottomView, bottomButton, heartButton, heartCountLabel)
+        view.addSubviews(collectionView, bottomView, bottomButton, heartButton, heartCountLabel, bottomShadowView)
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -140,18 +171,48 @@ private extension ChallengeDetailViewController {
             heartButton.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 10),
             heartButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UIScreen.main.bounds.width*0.1),
             heartCountLabel.centerXAnchor.constraint(equalTo: heartButton.centerXAnchor),
-            heartCountLabel.topAnchor.constraint(equalTo: heartButton.bottomAnchor)
+            heartCountLabel.topAnchor.constraint(equalTo: heartButton.bottomAnchor),
+            bottomShadowView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            bottomShadowView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            bottomShadowView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            bottomShadowView.topAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: 0)
         ])
     }
     
     func setMenu(_ type: ChallengeDetailMenuType) {
-        switch type {
-        case .info:
-            setUpInfoDataSource()
-            applyInfoSnapshot()
-        case .feed:
-            setUpFeedDataSource()
-            applyFeedSnapshot()
+        setDataSource()
+        applySnapshot()
+    }
+    
+    func setHeart(isLike: Bool, likeCount: Int) {
+        if isLike {
+            heartButton.setImage(UIImage(named: "filled_like_24")?.withTintColor(.custom.main ?? .white), for: .normal)
+        } else {
+            heartButton.setImage(UIImage(named: "line_like_24"), for: .normal)
+        }
+        heartCountLabel.text = String(likeCount)
+        heartCountLabel.textColor = isLike ? .custom.main : .custom.icon
+    }
+    
+    func setBottomButton(_ status: String) {
+        bottomButton.setTitle(status, for: .normal)
+        switch status {
+        case "오늘 참여 인증하기":
+            bottomButton.isEnabled = true
+            bottomButton.setStyle(.enabled)
+            bottomButton.addTarget(self, action: #selector(didTapCertify), for: .touchUpInside)
+            
+        case "이 챌린지 참여하기":
+            bottomButton.isEnabled = true
+            bottomButton.setStyle(.enabled)
+            bottomButton.addTarget(self, action: #selector(didTapParticipate), for: .touchUpInside)
+            
+        default:
+            bottomButton.setStyle(.disabled)
+        }
+        if status.contains("챌린지 기다리기") {
+            bottomButton.setStyle(.enabled)
+            viewModel.didTapParticipateChallenge()
         }
     }
     
@@ -176,6 +237,15 @@ private extension ChallengeDetailViewController {
         setNavigationBar(backgroundColor: challengeType.color, tintColor: .white, shadowColor: .clear)
     }
     
+    func setDataSource() {
+        switch menuType {
+        case .feed:
+            setUpFeedDataSource()
+        case .info:
+            setUpInfoDataSource()
+        }
+    }
+    
     func setUpInfoDataSource() {
         infoDataSource = UICollectionViewDiffableDataSource<InfoSection, Item>(collectionView: collectionView, cellProvider: { [weak self] collectionView, indexPath, itemIdentifier in
             guard let self = self else {
@@ -187,13 +257,24 @@ private extension ChallengeDetailViewController {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeDetailMenuCell.identifier, for: indexPath) as? ChallengeDetailMenuCell else {
                     return UICollectionViewCell()
                 }
-                cell.setUp(
-                    challengeType: self.challengeType,
-                    profileImage: UIImage(named: "sample"),
-                    mainTitle: "만보 걷기~~~~~~",
-                    participant: "29 / 30명",
-                    status: "진행중 D-6"
-                )
+                if let infoResponse = self.viewModel.infoResponse {
+                    cell.setUp(
+                        challengeType: self.challengeType,
+                        profileUrl: infoResponse.simpleMemberResponseDto.profilePath ?? "",
+                        mainTitle: infoResponse.challengeName,
+                        participant: "\(infoResponse.participateNum) / \(infoResponse.challengeCapacity)명",
+                        status: infoResponse.challengeStatus.convertStatusKorean()
+                    )
+                } else {
+                    cell.setUp(
+                        challengeType: self.challengeType,
+                        profileUrl: "",
+                        mainTitle: "",
+                        participant: "0 / 0명",
+                        status: ""
+                    )
+                }
+               
                 cell.setUpMenu(self.menuType)
                 return cell
                 
@@ -201,61 +282,76 @@ private extension ChallengeDetailViewController {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProgressBarCell.identifier, for: indexPath) as? ProgressBarCell else {
                     return UICollectionViewCell()
                 }
-                cell.setUp(
-                    averagePercent: 0.97,
-                    myPercent: 0.5
-                )
+                if let infoResponse = self.viewModel.infoResponse {
+                    cell.setUp(
+                        averagePercent: Double(infoResponse.challengeConditionResponseDto.averageCondition)*0.01,
+                        myPercent: Double(infoResponse.challengeConditionResponseDto.myCondition)*0.01
+                    )
+                }
+               
                 return cell
                 
             case .challengeIntro:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeIntroCell.identifier, for: indexPath) as? ChallengeIntroCell else {
                     return UICollectionViewCell()
                 }
-                cell.setUp(info: "하루 한번 아침에 일어나서 물이 담긴 컵사진 인증하루 만보 걷기 챌린지는 쉽고 재미있게 만보를 걸을 수있는 챌린지로, 제가 맨날 일하다가 한번 입원하고 나서 심각성을 느끼고 만들게 된 멋진 챌린지\n\n안녕하세요")
+                if let infoResponse = self.viewModel.infoResponse {
+                    cell.setUp(info: infoResponse.challengeIntro)
+                }
+               
                 return cell
                 
             case .challengeInfo:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeInfoCell.identifier, for: indexPath) as? ChallengeInfoCell else {
                     return UICollectionViewCell()
                 }
-                cell.setUp(
-                    recruit: "06월 26일(월) - 06월 28일(수)",
-                    date: "6월 30일(금) - 07월 7일(금)",
-                    people: "30명",
-                    missionCount: "총 14회",
-                    missionTime: "매일 자정까지",
-                    reward: "있음"
-                )
+                if let infoResponse = self.viewModel.infoResponse {
+                    cell.setUp(
+                        recruit: infoResponse.challengeInfoResponseDto.recruitPeriod,
+                        date: infoResponse.challengeInfoResponseDto.challengePeriod,
+                        people: "\(infoResponse.challengeCapacity)명",
+                        missionCount: "총 \(infoResponse.challengeInfoResponseDto.certifyNum)회",
+                        missionTime: infoResponse.challengeInfoResponseDto.certifyTime,
+                        reward: infoResponse.challengeInfoResponseDto.isReward ? "있음" : "없음"
+                    )
+                }
+               
                 return cell
                 
             case .rule:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RuleCell.identifier, for: indexPath) as? RuleCell else {
                     return UICollectionViewCell()
                 }
-                cell.setUp(failText: "30회 미만 인증")
+                if let infoResponse = self.viewModel.infoResponse {
+                    cell.setUp(failText: infoResponse.challengeRuleResponseDto.failureRule)
+                }
                 return cell
                 
             case .mission:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MissionCell.identifier, for: indexPath) as? MissionCell else {
                     return UICollectionViewCell()
                 }
-                cell.setUp(
-                   mission: "하루 한번 아침에 일어나서 물이 담긴 컵사진 인증\n하루 한번 아침에 일어나서 물이 담긴 컵사진 인증",
-                   successImage: UIImage(named: "sample"),
-                   failImage: UIImage(named: "sample")
-                )
+                if let infoResponse = self.viewModel.infoResponse {
+                    cell.setUp(
+                        mission: infoResponse.certifyMissionResponseDto.certifyMission,
+                        successUrl: infoResponse.certifyMissionResponseDto.successExampleImage ?? "",
+                        failUrl: infoResponse.certifyMissionResponseDto.failureExampleImage ?? ""
+                    )
+                }
                 return cell
                 
             case .host:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HostCell.identifier, for: indexPath) as? HostCell else {
                     return UICollectionViewCell()
                 }
-                cell.setUp(
-                    nickname: "Sun",
-                    levelInfo: "LV5 능숙한 챌린저",
-                    hostCountInfo: "0번째 챌린지",
-                    profileImage: UIImage(named: "sample")
-                )
+                if let infoResponse = self.viewModel.infoResponse {
+                    cell.setUp(
+                        nickname: infoResponse.simpleMemberResponseDto.memberName,
+                        levelInfo: infoResponse.simpleMemberResponseDto.memberLevelName,
+                        hostCountInfo: "\(infoResponse.simpleMemberResponseDto.participateChallengeNum)번째 챌린지",
+                        profileUrl: infoResponse.simpleMemberResponseDto.profilePath ?? ""
+                    )
+                }
                 return cell
                 
             case .none:
@@ -279,7 +375,8 @@ private extension ChallengeDetailViewController {
                         withReuseIdentifier: HomeHeaderView.identifier,
                         for: indexPath
                     ) as? HomeHeaderView
-                    headerView?.setUp(leftTitle: "챌린지 현황", rightTitle: "30회 중 6회 진행", isClicked: false)
+                    // TODO: 30회 중 몇 회 구현하기
+                    headerView?.setUp(leftTitle: "챌린지 현황", rightTitle: "", isClicked: false)
                     return headerView ?? UICollectionReusableView()
                     
                 case SeparatorFooterView.identifier:
@@ -431,56 +528,68 @@ private extension ChallengeDetailViewController {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeDetailMenuCell.identifier, for: indexPath) as? ChallengeDetailMenuCell else {
                     return UICollectionViewCell()
                 }
-                cell.setUp(
-                    challengeType: self.challengeType,
-                    profileImage: UIImage(named: "sample"),
-                    mainTitle: "만보 걷기~~~~~~",
-                    participant: "29 / 30명",
-                    status: "진행중 D-6"
-                )
+                if let infoResponse = self.viewModel.infoResponse {
+                    cell.setUp(
+                        challengeType: self.challengeType,
+                        profileUrl: infoResponse.simpleMemberResponseDto.profilePath ?? "",
+                        mainTitle: infoResponse.challengeName,
+                        participant: "\(infoResponse.participateNum) / \(infoResponse.challengeCapacity)명",
+                        status: infoResponse.challengeStatus.convertStatusKorean()
+                    )
+                } else {
+                    cell.setUp(
+                        challengeType: self.challengeType,
+                        profileUrl: "",
+                        mainTitle: "",
+                        participant: "0 / 0명",
+                        status: ""
+                    )
+                }
                 cell.setUpMenu(self.menuType)
                 return cell
                 
-            case .myMission:
+            case .myCertify:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyMissionCell.identifier, for: indexPath) as? MyMissionCell else {
                     return UICollectionViewCell()
                 }
-                cell.setUp(count: "24")
+                cell.setUp(count: "")
                 return cell
                 
             case .MissionPhoto:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MissionPhotoCell.identifier, for: indexPath) as? MissionPhotoCell else {
                     return UICollectionViewCell()
                 }
-                cell.setUp(
-                    photos: [
-                   UIImage(named: "sample"),
-                   UIImage(named: "sample"),
-                   UIImage(named: "sample"),
-                   UIImage(named: "sample"),
-                   UIImage(named: "sample"),
-                   UIImage(named: "sample")
-                ])
+                if let feedResponse = self.viewModel.feedResponse {
+                    cell.setUp(
+                        photos: feedResponse.certifyImageUrlList
+                    )
+                }
+                
                 return cell
                 
             case .feed:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCell.identifier, for: indexPath) as? FeedCell else {
                     return UICollectionViewCell()
                 }
-                cell.setUp(
-                    nickname: "화이팅",
-                    level: "LV 1",
-                    date: "23.05.15 15:45",
-                    mainTitle: "오늘 챌린지 인증하는데",
-                    subTitle: "챌린지 하면 할수록 너무 힘들구 어쩌고 저쩌고 근데 할 수 있다 챌린지 하면 할수록 챌린지 하면 할수록\n챌린지 하면 할수록 너무 힘들구 어쩌고 저쩌고 근데 할 수 있다\n챌린지 하면 할수록 너무 힘들구 어쩌고 저쩌고 근데 할 수 있다",
-                    challengeType: .financialTech,
-                    challengeTitle: "하루에 만보 걷기 챌린지 하루를 열심히 살아보아요!!!",
-                    people: "231",
-                    heart: "1111",
-                    profileImageURL: "https://cider-bucket.s3.ap-northeast-2.amazonaws.com/profileExample/bear.png",
-                    feedImageURL: "https://cider-bucket.s3.ap-northeast-2.amazonaws.com/profileExample/bear.png",
-                    isLike: true
-                )
+                if let feed = self.viewModel.feedResponse?.simpleCertifyResponseDtoList[indexPath.row],
+                   let infoResponse = self.viewModel.infoResponse {
+                    cell.setUp(
+                        nickname: feed.simpleMemberResponseDto.memberName,
+                        level: feed.simpleMemberResponseDto.memberLevelName,
+                        date: feed.createdDate.formatYYYYMMDDHHMMDot(),
+                        mainTitle: feed.certifyName,
+                        subTitle: feed.certifyContent,
+                        challengeType: infoResponse.challengeBranch.convertChallengeType(),
+                        challengeTitle: infoResponse.challengeName,
+                        people: String(infoResponse.participateNum),
+                        heart: String(feed.certifyLike),
+                        profileImageURL: feed.simpleMemberResponseDto.profilePath ?? "",
+                        feedImageURL: feed.certifyImageUrl,
+                        isLike: feed.isLike
+                    )
+                }
+                cell.addHeartButtonAction(self, action: #selector(self.didTapFeedHeart))
+                cell.meatballButton.addTarget(self, action: #selector(self.didTapFeedMeatball), for: .touchUpInside)
                 return cell
                 
             case .none:
@@ -488,7 +597,6 @@ private extension ChallengeDetailViewController {
             
             }
         })
-        
         
         feedDataSource?.supplementaryViewProvider = { [weak self] collectionView, elementKind, indexPath in
             guard let self = self else {
@@ -525,6 +633,8 @@ private extension ChallengeDetailViewController {
                     withReuseIdentifier: SortingHeaderView.identifier,
                     for: indexPath
                 ) as? SortingHeaderView
+                headerView?.setUp(text: self.viewModel.filter.korean)
+                headerView?.sortingView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.didTapSorting)))
                 return headerView
                
             default:
@@ -534,36 +644,53 @@ private extension ChallengeDetailViewController {
         
     }
     
-    func applyInfoSnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<InfoSection, Item>()
-        snapshot.appendSections([.menu])
-        snapshot.appendItems([Item()])
-        snapshot.appendSections([.progress])
-        snapshot.appendItems([Item()])
-        snapshot.appendSections([.challengeIntro])
-        snapshot.appendItems([Item()])
-        snapshot.appendSections([.challengeInfo])
-        snapshot.appendItems([Item()])
-        snapshot.appendSections([.rule])
-        snapshot.appendItems([Item()])
-        snapshot.appendSections([.mission])
-        snapshot.appendItems([Item()])
-        snapshot.appendSections([.host])
-        snapshot.appendItems([Item()])
-        infoDataSource?.apply(snapshot)
+    func reloadHeader() {
+        switch menuType {
+        case .feed:
+            guard let feedSnapshot = feedDataSource?.snapshot() else {
+                return
+            }
+            feedDataSource?.applySnapshotUsingReloadData(feedSnapshot)
+        case .info:
+            guard let infoSnapshot = infoDataSource?.snapshot() else {
+                return
+            }
+            infoDataSource?.applySnapshotUsingReloadData(infoSnapshot)
+        }
     }
     
-    func applyFeedSnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<FeedSection, Item>()
-        snapshot.appendSections([.menu])
-        snapshot.appendItems([Item()])
-        snapshot.appendSections([.myMission])
-        snapshot.appendItems([Item()])
-        snapshot.appendSections([.MissionPhoto])
-        snapshot.appendItems([Item()])
-        snapshot.appendSections([.feed])
-        snapshot.appendItems([Item(), Item(), Item(), Item()])
-        feedDataSource?.apply(snapshot)
+    func applySnapshot() {
+        switch menuType {
+        case .info:
+            var snapshot = NSDiffableDataSourceSnapshot<InfoSection, Item>()
+            snapshot.appendSections([.menu])
+            snapshot.appendItems([Item()])
+            snapshot.appendSections([.progress])
+            snapshot.appendItems([Item()])
+            snapshot.appendSections([.challengeIntro])
+            snapshot.appendItems([Item()])
+            snapshot.appendSections([.challengeInfo])
+            snapshot.appendItems([Item()])
+            snapshot.appendSections([.rule])
+            snapshot.appendItems([Item()])
+            snapshot.appendSections([.mission])
+            snapshot.appendItems([Item()])
+            snapshot.appendSections([.host])
+            snapshot.appendItems([Item()])
+            infoDataSource?.apply(snapshot, animatingDifferences: false)
+
+        case .feed:
+            var snapshot = NSDiffableDataSourceSnapshot<FeedSection, Item>()
+            snapshot.appendSections([.menu])
+            snapshot.appendItems([Item()])
+            snapshot.appendSections([.myCertify])
+            snapshot.appendItems([Item()])
+            snapshot.appendSections([.MissionPhoto])
+            snapshot.appendItems([Item()])
+            snapshot.appendSections([.feed])
+            snapshot.appendItems(viewModel.feedItems)
+            feedDataSource?.apply(snapshot, animatingDifferences: false)
+        }
     }
     
     func createLayout() -> UICollectionViewCompositionalLayout {
@@ -606,7 +733,7 @@ private extension ChallengeDetailViewController {
                 case .menu:
                     return self.menuSectionLayout()
                     
-                case .myMission:
+                case .myCertify:
                     return self.myMissionSectionLayout()
                     
                 case .MissionPhoto:
@@ -952,6 +1079,17 @@ private extension ChallengeDetailViewController {
         return section
     }
     
+    func pushMyCertifyViewController() {
+        let viewController = MyCertifyViewController(
+            viewModel: MyCertifyViewModel(
+                usecase: DefaultMyCertifyUsecase(
+                    repository: DefaultMyCertifyRepository()
+                )
+            )
+        )
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
 }
 
 extension ChallengeDetailViewController: UICollectionViewDelegate {
@@ -963,6 +1101,108 @@ extension ChallengeDetailViewController: UICollectionViewDelegate {
         } else {
             setNavigationBar(backgroundColor: challengeType.color, tintColor: .white, shadowColor: .clear)
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if menuType == .feed {
+            let section = FeedSection(rawValue: indexPath.section)
+            if section == .myCertify {
+                pushMyCertifyViewController()
+            }
+        }
+    }
+    
+}
+
+private extension ChallengeDetailViewController {
+    
+    func pushReportViewContoller(userId: Int, certifyId: Int) {
+        let viewController = ReportViewController(userId: userId, certifyId: certifyId)
+        if let sheet = viewController.sheetPresentationController {
+            let identifier = UISheetPresentationController.Detent.Identifier("customMedium")
+            let customDetent = UISheetPresentationController.Detent.custom(identifier: identifier) { context in
+                return 248-34
+            }
+            sheet.detents = [customDetent]
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            sheet.prefersGrabberVisible = true
+        }
+        self.present(viewController, animated: true)
+    }
+    
+    func pushCertifyViewController() {
+        let viewController = CertifyViewController(
+            viewModel: CertifyViewModel(
+                usecase: DefaultCertifyUsecase(
+                    repository: DefaultCertifyRepository()
+                )
+            )
+        )
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    @objc func didTapSorting(sender: Any?) {
+        viewModel.didTapSorting()
+    }
+    
+    @objc func didTapFeedHeart(_ sender: UIButton) {
+        guard let cell = sender.superview as? UICollectionViewCell else {
+            return
+        }
+        guard let indexPath = collectionView.indexPath(for: cell) else {
+            return
+        }
+        if let feedResponse = viewModel.feedResponse {
+            viewModel.likeFeed(isLike: feedResponse.simpleCertifyResponseDtoList[indexPath.row].isLike, certifyId: feedResponse.simpleCertifyResponseDtoList[indexPath.row].certifyId)
+            if feedResponse.simpleCertifyResponseDtoList[indexPath.row].isLike {
+                viewModel.feedResponse?.simpleCertifyResponseDtoList[indexPath.row].certifyLike -= 1
+            } else {
+                viewModel.feedResponse?.simpleCertifyResponseDtoList[indexPath.row].certifyLike += 1
+            }
+            viewModel.feedResponse?.simpleCertifyResponseDtoList[indexPath.row].isLike.toggle()
+        }
+        
+        reloadHeader()
+    }
+    
+    @objc func didTapFeedMeatball(_ sender: UIButton) {
+        guard let cell = sender.superview as? UICollectionViewCell else {
+            return
+        }
+        guard let indexPath = collectionView.indexPath(for: cell) else {
+            return
+        }
+        guard let feed = viewModel.feedResponse?.simpleCertifyResponseDtoList[indexPath.row] else {
+            return
+        }
+        // TODO: userID 변경
+        pushReportViewContoller(userId: feed.simpleMemberResponseDto.memberId, certifyId: feed.certifyId)
+    }
+    
+    @objc func didTapChallengeHeart(_ sender: Any?) {
+        guard let response = viewModel.infoResponse else {
+            return
+        }
+        viewModel.likeChallenge()
+        if response.isLike {
+            viewModel.infoResponse?.challengeLikeNum -= 1
+            setHeart(isLike: false, likeCount: response.challengeLikeNum-1)
+        } else {
+            viewModel.infoResponse?.challengeLikeNum += 1
+            setHeart(isLike: true, likeCount: response.challengeLikeNum+1)
+        }
+        viewModel.infoResponse?.isLike.toggle()
+        
+    }
+    
+    @objc func didTapParticipate(_ sender: Any?) {
+        bottomButton.isEnabled = false
+        viewModel.didTapParticipateChallenge()
+        self.showToast(message: "챌린지 참여가 완료되었습니다")
+    }
+    
+    @objc func didTapCertify(_ sender: Any?) {
+        pushCertifyViewController()
     }
     
 }
@@ -977,7 +1217,7 @@ struct ChallengeDetailViewController_Preview: PreviewProvider {
     
     static var previews: some View {
         ForEach(devices, id: \.self) { deviceName in
-            ChallengeDetailViewController(challengeType: .financialLearning)
+            ChallengeDetailViewController(challengeType: .financialLearning, viewModel: ChallengeDetailViewModel(usecase: DefaultChallengeDetailUsecase(repository: DefaultChallengeDetailRepository()), challengeId: 5))
                 .toPreview()
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)

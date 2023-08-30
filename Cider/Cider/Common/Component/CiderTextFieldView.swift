@@ -11,9 +11,10 @@ import Combine
 
 final class CiderTextFieldView: UIView {
     
-    var ciderTextField = CiderTextField()
+    lazy var ciderTextField = CiderTextField(notificationName: notificationName)
     let maxLength: Int
     let minLength: Int
+    let notificationName: Notification.Name
     
     private lazy var countLabel: UILabel = {
         let label = UILabel()
@@ -32,9 +33,10 @@ final class CiderTextFieldView: UIView {
         return label
     }()
     
-    init(minLength: Int, maxLength: Int) {
+    init(minLength: Int, maxLength: Int, notificationName: Notification.Name) {
         self.maxLength = maxLength
         self.minLength = minLength
+        self.notificationName = notificationName
         super.init(frame: .zero)
         configure()
     }
@@ -82,7 +84,7 @@ final class CiderTextFieldView: UIView {
         }
         
         NotificationCenter.default.post(
-            name: .didChangedCiderTextField,
+            name: notificationName,
             object: sender.text
         )
     }
@@ -114,7 +116,7 @@ final class CiderTextFieldView: UIView {
     func textPublisher() -> AnyPublisher<String, Never> {
         var textPublisher: AnyPublisher<String, Never> {
             NotificationCenter.default.publisher(
-                for: .didChangedCiderTextField,
+                for: notificationName,
                 object: nil
             )
             .compactMap { $0.object as? String }
@@ -159,9 +161,11 @@ final class CiderTextField: UITextField {
     }()
     
     private let paddingView = UIView()
+    private let notificationName: Notification.Name
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(notificationName: Notification.Name) {
+        self.notificationName = notificationName
+        super.init(frame: .zero)
         configure()
     }
     
@@ -224,7 +228,7 @@ private extension CiderTextField {
         setStyle(.plain)
         setHiddenClearButton(true)
         NotificationCenter.default.post(
-            name: .didChangedCiderTextField,
+            name: notificationName,
             object: self.text
         )
     }

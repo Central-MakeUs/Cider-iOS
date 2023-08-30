@@ -79,12 +79,12 @@ extension HostCell {
         nickname: String,
         levelInfo: String,
         hostCountInfo: String,
-        profileImage: UIImage?
+        profileUrl: String
     ) {
         nicknameLabel.text = nickname
         levelLabel.text = levelInfo
         hostCountLabel.text = hostCountInfo
-        profileImageView.image = profileImage
+        profileImageView.load(url: profileUrl)
     }
     
 }
@@ -102,7 +102,7 @@ struct HostCell_Preview: PreviewProvider {
                 nickname: "Sun",
                 levelInfo: "LV5 능숙한 챌린저",
                 hostCountInfo: "0번째 챌린지",
-                profileImage: UIImage(named: "sample")
+                profileUrl: "url"
             )
             return cell
         }

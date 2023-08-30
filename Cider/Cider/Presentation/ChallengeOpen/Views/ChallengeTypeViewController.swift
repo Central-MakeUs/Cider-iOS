@@ -10,6 +10,7 @@ import UIKit
 class ChallengeTypeViewController: UIViewController {
 
     private let mainTitleLabel = MainTitleLabel(title: "개설을 원하는\n챌린지 분야를\n선택해보세요")
+    
     private lazy var challengesView: ChallengesView =  {
         let view = ChallengesView()
         view.financialTechView.addTapGesture(self, action: #selector(didTapFinancialTech))

@@ -25,6 +25,7 @@ final class MissionView: UIView {
         imageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 4
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -64,8 +65,8 @@ final class MissionView: UIView {
 
 extension MissionView {
     
-    func setUp(image: UIImage?) {
-        photoImageView.image = image
+    func setUp(url: String) {
+        photoImageView.load(url: url)
     }
     
 }

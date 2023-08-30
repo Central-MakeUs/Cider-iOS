@@ -22,9 +22,9 @@ final class ProfileModifyViewModel: ViewModelType {
     
     var useCase: ProfileModifyUsecase
     var nickname: String
-    var profileImage: UIImage
+    var profileImage: UIImage?
     
-    init(useCase: ProfileModifyUsecase, nickname: String, profileImage: UIImage) {
+    init(useCase: ProfileModifyUsecase, nickname: String, profileImage: UIImage?) {
         self.useCase = useCase
         self.nickname = nickname
         self.profileImage = profileImage
@@ -37,7 +37,7 @@ final class ProfileModifyViewModel: ViewModelType {
     
     func didTapModify() {
         Task {
-            let responseProfileImage = try await useCase.patchProfile(image: profileImage)
+            let responseProfileImage = try await useCase.patchProfile(image: profileImage ?? UIImage())
             print(responseProfileImage)
             let responseProfile = try await useCase.patchProfile(parameters: ProfileModifyRequest(memberName: nickname))
             print(responseProfile)

@@ -21,6 +21,12 @@ final class PrecautionViewController: UIViewController {
     
     private let mainTitleLabel = MainTitleLabel(title: "챌린지 신청하기 전\n유의해주세요")
     
+    private lazy var iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "challenge")
+        return imageView
+    }()
+    
     private lazy var precautionView1: PrecautionView = {
         let view = PrecautionView(title: "인증샷 검토는 호스트가 직접 관리해요")
         view.setButtonTag(0)
@@ -90,6 +96,10 @@ private extension PrecautionViewController {
                 switch state {
                 case .changeNextButtonState(let isEnabled):
                     self?.bottomButton.setStyle(isEnabled ? .enabled : .disabled)
+                case .pushNextViewController:
+                    self?.pushChallengeOpenCompleteViewController()
+                case .showMessage(let message):
+                    self?.showAlert(message: message)
                 }
             }
             .store(in: &cancellables)
@@ -97,10 +107,14 @@ private extension PrecautionViewController {
     
     func configure() {
         view.backgroundColor = .white
-        view.addSubviews(mainTitleLabel, stackView, bottomButton)
+        view.addSubviews(mainTitleLabel, iconImageView, stackView, bottomButton)
         NSLayoutConstraint.activate([
             mainTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 54),
             mainTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            iconImageView.heightAnchor.constraint(equalToConstant: 150),
+            iconImageView.widthAnchor.constraint(equalToConstant: 150),
+            iconImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            iconImageView.topAnchor.constraint(equalTo: mainTitleLabel.bottomAnchor, constant: 34),
             bottomButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             bottomButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             bottomButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
@@ -131,7 +145,7 @@ private extension PrecautionViewController {
     }
     
     @objc func didTapNextButton(_ sender: Any?) {
-        pushChallengeOpenCompleteViewController()
+        viewModel.didTapNextButton()
     }
     
 }
@@ -146,7 +160,7 @@ struct PrecautionViewController_Preview: PreviewProvider {
 
     static var previews: some View {
         ForEach(devices, id: \.self) { deviceName in
-            PrecautionViewController(viewModel: PrecautionViewModel())
+            PrecautionViewController(viewModel: PrecautionViewModel(usecase: DefaultChallengeOpenUsecase(repository: DefaultChallengeOpenRepository()), challengeOpenRequest: ChallengeOpenRequest(challengeBranch: "dsa", challengeName: "aa", challengeInfo: "A", certifyMission: "a", challengeCapacity: 5, recruitPeriod: 4, challengePeriod: 5, isPublic: true), failData: Data(), successData: Data()))
             .toPreview()
             .previewDevice(PreviewDevice(rawValue: deviceName))
             .previewDisplayName(deviceName)

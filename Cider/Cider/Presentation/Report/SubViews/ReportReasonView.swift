@@ -69,12 +69,12 @@ extension ReportReasonView {
     func setStyle(_ style: CiderSelectionStyle) {
         switch style {
         case .selected:
-            checkboxButton.setImage(UIImage(named: "checkboxSelected"), for: .normal)
+            checkboxButton.setImage(UIImage(named: "radioSelected"), for: .normal)
             reasonLabel.textColor = .custom.text
 
         case .unselected:
-            checkboxButton.setImage(UIImage(named: "checkboxUnselected"), for: .normal)
-            reasonLabel.textColor = .custom.gray4
+            checkboxButton.setImage(UIImage(named: "radioUnselected"), for: .normal)
+            reasonLabel.textColor = .custom.text
         }
     }
     

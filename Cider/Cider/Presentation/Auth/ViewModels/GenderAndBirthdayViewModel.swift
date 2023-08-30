@@ -25,31 +25,27 @@ final class GenderAndBirthdayViewModel: ViewModelType {
     func didTapMaleButton() {
         maleButtonIsPressed = true
         femaleButtonIsPressed = false
-        
-        currentState.send(.changeNextButtonState(isEnabled: isEnableNextButton()))
     }
     
     func didTapFemaleButton() {
         femaleButtonIsPressed = true
         maleButtonIsPressed = false
-        
-        currentState.send(.changeNextButtonState(isEnabled: isEnableNextButton()))
     }
     
     func selectBirthday(date: Date) {
         birthday = date
         let birthday = date.formatYYYYMMDDKorean()
         currentState.send(.selectBitrhday(birthday: birthday))
-        currentState.send(.checkAge(isEnabled: isAvaliableAge(date)))
-        currentState.send(.changeNextButtonState(isEnabled: isEnableNextButton()))
     }
     
     func didTapNext() {
         guard let birthday else {
+            Onboarding.shared.memberBirth = "0000-00-00"
+            Onboarding.shared.memberGender = getGender()
             return
         }
         Onboarding.shared.memberBirth = birthday.formatYYYYMMDDDash()
-        Onboarding.shared.memberGender = maleButtonIsPressed ? "M" : "F"
+        Onboarding.shared.memberGender = getGender()
     }
    
     private func isAvaliableAge(_ date: Date) -> Bool {
@@ -67,6 +63,16 @@ final class GenderAndBirthdayViewModel: ViewModelType {
             return false
         }
         return (maleButtonIsPressed || femaleButtonIsPressed) && isAvaliableAge(birthday)
+    }
+    
+    private func getGender() -> String {
+        if maleButtonIsPressed {
+            return "M"
+        } else if femaleButtonIsPressed {
+            return "F"
+        } else {
+            return "N"
+        }
     }
     
 }
