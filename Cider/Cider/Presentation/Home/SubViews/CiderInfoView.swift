@@ -22,7 +22,7 @@ final class CiderInfoView: UIView {
         label.textColor = .white
         label.font = CustomFont.PretendardMedium(size: .xl4).font
         label.numberOfLines = 0
-        label.text = "금융과 소비 고민을\n시원하게 해결하다"
+        label.text = "실천하는 금융 챌린지\n지금을 소개합니다"
         label.setTextWithLineHeight(lineHeight: 33.6)
         return label
     }()
@@ -56,7 +56,7 @@ final class CiderInfoView: UIView {
     
     private lazy var coinImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "graph_challengedetail")
+        imageView.image = UIImage(named: "bannerLogo")
         return imageView
     }()
     
@@ -71,19 +71,18 @@ final class CiderInfoView: UIView {
     
     private func configure() {
         backgroundColor = .custom.main
-        addSubviews(infoLabel, titleLabel, coinImageView)
+        addSubviews(infoLabel, titleLabel, coinImageView, readingLabel, arrowImageView1, arrowImageView2)
         NSLayoutConstraint.activate([
             infoLabel.topAnchor.constraint(equalTo: topAnchor, constant: 24),
             infoLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             titleLabel.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 16),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            // TODO: 지금 읽기 가린 상태 해제하기
-//            readingLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24),
-//            readingLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-//            arrowImageView1.centerYAnchor.constraint(equalTo: readingLabel.centerYAnchor),
-//            arrowImageView1.leadingAnchor.constraint(equalTo: readingLabel.trailingAnchor, constant: 8),
-//            arrowImageView2.centerYAnchor.constraint(equalTo: arrowImageView1.centerYAnchor),
-//            arrowImageView2.leadingAnchor.constraint(equalTo: arrowImageView1.trailingAnchor),
+            readingLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24),
+            readingLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            arrowImageView1.centerYAnchor.constraint(equalTo: readingLabel.centerYAnchor),
+            arrowImageView1.leadingAnchor.constraint(equalTo: readingLabel.trailingAnchor, constant: 8),
+            arrowImageView2.centerYAnchor.constraint(equalTo: arrowImageView1.centerYAnchor),
+            arrowImageView2.leadingAnchor.constraint(equalTo: arrowImageView1.trailingAnchor),
             coinImageView.widthAnchor.constraint(equalToConstant: 140),
             coinImageView.heightAnchor.constraint(equalToConstant: 140),
             coinImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -7),
