@@ -20,6 +20,13 @@ final class MyCertifyViewController: UIViewController {
         return collectionView
     }()
     
+    private lazy var arrowTopButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "arrowTopButton"), for: .normal)
+        button.addTarget(self, action: #selector(didTapArrowTop), for: .touchUpInside)
+        return button
+    }()
+    
     let rightBarLabel: UILabel = {
         let label = UILabel()
         label.font = CustomFont.PretendardBold(size: .lg).font
@@ -84,12 +91,14 @@ private extension MyCertifyViewController {
     
     func configure() {
         view.backgroundColor = .white
-        view.addSubviews(collectionView)
+        view.addSubviews(collectionView, arrowTopButton)
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            arrowTopButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
+            arrowTopButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24)
         ])
     }
     
@@ -310,6 +319,10 @@ private extension MyCertifyViewController {
     
     @objc func didTapAllChallenge(_ sender: Any?) {
         pushAllChallengeViewController()
+    }
+    
+    @objc func didTapArrowTop(_ sender: Any?) {
+        collectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
 }
