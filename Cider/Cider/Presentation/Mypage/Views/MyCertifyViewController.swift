@@ -14,7 +14,6 @@ final class MyCertifyViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.register(FeedCell.self, forCellWithReuseIdentifier: FeedCell.identifier)
         collectionView.register(MyCertifyEmptyCell.self, forCellWithReuseIdentifier: MyCertifyEmptyCell.identifier)
-        collectionView.register(MyCertifyHeaderView.self, forSupplementaryViewOfKind: MyCertifyHeaderView.identifier, withReuseIdentifier: MyCertifyHeaderView.identifier)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.keyboardDismissMode = .onDrag
         return collectionView
@@ -26,6 +25,8 @@ final class MyCertifyViewController: UIViewController {
         button.addTarget(self, action: #selector(didTapArrowTop), for: .touchUpInside)
         return button
     }()
+    
+    private let challengeSelectionView = ChallengeSelectionView()
     
     let rightBarLabel: UILabel = {
         let label = UILabel()
@@ -82,7 +83,7 @@ private extension MyCertifyViewController {
                         return
                     }
                     self?.applySnapshot()
-                    self?.reloadHeader()
+                    self?.setChallengeSelection()
                     self?.setFeedCount()
                 }
             }
@@ -91,10 +92,14 @@ private extension MyCertifyViewController {
     
     func configure() {
         view.backgroundColor = .white
-        view.addSubviews(collectionView, arrowTopButton)
+        view.addSubviews(collectionView, arrowTopButton, challengeSelectionView)
         NSLayoutConstraint.activate([
+            challengeSelectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            challengeSelectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            challengeSelectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            challengeSelectionView.heightAnchor.constraint(equalToConstant: 49),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.topAnchor.constraint(equalTo: challengeSelectionView.bottomAnchor, constant: 6),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             arrowTopButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
@@ -107,6 +112,11 @@ private extension MyCertifyViewController {
             return
         }
         dataSource?.applySnapshotUsingReloadData(snapshot)
+    }
+    
+    func setChallengeSelection() {
+        challengeSelectionView.setTextFieltText(viewModel.challengeTitle)
+        challengeSelectionView.challengeList = viewModel.participateChallengeTitles
     }
     
     func setNavigationBar() {
@@ -176,27 +186,6 @@ private extension MyCertifyViewController {
             }
         })
         
-        dataSource?.supplementaryViewProvider = { [weak self] collectionView, elementKind, indexPath in
-            guard let self = self else {
-                return UICollectionReusableView()
-            }
-            
-            let section = Section(rawValue: indexPath.section)
-            switch section {
-            case .feed:
-                let headerView = collectionView.dequeueReusableSupplementaryView(
-                    ofKind: elementKind,
-                    withReuseIdentifier: MyCertifyHeaderView.identifier,
-                    for: indexPath
-                ) as? MyCertifyHeaderView
-                headerView?.challengeSelectionView.setTextFieltText(self.viewModel.challengeTitle)
-                headerView?.challengeSelectionView.challengeList = self.viewModel.participateChallengeTitles
-                return headerView
-                
-            default:
-                return nil
-            }
-        }
     }
     
     func applySnapshot() {
@@ -238,16 +227,7 @@ private extension MyCertifyViewController {
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0)
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 24, bottom: 0, trailing: 24)
-        
-        section.boundarySupplementaryItems = [
-            NSCollectionLayoutBoundarySupplementaryItem(
-                layoutSize: .init(
-                    widthDimension: .fractionalWidth(1),
-                    heightDimension: .absolute(49)
-                ),
-                elementKind: MyCertifyHeaderView.identifier, alignment: .top)
-        ]
+        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 24, bottom: 60, trailing: 24)
         return section
     }
     
@@ -267,16 +247,7 @@ private extension MyCertifyViewController {
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0)
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 0, trailing: 0)
-        
-        section.boundarySupplementaryItems = [
-            NSCollectionLayoutBoundarySupplementaryItem(
-                layoutSize: .init(
-                    widthDimension: .absolute(UIScreen.main.bounds.width-48),
-                    heightDimension: .absolute(49)
-                ),
-                elementKind: MyCertifyHeaderView.identifier, alignment: .top)
-        ]
+        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0)
         return section
     }
     

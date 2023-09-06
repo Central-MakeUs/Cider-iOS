@@ -1073,7 +1073,7 @@ private extension ChallengeDetailViewController {
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0)
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 24, bottom: 50, trailing: 24)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 24, bottom: 110, trailing: 24)
         
         section.boundarySupplementaryItems = [
             NSCollectionLayoutBoundarySupplementaryItem(

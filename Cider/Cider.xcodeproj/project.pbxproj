@@ -173,7 +173,6 @@
 		FA619D5D2A87CB3A000BDDA5 /* MypageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA619D5C2A87CB3A000BDDA5 /* MypageResponse.swift */; };
 		FA619D5F2A87CEDC000BDDA5 /* MypageUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA619D5E2A87CEDC000BDDA5 /* MypageUsecase.swift */; };
 		FA619D612A8B9CD3000BDDA5 /* MyCertifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA619D602A8B9CD3000BDDA5 /* MyCertifyViewController.swift */; };
-		FA619D642A8B9CFE000BDDA5 /* MyCertifyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA619D632A8B9CFE000BDDA5 /* MyCertifyHeaderView.swift */; };
 		FA619D662A8BA059000BDDA5 /* MyCertifyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA619D652A8BA059000BDDA5 /* MyCertifyViewModel.swift */; };
 		FA619D682A8BBD1D000BDDA5 /* MyHeartChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA619D672A8BBD1D000BDDA5 /* MyHeartChallengeViewController.swift */; };
 		FA619D6A2A8BC2CE000BDDA5 /* MyHeartChallengeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA619D692A8BC2CE000BDDA5 /* MyHeartChallengeViewModel.swift */; };
@@ -401,7 +400,6 @@
 		FA619D5C2A87CB3A000BDDA5 /* MypageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageResponse.swift; sourceTree = "<group>"; };
 		FA619D5E2A87CEDC000BDDA5 /* MypageUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageUsecase.swift; sourceTree = "<group>"; };
 		FA619D602A8B9CD3000BDDA5 /* MyCertifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCertifyViewController.swift; sourceTree = "<group>"; };
-		FA619D632A8B9CFE000BDDA5 /* MyCertifyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCertifyHeaderView.swift; sourceTree = "<group>"; };
 		FA619D652A8BA059000BDDA5 /* MyCertifyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCertifyViewModel.swift; sourceTree = "<group>"; };
 		FA619D672A8BBD1D000BDDA5 /* MyHeartChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHeartChallengeViewController.swift; sourceTree = "<group>"; };
 		FA619D692A8BC2CE000BDDA5 /* MyHeartChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHeartChallengeViewModel.swift; sourceTree = "<group>"; };
@@ -558,7 +556,6 @@
 			isa = PBXGroup;
 			children = (
 				FA35E99B2A946D800069C51D /* Cell */,
-				FA619D622A8B9CD9000BDDA5 /* HeaderView */,
 				FA313A122A85567A006DBE69 /* LevelProgressView.swift */,
 				FA313A162A8556CE006DBE69 /* LevelView.swift */,
 				FA313A182A8556F6006DBE69 /* MypageInfoView.swift */,
@@ -1120,14 +1117,6 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		FA619D622A8B9CD9000BDDA5 /* HeaderView */ = {
-			isa = PBXGroup;
-			children = (
-				FA619D632A8B9CFE000BDDA5 /* MyCertifyHeaderView.swift */,
-			);
-			path = HeaderView;
-			sourceTree = "<group>";
-		};
 		FA64FEC82A999FC500EE9331 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
@@ -1366,7 +1355,6 @@
 				FA619D5D2A87CB3A000BDDA5 /* MypageResponse.swift in Sources */,
 				FAD6E3D62A64F2F5002C8007 /* WritingType.swift in Sources */,
 				FA32B83A2A6A6C2D0086497D /* HomeHeaderView.swift in Sources */,
-				FA619D642A8B9CFE000BDDA5 /* MyCertifyHeaderView.swift in Sources */,
 				FA2282C22A9654F800DF4ADB /* CertifyResponse.swift in Sources */,
 				FA3D49362A8E6C5C00024A1C /* ProfileModifyRepository.swift in Sources */,
 				FA4DF29C2A6C1F5D007F3035 /* CategoryHeaderView.swift in Sources */,
