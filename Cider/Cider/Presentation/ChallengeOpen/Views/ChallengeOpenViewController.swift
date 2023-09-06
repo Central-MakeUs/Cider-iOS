@@ -23,15 +23,7 @@ final class ChallengeOpenViewController: UIViewController {
         button.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
         return button
     }()
-    
-    private lazy var imagePickerController: UIImagePickerController = {
-        let controller = UIImagePickerController()
-        controller.delegate = self
-        controller.sourceType = .photoLibrary
-        controller.allowsEditing = true
-        return controller
-    }()
-    
+
     private let viewModel: ChallengeOpenViewModel
     private var cancellables = Set<AnyCancellable>()
     
@@ -74,6 +66,33 @@ private extension ChallengeOpenViewController {
         setUpDataSource()
         applySnapshot()
         bind()
+        setNotificationCenter()
+    }
+    
+    func setNotificationCenter() {
+        NotificationCenter.default.publisher(for: .selectImage)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] notification in
+                guard let self = self else {
+                    return
+                }
+                guard let image = notification.object as? UIImage else {
+                    return
+                }
+                
+                guard let missionType = self.missionType else {
+                    return
+                }
+                if missionType == .success {
+                    successImage = image
+                    viewModel.selectSuccessImage(image)
+                } else {
+                    failImage = image
+                    viewModel.selectFailImage(image)
+                }
+                self.applySnapshot()
+            }
+            .store(in: &cancellables)
     }
     
     func bind() {
@@ -224,18 +243,33 @@ private extension ChallengeOpenViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
+    func presentPhotoBottomViewController() {
+        let viewController = PhotoBottomViewController()
+        if let sheet = viewController.sheetPresentationController {
+            let identifier = UISheetPresentationController.Detent.Identifier("customMedium")
+            let customDetent = UISheetPresentationController.Detent.custom(identifier: identifier) { context in
+                return 160-34
+            }
+            sheet.detents = [customDetent]
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            sheet.prefersGrabberVisible = true
+        }
+        self.present(viewController, animated: true)
+        
+    }
+    
 }
 
 private extension ChallengeOpenViewController {
     
     @objc func didTapSuccessMissionView(_ sender: Any?) {
         missionType = .success
-        self.present(imagePickerController, animated: true)
+        presentPhotoBottomViewController()
     }
     
     @objc func didTapFailMissionView(_ sender: Any?) {
         missionType = .fail
-        self.present(imagePickerController, animated: true)
+        presentPhotoBottomViewController()
     }
     
     @objc func didTapNextButton(_ sender: Any?) {
@@ -243,33 +277,6 @@ private extension ChallengeOpenViewController {
     }
     
 }
-
-extension ChallengeOpenViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let missionType else {
-            return
-        }
-        
-        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            if missionType == .success {
-                successImage = image
-                viewModel.selectSuccessImage(image)
-            } else {
-                failImage = image
-                viewModel.selectFailImage(image)
-            }
-        }
-        picker.dismiss(animated: true, completion: nil)
-        applySnapshot()
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-}
-
 
 
 #if DEBUG

@@ -23,14 +23,6 @@ final class CertifyViewController: UIViewController {
         button.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
         return button
     }()
-    
-    private lazy var imagePickerController: UIImagePickerController = {
-        let controller = UIImagePickerController()
-        controller.delegate = self
-        controller.sourceType = .camera
-        controller.allowsEditing = true
-        return controller
-    }()
 
     private let viewModel: CertifyViewModel
     private var cancellables = Set<AnyCancellable>()
@@ -233,22 +225,6 @@ private extension CertifyViewController {
     @objc func didTapCameraView(_ sender: Any?) {
         presentPhotoBottomViewController()
     }
-}
-
-extension CertifyViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            viewModel.changeCertifyImage(image)
-        }
-        picker.dismiss(animated: true, completion: nil)
-        applySnapshot()
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
 }
 
 #if DEBUG
