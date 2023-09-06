@@ -110,11 +110,16 @@ final class GenderAndBirthdayViewController: UIViewController {
         return label
     }()
     
-    private let textFieldPaddingView = UIView()
+    private let textFieldPaddingView: UIView = {
+        let view = UIView()
+        view.isUserInteractionEnabled = false
+        return view
+    }()
     
     private lazy var calendarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "line_calender_24")
+        imageView.isUserInteractionEnabled = false
         return imageView
     }()
     

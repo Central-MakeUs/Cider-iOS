@@ -1,8 +1,19 @@
 {
   "images" : [
     {
-      "filename" : "pig.png",
-      "idiom" : "universal"
+      "filename" : "pigProfile.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "pigProfile@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "pigProfile@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {
