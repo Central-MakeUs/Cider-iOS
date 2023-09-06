@@ -754,7 +754,12 @@ extension HomeViewController: UICollectionViewDelegate {
                 let challengeType = viewModel.categoryChallenges[indexPath.row].interestField.convertChallengeType()
                 let challengeId =  viewModel.categoryChallenges[indexPath.row].challengeId
                 pushChallengeDetailViewController(challengeType, challengeId: challengeId)
-                
+            }
+            
+        case .banner:
+            if indexPath.row == 0,
+               let url = URL(string: "https://jigeum.oopy.io/") {
+                UIApplication.shared.open(url, options: [:])
             }
            
         default:

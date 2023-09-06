@@ -70,6 +70,13 @@ class ChallengeDetailViewController: UIViewController {
         return view
     }()
     
+    private lazy var arrowTopButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "arrowTopButton"), for: .normal)
+        button.addTarget(self, action: #selector(didTapArrowTop), for: .touchUpInside)
+        return button
+    }()
+    
     private enum InfoSection: Int {
         case menu = 0
         case progress = 1
@@ -153,7 +160,7 @@ private extension ChallengeDetailViewController {
     
     func configure() {
         view.backgroundColor = .white
-        view.addSubviews(collectionView, bottomView, bottomButton, heartButton, heartCountLabel, bottomShadowView)
+        view.addSubviews(collectionView, bottomView, bottomButton, heartButton, heartCountLabel, bottomShadowView, arrowTopButton)
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -100),
@@ -175,7 +182,9 @@ private extension ChallengeDetailViewController {
             bottomShadowView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             bottomShadowView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             bottomShadowView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            bottomShadowView.topAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: 0)
+            bottomShadowView.topAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: 0),
+            arrowTopButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -82),
+            arrowTopButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24)
         ])
     }
     
@@ -1064,7 +1073,7 @@ private extension ChallengeDetailViewController {
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0)
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 24, bottom: 50, trailing: 24)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 24, bottom: 110, trailing: 24)
         
         section.boundarySupplementaryItems = [
             NSCollectionLayoutBoundarySupplementaryItem(
@@ -1201,6 +1210,10 @@ private extension ChallengeDetailViewController {
     
     @objc func didTapCertify(_ sender: Any?) {
         pushCertifyViewController()
+    }
+    
+    @objc func didTapArrowTop(_ sender: Any?) {
+        collectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
 }

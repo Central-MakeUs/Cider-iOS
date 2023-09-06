@@ -16,7 +16,7 @@ extension Notification.Name {
     static let didChangedRecruit = Notification.Name("didChangedRecruit")
     static let tapChallengeDetailMenu = Notification.Name("tapChallengeDetailMenu")
     static let tapSorting = Notification.Name("tapSorting")
-    static let selectProfileImage = Notification.Name("selectProfileImage")
+    static let selectImage = Notification.Name("selectImage")
     static let selectParticipateChallenge = Notification.Name("selectParticipateChallenge")
     static let didChangedChallengeName = Notification.Name("didChangedChallengeName")
     static let didChangedMission = Notification.Name("didChangedMission")
