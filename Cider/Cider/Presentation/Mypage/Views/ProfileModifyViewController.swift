@@ -165,7 +165,7 @@ private extension ProfileModifyViewController {
     }
     
     func setNotificationCenter() {
-        NotificationCenter.default.publisher(for: .selectProfileImage)
+        NotificationCenter.default.publisher(for: .selectImage)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] notification in
                 guard let self = self else {

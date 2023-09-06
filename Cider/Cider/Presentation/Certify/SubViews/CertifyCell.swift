@@ -131,7 +131,7 @@ final class CertifyCell: UICollectionViewCell {
             photoSubTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
             backView.topAnchor.constraint(equalTo: certifyPhotoLabel.bottomAnchor, constant: 16),
             backView.leadingAnchor.constraint(equalTo: challengeSelectionView.leadingAnchor),
-            imageView.topAnchor.constraint(equalTo: certifyPhotoLabel.bottomAnchor, constant: 8),
+            imageView.topAnchor.constraint(equalTo: certifyPhotoLabel.bottomAnchor, constant: 16),
             imageView.leadingAnchor.constraint(equalTo: challengeSelectionView.leadingAnchor),
             caemeraStackView.centerYAnchor.constraint(equalTo: backView.centerYAnchor),
             caemeraStackView.centerXAnchor.constraint(equalTo: backView.centerXAnchor),
