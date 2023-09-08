@@ -23,9 +23,11 @@ final class MyCertifyViewModel: ViewModelType {
     var participateChallengeTitles: [String] = []
     var feedItems: [Item] = []
     var challengeTitle: String = ""
+    var selectedChallengeId: Int?
     
-    init(usecase: MyCertifyUsecase) {
+    init(usecase: MyCertifyUsecase, selectedChallengeId: Int?) {
         self.usecase = usecase
+        self.selectedChallengeId = selectedChallengeId
         setNotificationCenter()
     }
     
@@ -69,7 +71,19 @@ private extension MyCertifyViewModel {
                     participateChallengeIds.append(challenge.challengeId)
                     participateChallengeTitles.append(challenge.challengeName)
                 }
-                try await getMyCertify(challengeId: participateChallengeIds[0])
+                if let selectedChallengeId {
+                    var index = 0
+                    for i in 0..<participateChallengeIds.count {
+                        if participateChallengeIds[i] == selectedChallengeId {
+                            index = i
+                            break
+                        }
+                    }
+                    try await getMyCertify(challengeId: participateChallengeIds[index])
+                } else {
+                    try await getMyCertify(challengeId: participateChallengeIds[0])
+                }
+               
             }
         }
     }
