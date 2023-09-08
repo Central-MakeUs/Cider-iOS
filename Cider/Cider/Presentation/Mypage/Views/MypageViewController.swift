@@ -12,6 +12,24 @@ final class MypageViewController: UIViewController {
 
     private var cancellables: Set<AnyCancellable> = .init()
     private let viewModel: MypageViewModel
+    
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.backgroundColor = .white
+        scrollView.showsVerticalScrollIndicator = false
+        return scrollView
+    }()
+    
+    private let contentView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    private let statusBarView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .custom.main
+        return view
+    }()
 
     private lazy var roundView: UIView = {
         let view = UIView()
@@ -102,33 +120,50 @@ private extension MypageViewController {
     }
 
     func configure() {
-        view.backgroundColor = .custom.main
-        view.addSubviews(roundView, characterImageView, separtorView, mypageInfoView, levelView, titleLabel, settingButton)
+        contentView.backgroundColor = .custom.main
+        scrollView.backgroundColor = .white
+        view.addSubviews(scrollView, statusBarView)
+        scrollView.addSubviews(contentView)
+        contentView.addSubviews(roundView, characterImageView, separtorView, mypageInfoView, levelView, titleLabel, settingButton)
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            settingButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            settingButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            statusBarView.topAnchor.constraint(equalTo: view.topAnchor),
+            statusBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            statusBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            statusBarView.bottomAnchor.constraint(equalTo: scrollView.topAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
+            settingButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            settingButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
             characterImageView.heightAnchor.constraint(equalToConstant: 158),
             characterImageView.widthAnchor.constraint(equalToConstant: 144),
-            characterImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant:67),
-            characterImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            roundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            roundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            roundView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            characterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant:67),
+            characterImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            roundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            roundView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            roundView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             roundView.topAnchor.constraint(equalTo: characterImageView.bottomAnchor, constant: 51),
             mypageInfoView.leadingAnchor.constraint(equalTo: roundView.leadingAnchor),
             mypageInfoView.topAnchor.constraint(equalTo: roundView.topAnchor),
             mypageInfoView.trailingAnchor.constraint(equalTo: roundView.trailingAnchor),
             mypageInfoView.heightAnchor.constraint(equalToConstant: 207),
             separtorView.heightAnchor.constraint(equalToConstant: 8),
-            separtorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            separtorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            separtorView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            separtorView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             separtorView.topAnchor.constraint(equalTo: mypageInfoView.bottomAnchor, constant: 3),
             levelView.topAnchor.constraint(equalTo: separtorView.bottomAnchor, constant: 24),
             levelView.leadingAnchor.constraint(equalTo: roundView.leadingAnchor),
             levelView.trailingAnchor.constraint(equalTo: roundView.trailingAnchor),
-            levelView.heightAnchor.constraint(equalToConstant: 140)
+            levelView.heightAnchor.constraint(equalToConstant: 140),
+            levelView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -50)
         ])
     }
 

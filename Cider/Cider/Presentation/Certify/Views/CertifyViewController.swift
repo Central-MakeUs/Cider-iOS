@@ -23,14 +23,6 @@ final class CertifyViewController: UIViewController {
         button.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
         return button
     }()
-    
-    private lazy var imagePickerController: UIImagePickerController = {
-        let controller = UIImagePickerController()
-        controller.delegate = self
-        controller.sourceType = .camera
-        controller.allowsEditing = true
-        return controller
-    }()
 
     private let viewModel: CertifyViewModel
     private var cancellables = Set<AnyCancellable>()
@@ -66,6 +58,7 @@ private extension CertifyViewController {
         setUpDataSource()
         applySnapshot()
         bind()
+        setNotificationCenter()
     }
     
     func bind() {
@@ -105,6 +98,23 @@ private extension CertifyViewController {
             bottomButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
     }
+    
+    func setNotificationCenter() {
+        NotificationCenter.default.publisher(for: .selectImage)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] notification in
+                guard let self = self else {
+                    return
+                }
+                guard let image = notification.object as? UIImage else {
+                    return
+                }
+                self.viewModel.changeCertifyImage(image)
+                self.applySnapshot()
+            }
+            .store(in: &cancellables)
+    }
+
     
     func setNavigationBar() {
         self.navigationController?.navigationBar.isHidden = false
@@ -188,6 +198,21 @@ private extension CertifyViewController {
         self.navigationController?.popToRootViewController(animated: true)
     }
     
+    func presentPhotoBottomViewController() {
+        let viewController = PhotoBottomViewController()
+        if let sheet = viewController.sheetPresentationController {
+            let identifier = UISheetPresentationController.Detent.Identifier("customMedium")
+            let customDetent = UISheetPresentationController.Detent.custom(identifier: identifier) { context in
+                return 160-34
+            }
+            sheet.detents = [customDetent]
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            sheet.prefersGrabberVisible = true
+        }
+        self.present(viewController, animated: true)
+        
+    }
+    
 }
 
 private extension CertifyViewController {
@@ -198,24 +223,8 @@ private extension CertifyViewController {
     }
     
     @objc func didTapCameraView(_ sender: Any?) {
-        self.present(imagePickerController, animated: true)
+        presentPhotoBottomViewController()
     }
-}
-
-extension CertifyViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            viewModel.changeCertifyImage(image)
-        }
-        picker.dismiss(animated: true, completion: nil)
-        applySnapshot()
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
 }
 
 #if DEBUG

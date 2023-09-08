@@ -173,7 +173,6 @@
 		FA619D5D2A87CB3A000BDDA5 /* MypageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA619D5C2A87CB3A000BDDA5 /* MypageResponse.swift */; };
 		FA619D5F2A87CEDC000BDDA5 /* MypageUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA619D5E2A87CEDC000BDDA5 /* MypageUsecase.swift */; };
 		FA619D612A8B9CD3000BDDA5 /* MyCertifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA619D602A8B9CD3000BDDA5 /* MyCertifyViewController.swift */; };
-		FA619D642A8B9CFE000BDDA5 /* MyCertifyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA619D632A8B9CFE000BDDA5 /* MyCertifyHeaderView.swift */; };
 		FA619D662A8BA059000BDDA5 /* MyCertifyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA619D652A8BA059000BDDA5 /* MyCertifyViewModel.swift */; };
 		FA619D682A8BBD1D000BDDA5 /* MyHeartChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA619D672A8BBD1D000BDDA5 /* MyHeartChallengeViewController.swift */; };
 		FA619D6A2A8BC2CE000BDDA5 /* MyHeartChallengeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA619D692A8BC2CE000BDDA5 /* MyHeartChallengeViewModel.swift */; };
@@ -234,6 +233,7 @@
 		FAD6E3D42A64F2A6002C8007 /* WritingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD6E3D32A64F2A6002C8007 /* WritingView.swift */; };
 		FAD6E3D62A64F2F5002C8007 /* WritingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD6E3D52A64F2F5002C8007 /* WritingType.swift */; };
 		FAD6E3D82A64F9B5002C8007 /* ChallengeTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD6E3D72A64F9B5002C8007 /* ChallengeTypeViewController.swift */; };
+		FAF5728C2AA8CBE4007CCAE1 /* PhotoBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF5728B2AA8CBE4007CCAE1 /* PhotoBottomViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -400,7 +400,6 @@
 		FA619D5C2A87CB3A000BDDA5 /* MypageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageResponse.swift; sourceTree = "<group>"; };
 		FA619D5E2A87CEDC000BDDA5 /* MypageUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageUsecase.swift; sourceTree = "<group>"; };
 		FA619D602A8B9CD3000BDDA5 /* MyCertifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCertifyViewController.swift; sourceTree = "<group>"; };
-		FA619D632A8B9CFE000BDDA5 /* MyCertifyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCertifyHeaderView.swift; sourceTree = "<group>"; };
 		FA619D652A8BA059000BDDA5 /* MyCertifyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCertifyViewModel.swift; sourceTree = "<group>"; };
 		FA619D672A8BBD1D000BDDA5 /* MyHeartChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHeartChallengeViewController.swift; sourceTree = "<group>"; };
 		FA619D692A8BC2CE000BDDA5 /* MyHeartChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHeartChallengeViewModel.swift; sourceTree = "<group>"; };
@@ -462,6 +461,7 @@
 		FAD6E3D32A64F2A6002C8007 /* WritingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingView.swift; sourceTree = "<group>"; };
 		FAD6E3D52A64F2F5002C8007 /* WritingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingType.swift; sourceTree = "<group>"; };
 		FAD6E3D72A64F9B5002C8007 /* ChallengeTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeTypeViewController.swift; sourceTree = "<group>"; };
+		FAF5728B2AA8CBE4007CCAE1 /* PhotoBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBottomViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -528,6 +528,7 @@
 			isa = PBXGroup;
 			children = (
 				FA3139FC2A84BBEB006DBE69 /* CertifyViewController.swift */,
+				FAF5728B2AA8CBE4007CCAE1 /* PhotoBottomViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -555,7 +556,6 @@
 			isa = PBXGroup;
 			children = (
 				FA35E99B2A946D800069C51D /* Cell */,
-				FA619D622A8B9CD9000BDDA5 /* HeaderView */,
 				FA313A122A85567A006DBE69 /* LevelProgressView.swift */,
 				FA313A162A8556CE006DBE69 /* LevelView.swift */,
 				FA313A182A8556F6006DBE69 /* MypageInfoView.swift */,
@@ -1117,14 +1117,6 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		FA619D622A8B9CD9000BDDA5 /* HeaderView */ = {
-			isa = PBXGroup;
-			children = (
-				FA619D632A8B9CFE000BDDA5 /* MyCertifyHeaderView.swift */,
-			);
-			path = HeaderView;
-			sourceTree = "<group>";
-		};
 		FA64FEC82A999FC500EE9331 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
@@ -1363,7 +1355,6 @@
 				FA619D5D2A87CB3A000BDDA5 /* MypageResponse.swift in Sources */,
 				FAD6E3D62A64F2F5002C8007 /* WritingType.swift in Sources */,
 				FA32B83A2A6A6C2D0086497D /* HomeHeaderView.swift in Sources */,
-				FA619D642A8B9CFE000BDDA5 /* MyCertifyHeaderView.swift in Sources */,
 				FA2282C22A9654F800DF4ADB /* CertifyResponse.swift in Sources */,
 				FA3D49362A8E6C5C00024A1C /* ProfileModifyRepository.swift in Sources */,
 				FA4DF29C2A6C1F5D007F3035 /* CategoryHeaderView.swift in Sources */,
@@ -1419,6 +1410,7 @@
 				FA4DDB922A4D5810002EDEAD /* ServiceAgreeCellData.swift in Sources */,
 				FA5911872A7D5FF50022611B /* HomeDetailViewModel.swift in Sources */,
 				FA2282B72A95F31D00DF4ADB /* ParticiapteChallengeResponse.swift in Sources */,
+				FAF5728C2AA8CBE4007CCAE1 /* PhotoBottomViewController.swift in Sources */,
 				FA4DDB952A4D5A46002EDEAD /* ServiceAgreeCell.swift in Sources */,
 				FA726CCE2A7933F100A9309D /* MissionView.swift in Sources */,
 				FA758ACC2A5F0316003E2F07 /* MissionPhotoView.swift in Sources */,
@@ -1669,9 +1661,10 @@
 				DEVELOPMENT_TEAM = 9738W25PF4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cider/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "지금";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				INFOPLIST_KEY_NSCameraUsageDescription = "챌린지 인증을 위해 카메라 권한이 필요합니다.";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "챌린지 인증을 위해 앨범 권한이 필요합니다.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "프로필 사진 설정 및 변경,챌린지 인증을 위해 카메라 권한이 필요합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "프로필 사진 설정 및 변경,챌린지 인증을 위해 갤러리 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1682,7 +1675,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = LimYoungSun.Cider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1705,9 +1698,10 @@
 				DEVELOPMENT_TEAM = 9738W25PF4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cider/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "지금";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				INFOPLIST_KEY_NSCameraUsageDescription = "챌린지 인증을 위해 카메라 권한이 필요합니다.";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "챌린지 인증을 위해 앨범 권한이 필요합니다.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "프로필 사진 설정 및 변경,챌린지 인증을 위해 카메라 권한이 필요합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "프로필 사진 설정 및 변경,챌린지 인증을 위해 갤러리 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1718,7 +1712,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = LimYoungSun.Cider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
