@@ -204,7 +204,8 @@ private extension MypageViewController {
             viewModel: MyCertifyViewModel(
                 usecase: DefaultMyCertifyUsecase(
                     repository: DefaultMyCertifyRepository()
-                )
+                ),
+                selectedChallengeId: nil
             )
         )
         viewController.hidesBottomBarWhenPushed = true

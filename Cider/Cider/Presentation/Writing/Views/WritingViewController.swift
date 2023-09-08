@@ -79,7 +79,8 @@ private extension WritingViewController {
                 viewModel: CertifyViewModel(
                     usecase: DefaultCertifyUsecase(
                         repository: DefaultCertifyRepository()
-                    )
+                    ),
+                    selectedChallengeId: nil
                 )
             )
             viewController.hidesBottomBarWhenPushed = true

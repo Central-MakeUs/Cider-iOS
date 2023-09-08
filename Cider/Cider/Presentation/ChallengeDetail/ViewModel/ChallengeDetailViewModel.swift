@@ -17,7 +17,7 @@ final class ChallengeDetailViewModel: ViewModelType {
     }
     
     private var usecase: ChallengeDetailUsecase
-    private let challengeId: Int
+    let challengeId: Int
     
     var state: AnyPublisher<ViewModelState, Never> { currentState.compactMap { $0 }.eraseToAnyPublisher() }
     var currentState: CurrentValueSubject<ViewModelState?, Never> = .init(nil)

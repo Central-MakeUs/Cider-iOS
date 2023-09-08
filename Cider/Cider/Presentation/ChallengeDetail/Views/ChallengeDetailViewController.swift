@@ -1092,7 +1092,8 @@ private extension ChallengeDetailViewController {
             viewModel: MyCertifyViewModel(
                 usecase: DefaultMyCertifyUsecase(
                     repository: DefaultMyCertifyRepository()
-                )
+                ),
+                selectedChallengeId: viewModel.challengeId
             )
         )
         self.navigationController?.pushViewController(viewController, animated: true)
@@ -1143,7 +1144,8 @@ private extension ChallengeDetailViewController {
             viewModel: CertifyViewModel(
                 usecase: DefaultCertifyUsecase(
                     repository: DefaultCertifyRepository()
-                )
+                ),
+                selectedChallengeId: viewModel.challengeId
             )
         )
         self.navigationController?.pushViewController(viewController, animated: true)

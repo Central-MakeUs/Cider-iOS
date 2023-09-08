@@ -29,16 +29,19 @@ final class CertifyViewModel: ViewModelType {
     
     var challengeList: [String] = []
     var challengeIds: [Int] = []
-    var challengeIndex: Int = 0
+    var selectedChallengeIndex: Int = 0
+    lazy var selectedChallengeTitle: String = challengeList.first ?? ""
     lazy var challengeName = challengeNamePlaceHolder
     lazy var challengeContent = challengeContentPlaceHolder
     var certifyImage: UIImage?
+    private var selectedChallengeId: Int?
     
     var challengeNamePlaceHolder = "오늘 인증 완료!"
     var challengeContentPlaceHolder = "인증에 대한 이야기와 다양한 생각들, 사진에 대한 설명을 작성해보세요!"
     
-    init(usecase: CertifyUsecase) {
+    init(usecase: CertifyUsecase, selectedChallengeId: Int?) {
         self.usecase = usecase
+        self.selectedChallengeId = selectedChallengeId
     }
     
     func viewDidLoad() {
@@ -66,7 +69,7 @@ final class CertifyViewModel: ViewModelType {
     }
     
     func selectChallengeIndex(_ challengeIndex: Int) {
-        self.challengeIndex = challengeIndex
+        self.selectedChallengeIndex = challengeIndex
         currentState.send(.changeNextButtonState(isAvailableNextButton()))
     }
     
@@ -82,7 +85,7 @@ private extension CertifyViewModel {
     func upload() {
         Task {
             let request = CertifyRequest(
-                challengeId: challengeIds[challengeIndex],
+                challengeId: challengeIds[selectedChallengeIndex],
                 certifyName: challengeName,
                 certifyContent: challengeContent
             )
@@ -112,12 +115,21 @@ private extension CertifyViewModel {
                 challengeList.append(challenge.challengeName)
                 challengeIds.append(challenge.challengeId)
             }
+            if let selectedChallengeId {
+                for i in 0..<challengeIds.count {
+                    if selectedChallengeId == challengeIds[i] {
+                        selectedChallengeIndex = i
+                        selectedChallengeTitle = challengeList[i]
+                        break
+                    }
+                }
+            }
             currentState.send(.applySnapshot)
         }
     }
     
     func isAvailableNextButton() -> Bool {
-        print(challengeName, challengeIndex, challengeContent, certifyImage)
+        print(challengeName, selectedChallengeIndex, challengeContent, certifyImage)
 
         guard challengeName != challengeNamePlaceHolder,
               challengeContent != challengeContentPlaceHolder,

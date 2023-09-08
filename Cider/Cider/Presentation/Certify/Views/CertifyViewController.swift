@@ -132,7 +132,7 @@ private extension CertifyViewController {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CertifyCell.identifier, for: indexPath) as? CertifyCell else {
                 return UICollectionViewCell()
             }
-            cell.challengeSelectionView.setTextFieltText(self.viewModel.challengeList.first ?? "")
+            cell.challengeSelectionView.setTextFieltText(self.viewModel.selectedChallengeTitle)
             cell.addTapGestureCameraView(self, action: #selector(self.didTapCameraView))
             cell.setCameraImage(self.viewModel.certifyImage)
             cell.titleTextFieldView.textPublisher()
@@ -164,7 +164,7 @@ private extension CertifyViewController {
                 }
                 .store(in: &self.cancellables)
             cell.challengeSelectionView.challengeList = self.viewModel.challengeList
-            cell.challengeSelectionView.selectedIndex = self.viewModel.challengeIndex
+            cell.challengeSelectionView.selectedIndex = self.viewModel.selectedChallengeIndex
             return cell
         })
     }
@@ -240,7 +240,8 @@ struct CertifyViewController_Preview: PreviewProvider {
                 viewModel: CertifyViewModel(
                     usecase: DefaultCertifyUsecase(
                         repository: DefaultCertifyRepository()
-                    )
+                    ),
+                    selectedChallengeId: nil
                 )
             )
                 .toPreview()
