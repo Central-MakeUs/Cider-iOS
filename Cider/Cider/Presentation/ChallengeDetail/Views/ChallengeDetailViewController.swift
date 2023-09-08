@@ -172,7 +172,7 @@ private extension ChallengeDetailViewController {
             bottomView.heightAnchor.constraint(equalToConstant: 56),
             bottomButton.centerYAnchor.constraint(equalTo: bottomView.centerYAnchor),
             bottomButton.leadingAnchor.constraint(equalTo: heartButton.trailingAnchor, constant: 16),
-            bottomButton.widthAnchor.constraint(equalToConstant: 262),
+            bottomButton.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width*0.727),
             heartButton.heightAnchor.constraint(equalToConstant: 24),
             heartButton.widthAnchor.constraint(equalToConstant: 24),
             heartButton.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 10),
